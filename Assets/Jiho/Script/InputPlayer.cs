@@ -47,6 +47,10 @@ public class InputPlayer : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Debug.Log("Test1");
+        if(context.started)
+        {
+            Debug.Log(context.control);
+        }
+        
     }
 }
