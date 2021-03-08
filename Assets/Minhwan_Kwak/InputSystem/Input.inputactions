@@ -14,6 +14,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "WalkPress",
+                    "type": "Button",
+                    "id": "f92b16eb-1a04-4bea-a19b-0e5dbbcc6f8f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "e5b7ed28-1c99-4e51-a1a6-53c0ad59919c",
@@ -30,17 +38,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Run",
+                    "name": "RunStart",
                     "type": "Button",
                     "id": "a18401e5-1cff-4193-8918-d07a938bb2c9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap(duration=0.15)"
+                },
+                {
+                    "name": "RunPress",
+                    "type": "Button",
+                    "id": "9c11956c-d769-4b89-8148-e17088a65f61",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
                 {
-                    "name": "WASD",
+                    "name": "AD",
                     "id": "3db4f288-c23b-44fa-ad06-9f08594b721f",
                     "path": "2DVector",
                     "interactions": "",
@@ -95,26 +111,15 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "2D Vector",
+                    "name": "RightRun",
                     "id": "66abc989-29ad-4a47-8928-8155febff72b",
                     "path": "2DVector",
-                    "interactions": "Tap",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Run",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "left",
-                    "id": "4594ed32-49d4-44d5-9f27-5ca09203fb8f",
-                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "Run",
-                    "isComposite": false,
-                    "isPartOfComposite": true
+                    "groups": "",
+                    "action": "RunStart",
+                    "isComposite": true,
+                    "isPartOfComposite": false
                 },
                 {
                     "name": "right",
@@ -123,7 +128,95 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "Run",
+                    "action": "RunStart",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "LeftRun",
+                    "id": "fab35a74-6fd5-4afe-b64a-9126a09aaf89",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RunStart",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "b1d194e6-fd8b-4b5a-a00f-33f613bcd464",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "RunStart",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Press",
+                    "id": "8545d177-cc6c-4758-b00f-03e74af827ec",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RunPress",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "a5eeb940-f3d3-49f2-8408-fd95e334f593",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "RunPress",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "94062106-e281-419c-b934-a6bac7290ea9",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "RunPress",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Press",
+                    "id": "9e14e4d1-ef90-4962-8400-973e60af9035",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "WalkPress",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "left",
+                    "id": "fa56e93b-7d3c-4c70-9ffb-13e86b1bff1b",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "WalkPress",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "right",
+                    "id": "6a37d069-613f-4aa3-bdb4-70ec3cceb28a",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "WalkPress",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }
