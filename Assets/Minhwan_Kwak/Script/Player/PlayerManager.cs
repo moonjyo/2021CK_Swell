@@ -7,6 +7,7 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance;
     public PlayerStatus playerStatus;
     public PlayerMove playerMove;
+    public PlayerInput PlayerInput;
 
 
 
