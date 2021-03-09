@@ -348,7 +348,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1422818182307769798}
   - component: {fileID: 89589814668853842}
-  - component: {fileID: 335256649696060855}
+  - component: {fileID: 1460702754}
   m_Layer: 0
   m_Name: Player_Body
   m_TagString: Untagged
@@ -387,10 +387,10 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &335256649696060855
-CapsuleCollider:
+--- !u!65 &1460702754
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -399,10 +399,9 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.34364974
-  m_Height: 1.9471678
-  m_Direction: 1
-  m_Center: {x: 0.020327674, y: 0.8111421, z: 4.199891e-17}
+  serializedVersion: 2
+  m_Size: {x: 0.6229785, y: 1.7112554, z: 0.4295925}
+  m_Center: {x: 0.0073437784, y: 0.8888133, z: 0.034413233}
 --- !u!1 &1770402725992614420
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,7 +451,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2477152504647978758, guid: df96ff539b3660c4ea989090812b157c, type: 3}
+  - {fileID: 2100000, guid: b2eb20fea32826d4bbf96caf5caa1afa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -895,7 +894,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2541457280464432744, guid: df96ff539b3660c4ea989090812b157c, type: 3}
+  - {fileID: 2100000, guid: b2eb20fea32826d4bbf96caf5caa1afa, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1624,6 +1623,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd4e38ab2ea2f6c4dac6f659a9288fdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InputAction:
+    m_Name: Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: d6829fba-b0d9-4a85-a30e-4e1d02afaba5
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
 --- !u!114 &6831918652426617883
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1660,10 +1667,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e967be92a3bf08d47a6caff7648b9779, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 0}
+  rb: {fileID: 89589814668853842}
   PlayerAnim: {fileID: 1059861622960829002}
-  Root_Tr: {fileID: 0}
-  Body_Tr: {fileID: 0}
+  Root_Tr: {fileID: 1422818182307769798}
+  Body_Tr: {fileID: 1422818182307769798}
 --- !u!95 &1059861622960829002
 Animator:
   serializedVersion: 3
