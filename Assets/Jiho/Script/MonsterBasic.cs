@@ -20,12 +20,14 @@ public class MonsterBasic : MonoBehaviour
     public Transform jumpArea;
     public Animator Anim;
 
-    public Rigidbody RigidBody;
+    private Rigidbody RigidBody;
 
     MonsterState MonsterState;
 
     bool IsJumpArea = false; // 점프 지역에 닿았을 때
     bool IsJump = false; // 바닥 콜라이더에 닿고있을 때만?
+
+    public LayerMask PlayerLayerMask;
 
     void Start()
     {
@@ -36,13 +38,7 @@ public class MonsterBasic : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // 일정 범위를 놓고 레이캐스트를 쏴서 장애물이 아니고 플레이어면 접근 및 공격?
-        Collider[] hitCollider = Physics.OverlapSphere(transform.position, 10.0f);
-        int i = 0;
-        while (hitCollider.Length > i)
-        {
-            i++;
-        }
+        Patrol();
 
         Vector3 difference = transform.position - jumpArea.position;
 
@@ -57,26 +53,14 @@ public class MonsterBasic : MonoBehaviour
             IsJumpArea = false;
             
         }
-
-        //if (IsJumpArea)
-        //{
-        //    transform.Translate(player.forward * Time.deltaTime * 5);
-        //    IsJump = true;
-        //}
-        //else if (!IsJumpArea)
-        //{
-        //    nav.SetDestination(player.position);
-        //}
     }
 
     private void FixedUpdate()
     {
         if (IsJumpArea)
         {
-            //transform.Translate(player.forward * Time.deltaTime * 5);
             //RigidBody.velocity += player.forward * Time.deltaTime * 5;
             RigidBody.AddForce(Vector3.Normalize(player.position - transform.position) * Time.deltaTime * 20, ForceMode.Impulse);
-            //IsJump = true;
             IsJumpArea = false;
             if(!IsJump && MonsterState == MonsterState.IDLE)
             {
@@ -93,6 +77,16 @@ public class MonsterBasic : MonoBehaviour
                 nav.SetDestination(player.position);
             }
             
+        }
+    }
+
+    protected void Patrol()
+    {
+        Collider[] hitCollider = Physics.OverlapSphere(transform.position, 10.0f, PlayerLayerMask);
+        int i = 0;
+        while (hitCollider.Length > i)
+        {
+            i++;
         }
     }
 
