@@ -6,7 +6,7 @@ public class PlayerStatus
 
     public float WalkSpeed;
 
-    public float RunSpeed;
+    public float HideWalkSpeed;
 
     public float invincibilityTime;
 
@@ -52,11 +52,12 @@ public class PlayerStatus
 
 public enum PlayerFSM
 {
-    Move = 0x00000001, // 0010
+    Walk = 0x00000001, // 0010
     Wall = 0x00000002, // 1000
     Jump = 0x00000004, // 0100
     Ground = 0x00000008,  
-    Climing = 0x00000016, 
+    Climing = 0x00000010, 
+    HideWalk = 0x00000020,
 }
 
 

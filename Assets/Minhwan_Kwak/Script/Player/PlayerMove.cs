@@ -7,7 +7,7 @@ public class PlayerMove : MonoBehaviour
 {
     private Vector3 WalkVec;
     private Vector3 JumpVec;
-
+    private Vector3 HideWalkVec;
 
     public Rigidbody rb;
 
@@ -24,7 +24,6 @@ public class PlayerMove : MonoBehaviour
     public delegate void MoveDel();
     public MoveDel MoveFunction;
 
-    private bool isRunCheck = false;
     public bool isHanging = false;
 
 
@@ -53,7 +52,7 @@ public class PlayerMove : MonoBehaviour
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
         {
             //hashflag  포함되어있는지 확인 
-            if (MoveFunction != null && !PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall | PlayerFSM.Move))
+            if (MoveFunction != null && !PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
             {
                 MoveFunction();
             }
@@ -63,19 +62,19 @@ public class PlayerMove : MonoBehaviour
             }
         }
     }
-    public void SetMove(Vector3 value ,bool isRun)  // isRun = true(running) or isrun = false(walk)
+
+    public void SetMove(Vector3 value)  // isRun = true(running) or isrun = false(walk)
     {
         WalkVec = value;
-        isRunCheck = isRun;
-        if (!isRun)
-        {
-            MoveFunction = Walk;
-        }
-        else if(isRun)
-        {
-            MoveFunction = Run;
-        }
+        MoveFunction = Walk;
     }
+
+    public void SetHideMoveCheck(Vector3 value)
+    {
+        HideWalkVec = value;
+    }
+    
+
 
 
     public void SetJump(Vector3 value)
@@ -88,66 +87,59 @@ public class PlayerMove : MonoBehaviour
     {
         if (WalkVec.sqrMagnitude > 0.1f)
         {
-            //player 방향에 따라 회전 
-            if (WalkVec.x == 1)
+            if(HideWalkVec.sqrMagnitude > 0.1f)
             {
-                transform.rotation = Quaternion.Euler(0, 90, 0);
-               PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right; 
+                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.HideWalkSpeed;
+                if (IsGrounded())
+                {
+                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", true);
 
+                    PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Walk);
+                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.HideWalk);
+                }
+                transform.LookAt(transform.position + WalkVec);
+                rb.MovePosition(transform.position + WalkMove);
             }
             else
             {
-                transform.rotation = Quaternion.Euler(0, -90, 0);
-                PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
+                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.WalkSpeed;
 
+                if (IsGrounded())
+                {
+                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
+                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
+                    PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.HideWalk);
+                }
+
+                transform.LookAt(transform.position + WalkVec);
+                rb.MovePosition(transform.position + WalkMove);
             }
 
 
-            Vector3 WalkMove = WalkVec * Time.deltaTime * PlayerManager.Instance.playerStatus.WalkSpeed;
-         
-
-
-            if (IsGrounded()) {PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true); }
-
-
-
-            rb.MovePosition(transform.position + WalkMove);
         }
     }
-    public void Run()
+
+    public void HideWalk()
     {
         if (WalkVec.sqrMagnitude > 0.1f)
         {
             //player 방향에 따라 회전 
-            if (WalkVec.x == 1)
-            {
-                transform.rotation = Quaternion.Euler(0, 90, 0);
-            }
-            else
-            {
-                transform.rotation = Quaternion.Euler(0, -90, 0);
-            }
+       
+            Vector3 RunMove = WalkVec * Time.deltaTime * PlayerManager.Instance.playerStatus.HideWalkSpeed;
+
+            if (IsGrounded()) { PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", true); }
 
 
-            Vector3 RunMove = WalkVec * Time.deltaTime * PlayerManager.Instance.playerStatus.RunSpeed;
-
-            if (IsGrounded()) { PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Run", true); }
-
-
-
+            transform.LookAt(transform.position + WalkVec);
             rb.MovePosition(transform.position + RunMove);
         }
     }
 
     public void Idle()
     {
-
-       if(isRunCheck)
-          { PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Run", false); }
-       else 
-          { PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false); }
+           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false); 
+           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false); 
            MoveFunction -= Idle;
-
     }
 
 
@@ -157,7 +149,7 @@ public class PlayerMove : MonoBehaviour
         if (JumpVec.sqrMagnitude > 0.1f)
         {
             
-           rb.AddForce(Vector3.up * PlayerManager.Instance.playerStatus.JumpPower);
+            rb.AddForce(Vector3.up * PlayerManager.Instance.playerStatus.JumpPower);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
             RigidBodyCol.center = JumpColCenterVec;
             RigidBodyCol.size = JumpColSizeVec;
@@ -181,14 +173,13 @@ public class PlayerMove : MonoBehaviour
 
     public void BaseRigidBodyFrezen()
     {
-        PlayerManager.Instance.playerMove.rb.constraints = RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
+        PlayerManager.Instance.playerMove.rb.constraints =  RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
 
     }
 
     public void ClimingRigidBodyFrezen()
     {
         PlayerManager.Instance.playerMove.rb.constraints = RigidbodyConstraints.FreezeAll;
-
     }
 
 
