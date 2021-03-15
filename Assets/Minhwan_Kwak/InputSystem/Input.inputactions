@@ -14,14 +14,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "WalkPress",
-                    "type": "Button",
-                    "id": "f92b16eb-1a04-4bea-a19b-0e5dbbcc6f8f",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
-                },
-                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "e5b7ed28-1c99-4e51-a1a6-53c0ad59919c",
@@ -39,19 +31,11 @@
                 },
                 {
                     "name": "RunStart",
-                    "type": "Button",
+                    "type": "PassThrough",
                     "id": "a18401e5-1cff-4193-8918-d07a938bb2c9",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "Tap(duration=0.1)"
-                },
-                {
-                    "name": "RunPress",
-                    "type": "Button",
-                    "id": "9c11956c-d769-4b89-8148-e17088a65f61",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "Press(behavior=2)"
                 }
             ],
             "bindings": [
@@ -100,30 +84,8 @@
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "RightRun",
-                    "id": "66abc989-29ad-4a47-8928-8155febff72b",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "RunStart",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "right",
-                    "id": "0e7bfb51-7e8c-4c68-ab89-958ca7b1b5df",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RunStart",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "LeftRun",
-                    "id": "fab35a74-6fd5-4afe-b64a-9126a09aaf89",
+                    "name": "Test",
+                    "id": "219337fc-5a6c-4531-abb9-24105be40dd8",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
@@ -134,7 +96,7 @@
                 },
                 {
                     "name": "left",
-                    "id": "b1d194e6-fd8b-4b5a-a00f-33f613bcd464",
+                    "id": "e2171646-ba01-4f68-befd-8ee71350599f",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
@@ -144,68 +106,24 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "Press",
-                    "id": "8545d177-cc6c-4758-b00f-03e74af827ec",
+                    "name": "Test2",
+                    "id": "ab41304e-002a-4f2f-8cd0-f37e4be1bb78",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "RunPress",
+                    "action": "RunStart",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
-                    "name": "left",
-                    "id": "a5eeb940-f3d3-49f2-8408-fd95e334f593",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "RunPress",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
                     "name": "right",
-                    "id": "94062106-e281-419c-b934-a6bac7290ea9",
+                    "id": "1f2724bc-0cba-487c-a8e9-60a61eae9b33",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
-                    "action": "RunPress",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "Press",
-                    "id": "9e14e4d1-ef90-4962-8400-973e60af9035",
-                    "path": "2DVector",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "WalkPress",
-                    "isComposite": true,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "left",
-                    "id": "fa56e93b-7d3c-4c70-9ffb-13e86b1bff1b",
-                    "path": "<Keyboard>/leftArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "WalkPress",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "6a37d069-613f-4aa3-bdb4-70ec3cceb28a",
-                    "path": "<Keyboard>/rightArrow",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "WalkPress",
+                    "action": "RunStart",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },

@@ -8,7 +8,9 @@ public class PlayerManager : MonoBehaviour
     public PlayerStatus playerStatus;
     public PlayerMove playerMove;
     public PlayerInput PlayerInput;
-
+    public PlayerInteraction PlayerInteraction;
+    public PlayerCliming playerCliming;
+    public PlayerAnimationEvents playerAnimationEvents;
 
 
     private void Awake()
@@ -18,5 +20,4 @@ public class PlayerManager : MonoBehaviour
             Instance = this;
         }
     }
- 
 }
