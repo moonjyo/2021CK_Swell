@@ -22,6 +22,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void HangingStart()
     {
+        IsAnimStart = true;
         PlayerManager.Instance.playerMove.ClimingRigidBodyFrezen();
     }
 }

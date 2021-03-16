@@ -4,36 +4,32 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
-    public bool IsRunning = false;
-    private int PressKeyCount;
-
-    
+    public bool IsHideWalk = false;
     private Vector2 InputValue;
 
     public void OnWalk(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
 
-        Vector3 MoveVec = new Vector3(InputValue.x, 0, 0);
-        PlayerManager.Instance.playerMove.SetMove(MoveVec, IsRunning);
-        PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Move);
-        if (InputValue.x == 0)
-        {
-            IsRunning = false;
+        Vector3 MoveVec = new Vector3(InputValue.x, 0, InputValue.y);
+        PlayerManager.Instance.playerMove.SetMove(MoveVec);
+
+        if (context.canceled)
+        {;
             PlayerManager.Instance.playerMove.MoveFunction = PlayerManager.Instance.playerMove.Idle;
 
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Move);
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Walk);
         }
     }
-    public void OnRun(InputAction.CallbackContext context)
+    public void OnHideWalk(InputAction.CallbackContext context)
     {
-        if(context.performed && !IsRunning)
+       Vector2 vec = context.ReadValue<Vector2>();
+        PlayerManager.Instance.playerMove.SetHideMoveCheck(vec);
+        if (context.canceled)
         {
-            IsRunning = true;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false);
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.HideWalk);
         }
-    }
-    public void OnAttack(InputAction.CallbackContext context)
-    {
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -50,13 +46,7 @@ public class PlayerInput : MonoBehaviour
                 PlayerManager.Instance.playerMove.climing();
             }
         }
-
-
         //climig test 
-        if (context.canceled)
-        {
-            Debug.Log("climingoff");
-            
-        }
+       
     }
 }

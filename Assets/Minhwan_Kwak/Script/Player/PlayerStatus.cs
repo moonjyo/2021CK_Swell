@@ -6,7 +6,7 @@ public class PlayerStatus
 
     public float WalkSpeed;
 
-    public float RunSpeed;
+    public float HideWalkSpeed;
 
     public float invincibilityTime;
 
@@ -48,22 +48,30 @@ public class PlayerStatus
        int check = fsm.CompareTo(value);
        return check;
     }
+
 }
 
 public enum PlayerFSM
 {
-    Move = 0x00000001, // 0010
+    Walk = 0x00000001, // 0010
     Wall = 0x00000002, // 1000
     Jump = 0x00000004, // 0100
     Ground = 0x00000008,  
-    Climing = 0x00000016, 
+    Climing = 0x00000010, 
+    HideWalk = 0x00000020,
 }
 
 
 public enum PlayerDirection
 {
-   Left,
-   Right,
+   Top = 0x00000001,
+   Left = 0x00000002,
+   Right = 0x00000004,
+   Bottom = 0x00000008,
+   TopRight = 0x000000010,
+   TopLeft = 0x000000020,
+   BottomRight = 0x000000020,
+   BottomLeft = 0x000000040,
 
 }
 
