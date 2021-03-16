@@ -48,6 +48,7 @@ public class PlayerStatus
        int check = fsm.CompareTo(value);
        return check;
     }
+
 }
 
 public enum PlayerFSM
@@ -63,8 +64,14 @@ public enum PlayerFSM
 
 public enum PlayerDirection
 {
-   Left,
-   Right,
+   Top = 0x00000001,
+   Left = 0x00000002,
+   Right = 0x00000004,
+   Bottom = 0x00000008,
+   TopRight = 0x000000010,
+   TopLeft = 0x000000020,
+   BottomRight = 0x000000020,
+   BottomLeft = 0x000000040,
 
 }
 
