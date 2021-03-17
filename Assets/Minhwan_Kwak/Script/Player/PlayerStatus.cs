@@ -5,8 +5,9 @@ public class PlayerStatus
     public int Mp;
 
     public float WalkSpeed;
-
     public float HideWalkSpeed;
+    public float PushSpeed;
+    public float PullSpeed;
 
     public float invincibilityTime;
 

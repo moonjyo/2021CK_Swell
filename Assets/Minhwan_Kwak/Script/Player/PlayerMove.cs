@@ -8,6 +8,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 WalkVec;
     private Vector3 JumpVec;
     private Vector3 HideWalkVec;
+    private Vector3 PullVec;
 
     public Rigidbody rb;
 
@@ -26,15 +27,20 @@ public class PlayerMove : MonoBehaviour
 
     public bool isHanging = false;
 
-
-
     private Vector3 BaseCenterColVec;
     private Vector3 BaseSizeColVec;
 
     private Vector3 JumpColCenterVec;
     private Vector3 JumpColSizeVec;
 
+    public LayerMask ItemLayerMask;
+    public Transform HitItemTr;
+    public float ItemDistance;
+    private bool isItemCol = false;
+    RaycastHit ItemHit;
 
+
+    public float testCol = 0f;
 
     private void Start()
     {
@@ -46,8 +52,26 @@ public class PlayerMove : MonoBehaviour
     }
 
 
+
     private void FixedUpdate()
     {
+        if(PullVec.sqrMagnitude > 0.1f)
+        {
+            PlayerManager.Instance.PlayerInput.IsPull = true;
+        }
+
+        bool isHitItem = Physics.Raycast(HitItemTr.position, HitItemTr.forward, out ItemHit, ItemDistance, ItemLayerMask);
+        isItemCol = isHitItem;
+        if(!isItemCol)
+        {
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+        }
+
+        if (Mathf.Sign(rb.velocity.y) == -1)
+        {
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling" , true);
+        }
+
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
         {
             //hashflag  포함되어있는지 확인 
@@ -77,6 +101,10 @@ public class PlayerMove : MonoBehaviour
     {
         JumpVec = value;
     }
+    public void SetPull(Vector3 value)
+    {
+        PullVec = value;
+    }
 
     public void Walk()
     {
@@ -94,6 +122,17 @@ public class PlayerMove : MonoBehaviour
                 }
                 transform.LookAt(transform.position + WalkVec);
                 rb.MovePosition(transform.position + WalkMove);
+            }
+            else if(isItemCol && IsGrounded())
+            {
+                Rigidbody ItemRb = ItemHit.transform.GetComponent<Rigidbody>();
+                if(ItemRb != null)
+                {
+                    Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.PushSpeed;
+                    ItemMoveDecide(ItemRb.mass); 
+                    transform.LookAt(transform.position + WalkVec);
+                    rb.MovePosition(transform.position + WalkMove);
+                }
             }
             else
             {
@@ -129,9 +168,10 @@ public class PlayerMove : MonoBehaviour
 
     public void Idle()
     {
-           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false); 
-           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false); 
-           MoveFunction -= Idle;
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false); 
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+        MoveFunction -= Idle;
     }
 
 
@@ -140,22 +180,25 @@ public class PlayerMove : MonoBehaviour
        
         if (JumpVec.sqrMagnitude > 0.1f)
         {
-           
             Debug.Log(rb.velocity.magnitude);
             rb.velocity = Vector3.up * PlayerManager.Instance.playerStatus.JumpPower;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
             RigidBodyCol.center = JumpColCenterVec;
             RigidBodyCol.size = JumpColSizeVec;
-
         }
     }
 
     private bool IsGrounded()
     {
-        bool IsCheckGround =  Physics.Raycast(GroundCheckCol.bounds.center, Vector3.down, GroundCheckCol.bounds.extents.y + 0.1f , GroundLayer);
-        if (IsCheckGround)
+        //bool IsCheckGround =  Physics.CheckCapsule(GroundCheckCol.bounds.center, Vector3.down, GroundCheckCol.bounds.extents.y + 0.2f , GroundLayer);
+        bool IsCheckGround = Physics.CheckCapsule(GroundCheckCol.bounds.center, new Vector3(GroundCheckCol.bounds.center.x, GroundCheckCol.bounds.min.y - 0.1f, GroundCheckCol.bounds.center.z), 0.18f,GroundLayer);
+        if (IsCheckGround) 
         {
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("BranchToCrounch"); 
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
             RigidBodyCol.center = BaseCenterColVec;
             RigidBodyCol.size = BaseSizeColVec;
         }
@@ -183,7 +226,6 @@ public class PlayerMove : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
         ClimingJudge();
         PlayerManager.Instance.playerStatus.FsmAllRemove();
-
     }
     
     public void Hanging(Vector2 InValue)
@@ -194,6 +236,9 @@ public class PlayerMove : MonoBehaviour
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("HangIdle");
         }
     }
+
+
+
 
     public void DirectionSelect()
     {
@@ -268,6 +313,55 @@ public class PlayerMove : MonoBehaviour
             default:
                 Debug.Log("잘못된 방향");
                 return false;
+        }
+    }
+
+    public void ItemMoveDecide(float MasValue)
+    {
+        //push and pull on 
+        if(MasValue <= 10)
+        {
+            //item lift
+            if(MasValue <= 2 && PlayerManager.Instance.PlayerInput.IsLiftItem)
+            {
+
+                return; 
+            }
+            //item pull
+            else if(PlayerManager.Instance.PlayerInput.IsPull)
+            {
+                Debug.Log("pull중");
+                return;
+            }
+
+            //item push 
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
+        }
+        //no move
+        else if(MasValue <= 100)
+        {
+
+        }
+        
+
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        RaycastHit hit;
+        bool isHitHigh = Physics.Raycast(HitItemTr.position, HitItemTr.forward, out hit, ItemDistance, ItemLayerMask);
+
+        Gizmos.color = Color.green;
+        if (isHitHigh)
+        {
+            Gizmos.DrawRay(HitItemTr.position, HitItemTr.forward * hit.distance);
+        }
+        else
+        {
+            Gizmos.DrawRay(HitItemTr.position, HitItemTr.forward * ItemDistance);
         }
     }
 

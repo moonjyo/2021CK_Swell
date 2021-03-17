@@ -6,6 +6,8 @@ public class PlayerInput : MonoBehaviour
 {
     public bool IsHideWalk = false;
     private Vector2 InputValue;
+    public bool IsLiftItem = false;
+    public bool IsPull = false;
 
     public void OnWalk(InputAction.CallbackContext context)
     {
@@ -46,7 +48,19 @@ public class PlayerInput : MonoBehaviour
                 PlayerManager.Instance.playerMove.climing();
             }
         }
-        //climig test 
+    }
+
+    public void OnPull(InputAction.CallbackContext context)
+    {
+        Vector2 value = context.ReadValue<Vector2>();
+        Vector3 PullVec = new Vector3(value.x, 0, 0);
+        PlayerManager.Instance.playerMove.SetPull(PullVec);
+
+        if(context.canceled)
+        {
+            IsPull = false;
+        }
        
+
     }
 }
