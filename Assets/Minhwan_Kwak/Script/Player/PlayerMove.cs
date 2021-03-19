@@ -5,42 +5,63 @@ using DG.Tweening;
 
 public class PlayerMove : MonoBehaviour
 {
+    //키값이 들어와있는지 체크
     private Vector3 WalkVec;
     private Vector3 JumpVec;
     private Vector3 HideWalkVec;
     private Vector3 PullVec;
 
+    //가지고있는 rb
     public Rigidbody rb;
 
+    
     public BoxCollider GroundCheckCol;
     public BoxCollider RigidBodyCol;
+
 
 
     public LayerMask GroundLayer;
 
 
+    //현재 tr과 다른 자식 tr을 알기위해
     public Transform Root_Tr;
     public Transform Body_Tr;
 
+
+    //move를 가려내기 위해 
     public delegate void MoveDel();
     public MoveDel MoveFunction;
 
+    //현재 매달려있는지 check
     public bool isHanging = false;
 
+    //Jump 할때에 충돌 범위를 변경하기위해 
     private Vector3 BaseCenterColVec;
     private Vector3 BaseSizeColVec;
-
     private Vector3 JumpColCenterVec;
     private Vector3 JumpColSizeVec;
 
+    //현재 들수 있는 item을 check한다 
     public LayerMask ItemLayerMask;
     public Transform HitItemTr;
-    public float ItemDistance;
-    private bool isItemCol = false;
-    RaycastHit ItemHit;
+
+    //물체와 충돌하기위한 bool
+    public bool isItemCol = false;
+
+    public bool isitempick = false;
+
+    public bool IsGetItem = false;
 
 
-    public float testCol = 0f;
+
+    [HideInInspector]
+    public Rigidbody ColliderItemRb;
+
+
+
+    public bool IsTime = false;
+    private float deltime = 0f;
+    private bool IsItemPickupSwitch = false;
 
     private void Start()
     {
@@ -50,40 +71,18 @@ public class PlayerMove : MonoBehaviour
         JumpColCenterVec = new Vector3(RigidBodyCol.center.x, 1.19f, RigidBodyCol.center.z);
         JumpColSizeVec = new Vector3(RigidBodyCol.size.x, 1.0f, RigidBodyCol.size.z);
     }
-
-
+    
 
     private void FixedUpdate()
     {
-        if(PullVec.sqrMagnitude > 0.1f)
+        if(PlayerManager.Instance.PlayerInput.IsPickUpItem && ColliderItemRb != null && !IsGetItem) // item 줍기 여기서 mass 비교까지 해야
         {
-            PlayerManager.Instance.PlayerInput.IsPull = true;
+            ItemPickUp();
         }
-
-        bool isHitItem = Physics.Raycast(HitItemTr.position, HitItemTr.forward, out ItemHit, ItemDistance, ItemLayerMask);
-        isItemCol = isHitItem;
-        if(!isItemCol)
-        {
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-        }
-
-        if (Mathf.Sign(rb.velocity.y) == -1)
-        {
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling" , true);
-        }
-
-        if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
-        {
-            //hashflag  포함되어있는지 확인 
-            if (MoveFunction != null && !PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
-            {
-                 MoveFunction();
-            }
-            if (IsGrounded())
-            {
-                Jump();
-            }
-        }
+        OnItemMove();
+        ItemTimeTick();
+        MoveCheck();
+       
     }
 
     public void SetMove(Vector3 value)  // isRun = true(running) or isrun = false(walk)
@@ -92,12 +91,12 @@ public class PlayerMove : MonoBehaviour
         MoveFunction = Walk;
     }
 
-    public void SetHideMoveCheck(Vector3 value)
+    public void SetHideMoveCheck(Vector3 value) // hidemove check
     {
         HideWalkVec = value;
     }
     
-    public void SetJump(Vector3 value)
+    public void SetJump(Vector3 value) // jump check 
     {
         JumpVec = value;
     }
@@ -105,46 +104,54 @@ public class PlayerMove : MonoBehaviour
     {
         PullVec = value;
     }
-
     public void Walk()
     {
         if (WalkVec.sqrMagnitude > 0.1f)
         {
-            DirectionSelect();
-            if (HideWalkVec.sqrMagnitude > 0.1f)
+            DirectionSelect(); //방향성 check 
+            if (HideWalkVec.sqrMagnitude > 0.1f) // 조심히걷기 
             {
                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.HideWalkSpeed;
                 if (IsGrounded())
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", true);
-                    PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Walk);
-                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.HideWalk);
+                    PlayerManager.Instance.playerStatus.fsm = PlayerFSM.HideWalk;
                 }
                 transform.LookAt(transform.position + WalkVec);
                 rb.MovePosition(transform.position + WalkMove);
             }
-            else if(isItemCol && IsGrounded())
+            else if(isItemCol && IsGrounded() && ColliderItemRb != null)
             {
-                Rigidbody ItemRb = ItemHit.transform.GetComponent<Rigidbody>();
-                if(ItemRb != null)
+                if (PullVec.sqrMagnitude > 0.1f) //당길떄 
                 {
+                    if (-transform.forward == WalkVec)
+                    {
+                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
+                        ColliderItemRb.constraints = RigidbodyConstraints.FreezeRotation;
+                        Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.PullSpeed;
+                        PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Pull;
+                        rb.MovePosition(transform.position + WalkMove);
+                        ColliderItemRb.MovePosition(ColliderItemRb.transform.position + WalkMove);
+                    }
+                }
+                else //물건 push 
+                {
+                    ColliderItemRb.constraints = RigidbodyConstraints.FreezeRotation;
                     Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.PushSpeed;
-                    ItemMoveDecide(ItemRb.mass); 
+                    ItemMoveDecide(ColliderItemRb.mass);
+                    PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Push;
                     transform.LookAt(transform.position + WalkVec);
                     rb.MovePosition(transform.position + WalkMove);
                 }
             }
-            else
+            else //그냥걷기 
             {
                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.WalkSpeed;
-
                 if (IsGrounded())
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
-                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
-                    PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.HideWalk);
+                    PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Walk;
                 }
-
                 transform.LookAt(transform.position + WalkVec);
                 rb.MovePosition(transform.position + WalkMove);
             }
@@ -171,6 +178,7 @@ public class PlayerMove : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false); 
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+        PlayerManager.Instance.playerStatus.FsmAllRemove();
         MoveFunction -= Idle;
     }
 
@@ -194,7 +202,7 @@ public class PlayerMove : MonoBehaviour
         bool IsCheckGround = Physics.CheckCapsule(GroundCheckCol.bounds.center, new Vector3(GroundCheckCol.bounds.center.x, GroundCheckCol.bounds.min.y - 0.1f, GroundCheckCol.bounds.center.z), 0.18f,GroundLayer);
         if (IsCheckGround) 
         {
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false); 
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("BranchToCrounch"); 
@@ -209,7 +217,6 @@ public class PlayerMove : MonoBehaviour
     public void BaseRigidBodyFrezen()
     {
         PlayerManager.Instance.playerMove.rb.constraints =  RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
     }
 
     public void ClimingRigidBodyFrezen()
@@ -237,7 +244,36 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    private void ItemPickUp()
+    {
+        if (!isitempick && !IsItemPickupSwitch)
+        {
+            IsItemPickupSwitch = true;
+            Debug.Log("ItemPickup");
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemPickUp);
+            ColliderItemRb.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), 1.0f).OnComplete(() =>
+            {
+                IsItemPickupSwitch = false;
+                isitempick = true;
+                DOTween.Kill(ColliderItemRb);
+            });
+        }
+        
+    }
+    public void ItemPickDown()
+    {
+        if (ColliderItemRb != null)
+        {
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemPickUp);
+            ColliderItemRb.transform.DOMove(new Vector3(ColliderItemRb.position.x + (transform.forward.x * 2f), ColliderItemRb.position.y, ColliderItemRb.position.z + (transform.forward.z * 2f)), 0.4f);
+            ColliderItemRb.constraints = RigidbodyConstraints.FreezeRotation;
+            ColliderItemRb = null;
+            isitempick = false;
+            IsGetItem = false;
+        }
 
+    }
 
 
     public void DirectionSelect()
@@ -315,14 +351,13 @@ public class PlayerMove : MonoBehaviour
                 return false;
         }
     }
-
     public void ItemMoveDecide(float MasValue)
     {
         //push and pull on 
         if(MasValue <= 10)
         {
             //item lift
-            if(MasValue <= 2 && PlayerManager.Instance.PlayerInput.IsLiftItem)
+            if(MasValue <= 2 && PlayerManager.Instance.PlayerInput.IsPickUpItem)
             {
 
                 return; 
@@ -330,7 +365,7 @@ public class PlayerMove : MonoBehaviour
             //item pull
             else if(PlayerManager.Instance.PlayerInput.IsPull)
             {
-                Debug.Log("pull중");
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
                 return;
             }
 
@@ -343,26 +378,70 @@ public class PlayerMove : MonoBehaviour
         {
 
         }
-        
-
     }
 
-
-
-    private void OnDrawGizmos()
+    public bool ItemColCheck(Transform tr)
     {
-        RaycastHit hit;
-        bool isHitHigh = Physics.Raycast(HitItemTr.position, HitItemTr.forward, out hit, ItemDistance, ItemLayerMask);
-
-        Gizmos.color = Color.green;
-        if (isHitHigh)
+      ColliderItemRb =  tr.GetComponent<Rigidbody>();
+       if(ColliderItemRb != null)
         {
-            Gizmos.DrawRay(HitItemTr.position, HitItemTr.forward * hit.distance);
+            return true;
         }
-        else
+        return false;
+    }
+
+
+    private void OnItemMove()
+    {
+        if (isitempick && ColliderItemRb != null)
         {
-            Gizmos.DrawRay(HitItemTr.position, HitItemTr.forward * ItemDistance);
+            IsTime = true;
+            IsGetItem = true;
+            ColliderItemRb.transform.position = new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z);
+        }
+
+    }
+
+    private void ItemTimeTick()
+    {
+        if (IsTime)
+        {
+            deltime += Time.fixedDeltaTime;
+        }
+        if (deltime > 1.0f)
+        {
+            deltime = 0f;
+            BaseRigidBodyFrezen();
+            IsTime = false;
+        }
+
+    }
+    private void MoveCheck()
+    {
+        if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
+        {
+            if (PullVec.sqrMagnitude > 0.1f)
+            {
+                PlayerManager.Instance.PlayerInput.IsPull = true;
+            }
+            if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
+            {
+                //hashflag  포함되어있는지 확인 
+                if (MoveFunction != null && !PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
+                {
+                    MoveFunction();
+                }
+                if (IsGrounded())
+                {
+                    Jump();
+                }
+                else
+                {
+                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", true);
+                }
+            }
         }
     }
+
 
 }

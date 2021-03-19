@@ -15,11 +15,11 @@
                 },
                 {
                     "name": "Jump",
-                    "type": "Value",
+                    "type": "Button",
                     "id": "38fa6690-1f2c-423a-b74e-86388b9736c7",
-                    "expectedControlType": "Vector2",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Press"
                 },
                 {
                     "name": "HideWalk",
@@ -34,6 +34,14 @@
                     "type": "Value",
                     "id": "45e03ab1-9e66-4d56-b8f9-1ab1678a4397",
                     "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "PickUpObj",
+                    "type": "Button",
+                    "id": "42af963b-50bd-4d22-bd83-ad0ed4f3ceaf",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 }
@@ -170,6 +178,17 @@
                     "action": "Pull",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "5fb1079e-ee72-4b69-ae2c-c282289d3c5c",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PickUpObj",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },
