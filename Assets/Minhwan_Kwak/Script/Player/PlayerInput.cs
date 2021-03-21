@@ -6,8 +6,8 @@ public class PlayerInput : MonoBehaviour
 {
     public bool IsHideWalk = false;
     private Vector2 InputValue;
-    public bool IsLiftItem = false;
     public bool IsPull = false;
+    public bool IsPickUpItem = false;
 
     public void OnWalk(InputAction.CallbackContext context)
     {
@@ -59,8 +59,30 @@ public class PlayerInput : MonoBehaviour
         if(context.canceled)
         {
             IsPull = false;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
         }
-       
+    }
+
+    public void OnPickUpObj(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+         if (PlayerManager.Instance.playerMove.isItemCol)
+         {
+              IsPickUpItem = true;
+         }
+         else
+         {
+                PlayerManager.Instance.playerMove.isitempick = false;
+                IsPickUpItem = false;
+         }
+            if (!IsPickUpItem && PlayerManager.Instance.playerMove.IsGetItem) 
+            {
+                PlayerManager.Instance.playerMove.ItemPickDown();
+            }
+
+        }
+   
 
     }
 }

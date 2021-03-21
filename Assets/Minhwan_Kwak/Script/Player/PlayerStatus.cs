@@ -8,6 +8,7 @@ public class PlayerStatus
     public float HideWalkSpeed;
     public float PushSpeed;
     public float PullSpeed;
+    public float PickUpSpeed;
 
     public float invincibilityTime;
 
@@ -60,6 +61,9 @@ public enum PlayerFSM
     Ground = 0x00000008,  
     Climing = 0x00000010, 
     HideWalk = 0x00000020,
+    Push = 0x00000040,
+    Pull = 0x00000080,
+    ItemPickUp = 0x00000100,
 }
 
 
