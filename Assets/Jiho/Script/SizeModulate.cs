@@ -41,7 +41,10 @@ public class SizeModulate : MonoBehaviour
         {
             if(go.transform.localScale.x >= 5.0f)
             {
-                go.transform.localScale = SizeUpLimit;
+
+                //go.transform.localScale = SizeUpLimit;
+                value -= 119.9f;
+                go.transform.localScale -= new Vector3(value, value, value);
                 return;
             }
             else
@@ -54,7 +57,9 @@ public class SizeModulate : MonoBehaviour
         {
            if (go.transform.localScale.x <= 1.0f)
             {
-                go.transform.localScale = SizeDownLimit;
+                //go.transform.localScale = SizeDownLimit;
+                value += 119.9f;
+                go.transform.localScale -= new Vector3(value, value, value);
                 return;
             }
             else

@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class InputTest : MonoBehaviour
 {
     public SizeModulate sizeModulate;
-    public CameraAction cameraAction;
+    //public CameraAction cameraAction;
 
     public void OnRightMouseButton(InputAction.CallbackContext context)
     {
