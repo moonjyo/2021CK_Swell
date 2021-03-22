@@ -12,6 +12,7 @@ public class PushColliderCheck : MonoBehaviour
         {
             PlayerManager.Instance.playerMove.isItemCol = true;
             Debug.Log(PlayerManager.Instance.playerMove.isItemCol);
+            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemTouch);
             PlayerManager.Instance.playerMove.ItemColCheck(other.transform);    
         }
     }
@@ -23,6 +24,7 @@ public class PushColliderCheck : MonoBehaviour
             PlayerManager.Instance.playerMove.isItemCol = false;
             Debug.Log(PlayerManager.Instance.playerMove.isItemCol);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
             Rigidbody itemrb = other.GetComponent<Rigidbody>();
            if(itemrb != null)
             {

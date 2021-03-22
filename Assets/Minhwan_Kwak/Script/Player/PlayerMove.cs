@@ -188,11 +188,18 @@ public class PlayerMove : MonoBehaviour
        
         if (JumpVec.sqrMagnitude > 0.1f)
         {
-            Debug.Log(rb.velocity.magnitude);
-            rb.velocity = Vector3.up * PlayerManager.Instance.playerStatus.JumpPower;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-            RigidBodyCol.center = JumpColCenterVec;
-            RigidBodyCol.size = JumpColSizeVec;
+           bool ispush =  PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Push);
+           bool ispull = PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Pull);
+           if(ispull || ispush)
+           {
+               return;
+           }
+           Debug.Log(rb.velocity.magnitude);
+           rb.velocity = Vector3.up * PlayerManager.Instance.playerStatus.JumpPower;
+           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
+           RigidBodyCol.center = JumpColCenterVec;
+           RigidBodyCol.size = JumpColSizeVec;
+            
         }
     }
 
@@ -202,6 +209,7 @@ public class PlayerMove : MonoBehaviour
         bool IsCheckGround = Physics.CheckCapsule(GroundCheckCol.bounds.center, new Vector3(GroundCheckCol.bounds.center.x, GroundCheckCol.bounds.min.y - 0.1f, GroundCheckCol.bounds.center.z), 0.18f,GroundLayer);
         if (IsCheckGround) 
         {
+            Debug.Log("ground true");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false); 
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
@@ -426,11 +434,6 @@ public class PlayerMove : MonoBehaviour
             }
             if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
             {
-                //hashflag  포함되어있는지 확인 
-                if (MoveFunction != null && !PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
-                {
-                    MoveFunction();
-                }
                 if (IsGrounded())
                 {
                     Jump();
@@ -438,6 +441,15 @@ public class PlayerMove : MonoBehaviour
                 else
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", true);
+                }
+                //hashflag  포함되어있는지 확인 
+                if (MoveFunction != null)
+                {
+                    if (WalkVec == transform.forward && PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
+                    {
+                        return;
+                    }
+                    MoveFunction();
                 }
             }
         }

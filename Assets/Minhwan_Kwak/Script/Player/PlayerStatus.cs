@@ -64,6 +64,7 @@ public enum PlayerFSM
     Push = 0x00000040,
     Pull = 0x00000080,
     ItemPickUp = 0x00000100,
+    ItemTouch = 0x00000120,
 }
 
 
