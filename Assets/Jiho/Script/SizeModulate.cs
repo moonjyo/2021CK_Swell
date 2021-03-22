@@ -15,8 +15,8 @@ public class SizeModulate : MonoBehaviour
     private RaycastHit hit;
     public LayerMask ItemLayerMask;
 
-    public Vector3 SizeUpLimit = new Vector3(5.0f, 5.0f, 5.0f);
-    public Vector3 SizeDownLimit = Vector3.one;
+    public Vector3 SizeUpLimit = new Vector3(1.0f, 1.0f, 1.0f);
+    public Vector3 SizeDownLimit = new Vector3(0.1f, 0.1f, 0.1f);
 
     public float RangeToItem = 3.0f; // 오브젝트와 플레이어의 거리
 
@@ -39,7 +39,7 @@ public class SizeModulate : MonoBehaviour
         SetPosValue = 0;
         if (value == 120) // 스크롤 업
         {
-            if(go.transform.localScale.x >= 5.0f)
+            if(go.transform.localScale.x >= 1.0f)
             {
 
                 //go.transform.localScale = SizeUpLimit;
@@ -55,7 +55,7 @@ public class SizeModulate : MonoBehaviour
         }
         else // 스크롤 다운
         {
-           if (go.transform.localScale.x <= 1.0f)
+           if (go.transform.localScale.x <= 0.1f)
             {
                 //go.transform.localScale = SizeDownLimit;
                 value += 119.9f;
@@ -72,7 +72,6 @@ public class SizeModulate : MonoBehaviour
         SetPosValue = (go.transform.localScale.y * 0.5f) + (GroundColliderScaleY * 0.5f) + GroundPosY;
         go.transform.position = new Vector3(go.transform.position.x, SetPosValue, go.transform.position.z);
         //스케일의 절반값이 중심일것이고 줄어들었을 때 땅에서 + 줄어든 크기의 중심길이만큼 pos.y로 고정?
-
     }
 
     public void ItemSelect(Vector2 value)
