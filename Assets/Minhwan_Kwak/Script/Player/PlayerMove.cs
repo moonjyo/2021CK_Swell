@@ -16,7 +16,6 @@ public class PlayerMove : MonoBehaviour
 
     
     public BoxCollider GroundCheckCol;
-    public BoxCollider RigidBodyCol;
 
 
 
@@ -34,12 +33,6 @@ public class PlayerMove : MonoBehaviour
 
     //현재 매달려있는지 check
     public bool isHanging = false;
-
-    //Jump 할때에 충돌 범위를 변경하기위해 
-    private Vector3 BaseCenterColVec;
-    private Vector3 BaseSizeColVec;
-    private Vector3 JumpColCenterVec;
-    private Vector3 JumpColSizeVec;
 
     //현재 들수 있는 item을 check한다 
     public LayerMask ItemLayerMask;
@@ -65,11 +58,6 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
-        BaseCenterColVec = new Vector3(RigidBodyCol.center.x, 0.86f, RigidBodyCol.center.z);
-        BaseSizeColVec = new Vector3(RigidBodyCol.size.x, 1.65f, RigidBodyCol.size.z);
-
-        JumpColCenterVec = new Vector3(RigidBodyCol.center.x, 1.19f, RigidBodyCol.center.z);
-        JumpColSizeVec = new Vector3(RigidBodyCol.size.x, 1.0f, RigidBodyCol.size.z);
     }
     
 
@@ -197,8 +185,6 @@ public class PlayerMove : MonoBehaviour
            Debug.Log(rb.velocity.magnitude);
            rb.velocity = Vector3.up * PlayerManager.Instance.playerStatus.JumpPower;
            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-           RigidBodyCol.center = JumpColCenterVec;
-           RigidBodyCol.size = JumpColSizeVec;
             
         }
     }
@@ -215,8 +201,6 @@ public class PlayerMove : MonoBehaviour
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("BranchToCrounch"); 
             PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
-            RigidBodyCol.center = BaseCenterColVec;
-            RigidBodyCol.size = BaseSizeColVec;
         }
         return IsCheckGround;
     }
@@ -235,8 +219,6 @@ public class PlayerMove : MonoBehaviour
 
     public void climing()
     {
-        RigidBodyCol.center = BaseCenterColVec;
-        RigidBodyCol.size = BaseSizeColVec;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("BranchToCrounch");
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
         ClimingJudge();
