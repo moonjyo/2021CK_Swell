@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public UIMainMenu UIMainMenu;
     public UISettingOptionMenu UISettingOptionMenu;
 
     public static UIManager Instance;

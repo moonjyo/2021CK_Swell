@@ -12,6 +12,11 @@ public class UIView : MonoBehaviour
         OriginalPos = RootRect.localPosition;
     }
 
+    public virtual void Initialize()
+    {
+
+    }
+
     public virtual void Toggle(bool value)
     {
         if(value)

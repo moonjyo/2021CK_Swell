@@ -9,9 +9,11 @@ public class RefelctFound : MonoBehaviour
 
     public LayerMask ReflectObject;
 
+    LineRenderer Line;
+
     void Start()
     {
-        
+        Line = GetComponent<LineRenderer>();
     }
 
     void Update()
@@ -19,16 +21,21 @@ public class RefelctFound : MonoBehaviour
         Vector3 dir =  (Target.position - StartToRaser.position).normalized;
 
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, dir, out hit, (transform.position - StartToRaser.position).magnitude,ReflectObject))
+        if(Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, ReflectObject))
         {
             Vector3 normalVector = hit.collider.gameObject.transform.forward;
             Vector3 reflectVector = Vector3.Reflect(dir, normalVector);
             reflectVector = reflectVector.normalized;
 
+            Line.enabled = true;
+            Line.SetPosition(0, transform.position);
+            Line.SetPosition(1, hit.point);
+
             RaycastHit hit2;
-            if(Physics.Raycast(hit.point, reflectVector, out hit2, ReflectObject))
+            if(Physics.Raycast(hit.point, reflectVector, out hit2, Mathf.Infinity, ReflectObject))
             {
-                //Debug.Log("반사");
+                Debug.Log("반사");
+                Line.SetPosition(2, hit2.point);
             }
 
         }
@@ -49,7 +56,7 @@ public class RefelctFound : MonoBehaviour
             RaycastHit hit2;
             if (Physics.Raycast(hit.point, reflectVector, out hit2, ReflectObject))
             {
-                Debug.Log("반사");
+                //Debug.Log("반사");
                 Gizmos.DrawRay(hit.point, reflectVector);
             }
             
