@@ -8,6 +8,7 @@ public class PlayerInput : MonoBehaviour
     private Vector2 InputValue;
     public bool IsPull = false;
     public bool IsPickUpItem = false;
+    public bool IsJumpCanceled = false;
 
     public void OnWalk(InputAction.CallbackContext context)
     {
@@ -36,13 +37,15 @@ public class PlayerInput : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
+
         Vector2 value = context.ReadValue<Vector2>();
         Vector3 JumpVec = new Vector3(0, value.y, 0);
         PlayerManager.Instance.playerMove.SetJump(JumpVec);
         PlayerManager.Instance.playerCliming.SetCliming(JumpVec);
-            
-        if(context.performed)
+       
+        if (context.performed)
         {
+            IsJumpCanceled = true;
             if (PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Climing))
             {
                 PlayerManager.Instance.playerMove.climing();

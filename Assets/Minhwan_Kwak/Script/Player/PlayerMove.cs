@@ -14,18 +14,13 @@ public class PlayerMove : MonoBehaviour
     //가지고있는 rb
     public Rigidbody rb;
 
-    
     public BoxCollider GroundCheckCol;
 
-
-
     public LayerMask GroundLayer;
-
 
     //현재 tr과 다른 자식 tr을 알기위해
     public Transform Root_Tr;
     public Transform Body_Tr;
-
 
     //move를 가려내기 위해 
     public delegate void MoveDel();
@@ -45,8 +40,6 @@ public class PlayerMove : MonoBehaviour
 
     public bool IsGetItem = false;
 
-
-
     [HideInInspector]
     public Rigidbody ColliderItemRb;
 
@@ -56,9 +49,6 @@ public class PlayerMove : MonoBehaviour
     private float deltime = 0f;
     private bool IsItemPickupSwitch = false;
 
-    private void Start()
-    {
-    }
     
 
     private void FixedUpdate()
@@ -70,7 +60,6 @@ public class PlayerMove : MonoBehaviour
         OnItemMove();
         ItemTimeTick();
         MoveCheck();
-       
     }
 
     public void SetMove(Vector3 value)  // isRun = true(running) or isrun = false(walk)
@@ -103,7 +92,7 @@ public class PlayerMove : MonoBehaviour
                 if (IsGrounded())
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", true);
-                    PlayerManager.Instance.playerStatus.fsm = PlayerFSM.HideWalk;
+                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.HideWalk);
                 }
                 transform.LookAt(transform.position + WalkVec);
                 rb.MovePosition(transform.position + WalkMove);
@@ -117,7 +106,7 @@ public class PlayerMove : MonoBehaviour
                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
                         ColliderItemRb.constraints = RigidbodyConstraints.FreezeRotation;
                         Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.PullSpeed;
-                        PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Pull;
+                        PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                         rb.MovePosition(transform.position + WalkMove);
                         ColliderItemRb.MovePosition(ColliderItemRb.transform.position + WalkMove);
                     }
@@ -127,7 +116,7 @@ public class PlayerMove : MonoBehaviour
                     ColliderItemRb.constraints = RigidbodyConstraints.FreezeRotation;
                     Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.PushSpeed;
                     ItemMoveDecide(ColliderItemRb.mass);
-                    PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Push;
+                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                     transform.LookAt(transform.position + WalkVec);
                     rb.MovePosition(transform.position + WalkMove);
                 }
@@ -138,9 +127,9 @@ public class PlayerMove : MonoBehaviour
                 if (IsGrounded())
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
-                    PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Walk;
+                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
                 }
-                transform.LookAt(transform.position + WalkVec);
+                Body_Tr.LookAt(transform.position + WalkVec);
                 rb.MovePosition(transform.position + WalkMove);
             }
         }
@@ -173,8 +162,7 @@ public class PlayerMove : MonoBehaviour
 
     public void Jump()
     {
-       
-        if (JumpVec.sqrMagnitude > 0.1f)
+        if (JumpVec.sqrMagnitude > 0.1f && PlayerManager.Instance.PlayerInput.IsJumpCanceled)
         {
            bool ispush =  PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Push);
            bool ispull = PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Pull);
@@ -182,10 +170,10 @@ public class PlayerMove : MonoBehaviour
            {
                return;
            }
-           Debug.Log(rb.velocity.magnitude);
            rb.velocity = Vector3.up * PlayerManager.Instance.playerStatus.JumpPower;
-           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-            
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
+            AudioManager.Instance.PlayOneShot("event:/Jump");
+            PlayerManager.Instance.PlayerInput.IsJumpCanceled = false;
         }
     }
 
@@ -195,7 +183,6 @@ public class PlayerMove : MonoBehaviour
         bool IsCheckGround = Physics.CheckCapsule(GroundCheckCol.bounds.center, new Vector3(GroundCheckCol.bounds.center.x, GroundCheckCol.bounds.min.y - 0.1f, GroundCheckCol.bounds.center.z), 0.18f,GroundLayer);
         if (IsCheckGround) 
         {
-            Debug.Log("ground true");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false); 
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
@@ -239,7 +226,6 @@ public class PlayerMove : MonoBehaviour
         if (!isitempick && !IsItemPickupSwitch)
         {
             IsItemPickupSwitch = true;
-            Debug.Log("ItemPickup");
             rb.constraints = RigidbodyConstraints.FreezeAll;
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemPickUp);
             ColliderItemRb.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), 1.0f).OnComplete(() =>
