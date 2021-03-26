@@ -12,8 +12,9 @@ public class PlayerManager : MonoBehaviour
     public PlayerCliming playerCliming;
     public PlayerAnimationEvents playerAnimationEvents;
 
-    public SizeModulate SizeModulate;
 
+    public SizeModulate SizeModulate;
+    public FlashLight flashLight;
 
     private void Awake()
     {
