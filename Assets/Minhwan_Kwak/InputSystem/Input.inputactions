@@ -60,6 +60,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "LightOnOff",
+                    "type": "Button",
+                    "id": "f54e78d1-0bf1-434f-9260-bf513f99ff79",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LightRotation",
+                    "type": "Button",
+                    "id": "db9b1f29-36b4-4a07-9637-5e75c2661fe1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -77,7 +93,7 @@
                 {
                     "name": "up",
                     "id": "cf2a1abb-c6a4-4a10-8209-a2aa9527f2a9",
-                    "path": "<Keyboard>/s",
+                    "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -88,7 +104,7 @@
                 {
                     "name": "down",
                     "id": "a4c6935a-c7ff-4bc7-bb91-0249e8007b95",
-                    "path": "<Keyboard>/w",
+                    "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -99,7 +115,7 @@
                 {
                     "name": "left",
                     "id": "61c1f2ef-bed6-400b-b81d-50af341d825f",
-                    "path": "<Keyboard>/d",
+                    "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -110,7 +126,7 @@
                 {
                     "name": "right",
                     "id": "a7a7011b-fdcc-44b4-8d75-0313eec89a22",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -154,18 +170,7 @@
                 {
                     "name": "left",
                     "id": "6cc9fb3c-2917-4fd6-8e80-3811cdda2e2b",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard&Mouse",
-                    "action": "HideWalk",
-                    "isComposite": false,
-                    "isPartOfComposite": true
-                },
-                {
-                    "name": "right",
-                    "id": "97c255f4-17ae-4ff7-9582-50a400af555c",
-                    "path": "<Keyboard>/rightShift",
+                    "path": "<Keyboard>/ctrl",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
@@ -227,6 +232,50 @@
                     "action": "RightMouseButton",
                     "isComposite": false,
                     "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7f57bfdd-2dec-49ca-8585-c86a2ed795d7",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightOnOff",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "2D Vector",
+                    "id": "a3161a00-8c24-4f3b-b7ba-5cd6a61d2d56",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightRotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "30597bed-ebf8-4e91-b27a-bb8d2db9bd4f",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "down",
+                    "id": "02534183-6817-4d78-b758-6d9a0e510773",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LightRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
                 }
             ]
         },

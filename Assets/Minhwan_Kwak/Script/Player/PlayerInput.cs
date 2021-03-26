@@ -114,4 +114,23 @@ public class PlayerInput : MonoBehaviour
             //sizeModulate.ItemSizeModulate(value.y);
             PlayerManager.Instance.SizeModulate.ItemSizeModulate(value.y);
     }
+
+
+    public void LightOnOff(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            PlayerManager.Instance.flashLight.Toggle();
+        }
+    }
+
+    public void LighAngle(InputAction.CallbackContext context)
+    {
+        InputValue = context.ReadValue<Vector2>();
+
+        Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
+        PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
+    }
+
+
 }

@@ -33,8 +33,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-        Change(0);
-        Play();
+     //   Change(0);
+     //   Play();
     }
 
     public void Change(int index)
