@@ -15,13 +15,16 @@ public class SizeModulate : MonoBehaviour
     private RaycastHit hit;
     public LayerMask ItemLayerMask;
 
-    public Vector3 SizeUpLimit = new Vector3(1.0f, 1.0f, 1.0f);
-    public Vector3 SizeDownLimit = new Vector3(0.1f, 0.1f, 0.1f);
+    public float SizeUpLimit = 1.0f;
+    public float SizeDownLimit = 0.1f;
+
+    float Value = 0f;
+
 
     public float RangeToItem = 3.0f; // 오브젝트와 플레이어의 거리
 
-    float GroundColliderScaleY = 1.580888f; // 바닥의 콜라이더 스케일y값
-    float GroundPosY = -0.14f; // 바닥의 포지션
+    //float GroundColliderScaleY = 1.580888f; // 바닥의 콜라이더 스케일y값
+    //float GroundPosY = -0.14f; // 바닥의 포지션
 
     public void Awake()
     {
@@ -37,39 +40,42 @@ public class SizeModulate : MonoBehaviour
 
         goRigidBody = go.GetComponent<Rigidbody>();
         SetPosValue = 0;
-        if (value == 120) // 스크롤 업
+        Value = 0f;
+        if (value == 120.0f) // 스크롤 업
         {
-            if(go.transform.localScale.x >= 1.0f)
+            if(go.transform.localScale.x >= SizeUpLimit)
             {
+                Value = 0.05f;
+                go.transform.localScale -= new Vector3(Value, Value, Value);
+                goRigidBody.mass = SizeUpLimit;
+                return;
+            }
+            else
+            {
+                Value = 0.05f;
+                goRigidBody.mass += Value; // 휠업과 사이즈업에 따른 mass값 증가
+            }
+        }
+        else if (value == -120.0f) // 스크롤 다운
+        {
+           if (go.transform.localScale.x <= SizeDownLimit)
+            {
+                Value = -0.05f;
+                go.transform.localScale -= new Vector3(Value, Value, Value);
+                goRigidBody.mass = SizeDownLimit;
+                return;
+            }
+            else
+            {
+                Value = -0.05f;
+                goRigidBody.mass += Value; // 휠업과 사이즈업에 따른 mass값 감소
+            }
+        }
+        go.transform.localScale += new Vector3(Value, Value, Value);
 
-                //go.transform.localScale = SizeUpLimit;
-                value -= 119.9f;
-                go.transform.localScale -= new Vector3(value, value, value);
-                return;
-            }
-            else
-            {
-                value -= 119.9f;
-                goRigidBody.mass += value; // 휠업과 사이즈업에 따른 mass값 증가
-            }
-        }
-        else // 스크롤 다운
-        {
-           if (go.transform.localScale.x <= 0.1f)
-            {
-                //go.transform.localScale = SizeDownLimit;
-                value += 119.9f;
-                go.transform.localScale -= new Vector3(value, value, value);
-                return;
-            }
-            else
-            {
-                value += 119.9f;
-                goRigidBody.mass += value; // 휠업과 사이즈업에 따른 mass값 감소
-            }
-        }
-        go.transform.localScale += new Vector3(value, value, value);
-        SetPosValue = (go.transform.localScale.y * 0.5f) + (GroundColliderScaleY * 0.5f) + GroundPosY;
+        
+        //SetPosValue = (go.transform.localScale.y * 0.5f) + (GroundColliderScaleY * 0.5f) + GroundPosY;
+
         go.transform.position = new Vector3(go.transform.position.x, SetPosValue, go.transform.position.z);
         //스케일의 절반값이 중심일것이고 줄어들었을 때 땅에서 + 줄어든 크기의 중심길이만큼 pos.y로 고정?
     }
