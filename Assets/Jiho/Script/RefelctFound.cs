@@ -7,63 +7,114 @@ public class RefelctFound : MonoBehaviour
     public Transform StartToRaser;
     public Transform Target;
 
-    public LayerMask ReflectObject;
+    public LayerMask ReflectObject; // 반사물체
+    public LayerMask ConcaveLensLayerMask; // 오목렌즈
+    public LayerMask ConvexLensLayerMask; // 볼록렌즈
 
-    LineRenderer Line;
+    int CheckLayerMask;
+
+    LineRenderer Line; // 쏘는 레이저
+
+    int ReflectCount = 1;
+
+    Vector3 LaserForward;
+
+    bool IsTouchLens = false;
+
+    public LensLight LensLight;
 
     void Start()
     {
         Line = GetComponent<LineRenderer>();
+        LaserForward = transform.forward;
+        Line.positionCount = 4; // 유동적으로?
+        CheckLayerMask = ReflectObject + ConcaveLensLayerMask + ConvexLensLayerMask;
+        //CheckLayerMask = (1 << LayerMask.NameToLayer("Item")) + (1 << LayerMask.NameToLayer("ConcaveLens") + (1 << LayerMask.NameToLayer("ConvexLensLayerMask")));
     }
 
     void Update()
     {
-        Vector3 dir =  (Target.position - StartToRaser.position).normalized;
+        // transform.position이 바뀌면 지우고 새로그려야함
+        //if (OriginLaserPos != transform.position)
+        //{
+        //    OriginLaserPos = transform.position;
+        //    ShootLaser(transform.position, LaserForward);
+        //}
+        ShootLaser(transform.position, LaserForward);
+    }
 
+    public void ShootLaser(Vector3 StartPos, Vector3 value)
+    {
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, dir, out hit, Mathf.Infinity, ReflectObject))
+        if (Physics.Raycast(StartPos, value, out hit, Mathf.Infinity, CheckLayerMask))
         {
+            if ((1 << hit.transform.gameObject.layer) == ConcaveLensLayerMask) // 오목렌즈에 히트됐을 때
+            {
+                // -hit.transform.forward 쪽으로 빛이 번지게
+                // 새로운 Linerenderer 생성?
+                Debug.Log("오목렌즈");
+                IsTouchLens = true;
+                Line.SetPosition(ReflectCount, hit.point);
+                if (ReflectCount < Line.positionCount - 1)
+                {
+                    Line.SetPosition(ReflectCount + 1, hit.point);
+                }
+                // 함수실행
+                LensLight.GetConcaveLens(value, hit.point);
+            }
+            else if ((1 << hit.transform.gameObject.layer) == ConvexLensLayerMask)
+            {
+                Debug.Log("볼록렌즈");
+                IsTouchLens = true;
+                Line.SetPosition(ReflectCount, hit.point);
+                if (ReflectCount < Line.positionCount - 1)
+                {
+                    Line.SetPosition(ReflectCount + 1, hit.point);
+                }
+            }
+            else
+            {
+                IsTouchLens = false;
+                LensLight.Line.enabled = false;
+            }
+
+               
+
             Vector3 normalVector = hit.collider.gameObject.transform.forward;
-            Vector3 reflectVector = Vector3.Reflect(dir, normalVector);
+            Vector3 reflectVector = Vector3.Reflect(value, normalVector);
+
             reflectVector = reflectVector.normalized;
 
             Line.enabled = true;
-            Line.SetPosition(0, transform.position);
-            Line.SetPosition(1, hit.point);
-
-            RaycastHit hit2;
-            if(Physics.Raycast(hit.point, reflectVector, out hit2, Mathf.Infinity, ReflectObject))
+            switch (ReflectCount)
             {
-                Debug.Log("반사");
-                Line.SetPosition(2, hit2.point);
+                case 1:
+                    Line.SetPosition(0, StartPos);
+                    Line.SetPosition(1, hit.point);
+                    break;
+                case 2:
+                    Line.SetPosition(2, hit.point);
+                    break;
+                case 3:
+                    Line.SetPosition(3, hit.point);
+                    break;
             }
 
+            if (ReflectCount < 3 && !IsTouchLens) // 반사횟수제한 2회
+            {
+                ReflectCount++;
+                ShootLaser(hit.point, reflectVector);
+            }
+            else // 2회이상이 되면 되돌아감
+            {
+                ReflectCount = 1;
+                return;
+            }
         }
-        //Debug.DrawRay(transform.position, Target.position - StartToRaser.position, Color.red);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Vector3 dir = (Target.position - StartToRaser.position).normalized;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, dir, out hit, ReflectObject))
+        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, CheckLayerMask))
         {
-            Vector3 normalVector = hit.collider.gameObject.transform.forward;
-            Vector3 reflectVector = Vector3.Reflect(dir, normalVector);
-            reflectVector = reflectVector.normalized;
-
-            RaycastHit hit2;
-            if (Physics.Raycast(hit.point, reflectVector, out hit2, ReflectObject))
-            {
-                //Debug.Log("반사");
-                Gizmos.DrawRay(hit.point, reflectVector);
-            }
-            
-
+            Line.enabled = false;
         }
-        Gizmos.DrawRay(transform.position, dir);
-        
     }
 
 }
