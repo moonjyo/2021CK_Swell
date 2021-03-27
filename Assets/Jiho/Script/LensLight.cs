@@ -14,7 +14,9 @@ public class LensLight : MonoBehaviour
     public void GetConcaveLens(Vector3 value, Vector3 pos)
     {
         Line.enabled = true;
-        Line.SetPosition(0, transform.position);
+        Line.SetPosition(0, pos);
         Line.SetPosition(1, pos + value * 3);
+
+        // raycast 추가
     }
 }

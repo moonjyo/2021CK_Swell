@@ -21,7 +21,7 @@ public class RefelctFound : MonoBehaviour
 
     bool IsTouchLens = false;
 
-    public LensLight LensLight;
+    LensLight LensLight;
 
     void Start()
     {
@@ -60,6 +60,8 @@ public class RefelctFound : MonoBehaviour
                     Line.SetPosition(ReflectCount + 1, hit.point);
                 }
                 // 함수실행
+                //LensLight.GetConcaveLens(value, hit.point);
+                LensLight = hit.collider.gameObject.GetComponent<LensLight>();
                 LensLight.GetConcaveLens(value, hit.point);
             }
             else if ((1 << hit.transform.gameObject.layer) == ConvexLensLayerMask)
@@ -74,13 +76,14 @@ public class RefelctFound : MonoBehaviour
             }
             else
             {
+                //hit.collider.gameObject.GetComponent<LensLight>().Line.enabled = false;
+                if (IsTouchLens)
+                    LensLight.Line.enabled = false;
                 IsTouchLens = false;
-                LensLight.Line.enabled = false;
-            }
-
                
-
-            Vector3 normalVector = hit.collider.gameObject.transform.forward;
+            }
+           
+            Vector3 normalVector = hit.transform.forward;
             Vector3 reflectVector = Vector3.Reflect(value, normalVector);
 
             reflectVector = reflectVector.normalized;
