@@ -18,20 +18,8 @@ public class PlayerInput : MonoBehaviour
         PlayerManager.Instance.playerMove.SetMove(MoveVec);
 
         if (context.canceled)
-        {;
-            PlayerManager.Instance.playerMove.MoveFunction = PlayerManager.Instance.playerMove.Idle;
-
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Walk);
-        }
-    }
-    public void OnHideWalk(InputAction.CallbackContext context)
-    {
-       Vector2 vec = context.ReadValue<Vector2>();
-        PlayerManager.Instance.playerMove.SetHideMoveCheck(vec);
-        if (context.canceled)
         {
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false);
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.HideWalk);
+            PlayerManager.Instance.playerMove.MoveFunction = PlayerManager.Instance.playerMove.Idle;
         }
     }
 
@@ -103,11 +91,9 @@ public class PlayerInput : MonoBehaviour
         switch (value.y)
         {
             case 120:
-                Debug.Log("마우스휠업");
 
                 break;
             case -120:
-                Debug.Log("마우스휠다운");
                 break;
         }
         if (value.y == 120f || value.y == -120f)

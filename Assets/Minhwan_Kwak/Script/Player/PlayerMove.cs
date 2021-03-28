@@ -8,7 +8,6 @@ public class PlayerMove : MonoBehaviour
     //키값이 들어와있는지 체크
     private Vector3 WalkVec;
     private Vector3 JumpVec;
-    private Vector3 HideWalkVec;
     private Vector3 PullVec;
 
     //가지고있는 rb
@@ -68,10 +67,7 @@ public class PlayerMove : MonoBehaviour
         MoveFunction = Walk;
     }
 
-    public void SetHideMoveCheck(Vector3 value) // hidemove check
-    {
-        HideWalkVec = value;
-    }
+
     
     public void SetJump(Vector3 value) // jump check 
     {
@@ -86,18 +82,8 @@ public class PlayerMove : MonoBehaviour
         if (WalkVec.sqrMagnitude > 0.1f)
         {
             DirectionSelect(); //방향성 check 
-            if (HideWalkVec.sqrMagnitude > 0.1f) // 조심히걷기 
-            {
-                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PlayerManager.Instance.playerStatus.HideWalkSpeed;
-                if (IsGrounded())
-                {
-                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", true);
-                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.HideWalk);
-                }
-                transform.LookAt(transform.position + WalkVec);
-                rb.MovePosition(transform.position + WalkMove);
-            }
-            else if(isItemCol && IsGrounded() && ColliderItemRb != null)
+
+            if(isItemCol && IsGrounded() && ColliderItemRb != null)
             {
                 if (PullVec.sqrMagnitude > 0.1f) //당길떄 
                 {
@@ -152,7 +138,6 @@ public class PlayerMove : MonoBehaviour
 
     public void Idle()
     {
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("SneakWalk", false); 
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
         PlayerManager.Instance.playerStatus.FsmAllRemove();
