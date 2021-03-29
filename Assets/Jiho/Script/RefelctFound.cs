@@ -40,6 +40,7 @@ public class RefelctFound : MonoBehaviour
         //    OriginLaserPos = transform.position;
         //    ShootLaser(transform.position, LaserForward);
         //}
+        LaserForward = transform.forward;
         ShootLaser(transform.position, LaserForward);
     }
 
@@ -117,6 +118,9 @@ public class RefelctFound : MonoBehaviour
         else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, CheckLayerMask))
         {
             Line.enabled = false;
+            IsTouchLens = false;
+            if (LensLight != null)
+                LensLight.Line.enabled = false;
         }
     }
 
