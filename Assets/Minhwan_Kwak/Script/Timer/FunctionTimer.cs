@@ -56,7 +56,6 @@ public class FunctionTimer
     {
         InitIfNeeded();
         activeTimeList.Remove(functionTimer);
-
     }
   
     private Action action;

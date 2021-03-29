@@ -10,7 +10,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         IsAnimStart = true;
         
-        PlayerManager.Instance.playerMove.BaseRigidBodyFrezen();
+       // PlayerManager.Instance.playerMove.BaseRigidBodyFrezen();
     }
    
     //idle
@@ -23,6 +23,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void HangingStart()
     {
         IsAnimStart = true;
-        PlayerManager.Instance.playerMove.ClimingRigidBodyFrezen();
+       // PlayerManager.Instance.playerMove.ClimingRigidBodyFrezen();
     }
 }

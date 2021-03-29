@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
 
         if (context.canceled)
         {
-            PlayerManager.Instance.playerMove.MoveFunction = PlayerManager.Instance.playerMove.Idle;
+            //PlayerManager.Instance.playerMove.MoveFunction = PlayerManager.Instance.playerMove.Idle;
         }
     }
 
@@ -69,7 +69,7 @@ public class PlayerInput : MonoBehaviour
          }
             if (!IsPickUpItem && PlayerManager.Instance.playerMove.IsGetItem) 
             {
-                PlayerManager.Instance.playerMove.ItemPickDown();
+               // PlayerManager.Instance.playerMove.ItemPickDown();
             }
 
         }

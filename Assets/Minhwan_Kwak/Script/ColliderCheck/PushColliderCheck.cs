@@ -6,14 +6,19 @@ public class PushColliderCheck : MonoBehaviour
 {
     public LayerMask PushLayer;
 
+
     private void OnTriggerEnter(Collider other)
     {
         if((1 << other.gameObject.layer & PushLayer) != 0 && !PlayerManager.Instance.playerMove.IsGetItem)
         {
             PlayerManager.Instance.playerMove.isItemCol = true;
-            Debug.Log(PlayerManager.Instance.playerMove.isItemCol);
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemTouch);
-            PlayerManager.Instance.playerMove.ItemColCheck(other.transform);    
+
+          Rigidbody InterActionrb  =  other.GetComponent<Rigidbody>();
+            if (InterActionrb != null)
+            {
+                PlayerManager.Instance.playerMove.SetInterActionObj(InterActionrb);
+            }
         }
     }
 
@@ -22,14 +27,9 @@ public class PushColliderCheck : MonoBehaviour
         if ((1 << other.gameObject.layer & PushLayer) != 0)
         {
             PlayerManager.Instance.playerMove.isItemCol = false;
-            Debug.Log(PlayerManager.Instance.playerMove.isItemCol);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
             PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
-            Rigidbody itemrb = other.GetComponent<Rigidbody>();
-           if(itemrb != null)
-            {
-                itemrb.constraints = RigidbodyConstraints.FreezeAll;
-            }
+            PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
         }
     }
 }

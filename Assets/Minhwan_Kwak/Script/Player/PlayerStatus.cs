@@ -1,24 +1,6 @@
 ﻿[System.Serializable]
 public class PlayerStatus 
 {
-    public int Hp;
-    public int Mp;
-
-    public float WalkSpeed;
-    public float HideWalkSpeed;
-    public float PushSpeed;
-    public float PullSpeed;
-    public float PickUpSpeed;
-
-    public float invincibilityTime;
-
-    public float AttackSpeed;
-    public float AttackPower;
-
-    public float JumpPower;
-    public float DoubleJumPower;
-
-
     [EnumFlags]
     public PlayerFSM fsm;
 
