@@ -33,13 +33,13 @@ public class PlayerMove : MonoBehaviour
 
     //현재 들수 있는 item을 check한다 
     public LayerMask InterActionLayerMask;
-    private Rigidbody InterActionrb;
+    public Rigidbody InterActionrb;
+    public Rigidbody GetItemrb;
+
 
     //물체와 충돌하기위한 bool
     public bool isItemCol = false;
-
-    public bool isitempick = false;
-
+   
     public bool IsGetItem = false;
 
     public CharacterController Controller;
@@ -105,8 +105,8 @@ public class PlayerMove : MonoBehaviour
         if (WalkVec.sqrMagnitude > 0.1f)
         {
             DirectionSelect(); //방향성 check 
-
-            if (isItemCol && IsGrounded())
+            
+            if (isItemCol && IsGrounded() && !InterActionrb.CompareTag("InterActionItem"))
             {
                 if (PullVec.sqrMagnitude > 0.1f) //당길떄 
                 {
@@ -122,26 +122,20 @@ public class PlayerMove : MonoBehaviour
                 }
                 else //물건 push 
                 {
-                    if (InterActionrb != null)
-                    {
-
-                     
-                        Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
-                        PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
-                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
-                        transform.LookAt(transform.position + WalkVec);
-                        Controller.Move(WalkMove);
-                        InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                    }
+                    Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
+                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
+                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
+                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
+                    transform.LookAt(transform.position + WalkVec);
+                    Controller.Move(WalkMove);
+                    InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                 }
             }
-            else if(!isItemCol)//그냥걷기 
+            else
             {
-                Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime; 
+                Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
                 if (IsGrounded())
                 {
-                    Debug.Log("walk");
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
                     PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
                 }
@@ -214,20 +208,26 @@ public class PlayerMove : MonoBehaviour
 
     public IEnumerator InterActionItemPickUp()
     {
-     InterActionObjBase InteractionBase  = InterActionrb.GetComponent<InterActionObjBase>();
+     InterActionObjBase InteractionBase  = GetItemrb.GetComponent<InterActionObjBase>();
         //domove하고 끝나면 해당 target transform에 계속 update 
 
         if (InteractionBase != null)
         {
-            InterActionrb.DOMove(InterActionObjTr.position, 2f);
-            InteractionBase.Col.enabled = false;
+            GetItemrb.DOMove(InterActionObjTr.position, 2f).Complete(InteractionBase.FollowOn());
+            InteractionBase.Col.isTrigger = false;
+
         }
        yield return null;
     }
     public IEnumerator InterActionItemPickDown()
     {
+        InterActionObjBase InteractionBase = GetItemrb.GetComponent<InterActionObjBase>();
+ 
 
-
+        if (InteractionBase != null)
+        {
+            InteractionBase.FollowOff();
+        }
         yield return null;
     }
 
@@ -404,11 +404,6 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    public void SetInterActionObj(Rigidbody Col)
-    {
-        InterActionrb = Col;
-    }
-
     public Rigidbody CurrentGetInterActionObj()
     {
         return InterActionrb;
@@ -418,4 +413,18 @@ public class PlayerMove : MonoBehaviour
     {
         InterActionrb = null;
     }
+    public void SetRemoveGetItemObj()
+    {
+        InterActionrb = null;
+    }
+    public void SetInterActionObj(Rigidbody Col)
+    {
+        InterActionrb = Col;
+    }
+
+    public void SetGetItemObj(Rigidbody Col)
+    {
+        GetItemrb = Col;
+    }
+
 }

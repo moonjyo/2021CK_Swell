@@ -54,22 +54,17 @@ public class PlayerInput : MonoBehaviour
     {
         if(context.performed)
         {
-         if (PlayerManager.Instance.playerMove.isItemCol)
+         if (PlayerManager.Instance.playerMove.isItemCol && !IsPickUpItem)
          {
               IsPickUpItem = true;
               StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
          }
          else
          {
-                PlayerManager.Instance.playerMove.isitempick = false;
+                PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
                 IsPickUpItem = false;
-         }
-         // 해당 아이템을 내려놓을경우 
-            if (!IsPickUpItem && PlayerManager.Instance.playerMove.IsGetItem) 
-            {
                 StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
-            }
-
+         }
         }
     }
     public void OnRightMouseButton(InputAction.CallbackContext context)

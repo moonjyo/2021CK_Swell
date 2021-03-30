@@ -5,11 +5,11 @@ using UnityEngine;
 public class PushColliderCheck : MonoBehaviour
 {
     public LayerMask PushLayer;
-
+    
 
     private void OnTriggerEnter(Collider other)
     {
-        if((1 << other.gameObject.layer & PushLayer) != 0 && !PlayerManager.Instance.playerMove.IsGetItem)
+        if((1 << other.gameObject.layer & PushLayer) != 0)
         {
             PlayerManager.Instance.playerMove.isItemCol = true;
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemTouch);
@@ -18,8 +18,10 @@ public class PushColliderCheck : MonoBehaviour
             if (InterActionrb != null)
             {
                 PlayerManager.Instance.playerMove.SetInterActionObj(InterActionrb);
+                PlayerManager.Instance.playerMove.SetGetItemObj(InterActionrb);
             }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
