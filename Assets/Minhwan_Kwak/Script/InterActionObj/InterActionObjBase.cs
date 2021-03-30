@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class InterActionObjBase : MonoBehaviour
 {
+    [HideInInspector]
     public Rigidbody rb;
 
-    public int rbMass;
+    [HideInInspector]
+    public BoxCollider Col;
+
 
     private void Start()
     {
-        rb.mass = rbMass;
+        rb = transform.GetComponent<Rigidbody>();
+        Col = transform.GetComponent<BoxCollider>();
     }
 
 
