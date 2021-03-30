@@ -13,8 +13,8 @@ public class UIMainMenu : UIView
     public TextMeshProUGUI test;
     public void Start()
     {
-        testtext.DOText("This is DOText testing code", 3f, false, ScrambleMode.None, null);
-        StartCoroutine(OnTyping(0.1f, "This is DOText testing code"));
+        testtext.DOText("This is DOText testing code, 한국어", 3f, false, ScrambleMode.None, null);
+        StartCoroutine(OnTyping(0.1f, "This is DOText testing code, 한국어"));
     }
     public void StartGame()
     {
