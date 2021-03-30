@@ -14,14 +14,10 @@ public class PlayerInteraction : MonoBehaviour
         }
     }
     private void OnCollisionExit(Collision collision)
-    {
+    { 
         if ((1 << collision.gameObject.layer & WallLayer) != 0)
         {
             PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Wall);
         }
-
     }
-
-
-
 }
