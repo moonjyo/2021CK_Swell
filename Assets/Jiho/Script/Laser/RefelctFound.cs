@@ -44,6 +44,11 @@ public class RefelctFound : MonoBehaviour
         //}
         LaserForward = transform.forward;
         ShootLaser(transform.position, LaserForward);
+        if(StageManager.Instance.Stage2Clear)
+        {
+            //보석의 빛을 수정구에 집중시킨다.
+            //커튼이 제쳐지며 물고기 상패가 드러난다.
+        }
     }
 
     public void ShootLaser(Vector3 StartPos, Vector3 value)
