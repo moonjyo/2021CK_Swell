@@ -17,10 +17,6 @@ public class PlayerInput : MonoBehaviour
         Vector3 MoveVec = new Vector3(InputValue.x, 0, InputValue.y);
         PlayerManager.Instance.playerMove.SetMove(MoveVec);
 
-        if (context.canceled)
-        {
-            //PlayerManager.Instance.playerMove.MoveFunction = PlayerManager.Instance.playerMove.Idle;
-        }
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -61,15 +57,17 @@ public class PlayerInput : MonoBehaviour
          if (PlayerManager.Instance.playerMove.isItemCol)
          {
               IsPickUpItem = true;
+              StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
          }
          else
          {
                 PlayerManager.Instance.playerMove.isitempick = false;
                 IsPickUpItem = false;
          }
+         // 해당 아이템을 내려놓을경우 
             if (!IsPickUpItem && PlayerManager.Instance.playerMove.IsGetItem) 
             {
-               // PlayerManager.Instance.playerMove.ItemPickDown();
+                StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
             }
 
         }

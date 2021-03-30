@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     //현재 tr과 다른 자식 tr을 알기위해
     public Transform Root_Tr;
     public Transform Body_Tr;
+    public Transform InterActionObjTr;
 
     //move를 가려내기 위해 
     public delegate void MoveDel();
@@ -112,6 +113,7 @@ public class PlayerMove : MonoBehaviour
                     if (-transform.forward == WalkVec && InterActionrb != null)
                     {
                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
+                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
                         Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
                         PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                         Controller.Move(WalkMove);
@@ -169,7 +171,7 @@ public class PlayerMove : MonoBehaviour
                return;
            }
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-            AudioManager.Instance.PlayOneShot("event:/Jump");
+            //AudioManager.Instance.PlayOneShot("event:/Jump");
             PlayerManager.Instance.PlayerInput.IsJumpCanceled = false;
           
             moveDirection.y = jumpspeed;
@@ -208,35 +210,27 @@ public class PlayerMove : MonoBehaviour
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("HangIdle");
         }
     }
+    
 
-    //private void ItemPickUp()
-    //{
-    //    if (!isitempick && !IsItemPickupSwitch)
-    //    {
-    //        IsItemPickupSwitch = true;
-    //        PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemPickUp);
-    //        ColliderItemRb.transform.DOMove(new Vector3(transform.position.x, transform.position.y + 5f, transform.position.z), 1.0f).OnComplete(() =>
-    //        {
-    //            IsItemPickupSwitch = false;
-    //            isitempick = true;
-    //            DOTween.Kill(ColliderItemRb);
-    //        });
-    //    }
-        
-    //}
-    //public void ItemPickDown()
-    //{
-    //    if (ColliderItemRb != null)
-    //    {
-    //        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemPickUp);
-    //        ColliderItemRb.transform.DOMove(new Vector3(ColliderItemRb.position.x + (transform.forward.x * 2f), ColliderItemRb.position.y, ColliderItemRb.position.z + (transform.forward.z * 2f)), 0.4f);
-    //        ColliderItemRb.constraints = RigidbodyConstraints.FreezeRotation;
-    //        ColliderItemRb = null;
-    //        isitempick = false;
-    //        IsGetItem = false;
-    //    }
+    public IEnumerator InterActionItemPickUp()
+    {
+     InterActionObjBase InteractionBase  = InterActionrb.GetComponent<InterActionObjBase>();
+        //domove하고 끝나면 해당 target transform에 계속 update 
 
-    //}
+        if (InteractionBase != null)
+        {
+            InterActionrb.DOMove(InterActionObjTr.position, 2f);
+            InteractionBase.Col.enabled = false;
+        }
+       yield return null;
+    }
+    public IEnumerator InterActionItemPickDown()
+    {
+
+
+        yield return null;
+    }
+
 
 
     public void DirectionSelect()

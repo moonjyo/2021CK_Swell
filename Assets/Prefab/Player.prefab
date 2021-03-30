@@ -235,6 +235,36 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
+--- !u!1 &845645975
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845645976}
+  m_Layer: 13
+  m_Name: InterActionObjLocation
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &845645976
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845645975}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.167, y: 1.204, z: 0.273}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1311833556188567651}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1279828700
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,7 +729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1714221640875370568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.289, y: 0.644, z: -0.172}
+  m_LocalPosition: {x: 0.29, y: 0.644, z: -0.01}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2293069301850822876}
@@ -716,8 +746,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.59782845, y: 0.5659179, z: 0.1667909}
-  m_Center: {x: -0.033030864, y: 0.42139366, z: 0.09381362}
+  m_Size: {x: 0.59782845, y: 1.2228475, z: 0.1667909}
+  m_Center: {x: -0.033030868, y: 0.092928916, z: 0.09381362}
 --- !u!114 &1714221640875370575
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,6 +831,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5022423930363347188}
+  - {fileID: 845645976}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
@@ -1050,25 +1081,25 @@ MonoBehaviour:
     m_Bits: 5120
   InteractionLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4096
   moveDirection: {x: 0, y: 0, z: 0}
-  jumpspeed: 8
-  Gravity: 20
-  GravityAcceleration: 12
+  jumpspeed: 16
+  Gravity: 30
+  GravityAcceleration: -10
   Root_Tr: {fileID: 5022423930363347188}
   Body_Tr: {fileID: 5022423930363347188}
+  InterActionObjTr: {fileID: 845645976}
   isHanging: 0
-  ItemLayerMask:
+  InterActionLayerMask:
     serializedVersion: 2
-    m_Bits: 5120
-  HitItemTr: {fileID: 1714221642723034869}
+    m_Bits: 0
   isItemCol: 0
   isitempick: 0
   IsGetItem: 0
   Controller: {fileID: 1410732063}
-  PullSpeed: 0
-  PushSpeed: 0
-  WalkSpeed: 0
+  PullSpeed: 3
+  PushSpeed: 3
+  WalkSpeed: 6
 --- !u!114 &4764462461684384608
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1148,13 +1179,13 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 0.5
+  m_Height: 1.75
+  m_Radius: 0.27
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Center: {x: -0.18, y: 0.93, z: 0}
 --- !u!1 &1926177566203257218
 GameObject:
   m_ObjectHideFlags: 0
