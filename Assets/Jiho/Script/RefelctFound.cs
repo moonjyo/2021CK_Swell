@@ -10,6 +10,7 @@ public class RefelctFound : MonoBehaviour
     public LayerMask ReflectObject; // 반사물체
     public LayerMask ConcaveLensLayerMask; // 오목렌즈
     public LayerMask ConvexLensLayerMask; // 볼록렌즈
+    public LayerMask JewerlyLayerMask; // 보석
 
     int CheckLayerMask;
 
@@ -22,6 +23,7 @@ public class RefelctFound : MonoBehaviour
     bool IsTouchLens = false;
 
     LensLight LensLight;
+    RefractLaser Refract;
 
     void Start()
     {
@@ -115,13 +117,42 @@ public class RefelctFound : MonoBehaviour
                 return;
             }
         }
-        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, CheckLayerMask))
+        else if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, JewerlyLayerMask))
+        {
+            Line.enabled = true;
+            IsTouchLens = false;
+            if (LensLight != null)
+                LensLight.Line.enabled = false;
+
+            Line.SetPosition(0, transform.position);
+            Line.SetPosition(1, hit.point);
+
+            Refract = hit.transform.GetComponent<RefractLaser>();
+
+            if(Refract.GetRefract(hit.transform.forward))
+            {
+                //Line.SetPosition(2, hit.transform.position + Refract.transform.position); // 닿은지점 -> ray를 쏴 닿은지점까지 
+                //Line.SetPosition(3, hit.transform.position + Refract.transform.position);
+                Line.SetPosition(2, hit.point);
+                Line.SetPosition(3, hit.point);
+            }
+            else
+            {
+                Line.SetPosition(2, hit.transform.position + hit.transform.forward * 5);
+                Line.SetPosition(3, hit.transform.position + hit.transform.forward * 5);
+            }
+
+            
+
+        }
+        else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask))
         {
             Line.enabled = false;
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
         }
+     
     }
 
 }

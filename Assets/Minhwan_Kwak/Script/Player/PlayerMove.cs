@@ -171,7 +171,7 @@ public class PlayerMove : MonoBehaviour
                return;
            }
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-            //AudioManager.Instance.PlayOneShot("event:/Jump");
+            //AudioManager.Instance.PlayOneShot("event:/Jump");q
             PlayerManager.Instance.PlayerInput.IsJumpCanceled = false;
           
             moveDirection.y = jumpspeed;
