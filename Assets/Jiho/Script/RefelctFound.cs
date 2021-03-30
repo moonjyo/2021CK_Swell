@@ -131,19 +131,18 @@ public class RefelctFound : MonoBehaviour
 
             if(Refract.GetRefract(hit.transform.forward))
             {
-                //Line.SetPosition(2, hit.transform.position + Refract.transform.position); // 닿은지점 -> ray를 쏴 닿은지점까지 
-                //Line.SetPosition(3, hit.transform.position + Refract.transform.position);
                 Line.SetPosition(2, hit.point);
                 Line.SetPosition(3, hit.point);
+                //Line.SetPosition(2, hit.transform.position);
+                //Line.SetPosition(3, hit.transform.position);
             }
             else
             {
-                Line.SetPosition(2, hit.transform.position + hit.transform.forward * 5);
-                Line.SetPosition(3, hit.transform.position + hit.transform.forward * 5);
+                //Line.SetPosition(2, hit.transform.position + hit.transform.forward * 5);
+                //Line.SetPosition(3, hit.transform.position + hit.transform.forward * 5);
+                Line.SetPosition(2, hit.transform.position);
+                Line.SetPosition(3, hit.transform.position);
             }
-
-            
-
         }
         else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask))
         {
@@ -151,6 +150,8 @@ public class RefelctFound : MonoBehaviour
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
+            if (Refract != null && !StageManager.Instance.Stage2Clear)
+                StageManager.Instance.EraseLaser();
         }
      
     }
