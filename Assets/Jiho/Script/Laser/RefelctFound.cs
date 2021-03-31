@@ -44,7 +44,7 @@ public class RefelctFound : MonoBehaviour
         //}
         LaserForward = transform.forward;
         ShootLaser(transform.position, LaserForward);
-        if(StageManager.Instance.Stage2Clear)
+        if(StageManager.Instance.stage2.IsMakeStartLaser)
         {
             //보석의 빛을 수정구에 집중시킨다.
             //커튼이 제쳐지며 물고기 상패가 드러난다.
@@ -155,8 +155,8 @@ public class RefelctFound : MonoBehaviour
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
-            if (Refract != null && !StageManager.Instance.Stage2Clear)
-                StageManager.Instance.EraseLaser();
+            if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
+                StageManager.Instance.stage2.EraseLaser();
         }
      
     }
