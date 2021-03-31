@@ -24,8 +24,15 @@ public class RefractLaser : MonoBehaviour
         if (StageManager.Instance.stage2.IsMakeStartLaser)
         {
             RaycastHit hit;
-            if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity))
+            if (!Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity, RefractionObjLayerMask))
             {
+                Line.SetPosition(0, this.transform.position);
+                Line.SetPosition(1, this.transform.position + this.transform.forward * 5);
+                IsHitRefract = false;
+            }
+            else if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity))
+            {
+                IsHitRefract = true;
                 if ((1 << hit.transform.gameObject.layer) == Stage2CrystalBallLayerMask)
                 {
                     IsHitCrystalBall = true;
@@ -33,19 +40,13 @@ public class RefractLaser : MonoBehaviour
                 Line.SetPosition(0, this.transform.position);
                 Line.SetPosition(1, hit.point);
             }
-            else
-            {
-                Line.SetPosition(0, this.transform.position);
-                Line.SetPosition(1, this.transform.position + this.transform.forward * 5);
-            }
-
+          
         }
-
     }
 
     public bool GetRefract(Vector3 value)
     {
-        if (StageManager.Instance.stage2.SuccessMission())
+        if (StageManager.Instance.stage2.SuccessMakeStartLaser())
             return false;
         RaycastHit hit;
         if(Physics.Raycast(this.transform.position, value,out hit, Mathf.Infinity, RefractionObjLayerMask))
@@ -71,6 +72,7 @@ public class RefractLaser : MonoBehaviour
             if(Refract != null)
             Refract.Line.enabled = false;
 
+            Refract = null;
             return false;
         }
         else
@@ -81,7 +83,7 @@ public class RefractLaser : MonoBehaviour
 
     public void EraseLaser()
     {
-        if(Line != null && !StageManager.Instance.stage2.IsMakeStartLaser)
+        if(Line != null && !StageManager.Instance.stage2.IsMakeStartLaser && !IsHitRefract) // 빛을 받고있지 않은애들 지우기, 라인이 존재하고있어야하고 이후엔 사라져야 할 떄
         this.Line.enabled = false;
         StageManager.Instance.stage2.Stage2Count = 0;
     }

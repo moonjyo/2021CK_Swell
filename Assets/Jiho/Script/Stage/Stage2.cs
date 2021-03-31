@@ -11,12 +11,14 @@ public class Stage2 : MonoBehaviour
     [HideInInspector]
     public bool IsMakeStartLaser = false;
 
+    bool IsStage2Clear = false;
+
     public GameObject CrystalballCyilnder;
     public GameObject[] Curtain;
 
     private void Update()
     {
-        if(IsMakeStartLaser)
+        if(IsMakeStartLaser && !IsStage2Clear)
         {
             int i = 0;
             foreach (RefractLaser target in RefractObj)
@@ -25,19 +27,25 @@ public class Stage2 : MonoBehaviour
                 {
                     i++;
                 }
-                if(i >= 5)
+                if (i >= 5)
                 {
                     //스테이지클리어?
                     StartCoroutine(Stage2ClearProduction());
-                    IsMakeStartLaser = false;
+                    IsStage2Clear = true;
                     i = 0;
                 }
+                else if(i < 5 && !target.IsHitRefractObj()) // 5개 모두 수정을 비추고있지 않고 비추는 오브젝트가 없을 때(별이 꺠졌을 떄) 
+                {
+                    SuccessMakeStartLaser();
+
+                }
+                    
             }
         }
       
     }
 
-    public bool SuccessMission()
+    public bool SuccessMakeStartLaser()
     {
         int i = 0;
         foreach (RefractLaser target in RefractObj)
@@ -65,8 +73,15 @@ public class Stage2 : MonoBehaviour
 
             return true;
         }
+        else if (IsMakeStartLaser)
+        {
+            CrystalballCyilnder.transform.DOMoveY(-1.0f, 3f, false);
+            IsMakeStartLaser = false;
+            return false;
+        }
         else
             return false;
+            
 
     }
 
