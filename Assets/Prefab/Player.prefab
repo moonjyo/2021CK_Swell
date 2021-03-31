@@ -259,7 +259,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 845645975}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.167, y: 1.204, z: 0.273}
+  m_LocalPosition: {x: -0.17, y: 0.9, z: 0.31}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1311833556188567651}
@@ -762,6 +762,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PushLayer:
     serializedVersion: 2
+    m_Bits: 524288
+  ItemLayer:
+    serializedVersion: 2
     m_Bits: 4096
 --- !u!1 &1714221642723034868
 GameObject:
@@ -809,7 +812,6 @@ GameObject:
   - component: {fileID: 1943197187339628341}
   - component: {fileID: 4764462461684384608}
   - component: {fileID: 1187448883704802715}
-  - component: {fileID: 307755696788252781}
   - component: {fileID: 1714221642504484085}
   - component: {fileID: 1410732063}
   m_Layer: 13
@@ -1061,7 +1063,7 @@ MonoBehaviour:
   PlayerInput: {fileID: 3372341977929086308}
   PlayerInteraction: {fileID: 4764462461684384608}
   playerCliming: {fileID: 1187448883704802715}
-  playerAnimationEvents: {fileID: 307755696788252781}
+  playerAnimationEvents: {fileID: 1265309195}
   SizeModulate: {fileID: 1714221642504484085}
   flashLight: {fileID: 1279828702}
 --- !u!114 &1943197187339628341
@@ -1078,10 +1080,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 5120
+    m_Bits: 791552
   InteractionLayer:
     serializedVersion: 2
     m_Bits: 4096
+  IsGravity: 0
   moveDirection: {x: 0, y: 0, z: 0}
   jumpspeed: 16
   Gravity: 30
@@ -1093,8 +1096,9 @@ MonoBehaviour:
   InterActionLayerMask:
     serializedVersion: 2
     m_Bits: 0
+  InterActionrb: {fileID: 0}
+  GetItemrb: {fileID: 0}
   isItemCol: 0
-  isitempick: 0
   IsGetItem: 0
   Controller: {fileID: 1410732063}
   PullSpeed: 3
@@ -1132,23 +1136,9 @@ MonoBehaviour:
   Distance: 0.4
   IsHighCheck: 0
   IsLowCheck: 0
-  WallLayer:
+  HangingLayer:
     serializedVersion: 2
-    m_Bits: 2048
---- !u!114 &307755696788252781
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1837258674997740249}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d126f1128ad1a94ea9e7968d8084ea7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsAnimStart: 0
-  PlayerAnim: {fileID: 141301447}
+    m_Bits: 262144
 --- !u!114 &1714221642504484085
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2068,6 +2058,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5022423930363347188}
   - component: {fileID: 141301447}
+  - component: {fileID: 1265309195}
   m_Layer: 13
   m_Name: Player_Body
   m_TagString: Untagged
@@ -2112,6 +2103,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1265309195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4691947345362614123}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d126f1128ad1a94ea9e7968d8084ea7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsAnimStart: 0
+  PlayerAnim: {fileID: 141301447}
 --- !u!1 &4838450446908890585
 GameObject:
   m_ObjectHideFlags: 0

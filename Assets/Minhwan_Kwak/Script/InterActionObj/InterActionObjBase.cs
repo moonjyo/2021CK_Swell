@@ -10,35 +10,43 @@ public class InterActionObjBase : MonoBehaviour
     [HideInInspector]
     public BoxCollider Col;
 
-    IEnumerator FollowCorutine;
+    private float CurrentMass;
 
+    public Vector3 ItemOffsetPos;
 
     private void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
         Col = transform.GetComponent<BoxCollider>();
-        FollowCorutine = FollowMove();
+        CurrentMass = rb.mass;
     }
 
     public bool FollowOn()
     {
-        StartCoroutine(FollowCorutine);
+        StartCoroutine(FollowMove());
         return true;
     }
     public bool FollowOff()
     {
-        StopCoroutine(FollowCorutine);
-        return true;    
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
+        rb.transform.parent = null;
+        rb.isKinematic = false;
+        Col.isTrigger = false;
+        rb.mass = CurrentMass;
+        return true;
     }
-     
 
     public IEnumerator FollowMove()
     {
-        while(true)
-        {
-            rb.transform.position = PlayerManager.Instance.playerMove.InterActionObjTr.position;
+        rb.transform.parent = PlayerManager.Instance.playerMove.Root_Tr;
+        rb.isKinematic = true;
+        rb.transform.localPosition = ItemOffsetPos;
+        Col.isTrigger = true;
+        rb.mass = 0.1f;
 
-            yield return null;
-        }
+
+
+        yield return null;
+
     }
 }
