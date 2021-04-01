@@ -16,6 +16,9 @@ public class Stage2 : MonoBehaviour
     public GameObject CrystalballCyilnder;
     public GameObject[] Curtain;
 
+    //[HideInInspector]
+    public bool IsInStick = false; // 막대를 꽂았는지 안꽂았는지 시점
+
     private void Update()
     {
         if(IsMakeStartLaser && !IsStage2Clear)
@@ -28,8 +31,7 @@ public class Stage2 : MonoBehaviour
                     i++;
                 }
                 if (i >= 5)
-                {
-                    //스테이지클리어?
+                {                 
                     StartCoroutine(Stage2ClearProduction());
                     IsStage2Clear = true;
                     i = 0;
@@ -73,7 +75,7 @@ public class Stage2 : MonoBehaviour
 
             return true;
         }
-        else if (IsMakeStartLaser)
+        else if (IsMakeStartLaser && !IsInStick)
         {
             CrystalballCyilnder.transform.DOMoveY(-1.0f, 3f, false);
             IsMakeStartLaser = false;
