@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
-    public bool IsHideWalk = false;
     private Vector2 InputValue;
     public bool IsPull = false;
     public bool IsPickUpItem = false;
     public bool IsJumpCanceled = false;
 
+    public bool IsLightGet = false;
     public void OnWalk(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
@@ -58,7 +58,8 @@ public class PlayerInput : MonoBehaviour
             {
                 return;
             }
-            if (PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol)
+            if ((PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol) && 
+                 !IsPickUpItem)
             {
                 if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
                 {
@@ -105,7 +106,7 @@ public class PlayerInput : MonoBehaviour
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && IsLightGet)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }
@@ -118,6 +119,8 @@ public class PlayerInput : MonoBehaviour
         Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
         PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
     }
+
+
 
 
 }
