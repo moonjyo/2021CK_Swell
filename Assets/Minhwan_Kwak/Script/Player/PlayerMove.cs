@@ -39,7 +39,8 @@ public class PlayerMove : MonoBehaviour
 
 
     //물체와 충돌하기위한 bool
-    public bool isItemCol = false;
+    public bool IsItemCol = false;
+    public bool IsInterActionCol = false;
 
     public bool IsGetItem = false;
 
@@ -54,20 +55,19 @@ public class PlayerMove : MonoBehaviour
     public float PushSpeed;
     public float WalkSpeed;
 
+    public Vector2 ClimingOffsetVec; 
 
 
     private void FixedUpdate()
     {
-        if (WalkVec == Vector3.zero && moveDirection.y < 0)
+        if (WalkVec == Vector3.zero && moveDirection.y < 0f)
         {
             Idle();
         }
 
         ItemTimeTick();
         MoveCheck();
-
         GravityFall();
-
     }
 
     public void SetMove(Vector3 value)  // isRun = true(running) or isrun = false(walk)
@@ -107,7 +107,7 @@ public class PlayerMove : MonoBehaviour
             DirectionSelect(); //방향성 check 
             if (InterActionrb != null)
             {
-                if (isItemCol && IsGrounded() && !InterActionrb.CompareTag("InterActionItem") && !PlayerManager.Instance.PlayerInput.IsPickUpItem)
+                if (IsInterActionCol && IsGrounded() && !InterActionrb.CompareTag("InterActionItem") && !PlayerManager.Instance.PlayerInput.IsPickUpItem)
                 {
                     if (PullVec.sqrMagnitude > 0.1f) //당길떄 
                     {
@@ -180,7 +180,7 @@ public class PlayerMove : MonoBehaviour
         {
             bool ispush = PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Push);
             bool ispull = PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Pull);
-            if ((ispull || ispush) && isItemCol)
+            if ((ispull || ispush) && IsInterActionCol)
             {
                 return;
             }
@@ -194,8 +194,7 @@ public class PlayerMove : MonoBehaviour
 
     private bool IsGrounded()
     {
-        //bool IsCheckGround =  Physics.CheckCapsule(GroundCheckCol.bounds.center, Vector3.down, GroundCheckCol.bounds.extents.y + 0.2f , GroundLayer);
-        bool IsCheckGround = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x, Controller.bounds.min.y - 0.1f, Controller.bounds.center.z), 0.18f, GroundLayer);
+        bool IsCheckGround = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x, Controller.bounds.min.y, Controller.bounds.center.z), 0.1f, GroundLayer);
         if (IsCheckGround)
         {
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
@@ -219,6 +218,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge())
         {
+            transform.localPosition = transform.localPosition + new Vector3(0.4f, -0.5f, 0f);
             IsGravity = true;
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("HangIdle");
@@ -305,16 +305,16 @@ public class PlayerMove : MonoBehaviour
         switch (PlayerManager.Instance.playerStatus.direction)
         {
             case PlayerDirection.Left:
-                transform.DOMove(transform.position + new Vector3(0.8f, 2.8f, 0), 1f);
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
                 break;
             case PlayerDirection.Right:
-                transform.DOMove(transform.position + new Vector3(-0.8f, 2.8f, 0), 1f);
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
                 break;
             case PlayerDirection.Bottom:
-                transform.DOMove(transform.position + new Vector3(0, 2.8f, 0.8f), 1f);
+                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
                 break;
             case PlayerDirection.Top:
-                transform.DOMove(transform.position + new Vector3(0, 2.8f, -0.8f), 1f);
+                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
                 break;
             default:
                 Debug.Log("잘못된 방향");
@@ -427,7 +427,7 @@ public class PlayerMove : MonoBehaviour
     }
     public void SetRemoveGetItemObj()
     {
-        PlayerManager.Instance.playerMove.isItemCol = false;
+        PlayerManager.Instance.playerMove.IsItemCol = false;
     }
     public void SetInterActionObj(Rigidbody Col)
     {

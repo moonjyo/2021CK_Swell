@@ -54,20 +54,24 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            if (PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.isItemCol)
+           if(PlayerManager.Instance.playerMove.GetItemrb == null)
             {
-                if (PlayerManager.Instance.playerMove.isItemCol && !IsPickUpItem)
+                return;
+            }
+            if (PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol)
+            {
+                if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
                 {
                     IsPickUpItem = true;
                     StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
                 }
-                else
-                {
-                    PlayerManager.Instance.playerMove.isItemCol = false;
-                    PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
-                    IsPickUpItem = false;
-                    StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
-                }
+            }
+            else
+            {
+                PlayerManager.Instance.playerMove.IsItemCol = false;
+                PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
+                IsPickUpItem = false;
+                StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
             }
         }
     }
