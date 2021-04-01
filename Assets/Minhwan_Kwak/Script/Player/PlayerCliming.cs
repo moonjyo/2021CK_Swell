@@ -11,7 +11,7 @@ public class PlayerCliming : MonoBehaviour
 
     public bool IsHighCheck = false;
     public bool IsLowCheck = false;
-    public LayerMask WallLayer;
+    public LayerMask HangingLayer;
 
     private Vector2 ClimingVec;
 
@@ -19,17 +19,17 @@ public class PlayerCliming : MonoBehaviour
     {
         RaycastHit Highhit;
         RaycastHit Lowhit;
-        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out Highhit, Distance, WallLayer);
-        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadLowTr.forward, out Lowhit, Distance, WallLayer);
+        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out Highhit, Distance, HangingLayer);
+        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadLowTr.forward, out Lowhit, Distance, HangingLayer);
 
 
-        if(!isHitHigh && isHitLow)
+        if (!isHitHigh && isHitLow)
         {
             PlayerManager.Instance.playerMove.Hanging(ClimingVec);
         }
     }
 
-    
+
     public void SetCliming(Vector2 value)
     {
         ClimingVec = value;
@@ -39,7 +39,7 @@ public class PlayerCliming : MonoBehaviour
     private void OnDrawGizmos()
     {
         RaycastHit hit;
-        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, WallLayer);
+        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, HangingLayer);
 
         Gizmos.color = Color.red;
         if (isHitHigh)
@@ -51,7 +51,7 @@ public class PlayerCliming : MonoBehaviour
             Gizmos.DrawRay(HeadHighTr.position, HeadHighTr.forward * Distance);
         }
 
-        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, WallLayer);
+        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, HangingLayer);
 
         Gizmos.color = Color.yellow;
         if (isHitLow)

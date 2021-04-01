@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour
         Vector3 JumpVec = new Vector3(0, value.y, 0);
         PlayerManager.Instance.playerMove.SetJump(JumpVec);
         PlayerManager.Instance.playerCliming.SetCliming(JumpVec);
-       
+
         if (context.performed)
         {
             IsJumpCanceled = true;
@@ -43,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         Vector3 PullVec = new Vector3(value.x, 0, 0);
         PlayerManager.Instance.playerMove.SetPull(PullVec);
 
-        if(context.canceled)
+        if (context.canceled)
         {
             IsPull = false;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
@@ -52,19 +52,27 @@ public class PlayerInput : MonoBehaviour
 
     public void OnPickUpObj(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-         if (PlayerManager.Instance.playerMove.isItemCol && !IsPickUpItem)
-         {
-              IsPickUpItem = true;
-              StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
-         }
-         else
-         {
+           if(PlayerManager.Instance.playerMove.GetItemrb == null)
+            {
+                return;
+            }
+            if (PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol)
+            {
+                if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
+                {
+                    IsPickUpItem = true;
+                    StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
+                }
+            }
+            else
+            {
+                PlayerManager.Instance.playerMove.IsItemCol = false;
                 PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
                 IsPickUpItem = false;
                 StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
-         }
+            }
         }
     }
     public void OnRightMouseButton(InputAction.CallbackContext context)
@@ -97,7 +105,7 @@ public class PlayerInput : MonoBehaviour
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }
