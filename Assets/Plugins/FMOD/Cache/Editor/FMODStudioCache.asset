@@ -95,7 +95,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Product/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637529624339769816
+  lastModified: 637529578853687858
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -197,6 +197,26 @@ MonoBehaviour:
     data1: 767022679
     data2: 1350426828
   Exists: 0
+--- !u!114 &-6963319635409256771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stage2/Stage
+  m_EditorClassIdentifier: 
+  Name: Stage
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-6587892665846129413
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -283,6 +303,26 @@ MonoBehaviour:
     data2: 0
   Exists: 1
 --- !u!114 &-3553205778154200311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stage1/Fast
+  m_EditorClassIdentifier: 
+  Name: Fast
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-2331997905872917510
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -430,6 +470,26 @@ MonoBehaviour:
   - Name: Desktop
     Value: 746
   Exists: 0
+--- !u!114 &-369598795748562335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stage1/Death
+  m_EditorClassIdentifier: 
+  Name: Death
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -455,7 +515,7 @@ MonoBehaviour:
   - {fileID: -7764812333275843322}
   StringsBanks:
   - {fileID: 6998768448121818651}
-  stringsBankWriteTime: 637529624339789523
+  stringsBankWriteTime: 637529578854086802
   cacheVersion: 6
 --- !u!114 &450299896496441896
 MonoBehaviour:
@@ -619,8 +679,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 6194402485765311031}
-  - {fileID: -8466969932087276326}
+  - {fileID: -2331997905872917510}
+  - {fileID: -369598795748562335}
   MinDistance: 0
   MaxDistance: 0
   Length: 206811
@@ -721,7 +781,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Product/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637529624339800708
+  lastModified: 637529578854096761
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -786,7 +846,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: 1340221600142787661}
+  - {fileID: -6963319635409256771}
   MinDistance: 0
   MaxDistance: 0
   Length: 77328
@@ -1003,7 +1063,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Product/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637529624339789523
+  lastModified: 637529578854086802
   LoadResult: 0
   FileSizes:
   - Name: Desktop
