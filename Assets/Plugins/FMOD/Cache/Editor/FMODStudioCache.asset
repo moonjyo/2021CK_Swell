@@ -40,6 +40,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-8084121919861573805
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stage1/Fast
+  m_EditorClassIdentifier: 
+  Name: Fast
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-7935454380712728451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -95,7 +115,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Product/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637529578853687858
+  lastModified: 637529624339769816
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -385,6 +405,26 @@ MonoBehaviour:
   MinDistance: 0
   MaxDistance: 0
   Length: 77328
+--- !u!114 &-2120549128627069793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stage1/Death
+  m_EditorClassIdentifier: 
+  Name: Death
+  Min: 0
+  Max: 1
+  Default: 1
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-1992197711514132761
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -515,7 +555,7 @@ MonoBehaviour:
   - {fileID: -7764812333275843322}
   StringsBanks:
   - {fileID: 6998768448121818651}
-  stringsBankWriteTime: 637529578854086802
+  stringsBankWriteTime: 637529624339789523
   cacheVersion: 6
 --- !u!114 &450299896496441896
 MonoBehaviour:
@@ -679,8 +719,8 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -2331997905872917510}
-  - {fileID: -369598795748562335}
+  - {fileID: -8084121919861573805}
+  - {fileID: -2120549128627069793}
   MinDistance: 0
   MaxDistance: 0
   Length: 206811
@@ -781,7 +821,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Product/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637529578854096761
+  lastModified: 637529624339800708
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -826,6 +866,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &4720986846699356453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Stage2/Stage
+  m_EditorClassIdentifier: 
+  Name: Stage
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &5308269439549691688
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -846,7 +906,7 @@ MonoBehaviour:
   Is3D: 0
   IsOneShot: 0
   Parameters:
-  - {fileID: -6963319635409256771}
+  - {fileID: 4720986846699356453}
   MinDistance: 0
   MaxDistance: 0
   Length: 77328
@@ -1063,7 +1123,7 @@ MonoBehaviour:
   Path: Assets/FMOD/Product/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637529578854086802
+  lastModified: 637529624339789523
   LoadResult: 0
   FileSizes:
   - Name: Desktop
