@@ -146,9 +146,43 @@ public class RefelctFound : MonoBehaviour
                 Line.SetPosition(3, hit.transform.position);
             }
         }
-        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, CheckLayerMask))
+        else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
-            //Line.enabled = false;
+            //if(hit.transform != null)
+            //{
+                Line.SetPosition(0, transform.position);
+                Line.SetPosition(1, hit.point);
+                Line.SetPosition(2, hit.point);
+                Line.SetPosition(3, hit.point);
+                IsTouchLens = false;
+                if (LensLight != null)
+                    LensLight.Line.enabled = false;
+                if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
+                    StageManager.Instance.stage2.EraseLaser();
+           //}
+            //else
+            //{
+            //    //Line.enabled = false;
+            //    IsTouchLens = false;
+            //    if (LensLight != null)
+            //        LensLight.Line.enabled = false;
+            //    if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
+            //        StageManager.Instance.stage2.EraseLaser();
+
+            //    Line.SetPosition(0, transform.position);
+            //    Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);
+            //    Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
+            //    Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
+            //}
+         
+        }
+        else if(ReflectCount == 3)
+        {
+            Line.SetPosition(3, StartPos + value * LaserAdvanceLength);
+            ReflectCount = 1;
+        }
+        else if(!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        {
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
@@ -159,11 +193,6 @@ public class RefelctFound : MonoBehaviour
             Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);
             Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
             Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
-        }
-        else if(ReflectCount == 3)
-        {
-            Line.SetPosition(3, StartPos + value * LaserAdvanceLength);
-            ReflectCount = 1;
         }
             
 
@@ -204,8 +233,6 @@ public class RefelctFound : MonoBehaviour
                 }
                 //down
                 transform.Rotate(AngleSpeed * Time.deltaTime, 0 , 0);
-                Debug.Log(transform.rotation.x);
-                //if(transform.rotation.x < angl)
 
             }
             else
@@ -216,7 +243,6 @@ public class RefelctFound : MonoBehaviour
 
                 }
                 transform.Rotate(-AngleSpeed * Time.deltaTime, 0, 0);
-                Debug.Log(transform.rotation.x);
 
 
             }

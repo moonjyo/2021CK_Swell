@@ -241,7 +241,7 @@ public class PlayerMove : MonoBehaviour
     {
         if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge())
         {
-             IsGravity = true;
+            PlayerManager.Instance.playerMove.IsGravity = true;
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle" , true);
         }
