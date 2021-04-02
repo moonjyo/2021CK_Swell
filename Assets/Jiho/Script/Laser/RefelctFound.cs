@@ -204,8 +204,6 @@ public class RefelctFound : MonoBehaviour
                 }
                 //down
                 transform.Rotate(AngleSpeed * Time.deltaTime, 0 , 0);
-                Debug.Log(transform.rotation.x);
-                //if(transform.rotation.x < angl)
 
             }
             else
@@ -216,7 +214,6 @@ public class RefelctFound : MonoBehaviour
 
                 }
                 transform.Rotate(-AngleSpeed * Time.deltaTime, 0, 0);
-                Debug.Log(transform.rotation.x);
 
 
             }
