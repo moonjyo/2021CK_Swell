@@ -7,6 +7,7 @@ public class RefelctFound : MonoBehaviour
     public GameObject Flash;
 
     public Transform StartToRaser;
+    public Transform Target;
 
     public LayerMask ReflectObject; // 반사물체
     public LayerMask ConcaveLensLayerMask; // 오목렌즈
