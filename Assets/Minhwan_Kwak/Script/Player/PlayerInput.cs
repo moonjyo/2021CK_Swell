@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
-    public bool IsHideWalk = false;
     private Vector2 InputValue;
     public bool IsPull = false;
     public bool IsPickUpItem = false;
     public bool IsJumpCanceled = false;
 
+    public bool IsLightGet = false;
     public void OnWalk(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
@@ -26,7 +26,7 @@ public class PlayerInput : MonoBehaviour
         Vector3 JumpVec = new Vector3(0, value.y, 0);
         PlayerManager.Instance.playerMove.SetJump(JumpVec);
         PlayerManager.Instance.playerCliming.SetCliming(JumpVec);
-       
+
         if (context.performed)
         {
             IsJumpCanceled = true;
@@ -43,7 +43,7 @@ public class PlayerInput : MonoBehaviour
         Vector3 PullVec = new Vector3(value.x, 0, 0);
         PlayerManager.Instance.playerMove.SetPull(PullVec);
 
-        if(context.canceled)
+        if (context.canceled)
         {
             IsPull = false;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
@@ -52,19 +52,28 @@ public class PlayerInput : MonoBehaviour
 
     public void OnPickUpObj(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
-         if (PlayerManager.Instance.playerMove.isItemCol && !IsPickUpItem)
-         {
-              IsPickUpItem = true;
-              StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
-         }
-         else
-         {
+           if(PlayerManager.Instance.playerMove.GetItemrb == null)
+            {
+                return;
+            }
+            if ((PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol) && 
+                 !IsPickUpItem)
+            {
+                if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
+                {
+                    IsPickUpItem = true;
+                    StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
+                }
+            }
+            else
+            {
+                PlayerManager.Instance.playerMove.IsItemCol = false;
                 PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
                 IsPickUpItem = false;
                 StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
-         }
+            }
         }
     }
     public void OnRightMouseButton(InputAction.CallbackContext context)
@@ -97,7 +106,7 @@ public class PlayerInput : MonoBehaviour
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }
@@ -110,6 +119,8 @@ public class PlayerInput : MonoBehaviour
         Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
         PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
     }
+
+
 
 
 }

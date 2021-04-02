@@ -1,5 +1,5 @@
 ﻿[System.Serializable]
-public class PlayerStatus 
+public class PlayerStatus
 {
     [EnumFlags]
     public PlayerFSM fsm;
@@ -15,7 +15,7 @@ public class PlayerStatus
     public void FsmRemove(PlayerFSM value)
     {
         int tempvalue = fsm.CompareTo(value);
-        if(tempvalue == 0 || tempvalue == 1)  
+        if (tempvalue == 0 || tempvalue == 1)
         {
             fsm = fsm & ~value;
         }
@@ -23,14 +23,14 @@ public class PlayerStatus
 
     public void FsmAllRemove()
     {
-        fsm =  fsm &~ fsm; 
+        fsm = fsm & ~fsm;
     }
 
 
     public int FsmCheck(PlayerFSM value)
     {
-       int check = fsm.CompareTo(value);
-       return check;
+        int check = fsm.CompareTo(value);
+        return check;
     }
 
 }
@@ -40,8 +40,8 @@ public enum PlayerFSM
     Walk = 0x00000001, // 0010
     Wall = 0x00000002, // 1000
     Jump = 0x00000004, // 0100
-    Ground = 0x00000008,  
-    Climing = 0x00000010, 
+    Ground = 0x00000008,
+    Climing = 0x00000010,
     HideWalk = 0x00000020,
     Push = 0x00000040,
     Pull = 0x00000080,
@@ -52,14 +52,14 @@ public enum PlayerFSM
 
 public enum PlayerDirection
 {
-   Top = 0x00000001,
-   Left = 0x00000002,
-   Right = 0x00000004,
-   Bottom = 0x00000008,
-   TopRight = 0x000000010,
-   TopLeft = 0x000000020,
-   BottomRight = 0x000000020,
-   BottomLeft = 0x000000040,
+    Top = 0x00000001,
+    Left = 0x00000002,
+    Right = 0x00000004,
+    Bottom = 0x00000008,
+    TopRight = 0x000000010,
+    TopLeft = 0x000000020,
+    BottomRight = 0x000000040,
+    BottomLeft = 0x000000080,
 
 }
 

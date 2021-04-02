@@ -24,23 +24,29 @@ public class RefractLaser : MonoBehaviour
         if (StageManager.Instance.stage2.IsMakeStartLaser)
         {
             RaycastHit hit;
-            if (!Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity, RefractionObjLayerMask))
-            {
-                Line.SetPosition(0, this.transform.position);
-                Line.SetPosition(1, this.transform.position + this.transform.forward * 5);
-                IsHitRefract = false;
-            }
-            else if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity))
             {
                 IsHitRefract = true;
+               
                 if ((1 << hit.transform.gameObject.layer) == Stage2CrystalBallLayerMask)
                 {
                     IsHitCrystalBall = true;
+                    Line.SetPosition(0, this.transform.position);
+                    Line.SetPosition(1, hit.point);
+
                 }
-                Line.SetPosition(0, this.transform.position);
-                Line.SetPosition(1, hit.point);
+                else if((1 << hit.transform.gameObject.layer) == RefractionObjLayerMask)
+                {
+                    Line.SetPosition(0, this.transform.position);
+                    Line.SetPosition(1, hit.point);
+                }
+                else if (hit.transform.gameObject == null || (1 << hit.transform.gameObject.layer) != Stage2CrystalBallLayerMask + RefractionObjLayerMask)
+                {
+                    IsHitRefract = false;
+                    Line.SetPosition(0, this.transform.position);
+                    Line.SetPosition(1, this.transform.position + this.transform.forward * 5);
+                }
             }
-          
         }
     }
 
@@ -62,9 +68,9 @@ public class RefractLaser : MonoBehaviour
 
             return true;
         }
-        else if(!StageManager.Instance.stage2.IsMakeStartLaser)// 가리키지 않을 때 그 뒤에 연결되었던 보석들의 빛 제거해야함
+        else if(!StageManager.Instance.stage2.IsMakeStartLaser)
         {
-            StageManager.Instance.stage2.EraseLaser(); // 수정 필요할 거같음 간혹 버그유발
+            StageManager.Instance.stage2.EraseLaser(); // 간혹 버그유발?
             IsHitRefract = false;
             Line.enabled = true;
             Line.SetPosition(0, transform.position);

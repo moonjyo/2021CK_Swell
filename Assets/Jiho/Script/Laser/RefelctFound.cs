@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class RefelctFound : MonoBehaviour
 {
+    public GameObject Flash;
+
     public Transform StartToRaser;
-    public Transform Target;
 
     public LayerMask ReflectObject; // 반사물체
     public LayerMask ConcaveLensLayerMask; // 오목렌즈
     public LayerMask ConvexLensLayerMask; // 볼록렌즈
     public LayerMask JewerlyLayerMask; // 보석
+
+    public int LaserAdvanceLength = 7;
 
     int CheckLayerMask;
 
@@ -25,6 +28,14 @@ public class RefelctFound : MonoBehaviour
     LensLight LensLight;
     RefractLaser Refract;
 
+    private bool IsToggle = false;
+
+    private Vector2 AngleVec;
+    public float AngleMin;
+    public float AngleMax;
+    public float AngleSpeed = 0f;
+
+
     void Start()
     {
         Line = GetComponent<LineRenderer>();
@@ -36,19 +47,13 @@ public class RefelctFound : MonoBehaviour
 
     void Update()
     {
-        // transform.position이 바뀌면 지우고 새로그려야함
-        //if (OriginLaserPos != transform.position)
-        //{
-        //    OriginLaserPos = transform.position;
-        //    ShootLaser(transform.position, LaserForward);
-        //}
+        LightAngle();
         LaserForward = transform.forward;
         ShootLaser(transform.position, LaserForward);
-        //if(StageManager.Instance.stage2.IsMakeStartLaser)
-        //{
-        //    //보석의 빛을 수정구에 집중시킨다.
-        //    //커튼이 제쳐지며 물고기 상패가 드러난다.
-        //}
+    }
+    public void SetAngleValue(Vector2 value)
+    {
+        AngleVec = value;
     }
 
     public void ShootLaser(Vector3 StartPos, Vector3 value)
@@ -58,17 +63,14 @@ public class RefelctFound : MonoBehaviour
         {
             if ((1 << hit.transform.gameObject.layer) == ConcaveLensLayerMask) // 오목렌즈에 히트됐을 때
             {
-                // -hit.transform.forward 쪽으로 빛이 번지게
-                // 새로운 Linerenderer 생성?
-                Debug.Log("오목렌즈");
                 IsTouchLens = true;
                 Line.SetPosition(ReflectCount, hit.point);
                 if (ReflectCount < Line.positionCount - 1)
                 {
                     Line.SetPosition(ReflectCount + 1, hit.point);
+                    if(ReflectCount < Line.positionCount - 2)
+                    Line.SetPosition(ReflectCount + 2, hit.point);
                 }
-                // 함수실행
-                //LensLight.GetConcaveLens(value, hit.point);
                 LensLight = hit.collider.gameObject.GetComponent<LensLight>();
                 LensLight.GetConcaveLens(value, hit.point);
             }
@@ -84,7 +86,6 @@ public class RefelctFound : MonoBehaviour
             }
             else
             {
-                //hit.collider.gameObject.GetComponent<LensLight>().Line.enabled = false;
                 if (IsTouchLens)
                     LensLight.Line.enabled = false;
                 IsTouchLens = false;
@@ -97,7 +98,7 @@ public class RefelctFound : MonoBehaviour
             reflectVector = reflectVector.normalized;
 
             Line.enabled = true;
-            switch (ReflectCount)
+            switch (ReflectCount) // 반사 횟수에 따라서 새로짜야함
             {
                 case 1:
                     Line.SetPosition(0, StartPos);
@@ -138,27 +139,90 @@ public class RefelctFound : MonoBehaviour
             {
                 Line.SetPosition(2, hit.point);
                 Line.SetPosition(3, hit.point);
-                //Line.SetPosition(2, hit.transform.position);
-                //Line.SetPosition(3, hit.transform.position);
             }
             else
             {
-                //Line.SetPosition(2, hit.transform.position + hit.transform.forward * 5);
-                //Line.SetPosition(3, hit.transform.position + hit.transform.forward * 5);
                 Line.SetPosition(2, hit.transform.position);
                 Line.SetPosition(3, hit.transform.position);
             }
         }
-        else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask))
+        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, CheckLayerMask))
         {
-            Line.enabled = false;
+            //Line.enabled = false;
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
             if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
                 StageManager.Instance.stage2.EraseLaser();
+
+            Line.SetPosition(0, transform.position);
+            Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);
+            Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
+            Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
         }
-     
+        else if(ReflectCount == 3)
+        {
+            Line.SetPosition(3, StartPos + value * LaserAdvanceLength);
+            ReflectCount = 1;
+        }
+            
+
+    }
+    public void Toggle()
+    {
+        IsToggle = !IsToggle;
+        if (IsToggle)
+        {
+            FlashOn();
+        }
+        else
+        {
+            FlashOff();
+        }
+    }
+
+
+    public void FlashOff()
+    {
+        Flash.SetActive(false);
+    }
+    public void FlashOn()
+    {
+        Flash.SetActive(true);
+    }
+
+    public void LightAngle()
+    {
+        if (AngleVec.sqrMagnitude > 0.1f)
+        {//down
+            if (AngleVec.y == 1)
+            {
+                if (transform.rotation.x > AngleMax)
+                {
+                    return;
+
+                }
+                //down
+                transform.Rotate(AngleSpeed * Time.deltaTime, 0 , 0);
+                Debug.Log(transform.rotation.x);
+                //if(transform.rotation.x < angl)
+
+            }
+            else
+            { // up
+                if (transform.rotation.x < AngleMin)
+                {
+                    return;
+
+                }
+                transform.Rotate(-AngleSpeed * Time.deltaTime, 0, 0);
+                Debug.Log(transform.rotation.x);
+
+
+            }
+          
+        }
+
     }
 
 }

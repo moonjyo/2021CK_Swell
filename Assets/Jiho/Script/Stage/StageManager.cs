@@ -15,5 +15,17 @@ public class StageManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void EnterStage2()
+    {
+        stage2.gameObject.SetActive(true);
+    }
+
+    public void ExitStage2()
+    {
+        stage2.gameObject.SetActive(false);
     }
 }
