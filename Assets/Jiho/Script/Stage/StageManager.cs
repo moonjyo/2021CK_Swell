@@ -15,6 +15,8 @@ public class StageManager : MonoBehaviour
         {
             Instance = this;
         }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     public void EnterStage2()
