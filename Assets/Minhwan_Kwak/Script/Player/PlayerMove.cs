@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class PlayerMove : MonoBehaviour
 {
+
     //키값이 들어와있는지 체크
     private Vector3 WalkVec;
     private Vector3 JumpVec;
@@ -49,8 +50,6 @@ public class PlayerMove : MonoBehaviour
     private bool IsTime = false;
     private float deltime = 0f;
 
-
-
     public float PullSpeed;
     public float PushSpeed;
     public float WalkSpeed;
@@ -78,7 +77,6 @@ public class PlayerMove : MonoBehaviour
 
     private void GravityFall()
     {
-
         if (!IsGravity)
         {
             moveDirection.y -= Gravity * Time.fixedDeltaTime;
@@ -111,15 +109,30 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (PullVec.sqrMagnitude > 0.1f) //당길떄 
                     {
-                        if (-transform.forward == WalkVec && InterActionrb != null)
+                        if (transform.forward != WalkVec && InterActionrb != null)
                         {
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-                            Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
-                            InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
-                            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            Controller.Move(WalkMove);
-                            InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                            if (-transform.forward == WalkVec)
+                            {
+                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
+                                InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
+                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                                Controller.Move(WalkMove);
+                                InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                            }
+                            else if(transform.right == WalkVec)
+                            {
+                                Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
+                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                                InterActionrb.transform.Rotate(RotateVec);
+                            }
+                            else if(-transform.right == WalkVec)
+                            {
+                                Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
+                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                                InterActionrb.transform.Rotate(RotateVec);
+                            }
                         }
                     }
                     else //물건 push
@@ -214,14 +227,23 @@ public class PlayerMove : MonoBehaviour
         PlayerManager.Instance.playerStatus.FsmAllRemove();
     }
 
-    public void Hanging(Vector2 InValue)
+
+    public void HangingOff()
+    {
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+            IsGravity = false;
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle",false);
+        
+    }
+
+    public void HangingOn(Vector2 InValue)
     {
         if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge())
         {
-            transform.localPosition = transform.localPosition + new Vector3(0.4f, -0.5f, 0f);
-            IsGravity = true;
+             IsGravity = true;
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("HangIdle");
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle" , true);
         }
     }
 

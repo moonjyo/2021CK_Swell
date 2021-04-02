@@ -25,7 +25,7 @@ public class PlayerCliming : MonoBehaviour
 
         if (!isHitHigh && isHitLow)
         {
-            PlayerManager.Instance.playerMove.Hanging(ClimingVec);
+             PlayerManager.Instance.playerMove.HangingOn(ClimingVec);
         }
     }
 
