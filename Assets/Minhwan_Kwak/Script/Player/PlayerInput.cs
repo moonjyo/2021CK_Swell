@@ -106,7 +106,7 @@ public class PlayerInput : MonoBehaviour
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if (context.performed && IsLightGet)
+        if (context.performed)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }

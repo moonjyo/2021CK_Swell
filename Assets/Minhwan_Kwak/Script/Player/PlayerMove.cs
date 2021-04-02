@@ -123,15 +123,15 @@ public class PlayerMove : MonoBehaviour
                             }
                             else if(transform.right == WalkVec)
                             {
-                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
+                                Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                                InterActionrb.transform.Rotate(WalkVec);
+                                InterActionrb.transform.Rotate(RotateVec);
                             }
                             else if(-transform.right == WalkVec)
                             {
-                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
+                                Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                                InterActionrb.transform.Rotate(WalkVec);
+                                InterActionrb.transform.Rotate(RotateVec);
                             }
                         }
                     }

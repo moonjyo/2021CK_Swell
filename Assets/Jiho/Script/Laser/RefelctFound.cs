@@ -31,7 +31,8 @@ public class RefelctFound : MonoBehaviour
     private bool IsToggle = false;
 
     private Vector2 AngleVec;
-    public Vector2 AngleMinMax;
+    public float AngleMin;
+    public float AngleMax;
     public float AngleSpeed = 0f;
 
 
@@ -46,7 +47,7 @@ public class RefelctFound : MonoBehaviour
 
     void Update()
     {
-        SetAngleValue();
+        LightAngle();
         LaserForward = transform.forward;
         ShootLaser(transform.position, LaserForward);
     }
@@ -190,32 +191,38 @@ public class RefelctFound : MonoBehaviour
         Flash.SetActive(true);
     }
 
-    public void SetAngleValue()
+    public void LightAngle()
     {
         if (AngleVec.sqrMagnitude > 0.1f)
         {//down
             if (AngleVec.y == 1)
             {
-                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.eulerAngles.z) * Time.deltaTime * AngleSpeed);
-
-                if (transform.eulerAngles.z >= AngleMinMax.x)
+                if (transform.rotation.x > AngleMax)
                 {
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, AngleMinMax.x);
+                    return;
+
                 }
+                //down
+                transform.Rotate(AngleSpeed * Time.deltaTime, 0 , 0);
+                Debug.Log(transform.rotation.x);
+                //if(transform.rotation.x < angl)
 
             }
             else
-            {
-                //up
-                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.eulerAngles.z) * Time.deltaTime * -AngleSpeed);
-
-                if (transform.eulerAngles.z <= AngleMinMax.y)
+            { // up
+                if (transform.rotation.x < AngleMin)
                 {
-                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, AngleMinMax.y);
-                }
-            }
+                    return;
 
+                }
+                transform.Rotate(-AngleSpeed * Time.deltaTime, 0, 0);
+                Debug.Log(transform.rotation.x);
+
+
+            }
+          
         }
+
     }
 
 }
