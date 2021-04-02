@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class RefelctFound : MonoBehaviour
 {
+    public GameObject Flash;
+
     public Transform StartToRaser;
-    public Transform Target;
 
     public LayerMask ReflectObject; // 반사물체
     public LayerMask ConcaveLensLayerMask; // 오목렌즈
@@ -27,6 +28,13 @@ public class RefelctFound : MonoBehaviour
     LensLight LensLight;
     RefractLaser Refract;
 
+    private bool IsToggle = false;
+
+    private Vector2 AngleVec;
+    public Vector2 AngleMinMax;
+    public float AngleSpeed = 0f;
+
+
     void Start()
     {
         Line = GetComponent<LineRenderer>();
@@ -38,8 +46,13 @@ public class RefelctFound : MonoBehaviour
 
     void Update()
     {
+        SetAngleValue();
         LaserForward = transform.forward;
         ShootLaser(transform.position, LaserForward);
+    }
+    public void SetAngleValue(Vector2 value)
+    {
+        AngleVec = value;
     }
 
     public void ShootLaser(Vector3 StartPos, Vector3 value)
@@ -153,6 +166,56 @@ public class RefelctFound : MonoBehaviour
         }
             
 
+    }
+    public void Toggle()
+    {
+        IsToggle = !IsToggle;
+        if (IsToggle)
+        {
+            FlashOn();
+        }
+        else
+        {
+            FlashOff();
+        }
+    }
+
+
+    public void FlashOff()
+    {
+        Flash.SetActive(false);
+    }
+    public void FlashOn()
+    {
+        Flash.SetActive(true);
+    }
+
+    public void SetAngleValue()
+    {
+        if (AngleVec.sqrMagnitude > 0.1f)
+        {//down
+            if (AngleVec.y == 1)
+            {
+                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.eulerAngles.z) * Time.deltaTime * AngleSpeed);
+
+                if (transform.eulerAngles.z >= AngleMinMax.x)
+                {
+                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, AngleMinMax.x);
+                }
+
+            }
+            else
+            {
+                //up
+                transform.Rotate(new Vector3(transform.rotation.x, transform.rotation.y, transform.eulerAngles.z) * Time.deltaTime * -AngleSpeed);
+
+                if (transform.eulerAngles.z <= AngleMinMax.y)
+                {
+                    transform.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.y, AngleMinMax.y);
+                }
+            }
+
+        }
     }
 
 }
