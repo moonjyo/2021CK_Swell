@@ -124,6 +124,7 @@ public class RefelctFound : MonoBehaviour
             }
         }
         else if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, JewerlyLayerMask))
+        //else if((1 << hit.transform.gameObject.layer) == JewerlyLayerMask)
         {
             Line.enabled = true;
             IsTouchLens = false;
@@ -142,14 +143,13 @@ public class RefelctFound : MonoBehaviour
             }
             else
             {
-                Line.SetPosition(2, hit.transform.position);
-                Line.SetPosition(3, hit.transform.position);
+                Line.SetPosition(2, hit.point);
+                Line.SetPosition(3, hit.point);
             }
         }
         else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        //else if((1 << hit.transform.gameObject.layer) != CheckLayerMask && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
-            //if(hit.transform != null)
-            //{
                 Line.SetPosition(0, transform.position);
                 Line.SetPosition(1, hit.point);
                 Line.SetPosition(2, hit.point);
@@ -159,21 +159,6 @@ public class RefelctFound : MonoBehaviour
                     LensLight.Line.enabled = false;
                 if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
                     StageManager.Instance.stage2.EraseLaser();
-           //}
-            //else
-            //{
-            //    //Line.enabled = false;
-            //    IsTouchLens = false;
-            //    if (LensLight != null)
-            //        LensLight.Line.enabled = false;
-            //    if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
-            //        StageManager.Instance.stage2.EraseLaser();
-
-            //    Line.SetPosition(0, transform.position);
-            //    Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);
-            //    Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
-            //    Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
-            //}
          
         }
         else if(ReflectCount == 3)
