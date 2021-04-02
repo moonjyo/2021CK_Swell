@@ -14,9 +14,7 @@ public class PlayerManager : MonoBehaviour
 
 
     public SizeModulate SizeModulate;
-    //public FlashLight flashLight;
-    public RefelctFound flashLight;
-
+    public FlashLight flashLight;
 
     private void Awake()
     {
