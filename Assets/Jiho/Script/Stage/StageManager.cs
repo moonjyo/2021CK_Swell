@@ -17,6 +17,8 @@ public class StageManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+
+        stage2 = GetComponentInChildren<Stage2>();
     }
 
     public void EnterStage01()
