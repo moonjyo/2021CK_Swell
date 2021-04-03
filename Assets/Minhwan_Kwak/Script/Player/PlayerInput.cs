@@ -42,6 +42,15 @@ public class PlayerInput : MonoBehaviour
         Vector3 PullVec = new Vector3(value.x, 0, 0);
         PlayerManager.Instance.playerMove.SetPull(PullVec);
 
+        if(context.performed)
+        {
+            if(StageManager.Instance.stage2.StickInterAction.IsOnTriggerStick)
+            {
+                StageManager.Instance.stage2.StickInterAction.StartStickInterAction();
+            }
+        }
+
+
         if (context.canceled)
         {
             IsPull = false;
