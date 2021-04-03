@@ -11,12 +11,13 @@ GameObject:
   - component: {fileID: 9087929954659527080}
   - component: {fileID: 5310038292984751629}
   - component: {fileID: 7950538861405475527}
-  - component: {fileID: 7643348719018882590}
-  - component: {fileID: 5775795740333559347}
-  - component: {fileID: 5857222667804096668}
-  m_Layer: 0
+  - component: {fileID: 1382856097}
+  - component: {fileID: 1382856092}
+  - component: {fileID: 1382856095}
+  - component: {fileID: 1382856096}
+  m_Layer: 16
   m_Name: MSG_Mesh_BG_stone_01
-  m_TagString: Untagged
+  m_TagString: DirectionItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,7 +83,23 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!135 &7643348719018882590
+--- !u!54 &1382856097
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454664460809581330}
+  serializedVersion: 2
+  m_Mass: 100
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!135 &1382856092
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -94,27 +111,8 @@ SphereCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 0.24
-  m_Center: {x: -0.014442087, y: -0.014408751, z: 0.25725248}
---- !u!114 &5775795740333559347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454664460809581330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0d52a078217d74b9e03e49f03438b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Line: {fileID: 0}
-  RefractionObjLayerMask:
-    serializedVersion: 2
-    m_Bits: 65536
-  Stage2CrystalBallLayerMask:
-    serializedVersion: 2
-    m_Bits: 131072
---- !u!120 &5857222667804096668
+  m_Center: {x: -0.014442057, y: -0.01440871, z: 0.25725242}
+--- !u!120 &1382856095
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -163,8 +161,8 @@ LineRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.19787979
+        time: 0.0038757324
+        value: 0.19266129
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -211,3 +209,22 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &1382856096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8454664460809581330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0d52a078217d74b9e03e49f03438b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Line: {fileID: 0}
+  RefractionObjLayerMask:
+    serializedVersion: 2
+    m_Bits: 65536
+  Stage2CrystalBallLayerMask:
+    serializedVersion: 2
+    m_Bits: 131072

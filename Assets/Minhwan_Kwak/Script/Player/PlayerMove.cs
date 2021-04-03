@@ -57,6 +57,7 @@ public class PlayerMove : MonoBehaviour
     public Vector2 ClimingOffsetVec;
 
 
+
     private void FixedUpdate()
     {
 
@@ -139,8 +140,17 @@ public class PlayerMove : MonoBehaviour
                             }
                         }
                     }
-                    else
-                    {
+                    else 
+                    { 
+                        if(InterActionrb.CompareTag("DirectionItem"))
+                        {
+                           
+                        ;
+                            BaseWalk();
+                            return;
+
+                        }
+
                         Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
                         PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                         InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -153,15 +163,7 @@ public class PlayerMove : MonoBehaviour
             }
             else if(!IsInterActionCol)
             {
-                Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
-                if (IsGrounded())
-                {
-                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
-                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
-                }
-                Body_Tr.LookAt(transform.position + WalkVec);
-                Vector3 test = transform.TransformDirection(Vector3.forward);
-                Controller.Move(WalkMove);
+                BaseWalk();
             }
         }
     }
@@ -174,6 +176,18 @@ public class PlayerMove : MonoBehaviour
         PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Push);
         PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Pull);
 
+    }
+    public void BaseWalk()
+    {
+        Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
+        if (IsGrounded())
+        {
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
+            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
+        }
+        Body_Tr.LookAt(transform.position + WalkVec);
+        Vector3 test = transform.TransformDirection(Vector3.forward);
+        Controller.Move(WalkMove);
     }
 
 
@@ -236,8 +250,6 @@ public class PlayerMove : MonoBehaviour
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", true);
         }
     }
-
-
     public IEnumerator InterActionItemPickUp()
     {
         if (GetItemrb == null)
