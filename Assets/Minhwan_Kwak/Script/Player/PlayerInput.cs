@@ -21,7 +21,6 @@ public class PlayerInput : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-
         Vector2 value = context.ReadValue<Vector2>();
         Vector3 JumpVec = new Vector3(0, value.y, 0);
         PlayerManager.Instance.playerMove.SetJump(JumpVec);
@@ -46,7 +45,7 @@ public class PlayerInput : MonoBehaviour
         if (context.canceled)
         {
             IsPull = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
         }
     }
 
@@ -83,7 +82,7 @@ public class PlayerInput : MonoBehaviour
         {
             Vector2 Input = Mouse.current.position.ReadValue();
             //sizeModulate.ItemSelect(Input);
-            PlayerManager.Instance.SizeModulate.ItemSelect(Input);
+           // PlayerManager.Instance.SizeModulate.ItemSelect(Input);
         }
     }
 
@@ -98,9 +97,9 @@ public class PlayerInput : MonoBehaviour
             case -120:
                 break;
         }
-        if (value.y == 120f || value.y == -120f)
+        //if (value.y == 120f || value.y == -120f)
             //sizeModulate.ItemSizeModulate(value.y);
-            PlayerManager.Instance.SizeModulate.ItemSizeModulate(value.y);
+           // PlayerManager.Instance.SizeModulate.ItemSizeModulate(value.y);
     }
 
 

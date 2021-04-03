@@ -22,6 +22,11 @@ public class PlayerCliming : MonoBehaviour
         bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out Highhit, Distance, HangingLayer);
         bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadLowTr.forward, out Lowhit, Distance, HangingLayer);
 
+        if(isHitHigh)
+        {
+            Debug.Log(isHitHigh);
+        }
+
 
         if (!isHitHigh && isHitLow)
         {

@@ -8,7 +8,7 @@ public class PushColliderCheck : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-         if((1 << other.gameObject.layer & PushLayer) != 0)
+         if((1 << other.gameObject.layer & PushLayer) != 0 && PlayerManager.Instance.playerMove.PushItemCheck())
         {
             PlayerManager.Instance.playerMove.IsInterActionCol = true;
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemTouch);
@@ -17,18 +17,9 @@ public class PushColliderCheck : MonoBehaviour
             if (InterActionrb != null)
             {
                 PlayerManager.Instance.playerMove.SetInterActionObj(InterActionrb);
+                Debug.Log("충돌중");
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if ((1 << other.gameObject.layer & PushLayer) != 0)
-        {
-            PlayerManager.Instance.playerMove.IsInterActionCol = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
-            PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-        }
-    }
 }
