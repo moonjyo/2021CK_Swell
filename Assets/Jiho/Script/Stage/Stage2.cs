@@ -14,6 +14,7 @@ public class Stage2 : MonoBehaviour
     public GameObject CrystalballCyilnder;
     public GameObject[] Curtain;
 
+    public StarStick StickInterAction;
     //[HideInInspector]
     public bool IsInStick = false; // 막대를 꽂았는지 안꽂았는지 시점
 
@@ -121,4 +122,6 @@ public class Stage2 : MonoBehaviour
             target.Initialize();
         }
     }
+
+
 }
