@@ -26,6 +26,7 @@ public class StageManager : MonoBehaviour
 
     public void EnterStage01()
     {
+        StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveOut());
         ExitStage2();
         SceneManager.LoadSceneAsync("Stage01", LoadSceneMode.Single);       
     }

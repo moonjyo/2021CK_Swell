@@ -18,7 +18,7 @@ public class UIMainMenu : UIView
     public RectTransform BackBlackRight;
     public RectTransform BackBlackLeft;
 
-    bool test1 = false;
+    //bool test1 = false;
 
     public void Start()
     {
@@ -28,46 +28,56 @@ public class UIMainMenu : UIView
 
     public void Update()
     {
-        if (Circle.sizeDelta.x >= 0 && !test1)
+        //if (Circle.sizeDelta.x >= 0 && !test1)
+        //{
+        //    Circle.sizeDelta -= new Vector2(4f, 4f);
+        //    BackBlackUp.sizeDelta += new Vector2(0, 2f);
+        //    BackBlackDown.sizeDelta += new Vector2(0, 2f);
+        //    BackBlackLeft.sizeDelta += new Vector2(2f, 0);
+        //    BackBlackRight.sizeDelta += new Vector2(2f, 0);
+        //}
+        //else
+        //    test1 = true;
+
+        //if(test1)
+        //{
+        //    SceneMoveIn();
+        //}
+        int i = 0; 
+        if(i == 0)
+        {
+            StartCoroutine(SceneMoveOut());
+            i++;
+        }
+        
+    }
+    public IEnumerator SceneMoveOut()
+    {
+        while (Circle.sizeDelta.x >= 0)
         {
             Circle.sizeDelta -= new Vector2(4f, 4f);
             BackBlackUp.sizeDelta += new Vector2(0, 2f);
             BackBlackDown.sizeDelta += new Vector2(0, 2f);
             BackBlackLeft.sizeDelta += new Vector2(2f, 0);
             BackBlackRight.sizeDelta += new Vector2(2f, 0);
+            yield return new WaitForSeconds(0.1f);
         }
-        else
-            test1 = true;
-
-        if(test1)
-        {
-            SceneMoveIn();
-        }
-    }
-
-    public void SceneMoveOut()
-    {
-        if (Circle.sizeDelta.x >= 0)
-        {
-            Circle.sizeDelta -= new Vector2(4f, 4f);
-            BackBlackUp.sizeDelta += new Vector2(0, 2f);
-            BackBlackDown.sizeDelta += new Vector2(0, 2f);
-            BackBlackLeft.sizeDelta += new Vector2(2f, 0);
-            BackBlackRight.sizeDelta += new Vector2(2f, 0);
-        }
+        yield return null;
 
     }
 
-    public void SceneMoveIn()
+    public IEnumerator SceneMoveIn()
     {
-        if (Circle.sizeDelta.x <= 5000)
+        while (Circle.sizeDelta.x <= 5000)
         {
             Circle.sizeDelta += new Vector2(4f, 4f);
             BackBlackUp.sizeDelta -= new Vector2(0, 2f);
             BackBlackDown.sizeDelta -= new Vector2(0, 2f);
             BackBlackLeft.sizeDelta -= new Vector2(2f, 0);
             BackBlackRight.sizeDelta -= new Vector2(2f, 0);
+            yield return new WaitForSeconds(0.1f);
         }
+        yield return Circle.sizeDelta.x >= 5000;
     }
 
 
