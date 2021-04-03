@@ -9,6 +9,9 @@ public class StageManager : MonoBehaviour
 
     public Stage2 stage2;
 
+    public bool IsStage2Clear = false;
+
+
     private void Awake()
     {
         if (!Instance)
@@ -23,9 +26,8 @@ public class StageManager : MonoBehaviour
 
     public void EnterStage01()
     {
-        SceneManager.LoadSceneAsync("Stage01", LoadSceneMode.Single);
-
         ExitStage2();
+        SceneManager.LoadSceneAsync("Stage01", LoadSceneMode.Single);       
     }
 
     IEnumerator EnterStage2()

@@ -11,13 +11,13 @@ public class Stage2 : MonoBehaviour
     [HideInInspector]
     public bool IsMakeStartLaser = false;
 
-    bool IsStage2Clear = false;
-
     public GameObject CrystalballCyilnder;
     public GameObject[] Curtain;
 
     //[HideInInspector]
     public bool IsInStick = false; // 막대를 꽂았는지 안꽂았는지 시점
+
+    public GameObject Stage2ToStage1EnterPoint;
 
     private void Start()
     {
@@ -30,11 +30,13 @@ public class Stage2 : MonoBehaviour
         CrystalballCyilnder = GameObject.Find("Star");
         Curtain[0] = GameObject.Find("ClockDoor1");
         Curtain[1] = GameObject.Find("ClockDoor2");
+
+        Stage2ToStage1EnterPoint = GameObject.Find("Stage2ToStage1EnterPoint");
     }
 
     private void Update()
     {
-        if(IsMakeStartLaser && !IsStage2Clear)
+        if(IsMakeStartLaser && !StageManager.Instance.IsStage2Clear)
         {
             int i = 0;
             foreach (RefractLaser target in RefractObj)
@@ -46,7 +48,7 @@ public class Stage2 : MonoBehaviour
                 if (i >= 5)
                 {                 
                     StartCoroutine(Stage2ClearProduction());
-                    IsStage2Clear = true;
+                    StageManager.Instance.IsStage2Clear = true;
                     i = 0;
                 }
                 else if(i < 5 && !target.IsHitRefractObj()) // 5개 모두 수정을 비추고있지 않고 비추는 오브젝트가 없을 때(별이 꺠졌을 떄) 
