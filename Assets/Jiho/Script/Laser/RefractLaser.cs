@@ -24,28 +24,34 @@ public class RefractLaser : MonoBehaviour
         if (StageManager.Instance.stage2.IsMakeStartLaser)
         {
             RaycastHit hit;
-            if (Physics.Raycast(this.transform.position, this.transform.forward, out hit, Mathf.Infinity))
+            if (Physics.Raycast(this.transform.position + this.transform.forward * 0.25f, this.transform.right, out hit)) // 자기자신을 맞출떄가잇음
             {
                 IsHitRefract = true;
                
                 if ((1 << hit.transform.gameObject.layer) == Stage2CrystalBallLayerMask)
                 {
                     IsHitCrystalBall = true;
-                    Line.SetPosition(0, this.transform.position);
+                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
                     Line.SetPosition(1, hit.point);
 
                 }
                 else if((1 << hit.transform.gameObject.layer) == RefractionObjLayerMask)
                 {
-                    Line.SetPosition(0, this.transform.position);
+                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
                     Line.SetPosition(1, hit.point);
                 }
-                else if (hit.transform.gameObject == null || (1 << hit.transform.gameObject.layer) != Stage2CrystalBallLayerMask + RefractionObjLayerMask)
+                else if ((1 << hit.transform.gameObject.layer) != Stage2CrystalBallLayerMask + RefractionObjLayerMask)
                 {
                     IsHitRefract = false;
-                    Line.SetPosition(0, this.transform.position);
-                    Line.SetPosition(1, this.transform.position + this.transform.forward * 5);
+                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
+                    Line.SetPosition(1, this.transform.position + this.transform.right * 5);
                 }
+            }
+            else if (!Physics.Raycast(this.transform.position, this.transform.right, out hit))
+            {
+                IsHitRefract = false;
+                Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
+                Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
             }
         }
     }
@@ -55,16 +61,16 @@ public class RefractLaser : MonoBehaviour
         if (StageManager.Instance.stage2.SuccessMakeStartLaser())
             return false;
         RaycastHit hit;
-        if(Physics.Raycast(this.transform.position, value,out hit, Mathf.Infinity, RefractionObjLayerMask))
+        if(Physics.Raycast(this.transform.position + transform.forward * 0.25f, value,out hit, Mathf.Infinity, RefractionObjLayerMask))
         {
             IsHitRefract = true;
             Line.enabled = true;
-            Line.SetPosition(0, this.transform.position);
+            Line.SetPosition(0, this.transform.position + transform.forward * 0.25f);
             Line.SetPosition(1, hit.point);
 
             Refract = hit.transform.gameObject.GetComponent<RefractLaser>();
-            if(!Refract.IsHitRefract)
-            Refract.GetRefract(hit.transform.forward);
+            //if(!Refract.IsHitRefract || StageManager.Instance.stage2.IsMakeStartLaser)
+                Refract.GetRefract(hit.transform.right);
 
             return true;
         }
@@ -73,9 +79,10 @@ public class RefractLaser : MonoBehaviour
             StageManager.Instance.stage2.EraseLaser(); // 간혹 버그유발?
             IsHitRefract = false;
             Line.enabled = true;
-            Line.SetPosition(0, transform.position);
-            Line.SetPosition(1, transform.position + transform.forward * 5);
-            if(Refract != null)
+            Line.SetPosition(0, transform.position + transform.forward * 0.25f);
+            //Line.SetPosition(1, transform.position + transform.forward * 5);
+            Line.SetPosition(1, transform.position + transform.right * 5);
+            if (Refract != null)
             Refract.Line.enabled = false;
 
             Refract = null;

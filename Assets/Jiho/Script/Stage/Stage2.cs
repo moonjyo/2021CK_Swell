@@ -66,7 +66,7 @@ public class Stage2 : MonoBehaviour
             }
             if (!IsMakeStartLaser)
             {
-                CrystalballCyilnder.transform.DOMoveY(2.7f, 3f, false);
+                CrystalballCyilnder.transform.DOMoveY(0.75f, 3f, false);
                 //StartCoroutine(Stage2ClearProduction());
             }
 

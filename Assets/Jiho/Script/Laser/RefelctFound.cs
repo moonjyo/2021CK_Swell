@@ -136,7 +136,8 @@ public class RefelctFound : MonoBehaviour
 
             Refract = hit.transform.GetComponent<RefractLaser>();
 
-            if(Refract.GetRefract(hit.transform.forward))
+            //if(Refract.GetRefract(hit.transform.forward))
+            if(Refract.GetRefract(hit.transform.right))
             {
                 Line.SetPosition(2, hit.point);
                 Line.SetPosition(3, hit.point);
