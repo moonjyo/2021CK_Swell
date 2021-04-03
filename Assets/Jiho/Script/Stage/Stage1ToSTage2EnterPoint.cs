@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Stage2ToStage1EnterPoint : MonoBehaviour
+public class Stage1ToSTage2EnterPoint : MonoBehaviour
 {
     int i = 0;
     private void OnTriggerEnter(Collider other)
@@ -12,7 +12,7 @@ public class Stage2ToStage1EnterPoint : MonoBehaviour
         if (other.gameObject == PlayerManager.Instance.playerMove.gameObject && i == 0)
         {
             i++;
-            StartCoroutine(StageManager.Instance.EnterStage01());
+            StartCoroutine(StageManager.Instance.EnterStage02());
         }
     }
 }

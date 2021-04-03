@@ -26,58 +26,30 @@ public class UIMainMenu : UIView
         StartCoroutine(OnTyping(0.1f, "This is DOText testing code, 한국어"));
     }
 
-    public void Update()
-    {
-        //if (Circle.sizeDelta.x >= 0 && !test1)
-        //{
-        //    Circle.sizeDelta -= new Vector2(4f, 4f);
-        //    BackBlackUp.sizeDelta += new Vector2(0, 2f);
-        //    BackBlackDown.sizeDelta += new Vector2(0, 2f);
-        //    BackBlackLeft.sizeDelta += new Vector2(2f, 0);
-        //    BackBlackRight.sizeDelta += new Vector2(2f, 0);
-        //}
-        //else
-        //    test1 = true;
-
-        //if(test1)
-        //{
-        //    SceneMoveIn();
-        //}
-        int i = 0; 
-        if(i == 0)
-        {
-            StartCoroutine(SceneMoveOut());
-            i++;
-        }
-        
-    }
     public IEnumerator SceneMoveOut()
     {
         while (Circle.sizeDelta.x >= 0)
         {
-            Circle.sizeDelta -= new Vector2(4f, 4f);
-            BackBlackUp.sizeDelta += new Vector2(0, 2f);
-            BackBlackDown.sizeDelta += new Vector2(0, 2f);
-            BackBlackLeft.sizeDelta += new Vector2(2f, 0);
-            BackBlackRight.sizeDelta += new Vector2(2f, 0);
-            yield return new WaitForSeconds(0.1f);
+            Circle.sizeDelta -= new Vector2(40f, 40f);
+            BackBlackUp.sizeDelta += new Vector2(0, 20f);
+            BackBlackDown.sizeDelta += new Vector2(0, 20f);
+            BackBlackLeft.sizeDelta += new Vector2(20f, 0);
+            BackBlackRight.sizeDelta += new Vector2(20f, 0);
+            yield return new WaitForSeconds(0.01f);
         }
-        yield return null;
-
     }
 
     public IEnumerator SceneMoveIn()
     {
         while (Circle.sizeDelta.x <= 5000)
         {
-            Circle.sizeDelta += new Vector2(4f, 4f);
-            BackBlackUp.sizeDelta -= new Vector2(0, 2f);
-            BackBlackDown.sizeDelta -= new Vector2(0, 2f);
-            BackBlackLeft.sizeDelta -= new Vector2(2f, 0);
-            BackBlackRight.sizeDelta -= new Vector2(2f, 0);
-            yield return new WaitForSeconds(0.1f);
+            Circle.sizeDelta += new Vector2(40f, 40f);
+            BackBlackUp.sizeDelta -= new Vector2(0, 20f);
+            BackBlackDown.sizeDelta -= new Vector2(0, 20f);
+            BackBlackLeft.sizeDelta -= new Vector2(20f, 0);
+            BackBlackRight.sizeDelta -= new Vector2(20f, 0);
+            yield return new WaitForSeconds(0.01f);
         }
-        yield return Circle.sizeDelta.x >= 5000;
     }
 
 
