@@ -105,7 +105,7 @@ public class PlayerInput : MonoBehaviour
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && IsLightGet)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }
@@ -114,9 +114,11 @@ public class PlayerInput : MonoBehaviour
     public void LighAngle(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
-
-        Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
-        PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
+        if (IsLightGet)
+        {
+            Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
+            PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
+        }
     }
 
 
