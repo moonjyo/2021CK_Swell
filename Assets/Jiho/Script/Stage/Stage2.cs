@@ -19,6 +19,19 @@ public class Stage2 : MonoBehaviour
     //[HideInInspector]
     public bool IsInStick = false; // 막대를 꽂았는지 안꽂았는지 시점
 
+    private void Start()
+    {
+        RefractObj[0] = GameObject.Find("Jewerly1").gameObject.GetComponent<RefractLaser>();
+        RefractObj[1] = GameObject.Find("Jewerly2").gameObject.GetComponent<RefractLaser>();
+        RefractObj[2] = GameObject.Find("Jewerly3").gameObject.GetComponent<RefractLaser>();
+        RefractObj[3] = GameObject.Find("Jewerly4").gameObject.GetComponent<RefractLaser>();
+        RefractObj[4] = GameObject.Find("Jewerly5").gameObject.GetComponent<RefractLaser>();
+
+        CrystalballCyilnder = GameObject.Find("Star");
+        Curtain[0] = GameObject.Find("ClockDoor1");
+        Curtain[1] = GameObject.Find("ClockDoor2");
+    }
+
     private void Update()
     {
         if(IsMakeStartLaser && !IsStage2Clear)
