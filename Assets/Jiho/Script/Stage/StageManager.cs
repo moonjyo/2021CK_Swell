@@ -37,7 +37,7 @@ public class StageManager : MonoBehaviour
     {
         yield return StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveOut());
         ExitStage01();
-        SceneManager.LoadSceneAsync("Stage02Test", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Stage02", LoadSceneMode.Single);
         StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveIn());
     }
 

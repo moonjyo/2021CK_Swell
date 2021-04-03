@@ -10,8 +10,12 @@ public class StarStick : MonoBehaviour
 
     public bool IsOnTriggerStick = false;
 
+    Collider starCheckCollider;
 
-
+    private void Start()
+    {
+        starCheckCollider = GetComponent<Collider>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -34,7 +38,7 @@ public class StarStick : MonoBehaviour
 
     public void StartStickInterAction()
     {
-
+        starCheckCollider.enabled = false;
         PlayerManager.Instance.PlayerInput.IsPickUpItem = false;
         PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
         IsOnTriggerStick = false;
