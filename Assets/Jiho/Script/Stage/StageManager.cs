@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
@@ -19,9 +19,25 @@ public class StageManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    public void EnterStage2()
+    public void EnterStage01()
     {
+        SceneManager.LoadSceneAsync("Stage01", LoadSceneMode.Single);
+
+        ExitStage2();
+    }
+
+    IEnumerator EnterStage2()
+    {
+        // 씬이동
+        yield return SceneManager.LoadSceneAsync("Stage02", LoadSceneMode.Single);
+  
+
         stage2.gameObject.SetActive(true);
+    }
+
+    public void ExitStage01()
+    {
+
     }
 
     public void ExitStage2()
