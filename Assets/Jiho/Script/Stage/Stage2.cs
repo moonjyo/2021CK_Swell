@@ -66,7 +66,7 @@ public class Stage2 : MonoBehaviour
             }
             if (!IsMakeStartLaser)
             {
-                CrystalballCyilnder.transform.DOMoveY(2.7f, 3f, false);
+                CrystalballCyilnder.transform.DOMoveY(0.5f, 3f, false);
                 //StartCoroutine(Stage2ClearProduction());
             }
 
@@ -91,8 +91,11 @@ public class Stage2 : MonoBehaviour
     {
         //CrystalballCyilnder.transform.DOMoveY(2.7f, 3f, false);
         yield return new WaitForSeconds(3f);
-        Curtain[0].transform.DOMoveX(Curtain[0].transform.position.x - 10f, 2f);
-        Curtain[1].transform.DOMoveX(Curtain[1].transform.position.x + 10f, 2f);
+        Curtain[0].transform.DOLocalMoveZ(Curtain[0].transform.localPosition.z + 0.45f, 2f);
+        Curtain[1].transform.DOLocalMoveZ(Curtain[1].transform.localPosition.z - 0.45f, 2f);
+        //Curtain[0].transform.DOLocalMoveZ(0.81f, 2f);
+        //Curtain[1].transform.DOLocalMoveZ(-0.81f, 2f);
+
     }
 
     public void EraseLaser()
