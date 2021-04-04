@@ -17,7 +17,7 @@ public class StageManager : MonoBehaviour
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         ExitStage02();
         stage1.SetActive(true);
-        yield return StartCoroutine(SceneChange("Stage01"));
+        SceneChange("Stage01");
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         GameManager.Instance.uiManager.UIFade.Toggle(false);
         Debug.Log("stage1 move");
@@ -30,10 +30,9 @@ public class StageManager : MonoBehaviour
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         ExitStage01();
         stage2.gameObject.SetActive(true);
-        yield return StartCoroutine(SceneChange("Stage02"));
+        SceneChange("Stage02");
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         Debug.Log("stage2 move");
-        GameManager.Instance.stageManager.stage2.StartStage2();
         GameManager.Instance.uiManager.UIFade.Toggle(false);
 
 
@@ -49,9 +48,8 @@ public class StageManager : MonoBehaviour
         stage2.gameObject.SetActive(false);
     }
 
-    IEnumerator SceneChange(string sceneName)
+    public void SceneChange(string sceneName)
     {
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-        yield return null;
     }
 }
