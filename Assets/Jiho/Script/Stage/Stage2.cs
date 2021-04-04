@@ -7,7 +7,7 @@ public class Stage2 : MonoBehaviour
 {
     public RefractLaser[] RefractObj;
     [HideInInspector]
-    public int Stage2Count = 0;
+    public int Stage2Count = 1;
     [HideInInspector]
     public bool IsMakeStartLaser = false;
 
@@ -20,7 +20,8 @@ public class Stage2 : MonoBehaviour
 
     public GameObject Stage2ToStage1EnterPoint;
 
-    public RefractLaser NowShootLaser;
+    public RefractLaser OriginShootLaser;
+    public RefractLaser[] HitRefractObj = new RefractLaser[5];
 
 
     private void Update()

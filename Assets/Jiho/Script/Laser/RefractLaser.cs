@@ -70,6 +70,41 @@ public class RefractLaser : MonoBehaviour
         {
             Line.enabled = false;
         }
+        //if (GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract == null)
+        //    return;
+        //if(GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract != null)
+        //{
+        //    GameManager.Instance.stageManager.stage2.HitRefractObj[1] = GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract;
+        //    GameManager.Instance.stageManager.stage2.Stage2Count = 1;
+        //    if (GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract.Refract == null)
+        //    {
+        //        return;
+        //    }
+        //    else
+        //    {
+        //        GameManager.Instance.stageManager.stage2.HitRefractObj[2] = GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract.Refract;
+        //        GameManager.Instance.stageManager.stage2.Stage2Count = 2;
+        //        if (GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract.Refract.Refract == null)
+        //        {
+        //            return;
+                   
+        //        }
+        //        else
+        //        {
+        //            GameManager.Instance.stageManager.stage2.HitRefractObj[3] = GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract.Refract.Refract;
+        //            GameManager.Instance.stageManager.stage2.Stage2Count = 3;
+        //            if (GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract.Refract.Refract.Refract == null)
+        //            {
+        //                return;
+        //            }
+        //            else
+        //            {
+        //                GameManager.Instance.stageManager.stage2.HitRefractObj[4] = GameManager.Instance.stageManager.stage2.OriginShootLaser.Refract.Refract.Refract.Refract;
+        //                GameManager.Instance.stageManager.stage2.Stage2Count = 4;
+        //            }
+        //        }
+        //    }
+        //}
     }
 
     public bool GetRefract(Vector3 value)
@@ -85,9 +120,15 @@ public class RefractLaser : MonoBehaviour
             Line.SetPosition(1, hit.point);
 
             Refract = hit.transform.gameObject.GetComponent<RefractLaser>();
-            if(GameManager.Instance.stageManager.stage2.NowShootLaser != Refract)
-            Refract.GetRefract(hit.transform.right);
-
+            if(GameManager.Instance.stageManager.stage2.OriginShootLaser != Refract)
+            {
+                Refract.GetRefract(hit.transform.right);
+            }
+            //if (GameManager.Instance.stageManager.stage2.Stage2Count <= 4)
+            //{
+            //    Refract.GetRefract(hit.transform.right);
+            //}
+            
             return true;
         }
         else if(!GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
@@ -102,10 +143,12 @@ public class RefractLaser : MonoBehaviour
             Refract.Line.enabled = false;
 
             Refract = null;
+            //GameManager.Instance.stageManager.stage2.Stage2Count = 0;
             return false;
         }
         else
         {
+            //GameManager.Instance.stageManager.stage2.Stage2Count = 0;
             return false;
         }
     }
