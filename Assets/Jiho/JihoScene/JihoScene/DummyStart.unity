@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -155,6 +155,9 @@ MonoBehaviour:
   stage2: {fileID: 275136892}
   IsStage2Clear: 0
   CurrentSceneName: 
+  StartTr:
+  - {fileID: 4870900879953453619, guid: abfe1815d8aa9b54195cf2c3467f31fb, type: 3}
+  - {fileID: 3516906452097806143, guid: 2113c781b9c801d47837cf413d7c9686, type: 3}
 --- !u!114 &26462127
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -215,12 +215,12 @@ public class RefelctFound : MonoBehaviour
         {//down
             if (AngleVec.y == 1)
             {
-                if (Flash.transform.rotation.y < AngleMax)
+                if (Flash.transform.localRotation.z > AngleMax)
                 {
                     return;
 
                 }
-                Debug.Log(Flash.transform.rotation.y);
+                Debug.Log(Flash.transform.localRotation.z);
                 //up
                 Flash.transform.Rotate(0, AngleSpeed * Time.deltaTime, 0);
 
@@ -228,12 +228,12 @@ public class RefelctFound : MonoBehaviour
             else
             {
                  // down
-                    if (Flash.transform.rotation.y > AngleMin)
+                    if (Flash.transform.localRotation.z < AngleMin)
                     {
                         return;
 
                     }
-                    Debug.Log(Flash.transform.rotation.y);
+                    Debug.Log(Flash.transform.localRotation.z);
                 Flash.transform.Rotate(0, -AngleSpeed * Time.deltaTime, 0);
             }
 

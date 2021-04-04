@@ -39,11 +39,14 @@ public class UIFade : UIView
             yield return new WaitForSeconds(0.01f);
         }
         IsSceneMove = false;
+
+        PlayerManager.Instance.playerMove.IsGravity = false;
         Debug.Log("endin");
         GameManager.Instance.uiManager.UIFade.Toggle(false);
         if(GameManager.Instance.stageManager.CurrentGetSceneName() == "Stage02")
         {
             GameManager.Instance.stageManager.stage2.StartStage2();
+
         }
     }
 }

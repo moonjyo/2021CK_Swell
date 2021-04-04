@@ -9,7 +9,7 @@ public class PushColliderCheck : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
          if((1 << other.gameObject.layer & PushLayer) != 0 && PlayerManager.Instance.playerMove.PushItemCheck())
-        {
+         {
             PlayerManager.Instance.playerMove.IsInterActionCol = true;
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemTouch);
 

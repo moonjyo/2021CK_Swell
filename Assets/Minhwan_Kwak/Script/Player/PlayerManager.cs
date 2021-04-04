@@ -20,9 +20,13 @@ public class PlayerManager : MonoBehaviour
 
     private void Awake()
     {
-        if(!Instance)
+        if(Instance == null)
         {
             Instance = this;
+        }
+        else if(Instance != null)
+        {
+            Destroy(this.gameObject);
         }
         DontDestroyOnLoad(transform);
     }
