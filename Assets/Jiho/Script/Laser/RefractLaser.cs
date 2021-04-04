@@ -66,6 +66,10 @@ public class RefractLaser : MonoBehaviour
                 Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
             }
         }
+        if (PlayerManager.Instance.flashLight.Flash.activeSelf == false) 
+        {
+            Line.enabled = false;
+        }
     }
 
     public bool GetRefract(Vector3 value)
