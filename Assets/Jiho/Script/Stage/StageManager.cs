@@ -18,11 +18,10 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         ExitStage02();
-        stage1.SetActive(true);
         SceneChange("Stage01");
-        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
-        GameManager.Instance.uiManager.UIFade.Toggle(false);
-        Debug.Log("stage1 move");
+        stage1.SetActive(true);
+        StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
+        Debug.Log("move");
     }
 
     public IEnumerator EnterStage02()
@@ -30,14 +29,12 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
+        Debug.Log("move");
         ExitStage01();
-        stage2.gameObject.SetActive(true);
         SceneChange("Stage02");
-        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
-        Debug.Log("stage2 move");
-        GameManager.Instance.uiManager.UIFade.Toggle(false);
-
-
+        stage2.gameObject.SetActive(true);
+        StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
+        Debug.Log("move");
     }
 
     public void ExitStage01()
@@ -47,6 +44,9 @@ public class StageManager : MonoBehaviour
 
     public void ExitStage02()
     {
+        GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
+        GameManager.Instance.stageManager.IsStage2Clear = false;
+        GameManager.Instance.stageManager.stage2.IsInStick = false;
         stage2.gameObject.SetActive(false);
     }
 

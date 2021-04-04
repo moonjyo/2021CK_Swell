@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -11,6 +11,8 @@ public class UIMainMenu : UIView
 {
     public Text testtext;
     public TextMeshProUGUI test;
+    public GameObject StartButton;
+    public GameObject ExitButton;
 
     public void Start()
     {
@@ -21,9 +23,20 @@ public class UIMainMenu : UIView
 
     public void StartGame()
     {
+        StartCoroutine(ChangeScene());
+        
+    }
+
+    IEnumerator ChangeScene()
+    {
+        GameManager.Instance.uiManager.UIFade.Toggle(true);
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         SceneManager.LoadSceneAsync("Stage02", LoadSceneMode.Single);
-        GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
+        StartButton.SetActive(false);
+        ExitButton.SetActive(false);
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         GameManager.Instance.stageManager.stage2.gameObject.SetActive(true);
+        GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
     }
 
     public void ExitGame()

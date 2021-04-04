@@ -10,7 +10,7 @@ public class UIFade : UIView
     public RectTransform BackBlackRight;
     public RectTransform BackBlackLeft;
 
-    bool IsSceneMove = false;
+    public bool IsSceneMove = false;
 
     public IEnumerator SceneMoveOut()
     {
@@ -40,5 +40,10 @@ public class UIFade : UIView
         }
         IsSceneMove = false;
         Debug.Log("endin");
+        GameManager.Instance.uiManager.UIFade.Toggle(false);
+        if(GameManager.Instance.stageManager.CurrentGetSceneName() == "Stage02")
+        {
+            GameManager.Instance.stageManager.stage2.StartStage2();
+        }
     }
 }

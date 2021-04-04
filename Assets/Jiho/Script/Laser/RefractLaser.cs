@@ -41,19 +41,19 @@ public class RefractLaser : MonoBehaviour
                     Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
                     Line.SetPosition(1, hit.point);
                 }
-                //else if ((1 << hit.transform.gameObject.layer) == PlayerLayerMask)
-                //{
-                //    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
-                //    //Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
-                //    Line.SetPosition(1, hit.point);
-                //}
-                else if ((1 << hit.transform.gameObject.layer) != PlayerLayerMask)
+
+                else if ((1 << hit.transform.gameObject.layer & PlayerLayerMask) != 0)
                 {
                     IsHitRefract = false;
                     //Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
                     //Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
                     Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
                     Line.SetPosition(1, hit.point);
+                }
+                else
+                {
+                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
+                    Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
                 }
             }
             else if (!Physics.Raycast(this.transform.position, this.transform.right, out hit))
@@ -122,6 +122,12 @@ public class RefractLaser : MonoBehaviour
     public bool IsHitCrystalBallObj()
     {
         return IsHitCrystalBall;
+        
+    }
+
+    public void SetIsHitCrystalBallObj(bool setvalue)
+    {
+        IsHitCrystalBall = setvalue;
     }
 
 }

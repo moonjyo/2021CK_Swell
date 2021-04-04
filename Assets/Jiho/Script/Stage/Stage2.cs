@@ -20,11 +20,6 @@ public class Stage2 : MonoBehaviour
 
     public GameObject Stage2ToStage1EnterPoint;
 
-    public void Start()
-    {
-        StartStage2();
-    }
-
 
     private void Update()
     {
@@ -42,6 +37,10 @@ public class Stage2 : MonoBehaviour
                     StartCoroutine(Stage2ClearProduction());
                     GameManager.Instance.stageManager.IsStage2Clear = true;
                     i = 0;
+                    foreach (RefractLaser atarget in RefractObj)
+                    {
+                        atarget.SetIsHitCrystalBallObj(false);
+                    }
                 }
                 else if(i < 5 && !target.IsHitRefractObj()) // 5개 모두 수정을 비추고있지 않고 비추는 오브젝트가 없을 때(별이 꺠졌을 떄) 
                 {
@@ -66,6 +65,7 @@ public class Stage2 : MonoBehaviour
         Curtain[1] = GameObject.Find("ClockDoor2");
 
         Stage2ToStage1EnterPoint = GameObject.Find("Stage2ToStage1EnterPoint");
+        StickInterAction = CrystalballCyilnder.GetComponentInChildren<StarStick>();
     }
 
     public bool SuccessMakeStartLaser()

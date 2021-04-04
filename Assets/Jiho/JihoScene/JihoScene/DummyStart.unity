@@ -154,6 +154,7 @@ MonoBehaviour:
   stage1: {fileID: 893997703}
   stage2: {fileID: 275136892}
   IsStage2Clear: 0
+  CurrentSceneName: 
 --- !u!114 &26462127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -812,6 +813,8 @@ MonoBehaviour:
   RootRect: {fileID: 256468112}
   testtext: {fileID: 138247972}
   test: {fileID: 1376422769}
+  StartButton: {fileID: 0}
+  ExitButton: {fileID: 0}
 --- !u!1 &259723254
 GameObject:
   m_ObjectHideFlags: 0
@@ -2734,6 +2737,8 @@ MonoBehaviour:
   RootRect: {fileID: 1006176102}
   testtext: {fileID: 755632421}
   test: {fileID: 924079900}
+  StartButton: {fileID: 1009427297}
+  ExitButton: {fileID: 497212464}
 --- !u!1 &1009427297
 GameObject:
   m_ObjectHideFlags: 0
@@ -2883,7 +2888,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1073952431
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2902,6 +2907,7 @@ MonoBehaviour:
   BackBlackDown: {fileID: 661150301}
   BackBlackRight: {fileID: 654749757}
   BackBlackLeft: {fileID: 1297397103}
+  IsSceneMove: 0
 --- !u!224 &1073952432
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4180,7 +4186,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1611599465
 RectTransform:
   m_ObjectHideFlags: 0
