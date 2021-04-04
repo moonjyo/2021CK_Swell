@@ -24,5 +24,6 @@ public class PlayerManager : MonoBehaviour
         {
             Instance = this;
         }
+        DontDestroyOnLoad(transform);
     }
 }
