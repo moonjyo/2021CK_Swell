@@ -25,4 +25,12 @@ public class PlayerAnimationEvents : MonoBehaviour
 
         IsAnimStart = true;
     }
+
+    public void JumpOff()
+    {
+        
+          IsAnimStart = false;
+          PlayerManager.Instance.playerMove.IsGravity = false;
+
+    }
 }

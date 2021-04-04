@@ -56,6 +56,7 @@ public class PlayerMove : MonoBehaviour
 
     public Vector2 ClimingOffsetVec;
 
+    public Vector3 OffsetHaningPos;
 
 
     private void FixedUpdate()
@@ -120,6 +121,10 @@ public class PlayerMove : MonoBehaviour
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
                             if (-transform.forward == WalkVec)
                             {
+                                if (InterActionrb.CompareTag("DirectionItem"))
+                                {
+                                    return;
+                                }
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
@@ -144,8 +149,6 @@ public class PlayerMove : MonoBehaviour
                     { 
                         if(InterActionrb.CompareTag("DirectionItem"))
                         {
-                           
-                        ;
                             BaseWalk();
                             return;
 
@@ -243,9 +246,11 @@ public class PlayerMove : MonoBehaviour
 
     public void HangingOn(Vector2 InValue)
     {
-        if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge())
+        if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge() && 
+            PlayerManager.Instance.playerStatus.fsm != PlayerFSM.Climing)
         {
             PlayerManager.Instance.playerMove.IsGravity = true;
+            transform.localPosition = transform.localPosition + OffsetHaningPos;
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", true);
         }

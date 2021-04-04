@@ -68,8 +68,8 @@ public class RefelctFound : MonoBehaviour
                 if (ReflectCount < Line.positionCount - 1)
                 {
                     Line.SetPosition(ReflectCount + 1, hit.point);
-                    if(ReflectCount < Line.positionCount - 2)
-                    Line.SetPosition(ReflectCount + 2, hit.point);
+                    if (ReflectCount < Line.positionCount - 2)
+                        Line.SetPosition(ReflectCount + 2, hit.point);
                 }
                 LensLight = hit.collider.gameObject.GetComponent<LensLight>();
                 LensLight.GetConcaveLens(value, hit.point);
@@ -89,9 +89,9 @@ public class RefelctFound : MonoBehaviour
                 if (IsTouchLens)
                     LensLight.Line.enabled = false;
                 IsTouchLens = false;
-               
+
             }
-           
+
             Vector3 normalVector = hit.transform.forward;
             Vector3 reflectVector = Vector3.Reflect(value, normalVector);
 
@@ -137,7 +137,7 @@ public class RefelctFound : MonoBehaviour
             Refract = hit.transform.GetComponent<RefractLaser>();
 
             //if(Refract.GetRefract(hit.transform.forward))
-            if(Refract.GetRefract(hit.transform.right))
+            if (Refract.GetRefract(hit.transform.right))
             {
                 Line.SetPosition(2, hit.point);
                 Line.SetPosition(3, hit.point);
@@ -151,23 +151,23 @@ public class RefelctFound : MonoBehaviour
         else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         //else if((1 << hit.transform.gameObject.layer) != CheckLayerMask && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
-                Line.SetPosition(0, transform.position);
-                Line.SetPosition(1, hit.point);
-                Line.SetPosition(2, hit.point);
-                Line.SetPosition(3, hit.point);
-                IsTouchLens = false;
-                if (LensLight != null)
-                    LensLight.Line.enabled = false;
-                if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+            Line.SetPosition(0, transform.position);
+            Line.SetPosition(1, hit.point);
+            Line.SetPosition(2, hit.point);
+            Line.SetPosition(3, hit.point);
+            IsTouchLens = false;
+            if (LensLight != null)
+                LensLight.Line.enabled = false;
+            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
                 GameManager.Instance.stageManager.stage2.EraseLaser();
-         
+
         }
-        else if(ReflectCount == 3)
+        else if (ReflectCount == 3)
         {
             Line.SetPosition(3, StartPos + value * LaserAdvanceLength);
             ReflectCount = 1;
         }
-        else if(!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             IsTouchLens = false;
             if (LensLight != null)
@@ -180,7 +180,7 @@ public class RefelctFound : MonoBehaviour
             Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
             Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
         }
-            
+
 
     }
     public void Toggle()
@@ -200,9 +200,12 @@ public class RefelctFound : MonoBehaviour
     public void FlashOff()
     {
         Flash.SetActive(false);
+
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetLayerWeight(1, 0);
     }
     public void FlashOn()
     {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetLayerWeight(1, 1);
         Flash.SetActive(true);
     }
 
@@ -212,29 +215,31 @@ public class RefelctFound : MonoBehaviour
         {//down
             if (AngleVec.y == 1)
             {
-                if (transform.rotation.x > AngleMax)
+                if (Flash.transform.rotation.y < AngleMax)
                 {
                     return;
 
                 }
-                //down
-                transform.Rotate(AngleSpeed * Time.deltaTime, 0 , 0);
+                Debug.Log(Flash.transform.rotation.y);
+                //up
+                Flash.transform.Rotate(0, AngleSpeed * Time.deltaTime, 0);
 
             }
             else
-            { // up
-                if (transform.rotation.x < AngleMin)
-                {
-                    return;
+            {
+                 // down
+                    if (Flash.transform.rotation.y > AngleMin)
+                    {
+                        return;
 
-                }
-                transform.Rotate(-AngleSpeed * Time.deltaTime, 0, 0);
-
-
+                    }
+                    Debug.Log(Flash.transform.rotation.y);
+                Flash.transform.Rotate(0, -AngleSpeed * Time.deltaTime, 0);
             }
-          
+
         }
 
     }
-
 }
+
+
