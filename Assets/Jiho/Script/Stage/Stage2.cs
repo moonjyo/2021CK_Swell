@@ -22,7 +22,7 @@ public class Stage2 : MonoBehaviour
 
     public void Start()
     {
-        
+        StartStage2();
     }
 
 

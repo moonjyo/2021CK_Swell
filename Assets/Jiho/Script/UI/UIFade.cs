@@ -10,9 +10,11 @@ public class UIFade : UIView
     public RectTransform BackBlackRight;
     public RectTransform BackBlackLeft;
 
+    bool IsSceneMove = false;
+
     public IEnumerator SceneMoveOut()
     {
-        while (Circle.sizeDelta.x >= 0)
+        while (Circle.sizeDelta.x >= 0 && !IsSceneMove)
         {
             Circle.sizeDelta -= new Vector2(40f, 40f);
             BackBlackUp.sizeDelta += new Vector2(0, 20f);
@@ -21,13 +23,13 @@ public class UIFade : UIView
             BackBlackRight.sizeDelta += new Vector2(20f, 0);
             yield return new WaitForSeconds(0.01f);
         }
-        yield return null;
+        IsSceneMove = true;
+        Debug.Log("endout");
     }
 
     public IEnumerator SceneMoveIn()
     {
-
-        while (Circle.sizeDelta.x <= 5000)
+        while (Circle.sizeDelta.x <= 5000 && IsSceneMove)
         {
             Circle.sizeDelta += new Vector2(40f, 40f);
             BackBlackUp.sizeDelta -= new Vector2(0, 20f);
@@ -36,6 +38,7 @@ public class UIFade : UIView
             BackBlackRight.sizeDelta -= new Vector2(20f, 0);
             yield return new WaitForSeconds(0.01f);
         }
-        yield return null;
+        IsSceneMove = false;
+        Debug.Log("endin");
     }
 }
