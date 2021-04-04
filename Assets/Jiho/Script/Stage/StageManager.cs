@@ -31,8 +31,10 @@ public class StageManager : MonoBehaviour
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         Debug.Log("move");
         ExitStage01();
-        SceneChange("Stage02");
         stage2.gameObject.SetActive(true);
+        SceneChange("Stage02");
+ 
+
         StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         Debug.Log("move");
     }

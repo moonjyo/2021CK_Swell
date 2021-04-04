@@ -37,10 +37,7 @@ public class Stage2 : MonoBehaviour
                     StartCoroutine(Stage2ClearProduction());
                     GameManager.Instance.stageManager.IsStage2Clear = true;
                     i = 0;
-                    foreach (RefractLaser atarget in RefractObj)
-                    {
-                        atarget.SetIsHitCrystalBallObj(false);
-                    }
+
                 }
                 else if(i < 5 && !target.IsHitRefractObj()) // 5개 모두 수정을 비추고있지 않고 비추는 오브젝트가 없을 때(별이 꺠졌을 떄) 
                 {
@@ -66,6 +63,17 @@ public class Stage2 : MonoBehaviour
 
         Stage2ToStage1EnterPoint = GameObject.Find("Stage2ToStage1EnterPoint");
         StickInterAction = CrystalballCyilnder.GetComponentInChildren<StarStick>();
+
+        GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
+        GameManager.Instance.stageManager.IsStage2Clear = false;
+        GameManager.Instance.stageManager.stage2.IsInStick = false;
+
+        foreach (RefractLaser atarget in GameManager.Instance.stageManager.stage2.RefractObj)
+        {
+            atarget.IsHitCrystalBall = false;
+            atarget.Line.enabled = false;
+        }
+      
     }
 
     public bool SuccessMakeStartLaser()
@@ -89,10 +97,8 @@ public class Stage2 : MonoBehaviour
             {
                 CrystalballCyilnder.transform.DOMoveY(0.5f, 3f, false);
                 //StartCoroutine(Stage2ClearProduction());
+                IsMakeStartLaser = true;
             }
-
-            IsMakeStartLaser = true;
-            Stage2Count = 0;
 
             return true;
         }
@@ -103,8 +109,10 @@ public class Stage2 : MonoBehaviour
             return false;
         }
         else
+        {
             return false;
-            
+        }
+
 
     }
 
