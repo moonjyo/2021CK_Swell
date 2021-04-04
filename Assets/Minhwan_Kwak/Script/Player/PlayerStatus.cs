@@ -6,7 +6,6 @@ public class PlayerStatus
 
     public PlayerDirection direction;
 
-
     // | ^ &   |  하나만 참일때 true  , ^ 둘다 참이면 false  ,  & 둘다 참이여야 true 
     public void FsmAdd(PlayerFSM value)
     {

@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public StageManager stageManager;
     public UIManager uiManager;
-
+  
     private void Awake()
     {
         if (!Instance)
@@ -30,4 +30,6 @@ public class GameManager : MonoBehaviour
         uiManager.UISettingOptionMenu.Toggle(false);
         uiManager.UIFade.Toggle(false);
     }
+
+
 }
