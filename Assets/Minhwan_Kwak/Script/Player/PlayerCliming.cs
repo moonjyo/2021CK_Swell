@@ -30,7 +30,7 @@ public class PlayerCliming : MonoBehaviour
 
         if (!isHitHigh && isHitLow)
         {
-             PlayerManager.Instance.playerMove.HangingOn(ClimingVec);
+             PlayerManager.Instance.playerMove.HangingOn(ClimingVec, Lowhit.transform);
         }
     }
 

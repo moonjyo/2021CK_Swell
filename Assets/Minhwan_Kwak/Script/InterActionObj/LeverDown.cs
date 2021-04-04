@@ -7,17 +7,16 @@ public class LeverDown : MonoBehaviour
     public Animator LeverDownAnim;
     public GameObject BaseMentObj;
     public Animator BaseMentAnim;
-    private BoxCollider col;
+    public BoxCollider col;
 
     public LayerMask PlayerLayer;
 
     private bool IsPlay = false;
 
+    public Transform PlayerTargetTransform;
 
-    private void Start()
-    {
-        col = transform.GetComponent<BoxCollider>();
-    }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -34,13 +33,15 @@ public class LeverDown : MonoBehaviour
             if (PlayerManager.Instance.playerAnimationEvents.PlayerAnim)
             {
                 PlayerManager.Instance.playerStatus.FsmAllRemove();
+                PlayerManager.Instance.playerMove.Root_Tr.localPosition = new Vector3(2.04f, 2.1f, 8.27f);
                 yield return new WaitForSeconds(0.4f);
                 BaseMentObj.layer = 10;
+                BaseMentObj.GetComponent<BoxCollider>().isTrigger = false;
                 IsPlay = true;
                 LeverDownAnim.SetTrigger("LeverDown");
                 BaseMentAnim.SetTrigger("BaseMentDown");
+                col.enabled = false;
                PlayerManager.Instance.playerMove.HangingOff();
-               col.isTrigger = false;
             }
             yield return null;
         }

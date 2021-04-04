@@ -56,7 +56,6 @@ public class PlayerMove : MonoBehaviour
 
     public Vector2 ClimingOffsetVec;
 
-    public Vector3 OffsetHaningPos;
 
 
     private void FixedUpdate()
@@ -244,15 +243,25 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    public void HangingOn(Vector2 InValue)
+    public void HangingOn(Vector2 InValue , Transform TargetPos)
     {
         if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge() && 
             PlayerManager.Instance.playerStatus.fsm != PlayerFSM.Climing)
         {
             PlayerManager.Instance.playerMove.IsGravity = true;
-            transform.localPosition = transform.localPosition + OffsetHaningPos;
+            
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", true);
+
+            GameObject child = TargetPos.Find("TargetHangingPos").gameObject;
+            if (child == null)
+            {
+                return;
+            }
+
+                Root_Tr.transform.localPosition = new Vector3(Root_Tr.transform.localPosition.x, child.transform.localPosition.y, child.transform.localPosition.z);
+           
+
         }
     }
     public IEnumerator InterActionItemPickUp()
