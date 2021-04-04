@@ -11,6 +11,8 @@ public class StageManager : MonoBehaviour
 
     public bool IsStage2Clear = false;
 
+    public string CurrentSceneName;
+
     public IEnumerator EnterStage01()
     {
         GameManager.Instance.uiManager.UIFade.Toggle(true);
@@ -51,5 +53,12 @@ public class StageManager : MonoBehaviour
     public void SceneChange(string sceneName)
     {
         SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+    }
+
+    public String CurrentGetSceneName()
+    {
+        CurrentSceneName = SceneManager.GetActiveScene().name;
+
+        return CurrentSceneName;
     }
 }

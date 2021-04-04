@@ -19,11 +19,6 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
-    {
-        GameStart();
-    }
-
     public void GameStart()
     {
         uiManager.UIMainMenu.Toggle(true);

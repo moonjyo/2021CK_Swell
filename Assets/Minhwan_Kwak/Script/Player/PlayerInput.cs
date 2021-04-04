@@ -46,11 +46,13 @@ public class PlayerInput : MonoBehaviour
         {
 
 
-
-          if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
-          {
-              GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
-          }
+            if (GameManager.Instance.stageManager.CurrentSceneName == "Stage02")
+            {
+                if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
+                {
+                    GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
+                }
+            }
             
         }
 
