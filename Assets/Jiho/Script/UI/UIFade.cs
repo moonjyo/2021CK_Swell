@@ -26,6 +26,7 @@ public class UIFade : UIView
 
     public IEnumerator SceneMoveIn()
     {
+
         while (Circle.sizeDelta.x <= 5000)
         {
             Circle.sizeDelta += new Vector2(40f, 40f);

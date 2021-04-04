@@ -20,10 +20,11 @@ public class Stage2 : MonoBehaviour
 
     public GameObject Stage2ToStage1EnterPoint;
 
-    private void Start()
+    public void Start()
     {
-        StartStage2();
+        
     }
+
 
     private void Update()
     {
