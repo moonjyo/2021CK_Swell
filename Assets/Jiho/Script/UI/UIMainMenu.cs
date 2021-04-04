@@ -12,50 +12,18 @@ public class UIMainMenu : UIView
     public Text testtext;
     public TextMeshProUGUI test;
 
-    public RectTransform Circle;
-    public RectTransform BackBlackUp;
-    public RectTransform BackBlackDown;
-    public RectTransform BackBlackRight;
-    public RectTransform BackBlackLeft;
-
-    //bool test1 = false;
-
     public void Start()
     {
         testtext.DOText("This is DOText testing code, 한국어", 3f, false, ScrambleMode.None, null);
         StartCoroutine(OnTyping(0.1f, "This is DOText testing code, 한국어"));
     }
 
-    public IEnumerator SceneMoveOut()
-    {
-        while (Circle.sizeDelta.x >= 0)
-        {
-            Circle.sizeDelta -= new Vector2(40f, 40f);
-            BackBlackUp.sizeDelta += new Vector2(0, 20f);
-            BackBlackDown.sizeDelta += new Vector2(0, 20f);
-            BackBlackLeft.sizeDelta += new Vector2(20f, 0);
-            BackBlackRight.sizeDelta += new Vector2(20f, 0);
-            yield return new WaitForSeconds(0.01f);
-        }
-    }
-
-    public IEnumerator SceneMoveIn()
-    {
-        while (Circle.sizeDelta.x <= 5000)
-        {
-            Circle.sizeDelta += new Vector2(40f, 40f);
-            BackBlackUp.sizeDelta -= new Vector2(0, 20f);
-            BackBlackDown.sizeDelta -= new Vector2(0, 20f);
-            BackBlackLeft.sizeDelta -= new Vector2(20f, 0);
-            BackBlackRight.sizeDelta -= new Vector2(20f, 0);
-            yield return new WaitForSeconds(0.01f);
-        }
-    }
-
 
     public void StartGame()
     {
-        SceneManager.LoadSceneAsync("JihoScene", LoadSceneMode.Single);
+        SceneManager.LoadSceneAsync("Stage02", LoadSceneMode.Single);
+        GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
+        GameManager.Instance.stageManager.stage2.gameObject.SetActive(true);
     }
 
     public void ExitGame()
@@ -72,7 +40,7 @@ public class UIMainMenu : UIView
 
     public void ShowSettingOptionMenu()
     {
-        UIManager.Instance.UISettingOptionMenu.Toggle(true);
+        GameManager.Instance.uiManager.UISettingOptionMenu.Toggle(true);
     }
 
     IEnumerator OnTyping(float interval, string Say)
@@ -82,11 +50,5 @@ public class UIMainMenu : UIView
             test.text += item;
             yield return new WaitForSeconds(interval);
         }
-    }
-
-    public void CircleScaleTrans()
-    {
-        Circle.transform.localScale -= new Vector3(2,0,0) * Time.deltaTime;
-    }
-   
+    }   
 }

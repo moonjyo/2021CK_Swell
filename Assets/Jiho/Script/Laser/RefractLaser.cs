@@ -22,7 +22,7 @@ public class RefractLaser : MonoBehaviour
 
     private void Update()
     {
-        if (StageManager.Instance.stage2.IsMakeStartLaser)
+        if (GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
         {
             RaycastHit hit;
             if (Physics.Raycast(this.transform.position + this.transform.forward * 0.25f, this.transform.right, out hit)) // 자기자신을 맞출떄가잇음
@@ -67,7 +67,7 @@ public class RefractLaser : MonoBehaviour
 
     public bool GetRefract(Vector3 value)
     {
-        if (StageManager.Instance.stage2.SuccessMakeStartLaser())
+        if (GameManager.Instance.stageManager.stage2.SuccessMakeStartLaser())
             return false;
         RaycastHit hit;
         if(Physics.Raycast(this.transform.position + transform.forward * 0.25f, value,out hit, Mathf.Infinity, RefractionObjLayerMask))
@@ -83,9 +83,9 @@ public class RefractLaser : MonoBehaviour
 
             return true;
         }
-        else if(!StageManager.Instance.stage2.IsMakeStartLaser)
+        else if(!GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
         {
-            StageManager.Instance.stage2.EraseLaser(); // 간혹 버그유발?
+            GameManager.Instance.stageManager.stage2.EraseLaser(); // 간혹 버그유발?
             IsHitRefract = false;
             Line.enabled = true;
             Line.SetPosition(0, transform.position + transform.forward * 0.25f);
@@ -105,15 +105,13 @@ public class RefractLaser : MonoBehaviour
 
     public void EraseLaser()
     {
-        if(Line != null && !StageManager.Instance.stage2.IsMakeStartLaser && !IsHitRefract) // 빛을 받고있지 않은애들 지우기, 라인이 존재하고있어야하고 이후엔 사라져야 할 떄
+        if(Line != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser && !IsHitRefract) // 빛을 받고있지 않은애들 지우기, 라인이 존재하고있어야하고 이후엔 사라져야 할 떄
         this.Line.enabled = false;
-        StageManager.Instance.stage2.Stage2Count = 0;
     }
 
     public void Initialize()
     {
         IsHitRefract = false;
-        StageManager.Instance.stage2.Stage2Count = 0;
     }
 
     public bool IsHitRefractObj()

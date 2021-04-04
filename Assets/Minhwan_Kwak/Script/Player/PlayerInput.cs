@@ -44,9 +44,9 @@ public class PlayerInput : MonoBehaviour
 
         if(context.performed)
         {
-            if(StageManager.Instance.stage2.StickInterAction.IsOnTriggerStick)
+            if(GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
             {
-                StageManager.Instance.stage2.StickInterAction.StartStickInterAction();
+                GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
             }
         }
 

@@ -158,8 +158,8 @@ public class RefelctFound : MonoBehaviour
                 IsTouchLens = false;
                 if (LensLight != null)
                     LensLight.Line.enabled = false;
-                if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
-                    StageManager.Instance.stage2.EraseLaser();
+                if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+                GameManager.Instance.stageManager.stage2.EraseLaser();
          
         }
         else if(ReflectCount == 3)
@@ -172,8 +172,8 @@ public class RefelctFound : MonoBehaviour
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
-            if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
-                StageManager.Instance.stage2.EraseLaser();
+            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+                GameManager.Instance.stageManager.stage2.EraseLaser();
 
             Line.SetPosition(0, transform.position);
             Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);

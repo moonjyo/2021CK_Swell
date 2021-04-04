@@ -1,44 +1,42 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
-    public static StageManager Instance;
-
     public GameObject stage1;
     public Stage2 stage2;
 
     public bool IsStage2Clear = false;
 
-
-    private void Awake()
-    {
-        if (!Instance)
-        {
-            Instance = this;
-        }
-
-        DontDestroyOnLoad(gameObject);
-
-        stage2 = GetComponentInChildren<Stage2>();
-    }
-
     public IEnumerator EnterStage01()
     {
-        yield return StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveOut());
-        ExitStage2();
-        SceneManager.LoadSceneAsync("Stage01", LoadSceneMode.Single);
-        StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveIn());
+        GameManager.Instance.uiManager.UIFade.Toggle(true);
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
+        ExitStage02();
+        stage1.SetActive(true);
+        yield return StartCoroutine(SceneChange("Stage01"));
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
+        GameManager.Instance.uiManager.UIFade.Toggle(false);
+        Debug.Log("stage1 move");
     }
 
     public IEnumerator EnterStage02()
     {
-        yield return StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveOut());
+        GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
+        GameManager.Instance.uiManager.UIFade.Toggle(true);
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         ExitStage01();
-        SceneManager.LoadSceneAsync("Stage02", LoadSceneMode.Single);
-        StartCoroutine(UIManager.Instance.UIMainMenu.SceneMoveIn());
+        stage2.gameObject.SetActive(true);
+        yield return StartCoroutine(SceneChange("Stage02"));
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
+        Debug.Log("stage2 move");
+        GameManager.Instance.stageManager.stage2.StartStage2();
+        GameManager.Instance.uiManager.UIFade.Toggle(false);
+
+
     }
 
     public void ExitStage01()
@@ -46,8 +44,14 @@ public class StageManager : MonoBehaviour
         stage1.SetActive(true);
     }
 
-    public void ExitStage2()
+    public void ExitStage02()
     {
         stage2.gameObject.SetActive(false);
+    }
+
+    IEnumerator SceneChange(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        yield return null;
     }
 }

@@ -22,22 +22,12 @@ public class Stage2 : MonoBehaviour
 
     private void Start()
     {
-        RefractObj[0] = GameObject.Find("Jewerly1").gameObject.GetComponent<RefractLaser>();
-        RefractObj[1] = GameObject.Find("Jewerly2").gameObject.GetComponent<RefractLaser>();
-        RefractObj[2] = GameObject.Find("Jewerly3").gameObject.GetComponent<RefractLaser>();
-        RefractObj[3] = GameObject.Find("Jewerly4").gameObject.GetComponent<RefractLaser>();
-        RefractObj[4] = GameObject.Find("Jewerly5").gameObject.GetComponent<RefractLaser>();
-
-        CrystalballCyilnder = GameObject.Find("Star");
-        Curtain[0] = GameObject.Find("ClockDoor1");
-        Curtain[1] = GameObject.Find("ClockDoor2");
-
-        Stage2ToStage1EnterPoint = GameObject.Find("Stage2ToStage1EnterPoint");
+        StartStage2();
     }
 
     private void Update()
     {
-        if(IsMakeStartLaser && !StageManager.Instance.IsStage2Clear)
+        if(IsMakeStartLaser && !GameManager.Instance.stageManager.IsStage2Clear)
         {
             int i = 0;
             foreach (RefractLaser target in RefractObj)
@@ -49,7 +39,7 @@ public class Stage2 : MonoBehaviour
                 if (i >= 5)
                 {                 
                     StartCoroutine(Stage2ClearProduction());
-                    StageManager.Instance.IsStage2Clear = true;
+                    GameManager.Instance.stageManager.IsStage2Clear = true;
                     i = 0;
                 }
                 else if(i < 5 && !target.IsHitRefractObj()) // 5개 모두 수정을 비추고있지 않고 비추는 오브젝트가 없을 때(별이 꺠졌을 떄) 
@@ -61,6 +51,20 @@ public class Stage2 : MonoBehaviour
             }
         }
       
+    }
+    public void StartStage2()
+    {
+        RefractObj[0] = GameObject.Find("Jewerly1").gameObject.GetComponent<RefractLaser>();
+        RefractObj[1] = GameObject.Find("Jewerly2").gameObject.GetComponent<RefractLaser>();
+        RefractObj[2] = GameObject.Find("Jewerly3").gameObject.GetComponent<RefractLaser>();
+        RefractObj[3] = GameObject.Find("Jewerly4").gameObject.GetComponent<RefractLaser>();
+        RefractObj[4] = GameObject.Find("Jewerly5").gameObject.GetComponent<RefractLaser>();
+
+        CrystalballCyilnder = GameObject.Find("Star");
+        Curtain[0] = GameObject.Find("ClockDoor1");
+        Curtain[1] = GameObject.Find("ClockDoor2");
+
+        Stage2ToStage1EnterPoint = GameObject.Find("Stage2ToStage1EnterPoint");
     }
 
     public bool SuccessMakeStartLaser()

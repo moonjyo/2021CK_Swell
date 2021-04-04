@@ -12,7 +12,7 @@ public class Stage1ToSTage2EnterPoint : MonoBehaviour
         if (other.gameObject == PlayerManager.Instance.playerMove.gameObject && i == 0)
         {
             i++;
-            StartCoroutine(StageManager.Instance.EnterStage02());
+            StartCoroutine(GameManager.Instance.stageManager.EnterStage02());
         }
     }
 }

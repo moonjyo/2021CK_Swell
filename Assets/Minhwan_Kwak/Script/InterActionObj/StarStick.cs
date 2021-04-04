@@ -42,7 +42,7 @@ public class StarStick : MonoBehaviour
         PlayerManager.Instance.PlayerInput.IsPickUpItem = false;
         PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
         IsOnTriggerStick = false;
-        StageManager.Instance.stage2.IsInStick = true;
+        GameManager.Instance.stageManager.stage2.IsInStick = true;
         BackGroundStick.SetActive(true);
 
         if(InterActionStick != null)
