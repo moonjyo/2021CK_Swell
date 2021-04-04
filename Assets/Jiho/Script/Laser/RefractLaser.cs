@@ -85,8 +85,8 @@ public class RefractLaser : MonoBehaviour
             Line.SetPosition(1, hit.point);
 
             Refract = hit.transform.gameObject.GetComponent<RefractLaser>();
-            //if(!Refract.IsHitRefract || StageManager.Instance.stage2.IsMakeStartLaser)
-                Refract.GetRefract(hit.transform.right);
+            if(GameManager.Instance.stageManager.stage2.NowShootLaser != Refract)
+            Refract.GetRefract(hit.transform.right);
 
             return true;
         }

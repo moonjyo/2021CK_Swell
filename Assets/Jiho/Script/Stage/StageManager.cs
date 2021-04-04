@@ -38,6 +38,7 @@ public class StageManager : MonoBehaviour
         Debug.Log("move");
         ExitStage01();
         stage2.gameObject.SetActive(true);
+        GameManager.Instance.stageManager.stage2.Stage2Count = 0;
         SceneChange("Stage02");
 
         PlayerManager.Instance.playerMove.IsGravity = true;

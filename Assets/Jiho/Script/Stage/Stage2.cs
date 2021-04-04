@@ -20,6 +20,8 @@ public class Stage2 : MonoBehaviour
 
     public GameObject Stage2ToStage1EnterPoint;
 
+    public RefractLaser NowShootLaser;
+
 
     private void Update()
     {
