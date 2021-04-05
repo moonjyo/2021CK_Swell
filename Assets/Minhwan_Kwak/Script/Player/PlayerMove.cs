@@ -57,9 +57,20 @@ public class PlayerMove : MonoBehaviour
     public Vector2 ClimingOffsetVec;
 
 
+    private float DelTimeWalkSoundTime = 0f;
+    public float WalkSoundTIme = 1f;
+    private bool isSoundStart = false;
+    
 
     private void FixedUpdate()
     {
+        DelTimeWalkSoundTime += Time.fixedDeltaTime;
+        if (WalkSoundTIme < DelTimeWalkSoundTime)
+        {
+            DelTimeWalkSoundTime = 0f;
+            isSoundStart = true;
+        }
+
 
        PushItemCheck();
 
@@ -187,13 +198,20 @@ public class PlayerMove : MonoBehaviour
         Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
         if (IsGrounded())
         {
+            if (isSoundStart)
+            {
+                isSoundStart = false;
+                AudioManager.Instance.PlayOneShot("event:/Player/Walk");
+            }
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
+           
         }
         Body_Tr.LookAt(transform.position + WalkVec);
         Vector3 test = transform.TransformDirection(Vector3.forward);
         Controller.Move(WalkMove);
     }
+
 
 
     public void Jump()

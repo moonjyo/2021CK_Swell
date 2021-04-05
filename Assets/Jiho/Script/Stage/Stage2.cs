@@ -79,7 +79,7 @@ public class Stage2 : MonoBehaviour
       
     }
 
-    public bool SuccessMakeStartLaser()
+    public bool SuccessMakeStartLaser() 
     {
         int i = 0;
         foreach (RefractLaser target in RefractObj)
