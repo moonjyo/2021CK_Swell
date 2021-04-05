@@ -33,4 +33,10 @@ public class PlayerAnimationEvents : MonoBehaviour
           PlayerManager.Instance.playerMove.IsGravity = false;
 
     }
+
+    public void MoveOn()
+    {
+        IsAnimStart = false;
+        PlayerManager.Instance.playerMove.IsGravity = false;
+    }
 }

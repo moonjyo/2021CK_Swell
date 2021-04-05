@@ -21,6 +21,8 @@ public class StageManager : MonoBehaviour
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         ExitStage02();
         SceneChange("Stage01");
+
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
 
@@ -41,6 +43,7 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.stageManager.stage2.Stage2Count = 0;
         SceneChange("Stage02");
 
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[1].position.x, StartTr[1].position.y, StartTr[1].position.z);
         StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
