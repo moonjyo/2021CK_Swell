@@ -138,7 +138,7 @@ public class RefelctFound : MonoBehaviour
 
             //if(Refract.GetRefract(hit.transform.forward))
             GameManager.Instance.stageManager.stage2.OriginShootLaser = Refract;
-            GameManager.Instance.stageManager.stage2.HitRefractObj[0] = Refract;
+            GameManager.Instance.stageManager.stage2.HitRefractObj.Add(Refract);
             if (Refract.GetRefract(hit.transform.right))
             {
                 Line.SetPosition(2, hit.point);

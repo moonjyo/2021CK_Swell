@@ -21,7 +21,7 @@ public class Stage2 : MonoBehaviour
     public GameObject Stage2ToStage1EnterPoint;
 
     public RefractLaser OriginShootLaser;
-    public RefractLaser[] HitRefractObj = new RefractLaser[5];
+    public List<RefractLaser> HitRefractObj = new List<RefractLaser>();
 
 
     private void Update()
