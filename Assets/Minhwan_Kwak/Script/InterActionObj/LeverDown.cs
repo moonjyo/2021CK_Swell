@@ -8,6 +8,7 @@ public class LeverDown : MonoBehaviour
     public GameObject BaseMentObj;
     public Animator BaseMentAnim;
     public BoxCollider col;
+    public BoxCollider LightCol;
 
     public LayerMask PlayerLayer;
 
@@ -36,6 +37,7 @@ public class LeverDown : MonoBehaviour
                 PlayerManager.Instance.playerMove.Root_Tr.localPosition = new Vector3(2.04f, 2.1f, 8.27f);
                 yield return new WaitForSeconds(0.4f);
                 BaseMentObj.layer = 10;
+                LightCol.enabled = true;
                 BaseMentObj.GetComponent<BoxCollider>().isTrigger = false;
                 IsPlay = true;
                 LeverDownAnim.SetTrigger("LeverDown");

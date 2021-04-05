@@ -150,7 +150,6 @@ public class PlayerMove : MonoBehaviour
                         {
                             BaseWalk();
                             return;
-
                         }
 
                         Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
@@ -161,6 +160,10 @@ public class PlayerMove : MonoBehaviour
                         Controller.Move(WalkMove);
                         InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                     }
+                }
+                else
+                {
+                    BaseWalk();
                 }
             }
             else if(!IsInterActionCol)

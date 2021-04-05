@@ -20,6 +20,12 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         ExitStage02();
+        if (PlayerManager.Instance.PlayerInput.IsPickUpItem)
+        {
+            PlayerManager.Instance.PlayerInput.IsPickUpItem = false;
+            StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
+        }
+
         SceneChange("Stage01");
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
@@ -41,11 +47,17 @@ public class StageManager : MonoBehaviour
         ExitStage01();
         stage2.gameObject.SetActive(true);
         GameManager.Instance.stageManager.stage2.Stage2Count = 0;
+        if(PlayerManager.Instance.PlayerInput.IsPickUpItem)
+        {
+            PlayerManager.Instance.PlayerInput.IsPickUpItem = false;
+            StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
+        }
         SceneChange("Stage02");
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[1].position.x, StartTr[1].position.y, StartTr[1].position.z);
+
         StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         Debug.Log("move");
 
