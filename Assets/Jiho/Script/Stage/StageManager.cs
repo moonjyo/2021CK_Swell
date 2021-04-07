@@ -25,15 +25,14 @@ public class StageManager : MonoBehaviour
 
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
-        ExitStage02();
-        SceneChange("Stage01");
-        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
-        PlayerManager.Instance.playerMove.IsGravity = true;
-        PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
+        StartCoroutine(ExitStage02());
+        //StartCoroutine(SceneChange("Stage01"));
+        //PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        //PlayerManager.Instance.playerMove.IsGravity = true;
+        //PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
 
-        stage1.SetActive(true);
-        StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
-        Debug.Log("move");
+        //stage1.SetActive(true);
+        
 
     }
 
@@ -49,35 +48,50 @@ public class StageManager : MonoBehaviour
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
 
         ExitStage01();
+        StartCoroutine(ExitStage01());
+    }
+
+    IEnumerator ExitStage01()
+    {
+        stage1.SetActive(false);
         stage2.gameObject.SetActive(true);
         GameManager.Instance.stageManager.stage2.Stage2Count = 0;
-        SceneChange("Stage02");
-
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[1].position.x, StartTr[1].position.y, StartTr[1].position.z);
 
-        StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
-        Debug.Log("move");
+        yield return StartCoroutine(SceneChange("Stage02"));
 
+        StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
     }
 
-    public void ExitStage01()
+    IEnumerator ExitStage02()
     {
         stage1.SetActive(true);
-    }
+        stage2.gameObject.SetActive(false);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        PlayerManager.Instance.playerMove.IsGravity = true;
+        PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
 
-    public void ExitStage02()
-    {
+
         GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
         GameManager.Instance.stageManager.IsStage2Clear = false;
         GameManager.Instance.stageManager.stage2.IsInStick = false;
-        stage2.gameObject.SetActive(false);
+
+        yield return StartCoroutine(SceneChange("Stage01"));
+
+        StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
+
     }
 
-    public void SceneChange(string sceneName)
+    //public void SceneChange(string sceneName)
+    //{
+    //    SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+    //}
+
+    public IEnumerator SceneChange(string sceneName)
     {
-        SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
 
     public String CurrentGetSceneName()
