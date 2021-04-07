@@ -4,49 +4,40 @@ using UnityEngine;
 
 public class InterActionObjBase : MonoBehaviour
 {
-    [HideInInspector]
-    public Rigidbody rb;
-
+    
     [HideInInspector]
     public BoxCollider Col;
 
-    private float CurrentMass;
+    public Rigidbody rb;
 
     public Vector3 ItemOffsetPos;
+    
+    public Vector3 moveDirection;
+    public float Gravity = 20f;
+    public float GravityAcceleration = 12f;
+    public bool IsGravity = false;
 
     private void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
         Col = transform.GetComponent<BoxCollider>();
-        CurrentMass = rb.mass;
     }
 
     public bool FollowOn()
     {
-        StartCoroutine(FollowMove());
+        transform.parent = PlayerManager.Instance.playerMove.Root_Tr;
+        transform.localPosition = ItemOffsetPos;
+        Col.isTrigger = true;
+        rb.isKinematic = true;
+        rb.constraints = RigidbodyConstraints.FreezeAll;
         return true;
     }
     public bool FollowOff()
     {
-        rb.constraints = RigidbodyConstraints.FreezeRotation;
-        rb.transform.parent = null;
-        rb.isKinematic = false;
+        transform.parent = null;
         Col.isTrigger = false;
-        rb.mass = CurrentMass;
+        rb.isKinematic = false;
+        rb.constraints = RigidbodyConstraints.FreezeRotation;
         return true;
-    }
-
-    public IEnumerator FollowMove()
-    {
-        rb.transform.parent = PlayerManager.Instance.playerMove.Root_Tr;
-        rb.isKinematic = true;
-        rb.transform.localPosition = ItemOffsetPos;
-        Col.isTrigger = true;
-        rb.mass = 0.1f;
-
-
-
-        yield return null;
-
     }
 }

@@ -47,7 +47,7 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
-        Debug.Log("move");
+
         ExitStage01();
         stage2.gameObject.SetActive(true);
         GameManager.Instance.stageManager.stage2.Stage2Count = 0;
@@ -86,4 +86,5 @@ public class StageManager : MonoBehaviour
 
         return CurrentSceneName;
     }
+
 }

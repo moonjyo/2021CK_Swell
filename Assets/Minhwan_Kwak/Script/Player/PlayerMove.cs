@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-
 public class PlayerMove : MonoBehaviour
 {
 
@@ -36,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     //현재 들수 있는 item을 check한다 
     public LayerMask InterActionLayerMask;
     public Rigidbody InterActionrb;
-    public Rigidbody GetItemrb;
+    public InterActionObjBase GetInterActionItem;
 
     RaycastHit hitinfo;
     //물체와 충돌하기위한 bool
@@ -287,36 +286,35 @@ public class PlayerMove : MonoBehaviour
     }
     public IEnumerator InterActionItemPickUp()
     {
-        if (GetItemrb == null)
+        if (GetInterActionItem == null)
         {
             yield break;
         }
 
-        InterActionObjBase InteractionBase = GetItemrb.GetComponent<InterActionObjBase>();
+        InterActionObjBase InteractionBase = GetInterActionItem.GetComponent<InterActionObjBase>();
         //domove하고 끝나면 해당 target transform에 계속 update 
 
         if (InteractionBase != null)
         {
-            GetItemrb.DOMove(InterActionObjTr.position, 2f).Complete(InteractionBase.FollowOn());
+            GetInterActionItem.transform.DOMove(InterActionObjTr.position, 2f).Complete(InteractionBase.FollowOn());
             InteractionBase.Col.isTrigger = false;
         }
         yield return null;
     }
     public IEnumerator InterActionItemPickDown()
     {
-        if (GetItemrb == null)
+        if (GetInterActionItem == null)
         {
             yield break;
         }
-        InterActionObjBase InteractionBase = GetItemrb.GetComponent<InterActionObjBase>();
-
+        InterActionObjBase InteractionBase = GetInterActionItem.GetComponent<InterActionObjBase>();
 
         if (InteractionBase != null)
         {
             InteractionBase.FollowOff();
         }
 
-        GetItemrb = null;
+        GetInterActionItem = null;
         yield return null;
     }
 
@@ -477,12 +475,10 @@ public class PlayerMove : MonoBehaviour
         InterActionrb = Col;
     }
 
-    public void SetGetItemObj(Rigidbody Col)
+    public void SetGetItemObj(InterActionObjBase InterActionBase)
     {
-        GetItemrb = Col;
+        GetInterActionItem = InterActionBase;
     }
-
-
     public bool PushItemCheck()
     {
         bool isitemcheck = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x + transform.forward.x, Controller.bounds.center.y + transform.forward.y, Controller.bounds.center.z + transform.forward.z), 0.15f, InterActionLayerMask);

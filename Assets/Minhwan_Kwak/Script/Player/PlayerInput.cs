@@ -56,7 +56,6 @@ public class PlayerInput : MonoBehaviour
             
         }
 
-
         if (context.canceled)
         {
             IsPull = false;
@@ -68,11 +67,11 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-           if(PlayerManager.Instance.playerMove.GetItemrb == null)
+           if(PlayerManager.Instance.playerMove.GetInterActionItem == null)
             {
                 return;
             }
-            if ((PlayerManager.Instance.playerMove.GetItemrb.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol) && 
+            if ((PlayerManager.Instance.playerMove.GetInterActionItem.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol) && 
                  !IsPickUpItem)
             {
                 if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
