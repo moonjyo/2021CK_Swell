@@ -14,7 +14,7 @@ public class UIFade : UIView
 
     public IEnumerator SceneMoveOut()
     {
-        while (Circle.sizeDelta.x >= 0 && !IsSceneMove)
+        while (Circle.sizeDelta.x >= 0)
         {
             Circle.sizeDelta -= new Vector2(40f, 40f);
             BackBlackUp.sizeDelta += new Vector2(0, 20f);
@@ -23,13 +23,11 @@ public class UIFade : UIView
             BackBlackRight.sizeDelta += new Vector2(20f, 0);
             yield return new WaitForSeconds(0.01f);
         }
-        IsSceneMove = true;
-        Debug.Log("endout");
     }
 
     public IEnumerator SceneMoveIn()
     {
-        while (Circle.sizeDelta.x <= 5000 && IsSceneMove)
+        while (Circle.sizeDelta.x <= 5000)
         {
             Circle.sizeDelta += new Vector2(40f, 40f);
             BackBlackUp.sizeDelta -= new Vector2(0, 20f);
@@ -38,14 +36,12 @@ public class UIFade : UIView
             BackBlackRight.sizeDelta -= new Vector2(20f, 0);
             yield return new WaitForSeconds(0.01f);
         }
-        IsSceneMove = false;
-
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         PlayerManager.Instance.playerMove.IsGravity = false;
         Debug.Log("endin");
         GameManager.Instance.uiManager.UIFade.Toggle(false);
-        if(GameManager.Instance.stageManager.CurrentGetSceneName() == "Stage02")
+        if (GameManager.Instance.stageManager.CurrentGetSceneName() == "Stage02")
         {
             GameManager.Instance.stageManager.stage2.StartStage2();
         }

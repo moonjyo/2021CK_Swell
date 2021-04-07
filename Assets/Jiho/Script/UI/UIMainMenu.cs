@@ -24,16 +24,22 @@ public class UIMainMenu : UIView
     public void StartGame()
     {
         StartCoroutine(ChangeScene());
-        
+
+
     }
 
     IEnumerator ChangeScene()
     {
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
-        SceneManager.LoadSceneAsync("Stage02", LoadSceneMode.Single);
+        StartCoroutine(EnterStage());
+    }
+
+    IEnumerator EnterStage()
+    {
         StartButton.SetActive(false);
         ExitButton.SetActive(false);
+        yield return StartCoroutine(GameManager.Instance.stageManager.SceneChange("Stage02"));
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         GameManager.Instance.stageManager.stage2.gameObject.SetActive(true);
         GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
