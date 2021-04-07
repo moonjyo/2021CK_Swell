@@ -21,7 +21,6 @@ public class PlayerInput : MonoBehaviour
 
     public void OnJump(InputAction.CallbackContext context)
     {
-
         Vector2 value = context.ReadValue<Vector2>();
         Vector3 JumpVec = new Vector3(0, value.y, 0);
         PlayerManager.Instance.playerMove.SetJump(JumpVec);
@@ -43,10 +42,25 @@ public class PlayerInput : MonoBehaviour
         Vector3 PullVec = new Vector3(value.x, 0, 0);
         PlayerManager.Instance.playerMove.SetPull(PullVec);
 
+        if(context.performed)
+        {
+
+
+            if (GameManager.Instance.stageManager.CurrentSceneName == "Stage02")
+            {
+                if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
+                {
+                    GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
+                }
+            }
+            
+        }
+
+
         if (context.canceled)
         {
             IsPull = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
         }
     }
 
@@ -83,7 +97,7 @@ public class PlayerInput : MonoBehaviour
         {
             Vector2 Input = Mouse.current.position.ReadValue();
             //sizeModulate.ItemSelect(Input);
-            PlayerManager.Instance.SizeModulate.ItemSelect(Input);
+           // PlayerManager.Instance.SizeModulate.ItemSelect(Input);
         }
     }
 
@@ -98,15 +112,15 @@ public class PlayerInput : MonoBehaviour
             case -120:
                 break;
         }
-        if (value.y == 120f || value.y == -120f)
+        //if (value.y == 120f || value.y == -120f)
             //sizeModulate.ItemSizeModulate(value.y);
-            PlayerManager.Instance.SizeModulate.ItemSizeModulate(value.y);
+           // PlayerManager.Instance.SizeModulate.ItemSizeModulate(value.y);
     }
 
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && IsLightGet)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }
@@ -115,9 +129,11 @@ public class PlayerInput : MonoBehaviour
     public void LighAngle(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
-
-        Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
-        PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
+        if (IsLightGet)
+        {
+            Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
+            PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
+        }
     }
 
 

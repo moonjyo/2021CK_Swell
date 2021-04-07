@@ -38,7 +38,7 @@ public class PlayerMove : MonoBehaviour
     public Rigidbody InterActionrb;
     public Rigidbody GetItemrb;
 
-
+    RaycastHit hitinfo;
     //물체와 충돌하기위한 bool
     public bool IsItemCol = false;
     public bool IsInterActionCol = false;
@@ -54,11 +54,27 @@ public class PlayerMove : MonoBehaviour
     public float PushSpeed;
     public float WalkSpeed;
 
-    public Vector2 ClimingOffsetVec; 
+    public Vector2 ClimingOffsetVec;
 
+
+    private float DelTimeWalkSoundTime = 0f;
+    public float WalkSoundTIme = 1f;
+    private bool isSoundStart = false;
+    
 
     private void FixedUpdate()
     {
+        DelTimeWalkSoundTime += Time.fixedDeltaTime;
+        if (WalkSoundTIme < DelTimeWalkSoundTime)
+        {
+            DelTimeWalkSoundTime = 0f;
+            isSoundStart = true;
+        }
+
+
+       PushItemCheck();
+
+        //Debug.Log(test);
         if (WalkVec == Vector3.zero && moveDirection.y < 0f)
         {
             Idle();
@@ -111,23 +127,27 @@ public class PlayerMove : MonoBehaviour
                     {
                         if (transform.forward != WalkVec && InterActionrb != null)
                         {
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
                             if (-transform.forward == WalkVec)
                             {
+                                if (InterActionrb.CompareTag("DirectionItem"))
+                                {
+                                    return;
+                                }
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                             }
-                            else if(transform.right == WalkVec)
+                            else if (transform.right == WalkVec)
                             {
                                 Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 InterActionrb.transform.Rotate(RotateVec);
                             }
-                            else if(-transform.right == WalkVec)
+                            else if (-transform.right == WalkVec)
                             {
                                 Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
@@ -135,12 +155,17 @@ public class PlayerMove : MonoBehaviour
                             }
                         }
                     }
-                    else //물건 push
-                    {
+                    else 
+                    { 
+                        if(InterActionrb.CompareTag("DirectionItem"))
+                        {
+                            BaseWalk();
+                            return;
+                        }
+
                         Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
                         PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                         InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
-                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
                         transform.LookAt(transform.position + WalkVec);
                         Controller.Move(WalkMove);
@@ -149,29 +174,12 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
-                    if (IsGrounded())
-                    {
-                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
-                        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Push & PlayerFSM.Pull);
-                        PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
-                    }
-                    Body_Tr.LookAt(transform.position + WalkVec);
-                    Vector3 test = transform.TransformDirection(Vector3.forward);
-                    Controller.Move(WalkMove);
+                    BaseWalk();
                 }
             }
-            else
+            else if(!IsInterActionCol)
             {
-                Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
-                if (IsGrounded())
-                {
-                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
-                    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
-                }
-                Body_Tr.LookAt(transform.position + WalkVec);
-                Vector3 test = transform.TransformDirection(Vector3.forward);
-                Controller.Move(WalkMove);
+                BaseWalk();
             }
         }
     }
@@ -185,6 +193,25 @@ public class PlayerMove : MonoBehaviour
         PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Pull);
 
     }
+    public void BaseWalk()
+    {
+        Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
+        if (IsGrounded())
+        {
+            if (isSoundStart)
+            {
+                isSoundStart = false;
+                AudioManager.Instance.PlayOneShot("event:/Player/Walk");
+            }
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
+            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
+           
+        }
+        Body_Tr.LookAt(transform.position + WalkVec);
+        Vector3 test = transform.TransformDirection(Vector3.forward);
+        Controller.Move(WalkMove);
+    }
+
 
 
     public void Jump()
@@ -230,24 +257,34 @@ public class PlayerMove : MonoBehaviour
 
     public void HangingOff()
     {
-            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
-            IsGravity = false;
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle",false);
-        
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+        IsGravity = false;
+        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", false);
+
     }
 
-    public void HangingOn(Vector2 InValue)
+    public void HangingOn(Vector2 InValue , Transform TargetPos)
     {
-        if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge())
+        if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge() && 
+            PlayerManager.Instance.playerStatus.fsm != PlayerFSM.Climing)
         {
-             IsGravity = true;
+            PlayerManager.Instance.playerMove.IsGravity = true;
+            
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle" , true);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", true);
+
+            GameObject child = TargetPos.Find("TargetHangingPos").gameObject;
+            if (child == null)
+            {
+                return;
+            }
+
+                Root_Tr.transform.localPosition = new Vector3(Root_Tr.transform.localPosition.x, child.transform.localPosition.y, child.transform.localPosition.z);
+           
+
         }
     }
-
-
     public IEnumerator InterActionItemPickUp()
     {
         if (GetItemrb == null)
@@ -290,35 +327,19 @@ public class PlayerMove : MonoBehaviour
 
         if (WalkVec.x == 1f && WalkVec.z == 0f)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
         }
         else if (WalkVec.x == -1f && WalkVec.z == 0f)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
         }
         else if (WalkVec.x == 0f && WalkVec.z == 1f)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
         }
         else if (WalkVec.x == 0f && WalkVec.z == -1f)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
-        }
-        else if (Mathf.Sign(WalkVec.x) == 1 && Mathf.Sign(WalkVec.z) == 1)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomLeft;
-        }
-        else if (Mathf.Sign(WalkVec.x) == 1 && Mathf.Sign(WalkVec.z) == -1)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopLeft;
-        }
-        else if (Mathf.Sign(WalkVec.x) == -1 && Mathf.Sign(WalkVec.z) == 1)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomRight;
-        }
-        else if (Mathf.Sign(WalkVec.x) == -1 && Mathf.Sign(WalkVec.z) == -1)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopRight;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
         }
     }
     public void ClimingJudge()
@@ -327,16 +348,16 @@ public class PlayerMove : MonoBehaviour
         switch (PlayerManager.Instance.playerStatus.direction)
         {
             case PlayerDirection.Left:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
-                break;
-            case PlayerDirection.Right:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
-                break;
-            case PlayerDirection.Bottom:
                 transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
                 break;
-            case PlayerDirection.Top:
+            case PlayerDirection.Right:
                 transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
+                break;
+            case PlayerDirection.Bottom:
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
+                break;
+            case PlayerDirection.Top:
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
                 break;
             default:
                 Debug.Log("잘못된 방향");
@@ -461,4 +482,25 @@ public class PlayerMove : MonoBehaviour
         GetItemrb = Col;
     }
 
+
+    public bool PushItemCheck()
+    {
+        bool isitemcheck = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x + transform.forward.x, Controller.bounds.center.y + transform.forward.y, Controller.bounds.center.z + transform.forward.z), 0.15f, InterActionLayerMask);
+
+        if (isitemcheck)
+        {
+            return true;
+        }
+        else
+        {
+            PlayerManager.Instance.playerMove.IsInterActionCol = false;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
+            PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
+        }
+
+        return false;
+    }
+
+   
 }

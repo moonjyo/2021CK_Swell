@@ -9,7 +9,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void CrounchStart()
     {
         IsAnimStart = true;
-
     }
 
     //idle
@@ -22,6 +21,22 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void HangingStart()
     {
+
         IsAnimStart = true;
     }
+
+    public void JumpOff()
+    {
+        
+          IsAnimStart = false;
+          PlayerManager.Instance.playerMove.IsGravity = false;
+
+    }
+
+    public void IdleOn()
+    {
+        IsAnimStart = false;
+        PlayerManager.Instance.playerMove.IsGravity = false;
+    }
+
 }

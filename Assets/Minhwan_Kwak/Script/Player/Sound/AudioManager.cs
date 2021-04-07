@@ -20,7 +20,7 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
@@ -33,8 +33,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
-     //   Change(0);
-     //   Play();
+        //   Change(0);
+        //   Play();
     }
 
     public void Change(int index)
@@ -42,7 +42,7 @@ public class AudioManager : MonoBehaviour
         notifyRelease();
 
         bgm = RuntimeManager.CreateInstance(BgmClip[index]);
-        
+
     }
     public void notifyRelease()
     {
@@ -58,16 +58,17 @@ public class AudioManager : MonoBehaviour
         //효과음을 재생할 인스턴스를 생성합니다.
         var sfx = RuntimeManager.CreateInstance(path);
 
+     
         //재생
-        sfx.start();
-
+       FMOD.RESULT result =  sfx.start();
+       
         //릴리즈
         sfx.release();
     }
 
     public void Stop(FMOD.Studio.STOP_MODE SM) => bgm.stop(SM);
     public void Play() => bgm.start();
-    
+
     public void setPause(bool pause) => bgm.setPaused(pause);
     public void setMasterVolume(float Value) => MasterBus.setVolume(Value);
 

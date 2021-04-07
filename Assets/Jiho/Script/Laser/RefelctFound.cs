@@ -68,8 +68,8 @@ public class RefelctFound : MonoBehaviour
                 if (ReflectCount < Line.positionCount - 1)
                 {
                     Line.SetPosition(ReflectCount + 1, hit.point);
-                    if(ReflectCount < Line.positionCount - 2)
-                    Line.SetPosition(ReflectCount + 2, hit.point);
+                    if (ReflectCount < Line.positionCount - 2)
+                        Line.SetPosition(ReflectCount + 2, hit.point);
                 }
                 LensLight = hit.collider.gameObject.GetComponent<LensLight>();
                 LensLight.GetConcaveLens(value, hit.point);
@@ -89,9 +89,9 @@ public class RefelctFound : MonoBehaviour
                 if (IsTouchLens)
                     LensLight.Line.enabled = false;
                 IsTouchLens = false;
-               
+
             }
-           
+
             Vector3 normalVector = hit.transform.forward;
             Vector3 reflectVector = Vector3.Reflect(value, normalVector);
 
@@ -124,6 +124,7 @@ public class RefelctFound : MonoBehaviour
             }
         }
         else if (Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity, JewerlyLayerMask))
+        //else if((1 << hit.transform.gameObject.layer) == JewerlyLayerMask)
         {
             Line.enabled = true;
             IsTouchLens = false;
@@ -135,66 +136,57 @@ public class RefelctFound : MonoBehaviour
 
             Refract = hit.transform.GetComponent<RefractLaser>();
 
-            if(Refract.GetRefract(hit.transform.forward))
+            //if(Refract.GetRefract(hit.transform.forward))
+            GameManager.Instance.stageManager.stage2.OriginShootLaser = Refract;
+            if(!GameManager.Instance.stageManager.stage2.HitRefractObj.Contains(Refract))
+            {
+                GameManager.Instance.stageManager.stage2.HitRefractObj.Add(Refract);
+            }
+           
+            if (Refract.GetRefract(hit.transform.right))
             {
                 Line.SetPosition(2, hit.point);
                 Line.SetPosition(3, hit.point);
             }
             else
             {
-                Line.SetPosition(2, hit.transform.position);
-                Line.SetPosition(3, hit.transform.position);
+                Line.SetPosition(2, hit.point);
+                Line.SetPosition(3, hit.point);
             }
         }
         else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        //else if((1 << hit.transform.gameObject.layer) != CheckLayerMask && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
-            //if(hit.transform != null)
-            //{
-                Line.SetPosition(0, transform.position);
-                Line.SetPosition(1, hit.point);
-                Line.SetPosition(2, hit.point);
-                Line.SetPosition(3, hit.point);
-                IsTouchLens = false;
-                if (LensLight != null)
-                    LensLight.Line.enabled = false;
-                if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
-                    StageManager.Instance.stage2.EraseLaser();
-           //}
-            //else
-            //{
-            //    //Line.enabled = false;
-            //    IsTouchLens = false;
-            //    if (LensLight != null)
-            //        LensLight.Line.enabled = false;
-            //    if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
-            //        StageManager.Instance.stage2.EraseLaser();
+            Line.SetPosition(0, transform.position);
+            Line.SetPosition(1, hit.point);
+            Line.SetPosition(2, hit.point);
+            Line.SetPosition(3, hit.point);
+            IsTouchLens = false;
+            if (LensLight != null)
+                LensLight.Line.enabled = false;
+            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+                GameManager.Instance.stageManager.stage2.EraseLaser();
 
-            //    Line.SetPosition(0, transform.position);
-            //    Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);
-            //    Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
-            //    Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
-            //}
-         
         }
-        else if(ReflectCount == 3)
+        else if (ReflectCount == 3)
         {
             Line.SetPosition(3, StartPos + value * LaserAdvanceLength);
             ReflectCount = 1;
         }
-        else if(!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
-            if (Refract != null && !StageManager.Instance.stage2.IsMakeStartLaser)
-                StageManager.Instance.stage2.EraseLaser();
+            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+                GameManager.Instance.stageManager.stage2.EraseLaser();
 
             Line.SetPosition(0, transform.position);
             Line.SetPosition(1, transform.position + transform.forward * LaserAdvanceLength);
             Line.SetPosition(2, transform.position + transform.forward * LaserAdvanceLength);
             Line.SetPosition(3, transform.position + transform.forward * LaserAdvanceLength);
         }
-            
+
 
     }
     public void Toggle()
@@ -214,9 +206,12 @@ public class RefelctFound : MonoBehaviour
     public void FlashOff()
     {
         Flash.SetActive(false);
+
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetLayerWeight(1, 0);
     }
     public void FlashOn()
     {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetLayerWeight(1, 1);
         Flash.SetActive(true);
     }
 
@@ -226,32 +221,31 @@ public class RefelctFound : MonoBehaviour
         {//down
             if (AngleVec.y == 1)
             {
-                if (transform.rotation.x > AngleMax)
+                if (Flash.transform.localRotation.z > AngleMax)
                 {
                     return;
 
                 }
-                //down
-                transform.Rotate(AngleSpeed * Time.deltaTime, 0 , 0);
-                Debug.Log(transform.rotation.x);
-                //if(transform.rotation.x < angl)
+                Debug.Log(Flash.transform.localRotation.z);
+                //up
+                Flash.transform.Rotate(0, AngleSpeed * Time.deltaTime, 0);
 
             }
             else
-            { // up
-                if (transform.rotation.x < AngleMin)
-                {
-                    return;
+            {
+                 // down
+                    if (Flash.transform.localRotation.z < AngleMin)
+                    {
+                        return;
 
-                }
-                transform.Rotate(-AngleSpeed * Time.deltaTime, 0, 0);
-                Debug.Log(transform.rotation.x);
-
-
+                    }
+                    Debug.Log(Flash.transform.localRotation.z);
+                Flash.transform.Rotate(0, -AngleSpeed * Time.deltaTime, 0);
             }
-          
+
         }
 
     }
-
 }
+
+

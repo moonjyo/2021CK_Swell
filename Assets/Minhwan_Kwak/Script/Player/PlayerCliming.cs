@@ -11,21 +11,26 @@ public class PlayerCliming : MonoBehaviour
 
     public bool IsHighCheck = false;
     public bool IsLowCheck = false;
-    public LayerMask HangingLayer;
-
+    public LayerMask LowHangingLayer;
+    public LayerMask HighHaningLayer;
     private Vector2 ClimingVec;
 
     private void Update()
     {
         RaycastHit Highhit;
         RaycastHit Lowhit;
-        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out Highhit, Distance, HangingLayer);
-        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadLowTr.forward, out Lowhit, Distance, HangingLayer);
+        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out Highhit, Distance, HighHaningLayer);
+        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadLowTr.forward, out Lowhit, Distance, LowHangingLayer);
+
+        if(isHitHigh)
+        {
+            Debug.Log(isHitHigh);
+        }
 
 
         if (!isHitHigh && isHitLow)
         {
-             PlayerManager.Instance.playerMove.HangingOn(ClimingVec);
+             PlayerManager.Instance.playerMove.HangingOn(ClimingVec, Lowhit.transform);
         }
     }
 
@@ -39,7 +44,7 @@ public class PlayerCliming : MonoBehaviour
     private void OnDrawGizmos()
     {
         RaycastHit hit;
-        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, HangingLayer);
+        bool isHitHigh = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, HighHaningLayer);
 
         Gizmos.color = Color.red;
         if (isHitHigh)
@@ -51,7 +56,7 @@ public class PlayerCliming : MonoBehaviour
             Gizmos.DrawRay(HeadHighTr.position, HeadHighTr.forward * Distance);
         }
 
-        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, HangingLayer);
+        bool isHitLow = Physics.Raycast(HeadHighTr.position, HeadHighTr.forward, out hit, Distance, LowHangingLayer);
 
         Gizmos.color = Color.yellow;
         if (isHitLow)

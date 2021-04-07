@@ -9,7 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2266412808489336383}
-  m_Layer: 0
+  - component: {fileID: 836045279}
+  - component: {fileID: 836045278}
+  m_Layer: 10
   m_Name: MSG_BG_Basement_Shelf_Dummy_05
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +33,35 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &836045279
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845643131467383418}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &836045278
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8845643131467383418}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.4004946, y: 2.6919873, z: 1.80935}
+  m_Center: {x: -0.8732465, y: 1.0906111, z: -1.2454281}
 --- !u!1001 &8410452940874641872
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -41,7 +72,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a40cc94532dd0e14e9edf55eb3fee53c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.21
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a40cc94532dd0e14e9edf55eb3fee53c,
         type: 3}
@@ -51,7 +82,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: a40cc94532dd0e14e9edf55eb3fee53c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -1.004
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: a40cc94532dd0e14e9edf55eb3fee53c,
         type: 3}
@@ -97,6 +128,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MSG_BG_Basement_Shelf_Dummy_05
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a40cc94532dd0e14e9edf55eb3fee53c,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a40cc94532dd0e14e9edf55eb3fee53c, type: 3}

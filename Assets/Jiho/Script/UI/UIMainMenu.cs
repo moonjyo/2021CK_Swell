@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 using UnityEditor;
 using UnityEngine.UI;
 using DG.Tweening;
@@ -11,14 +11,38 @@ public class UIMainMenu : UIView
 {
     public Text testtext;
     public TextMeshProUGUI test;
+    public GameObject StartButton;
+    public GameObject ExitButton;
+
     public void Start()
     {
         testtext.DOText("This is DOText testing code, 한국어", 3f, false, ScrambleMode.None, null);
         StartCoroutine(OnTyping(0.1f, "This is DOText testing code, 한국어"));
     }
+
+
     public void StartGame()
     {
-        SceneManager.LoadSceneAsync("JihoScene", LoadSceneMode.Single);
+        StartCoroutine(ChangeScene());
+
+
+    }
+
+    IEnumerator ChangeScene()
+    {
+        GameManager.Instance.uiManager.UIFade.Toggle(true);
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
+        StartCoroutine(EnterStage());
+    }
+
+    IEnumerator EnterStage()
+    {
+        StartButton.SetActive(false);
+        ExitButton.SetActive(false);
+        yield return StartCoroutine(GameManager.Instance.stageManager.SceneChange("Stage02"));
+        yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
+        GameManager.Instance.stageManager.stage2.gameObject.SetActive(true);
+        GameManager.Instance.uiManager.UIMainMenu.Toggle(false);
     }
 
     public void ExitGame()
@@ -35,7 +59,7 @@ public class UIMainMenu : UIView
 
     public void ShowSettingOptionMenu()
     {
-        UIManager.Instance.UISettingOptionMenu.Toggle(true);
+        GameManager.Instance.uiManager.UISettingOptionMenu.Toggle(true);
     }
 
     IEnumerator OnTyping(float interval, string Say)
@@ -45,6 +69,5 @@ public class UIMainMenu : UIView
             test.text += item;
             yield return new WaitForSeconds(interval);
         }
-    }
-   
+    }   
 }

@@ -13,16 +13,21 @@ public class PlayerManager : MonoBehaviour
     public PlayerAnimationEvents playerAnimationEvents;
 
 
-    public SizeModulate SizeModulate;
+   // public SizeModulate SizeModulate;
     //public FlashLight flashLight;
     public RefelctFound flashLight;
 
 
     private void Awake()
     {
-        if(!Instance)
+        if(Instance == null)
         {
             Instance = this;
         }
+        else if(Instance != null)
+        {
+            Destroy(this.gameObject);
+        }
+        DontDestroyOnLoad(transform);
     }
 }
