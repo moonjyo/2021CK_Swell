@@ -15,7 +15,8 @@ public class LeverDown : MonoBehaviour
     private bool IsPlay = false;
 
     public Transform PlayerTargetTransform;
-
+    
+    public Vector3 OffsetPos;
 
 
 
@@ -26,7 +27,6 @@ public class LeverDown : MonoBehaviour
             StartCoroutine(InterActionRayCast());
         }
      }
-
     private IEnumerator InterActionRayCast()
     {
         while (!IsPlay)
@@ -34,7 +34,7 @@ public class LeverDown : MonoBehaviour
             if (PlayerManager.Instance.playerAnimationEvents.PlayerAnim)
             {
                 PlayerManager.Instance.playerStatus.FsmAllRemove();
-                PlayerManager.Instance.playerMove.Root_Tr.localPosition = new Vector3(2.04f, 2.1f, 8.27f);
+                PlayerManager.Instance.playerMove.Root_Tr.localPosition = OffsetPos;
                 yield return new WaitForSeconds(0.4f);
                 BaseMentObj.layer = 10;
                 LightCol.enabled = true;

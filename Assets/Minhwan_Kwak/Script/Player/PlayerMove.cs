@@ -69,8 +69,6 @@ public class PlayerMove : MonoBehaviour
             DelTimeWalkSoundTime = 0f;
             isSoundStart = true;
         }
-
-
        PushItemCheck();
 
         //Debug.Log(test);
@@ -296,6 +294,7 @@ public class PlayerMove : MonoBehaviour
 
         if (InteractionBase != null)
         {
+            Controller.radius = 0.5f;
             GetInterActionItem.transform.DOMove(InterActionObjTr.position, 2f).Complete(InteractionBase.FollowOn());
             InteractionBase.Col.isTrigger = false;
         }
@@ -311,6 +310,7 @@ public class PlayerMove : MonoBehaviour
 
         if (InteractionBase != null)
         {
+            Controller.radius = 0.12f;
             InteractionBase.FollowOff();
         }
 
@@ -438,6 +438,7 @@ public class PlayerMove : MonoBehaviour
                 else
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", true);
+
                 }
                 //hashflag  포함되어있는지 확인 
                 if (MoveFunction != null)
