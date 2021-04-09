@@ -38,6 +38,8 @@ public class StarStick : MonoBehaviour
 
     public void StartStickInterAction()
     {
+
+        PlayerManager.Instance.playerMove.Controller.radius = 0.12f;
         starCheckCollider.enabled = false;
         PlayerManager.Instance.PlayerInput.IsPickUpItem = false;
         PlayerManager.Instance.playerMove.SetRemoveInterActionObj();

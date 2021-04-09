@@ -8,4 +8,5 @@ public class Stage1 : MonoBehaviour
     public GameObject GarbageLocationObj;
 
 
+
 }

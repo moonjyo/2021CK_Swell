@@ -152,7 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7f66633c88044744b91271ed12bf200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stage1: {fileID: 893997703}
+  stage1: {fileID: 893997705}
   stage2: {fileID: 275136892}
   IsStage2Clear: 0
   CurrentSceneName: 
@@ -1000,7 +1000,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  Stage2Count: 0
   IsMakeStartLaser: 0
   CrystalballCyilnder: {fileID: 0}
   Curtain:
@@ -1011,6 +1010,7 @@ MonoBehaviour:
   Stage2ToStage1EnterPoint: {fileID: 0}
   OriginShootLaser: {fileID: 0}
   HitRefractObj: []
+  GarbageLocationObj: {fileID: 0}
 --- !u!1 &412772588
 GameObject:
   m_ObjectHideFlags: 0
@@ -2338,6 +2338,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 893997704}
+  - component: {fileID: 893997705}
   m_Layer: 0
   m_Name: Stage1
   m_TagString: Untagged
@@ -2359,6 +2360,19 @@ Transform:
   m_Father: {fileID: 26462128}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &893997705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 893997703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0baa0267b2abc64c9f5993c4cf78f71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GarbageLocationObj: {fileID: 0}
 --- !u!1 &900170209
 GameObject:
   m_ObjectHideFlags: 0

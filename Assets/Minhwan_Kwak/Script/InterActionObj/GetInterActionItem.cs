@@ -33,6 +33,12 @@ public class GetInterActionItem : MonoBehaviour
         Col.isTrigger = false;
         rb.isKinematic = false;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
+
+        GameObject GabageObj =  GameObject.FindGameObjectWithTag("Gabage");
+        if(GabageObj)
+        {
+            transform.parent = GabageObj.transform;
+        }
         return true;
     }
 }
