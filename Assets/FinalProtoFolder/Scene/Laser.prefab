@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &599959380
+--- !u!1 &5678327951091406050
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 599959381}
-  - component: {fileID: 599959382}
+  - component: {fileID: 5678327951091406051}
+  - component: {fileID: 5678327951091406048}
   m_Layer: 0
   m_Name: Spot Light
   m_TagString: Untagged
@@ -17,27 +17,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &599959381
+--- !u!4 &5678327951091406051
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599959380}
+  m_GameObject: {fileID: 5678327951091406050}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1430221879315348923}
+  m_Father: {fileID: 6707076004397846029}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!108 &599959382
+--- !u!108 &5678327951091406048
 Light:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 599959380}
+  m_GameObject: {fileID: 5678327951091406050}
   m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
@@ -92,7 +92,7 @@ Light:
   m_UseBoundingSphereOverride: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
---- !u!1 &1430221879315348926
+--- !u!1 &6707076004397846024
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,38 +100,38 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 1430221879315348923}
-  - component: {fileID: 1430221879315348920}
-  - component: {fileID: 1430221879315348921}
+  - component: {fileID: 6707076004397846029}
+  - component: {fileID: 6707076004397846030}
+  - component: {fileID: 6707076004397846031}
   m_Layer: 0
-  m_Name: Raser
+  m_Name: Laser
   m_TagString: Untagged
   m_Icon: {fileID: 3936346786652291628, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1430221879315348923
+  m_IsActive: 0
+--- !u!4 &6707076004397846029
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430221879315348926}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.3, y: 4, z: -15.87}
+  m_GameObject: {fileID: 6707076004397846024}
+  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
+  m_LocalPosition: {x: 7.399, y: 1.111, z: -1.549}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 599959381}
+  - {fileID: 5678327951091406051}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!120 &1430221879315348920
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
+--- !u!120 &6707076004397846030
 LineRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430221879315348926}
+  m_GameObject: {fileID: 6707076004397846024}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -165,8 +165,10 @@ LineRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Positions:
-  - {x: 0, y: 0, z: 0}
-  - {x: 0, y: 0, z: 0}
+  - {x: -7.399, y: 1.111, z: 1.549}
+  - {x: -5.0256543, y: 1.111, z: 1.5489998}
+  - {x: -5.0256543, y: 1.111, z: 1.5489998}
+  - {x: -5.0256543, y: 1.111, z: 1.5489998}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -231,19 +233,20 @@ LineRenderer:
     generateLightingData: 1
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &1430221879315348921
+--- !u!114 &6707076004397846031
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1430221879315348926}
+  m_GameObject: {fileID: 6707076004397846024}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb0cd9f7be96ed74bb047f0cd77176df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartToRaser: {fileID: 1430221879315348923}
+  Flash: {fileID: 0}
+  StartToRaser: {fileID: 6707076004397846029}
   ReflectObject:
     serializedVersion: 2
     m_Bits: 4096
@@ -257,3 +260,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 65536
   LaserAdvanceLength: 7
+  AngleMin: 0
+  AngleMax: 0
+  AngleSpeed: 0

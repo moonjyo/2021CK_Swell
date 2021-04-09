@@ -84,11 +84,6 @@ public class StageManager : MonoBehaviour
 
     }
 
-    //public void SceneChange(string sceneName)
-    //{
-    //    SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-    //}
-
     public IEnumerator SceneChange(string sceneName)
     {
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
