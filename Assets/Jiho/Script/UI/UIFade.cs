@@ -16,11 +16,11 @@ public class UIFade : UIView
     {
         while (Circle.sizeDelta.x >= 0)
         {
-            Circle.sizeDelta -= new Vector2(40f, 40f);
-            BackBlackUp.sizeDelta += new Vector2(0, 20f);
-            BackBlackDown.sizeDelta += new Vector2(0, 20f);
-            BackBlackLeft.sizeDelta += new Vector2(20f, 0);
-            BackBlackRight.sizeDelta += new Vector2(20f, 0);
+            Circle.sizeDelta -= new Vector2(80f, 80f);
+            BackBlackUp.sizeDelta += new Vector2(0, 40f);
+            BackBlackDown.sizeDelta += new Vector2(0, 40f);
+            BackBlackLeft.sizeDelta += new Vector2(40f, 0);
+            BackBlackRight.sizeDelta += new Vector2(40f, 0);
             yield return new WaitForSeconds(0.01f);
         }
     }
@@ -29,11 +29,11 @@ public class UIFade : UIView
     {
         while (Circle.sizeDelta.x <= 5000)
         {
-            Circle.sizeDelta += new Vector2(40f, 40f);
-            BackBlackUp.sizeDelta -= new Vector2(0, 20f);
-            BackBlackDown.sizeDelta -= new Vector2(0, 20f);
-            BackBlackLeft.sizeDelta -= new Vector2(20f, 0);
-            BackBlackRight.sizeDelta -= new Vector2(20f, 0);
+            Circle.sizeDelta += new Vector2(80f, 80f);
+            BackBlackUp.sizeDelta -= new Vector2(0, 40f);
+            BackBlackDown.sizeDelta -= new Vector2(0, 40f);
+            BackBlackLeft.sizeDelta -= new Vector2(40f, 0);
+            BackBlackRight.sizeDelta -= new Vector2(40f, 0);
             yield return new WaitForSeconds(0.01f);
         }
 
@@ -41,9 +41,5 @@ public class UIFade : UIView
         PlayerManager.Instance.playerMove.IsGravity = false;
         Debug.Log("endin");
         GameManager.Instance.uiManager.UIFade.Toggle(false);
-        if (GameManager.Instance.stageManager.CurrentGetSceneName() == "Stage02")
-        {
-            GameManager.Instance.stageManager.stage2.StartStage2();
-        }
     }
 }
