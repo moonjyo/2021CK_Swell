@@ -15,7 +15,7 @@ public class RefractLaser : MonoBehaviour
     bool IsHitRefract = false;
     public bool IsHitCrystalBall = false;
 
-
+    Vector3 RaserStartPoint;
 
     void Start()
     {
@@ -32,22 +32,23 @@ public class RefractLaser : MonoBehaviour
 
         if (GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
         {
+            RaserStartPoint = this.transform.position + this.transform.forward * 0.25f;
             RaycastHit hit;
-            if (Physics.Raycast(this.transform.position + this.transform.forward * 0.25f, this.transform.right, out hit)) // 자기자신을 맞출떄가잇음
+            if (Physics.Raycast(RaserStartPoint, this.transform.right, out hit)) // 자기자신을 맞출떄가잇음
             {
                 IsHitRefract = true;
                
                 if ((1 << hit.transform.gameObject.layer) == Stage2CrystalBallLayerMask)
                 {
                     IsHitCrystalBall = true;
-                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
+                    Line.SetPosition(0, RaserStartPoint);
                     Line.SetPosition(1, hit.point);
 
                 }
                 else if((1 << hit.transform.gameObject.layer) == RefractionObjLayerMask)
                 {
                     IsHitCrystalBall = false;
-                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
+                    Line.SetPosition(0, RaserStartPoint);
                     Line.SetPosition(1, hit.point);
                 }
 
@@ -55,21 +56,21 @@ public class RefractLaser : MonoBehaviour
                 {
                     IsHitCrystalBall = false;
                     IsHitRefract = false;
-                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
+                    Line.SetPosition(0, RaserStartPoint);
                     Line.SetPosition(1, hit.point);
                 }
                 else
                 {
-                    Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
-                    Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
+                    Line.SetPosition(0, RaserStartPoint);
+                    Line.SetPosition(1, RaserStartPoint + this.transform.right * 5);
                     IsHitCrystalBall = false;
                 }
             }
             else if (!Physics.Raycast(this.transform.position, this.transform.right, out hit))
             {
                 IsHitRefract = false;
-                Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
-                Line.SetPosition(1, this.transform.position + this.transform.forward * 0.25f + this.transform.right * 5);
+                Line.SetPosition(0, RaserStartPoint);
+                Line.SetPosition(1, RaserStartPoint + this.transform.right * 5);
             }
         }
     }

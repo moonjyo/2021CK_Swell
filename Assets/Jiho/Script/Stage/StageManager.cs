@@ -26,14 +26,6 @@ public class StageManager : MonoBehaviour
         GameManager.Instance.uiManager.UIFade.Toggle(true);
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveOut());
         StartCoroutine(ExitStage02());
-        //StartCoroutine(SceneChange("Stage01"));
-        //PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
-        //PlayerManager.Instance.playerMove.IsGravity = true;
-        //PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
-
-        //stage1.SetActive(true);
-        
-
     }
 
     public IEnumerator EnterStage02()
@@ -55,13 +47,15 @@ public class StageManager : MonoBehaviour
     {
         stage1.SetActive(false);
         stage2.gameObject.SetActive(true);
-        GameManager.Instance.stageManager.stage2.Stage2Count = 0;
+
+        //함수로 따로뺴놓기 =================================================================================================================
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[1].position.x, StartTr[1].position.y, StartTr[1].position.z);
+        //====================================================================================================================================
 
         yield return StartCoroutine(SceneChange("Stage02"));
-
+        GameManager.Instance.stageManager.stage2.StartStage2();
         StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
     }
 
@@ -69,10 +63,12 @@ public class StageManager : MonoBehaviour
     {
         stage1.SetActive(true);
         stage2.gameObject.SetActive(false);
+
+        //함수로 따로뺴놓기 =================================================================================================================
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
-
+        //====================================================================================================================================
 
         GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
         GameManager.Instance.stageManager.IsStage2Clear = false;
@@ -87,6 +83,7 @@ public class StageManager : MonoBehaviour
     public IEnumerator SceneChange(string sceneName)
     {
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
+        GameManager.Instance.stageManager.CurrentSceneName = sceneName;
     }
 
     public String CurrentGetSceneName()

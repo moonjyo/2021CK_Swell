@@ -40,6 +40,7 @@ public class UIMainMenu : UIView
         StartButton.SetActive(false);
         ExitButton.SetActive(false);
         yield return StartCoroutine(GameManager.Instance.stageManager.SceneChange("Stage02"));
+        GameManager.Instance.stageManager.stage2.StartStage2();
         yield return StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
         GameManager.Instance.stageManager.stage2.gameObject.SetActive(true);
         GameManager.Instance.uiManager.UIMainMenu.Toggle(false);

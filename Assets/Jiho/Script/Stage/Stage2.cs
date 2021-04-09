@@ -5,13 +5,14 @@ using DG.Tweening;
 
 public class Stage2 : MonoBehaviour
 {
-    public RefractLaser[] RefractObj;
     [HideInInspector]
-    public int Stage2Count = 1;
+    public RefractLaser[] RefractObj;
     [HideInInspector]
     public bool IsMakeStartLaser = false;
 
+    [HideInInspector]
     public GameObject CrystalballCyilnder;
+    [HideInInspector]
     public GameObject[] Curtain;
 
     public StarStick StickInterAction;
@@ -74,7 +75,11 @@ public class Stage2 : MonoBehaviour
         foreach (RefractLaser atarget in GameManager.Instance.stageManager.stage2.RefractObj)
         {
             atarget.IsHitCrystalBall = false;
-            atarget.Line.enabled = false;
+            if(atarget.Line != null)
+            {
+                atarget.Line.enabled = false;
+            }
+            
         }
       
     }
