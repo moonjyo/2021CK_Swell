@@ -8,7 +8,7 @@ public class PlayerMove : MonoBehaviour
     //키값이 들어와있는지 체크
     private Vector3 WalkVec;
     private Vector3 JumpVec;
-    private Vector3 PullVec;
+    private Vector3 InterActionVec;
 
     public LayerMask GroundLayer;
     public LayerMask InteractionLayer;
@@ -35,7 +35,7 @@ public class PlayerMove : MonoBehaviour
     //현재 들수 있는 item을 check한다 
     public LayerMask InterActionLayerMask;
     public Rigidbody InterActionrb;
-    public InterActionObjBase GetInterActionItem;
+    public GetInterActionItem GetInterActionItem;
 
     RaycastHit hitinfo;
     //물체와 충돌하기위한 bool
@@ -59,7 +59,10 @@ public class PlayerMove : MonoBehaviour
     private float DelTimeWalkSoundTime = 0f;
     public float WalkSoundTIme = 1f;
     private bool isSoundStart = false;
-    
+
+
+    //현재 light를 가지고있는지 check 
+    public bool IsLight = false;
 
     private void FixedUpdate()
     {
@@ -100,16 +103,13 @@ public class PlayerMove : MonoBehaviour
             Controller.Move(moveDirection * Time.fixedDeltaTime);
         }
     }
-
-
-
     public void SetJump(Vector3 value) // jump check 
     {
         JumpVec = value;
     }
-    public void SetPull(Vector3 value)
+    public void SetInterAction(Vector3 value)
     {
-        PullVec = value;
+        InterActionVec = value;
     }
     public void Walk()
     {
@@ -120,14 +120,14 @@ public class PlayerMove : MonoBehaviour
             {
                 if (IsInterActionCol && IsGrounded() && !InterActionrb.CompareTag("InterActionItem") && !PlayerManager.Instance.PlayerInput.IsPickUpItem)
                 {
-                    if (PullVec.sqrMagnitude > 0.1f) //당길떄 
+                    if (InterActionVec.sqrMagnitude > 0.1f) //모든 상호작용  
                     {
-                        if (transform.forward != WalkVec && InterActionrb != null)
+                        if (InterActionrb != null)
                         {
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-                            if (-transform.forward == WalkVec)
-                            {
+                            if (-transform.forward == WalkVec) 
+                            {  //당기기  
                                 if (InterActionrb.CompareTag("DirectionItem"))
                                 {
                                     return;
@@ -139,39 +139,46 @@ public class PlayerMove : MonoBehaviour
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                             }
                             else if (transform.right == WalkVec)
-                            {
+                            { // 회전 right
                                 Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 InterActionrb.transform.Rotate(RotateVec);
                             }
                             else if (-transform.right == WalkVec)
-                            {
+                            { //회전 left 
                                 Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 InterActionrb.transform.Rotate(RotateVec);
                             }
+                            else if (transform.forward == WalkVec)
+                            { //밀기 
+                                if (InterActionrb.CompareTag("DirectionItem"))
+                                {
+                                    return;
+                                }
+                                Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
+                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
+                                InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
+                                transform.LookAt(transform.position + WalkVec);
+                                Controller.Move(WalkMove);
+                                InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                            }
+                            else
+                            {
+                                if (InterActionrb.CompareTag("DirectionItem"))
+                                {
+                                    BaseWalk();
+                                    return;
+                                }
+                            }
                         }
                     }
-                    else 
-                    { 
-                        if(InterActionrb.CompareTag("DirectionItem"))
-                        {
-                            BaseWalk();
-                            return;
-                        }
-
-                        Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
-                        PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                        InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
-                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
-                        transform.LookAt(transform.position + WalkVec);
-                        Controller.Move(WalkMove);
-                        InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                    else
+                    {
+                        BaseWalk();
                     }
-                }
-                else
-                {
-                    BaseWalk();
                 }
             }
             else if(!IsInterActionCol)
@@ -289,7 +296,7 @@ public class PlayerMove : MonoBehaviour
             yield break;
         }
 
-        InterActionObjBase InteractionBase = GetInterActionItem.GetComponent<InterActionObjBase>();
+        GetInterActionItem InteractionBase = GetInterActionItem.GetComponent<GetInterActionItem>();
         //domove하고 끝나면 해당 target transform에 계속 update 
 
         if (InteractionBase != null)
@@ -306,7 +313,7 @@ public class PlayerMove : MonoBehaviour
         {
             yield break;
         }
-        InterActionObjBase InteractionBase = GetInterActionItem.GetComponent<InterActionObjBase>();
+        GetInterActionItem InteractionBase = GetInterActionItem.GetComponent<GetInterActionItem>();
 
         if (InteractionBase != null)
         {
@@ -419,13 +426,12 @@ public class PlayerMove : MonoBehaviour
             deltime = 0f;
             IsTime = false;
         }
-
     }
     private void MoveCheck()
     {
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
         {
-            if (PullVec.sqrMagnitude > 0.1f)
+            if (InterActionVec.sqrMagnitude > 0.1f)
             {
                 PlayerManager.Instance.PlayerInput.IsPull = true;
             }
@@ -453,7 +459,6 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-
     public Rigidbody CurrentGetInterActionObj()
     {
         return InterActionrb;
@@ -476,7 +481,7 @@ public class PlayerMove : MonoBehaviour
         InterActionrb = Col;
     }
 
-    public void SetGetItemObj(InterActionObjBase InterActionBase)
+    public void SetGetItemObj(GetInterActionItem InterActionBase)
     {
         GetInterActionItem = InterActionBase;
     }

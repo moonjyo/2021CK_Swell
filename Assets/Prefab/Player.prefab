@@ -240,8 +240,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.21445543, y: 0.3650302, z: 0.4168666}
-  m_Center: {x: 0.49894106, y: 0.015670573, z: -0.30547482}
+  m_Size: {x: 0.21445543, y: 0.3650302, z: 0.6471176}
+  m_Center: {x: 0.49894232, y: 0.015670573, z: -0.42060092}
 --- !u!1 &2109782337
 GameObject:
   m_ObjectHideFlags: 0
@@ -1753,7 +1753,7 @@ MonoBehaviour:
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8144477910241256719}
-        m_MethodName: OnPull
+        m_MethodName: OnInterAction
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1765,21 +1765,6 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 45e03ab1-9e66-4d56-b8f9-1ab1678a4397
     m_ActionName: Player/Pull[/Keyboard/f]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8144477910241256719}
-        m_MethodName: OnPickUpObj
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 42af963b-50bd-4d22-bd83-ad0ed4f3ceaf
-    m_ActionName: Player/PickUpObj[/Keyboard/g]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8144477910241256719}
@@ -1900,7 +1885,7 @@ MonoBehaviour:
   IsPull: 0
   IsPickUpItem: 0
   IsJumpCanceled: 0
-  IsLightGet: 0
+  IsLightGetReady: 0
 --- !u!114 &2235838537847800685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1915,7 +1900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 398336
+    m_Bits: 463872
   InteractionLayer:
     serializedVersion: 2
     m_Bits: 4096
@@ -1942,6 +1927,7 @@ MonoBehaviour:
   WalkSpeed: 2
   ClimingOffsetVec: {x: 0.7, y: 1.5}
   WalkSoundTIme: 0.65
+  IsLight: 0
 --- !u!114 &1814965978978294149
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2192,7 +2178,7 @@ PrefabInstance:
     - target: {fileID: 1430221879315348921, guid: 031636079b3bc0241b846a210aef87fa,
         type: 3}
       propertyPath: AngleMin
-      value: -0.6
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 1430221879315348921, guid: 031636079b3bc0241b846a210aef87fa,
         type: 3}

@@ -24,10 +24,16 @@ public class LeverDown : MonoBehaviour
     {
           if ((1 << collision.transform.gameObject.layer & PlayerLayer) != 0)
          {
-            StartCoroutine(InterActionRayCast());
-        }
+            LeverDownOn();
+          }
      }
-    private IEnumerator InterActionRayCast()
+
+    public void LeverDownOn()
+    {
+        StartCoroutine(InterActionLever());
+    }
+
+    public IEnumerator InterActionLever()
     {
         while (!IsPlay)
         {

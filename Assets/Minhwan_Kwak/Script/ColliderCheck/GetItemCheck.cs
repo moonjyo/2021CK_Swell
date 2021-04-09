@@ -11,7 +11,7 @@ public class GetItemCheck : MonoBehaviour
         {
             PlayerManager.Instance.playerMove.IsItemCol = true;
 
-            InterActionObjBase InterActionrb = other.GetComponent<InterActionObjBase>();
+            GetInterActionItem InterActionrb = other.GetComponent<GetInterActionItem>();
             if (InterActionrb != null)
             {
                 PlayerManager.Instance.playerMove.SetGetItemObj(InterActionrb);

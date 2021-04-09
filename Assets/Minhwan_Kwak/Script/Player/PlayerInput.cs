@@ -9,14 +9,15 @@ public class PlayerInput : MonoBehaviour
     public bool IsPickUpItem = false;
     public bool IsJumpCanceled = false;
 
-    public bool IsLightGet = false;
+    public bool IsLightGetReady = false;
+
+    private GameObject ObjLight;
     public void OnWalk(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
 
         Vector3 MoveVec = new Vector3(InputValue.x, 0, InputValue.y);
         PlayerManager.Instance.playerMove.SetMove(MoveVec);
-
     }
 
     public void OnJump(InputAction.CallbackContext context)
@@ -36,26 +37,22 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void OnPull(InputAction.CallbackContext context)
+    public void OnInterAction(InputAction.CallbackContext context)
     {
         Vector2 value = context.ReadValue<Vector2>();
         Vector3 PullVec = new Vector3(value.x, 0, 0);
-        PlayerManager.Instance.playerMove.SetPull(PullVec);
+        PlayerManager.Instance.playerMove.SetInterAction(PullVec);
 
         if(context.performed)
         {
-
-
-            if (GameManager.Instance.stageManager.CurrentSceneName == "Stage02")
+            InterActionStick();
+            PickUpItem();
+            if(IsLightGetReady)
             {
-                if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
-                {
-                    GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
-                }
+                PlayerManager.Instance.playerMove.IsLight = true;
+                Destroy(ObjLight);  
             }
-            
         }
-
         if (context.canceled)
         {
             IsPull = false;
@@ -63,30 +60,42 @@ public class PlayerInput : MonoBehaviour
         }
     }
 
-    public void OnPickUpObj(InputAction.CallbackContext context)
+    public void InterActionStick()
     {
-        if (context.performed)
+        if (GameManager.Instance.stageManager.CurrentSceneName == "Stage02")
         {
-           if(PlayerManager.Instance.playerMove.GetInterActionItem == null)
+            if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
             {
-                return;
+                GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
             }
-            if ((PlayerManager.Instance.playerMove.GetInterActionItem.CompareTag("InterActionItem") && PlayerManager.Instance.playerMove.IsItemCol) && 
-                 !IsPickUpItem)
+        }
+    }
+
+    public void IsGetLight(GameObject light , bool IsCheck)
+    {
+        ObjLight = light;
+        IsLightGetReady = true;
+    }
+    public void PickUpItem()
+    {
+        if (PlayerManager.Instance.playerMove.GetInterActionItem == null)
+        {
+            return;
+        }
+        if ((PlayerManager.Instance.playerMove.GetInterActionItem.CompareTag("InterActionItem") &&   PlayerManager.Instance.playerMove.IsItemCol) && !IsPickUpItem)
+        {
+            if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
             {
-                if (PlayerManager.Instance.playerMove.IsItemCol && !IsPickUpItem)
-                {
-                    IsPickUpItem = true;
-                    StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
-                }
+                IsPickUpItem = true;
+                StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickUp());
             }
-            else
-            {
-                PlayerManager.Instance.playerMove.IsItemCol = false;
-                PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
-                IsPickUpItem = false;
-                StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
-            }
+        }
+        else
+        {
+            PlayerManager.Instance.playerMove.IsItemCol = false;
+            PlayerManager.Instance.playerMove.SetRemoveGetItemObj();
+            IsPickUpItem = false;
+            StartCoroutine(PlayerManager.Instance.playerMove.InterActionItemPickDown());
         }
     }
     public void OnRightMouseButton(InputAction.CallbackContext context)
@@ -119,7 +128,7 @@ public class PlayerInput : MonoBehaviour
 
     public void LightOnOff(InputAction.CallbackContext context)
     {
-        if (context.performed && IsLightGet)
+        if (context.performed && PlayerManager.Instance.playerMove.IsLight)
         {
             PlayerManager.Instance.flashLight.Toggle();
         }
@@ -128,7 +137,7 @@ public class PlayerInput : MonoBehaviour
     public void LighAngle(InputAction.CallbackContext context)
     {
         InputValue = context.ReadValue<Vector2>();
-        if (IsLightGet)
+        if (PlayerManager.Instance.playerMove.IsLight)
         {
             Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
             PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);

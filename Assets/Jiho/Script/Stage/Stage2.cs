@@ -23,6 +23,8 @@ public class Stage2 : MonoBehaviour
     public RefractLaser OriginShootLaser;
     public List<RefractLaser> HitRefractObj = new List<RefractLaser>();
 
+    [HideInInspector]
+    public GameObject GarbageLocationObj;
 
     private void Update()
     {

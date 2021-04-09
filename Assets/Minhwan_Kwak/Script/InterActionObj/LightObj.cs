@@ -10,8 +10,7 @@ public class LightObj : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & PlayerLayer) != 0)
         {
-            PlayerManager.Instance.PlayerInput.IsLightGet = true;
-            Destroy(gameObject);
+            PlayerManager.Instance.PlayerInput.IsGetLight(gameObject, true);
         }
     }
 }

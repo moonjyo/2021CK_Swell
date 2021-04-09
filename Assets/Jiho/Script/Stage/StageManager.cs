@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class StageManager : MonoBehaviour
 {
-    public GameObject stage1;
+    public Stage1 stage1;
     public Stage2 stage2;
 
     public bool IsStage2Clear = false;
@@ -30,10 +30,7 @@ public class StageManager : MonoBehaviour
         //PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         //PlayerManager.Instance.playerMove.IsGravity = true;
         //PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[0].position.x, StartTr[0].position.y, StartTr[0].position.z);
-
         //stage1.SetActive(true);
-        
-
     }
 
     public IEnumerator EnterStage02()
@@ -53,21 +50,22 @@ public class StageManager : MonoBehaviour
 
     IEnumerator ExitStage01()
     {
-        stage1.SetActive(false);
+        stage1.gameObject.SetActive(false);
         stage2.gameObject.SetActive(true);
         GameManager.Instance.stageManager.stage2.Stage2Count = 0;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
         PlayerManager.Instance.playerMove.Root_Tr.position = new Vector3(StartTr[1].position.x, StartTr[1].position.y, StartTr[1].position.z);
 
-        yield return StartCoroutine(SceneChange("Stage02"));
+        yield return StartCoroutine(SceneChange("Stage02")); //씬체인지 이후 
+
 
         StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
     }
 
     IEnumerator ExitStage02()
     {
-        stage1.SetActive(true);
+        stage1.gameObject.SetActive(true);
         stage2.gameObject.SetActive(false);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerMove.IsGravity = true;
@@ -80,6 +78,8 @@ public class StageManager : MonoBehaviour
 
         yield return StartCoroutine(SceneChange("Stage01"));
 
+
+
         StartCoroutine(GameManager.Instance.uiManager.UIFade.SceneMoveIn());
 
     }
@@ -91,6 +91,7 @@ public class StageManager : MonoBehaviour
 
     public IEnumerator SceneChange(string sceneName)
     {
+
         yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
     }
 
@@ -100,5 +101,6 @@ public class StageManager : MonoBehaviour
 
         return CurrentSceneName;
     }
+
 
 }

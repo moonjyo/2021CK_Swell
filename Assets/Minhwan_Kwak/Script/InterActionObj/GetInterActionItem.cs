@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InterActionObjBase : MonoBehaviour
+public class GetInterActionItem : MonoBehaviour
 {
     
     [HideInInspector]
@@ -13,10 +13,6 @@ public class InterActionObjBase : MonoBehaviour
     public Vector3 ItemOffsetPos;
     
     public Vector3 moveDirection;
-    public float Gravity = 20f;
-    public float GravityAcceleration = 12f;
-    public bool IsGravity = false;
-
     private void Start()
     {
         rb = transform.GetComponent<Rigidbody>();
@@ -34,7 +30,6 @@ public class InterActionObjBase : MonoBehaviour
     }
     public bool FollowOff()
     {
-        transform.parent = null;
         Col.isTrigger = false;
         rb.isKinematic = false;
         rb.constraints = RigidbodyConstraints.FreezeRotation;
