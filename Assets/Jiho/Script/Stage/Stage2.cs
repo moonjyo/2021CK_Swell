@@ -50,7 +50,6 @@ public class Stage2 : MonoBehaviour
                     SuccessMakeStartLaser();
 
                 }
-                    
             }
         }
       
@@ -105,7 +104,7 @@ public class Stage2 : MonoBehaviour
             }
             if (!IsMakeStartLaser)
             {
-                CrystalballCyilnder.transform.DOMoveY(0.5f, 3f, false);
+                CrystalballCyilnder.transform.DOMoveY(0.5f, 0.5f, false);
                 //StartCoroutine(Stage2ClearProduction());
                 IsMakeStartLaser = true;
             }
@@ -114,7 +113,7 @@ public class Stage2 : MonoBehaviour
         }
         else if (IsMakeStartLaser && !IsInStick)
         {
-            CrystalballCyilnder.transform.DOMoveY(-1.0f, 3f, false);
+            CrystalballCyilnder.transform.DOMoveY(-1.0f, 0.5f, false);
             IsMakeStartLaser = false;
             return false;
         }

@@ -24,9 +24,10 @@ public class RefractLaser : MonoBehaviour
 
     private void Update()
     {
-        if(PlayerManager.Instance.flashLight.gameObject.activeInHierarchy == false && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+        if (PlayerManager.Instance.flashLight.gameObject.activeInHierarchy == false && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
         {
             Line.enabled = false;
+            //GameManager.Instance.stageManager.stage2.SuccessMakeStartLaser();
             return;
         }
 
@@ -52,10 +53,14 @@ public class RefractLaser : MonoBehaviour
                     Line.SetPosition(1, hit.point);
                 }
 
-                else if ((1 << hit.transform.gameObject.layer & PlayerLayerMask) != 0)
+                else if ((1 << hit.transform.gameObject.layer & PlayerLayerMask) != 0) // 캐릭터 일때 꺼지더라도 지나가고나면 빛은 유지되게 , itemlayermask 추가?
                 {
-                    IsHitCrystalBall = false;
-                    IsHitRefract = false;
+                    //IsHitCrystalBall = false;
+                    //IsHitRefract = false;
+                    //if (!GameManager.Instance.stageManager.stage2.IsInStick)
+                    //{
+                    //    GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
+                    //}
                     Line.SetPosition(0, RaserStartPoint);
                     Line.SetPosition(1, hit.point);
                 }
@@ -64,6 +69,12 @@ public class RefractLaser : MonoBehaviour
                     Line.SetPosition(0, RaserStartPoint);
                     Line.SetPosition(1, RaserStartPoint + this.transform.right * 5);
                     IsHitCrystalBall = false;
+                    IsHitRefract = false;
+                    //if(!GameManager.Instance.stageManager.stage2.IsInStick)
+                    //{
+                    //    GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
+                    //}
+                    
                 }
             }
             else if (!Physics.Raycast(this.transform.position, this.transform.right, out hit))
@@ -117,9 +128,9 @@ public class RefractLaser : MonoBehaviour
 
             IsHitRefract = false;
             Line.enabled = true;
-            Line.SetPosition(0, transform.position + transform.forward * 0.25f);
+            Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
             //Line.SetPosition(1, transform.position + transform.forward * 5);
-            Line.SetPosition(1, transform.position + transform.right * 5);
+            Line.SetPosition(1, transform.position + this.transform.forward * 0.25f + transform.right * 5);
             if (Refract != null)
             Refract.Line.enabled = false;
 
