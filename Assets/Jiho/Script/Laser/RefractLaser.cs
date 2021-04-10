@@ -9,6 +9,7 @@ public class RefractLaser : MonoBehaviour
     public LayerMask RefractionObjLayerMask;
     public LayerMask Stage2CrystalBallLayerMask;
     public LayerMask PlayerLayerMask;
+    public LayerMask ItemLayerMask;
 
     RefractLaser Refract;
 
@@ -53,7 +54,7 @@ public class RefractLaser : MonoBehaviour
                     Line.SetPosition(1, hit.point);
                 }
 
-                else if ((1 << hit.transform.gameObject.layer & PlayerLayerMask) != 0) // 캐릭터 일때 꺼지더라도 지나가고나면 빛은 유지되게 , itemlayermask 추가?
+                else if ((1 << hit.transform.gameObject.layer) == PlayerLayerMask || (1 << hit.transform.gameObject.layer) == ItemLayerMask) // 캐릭터 일때 꺼지더라도 지나가고나면 빛은 유지되게
                 {
                     //IsHitCrystalBall = false;
                     //IsHitRefract = false;
@@ -67,7 +68,7 @@ public class RefractLaser : MonoBehaviour
                 else
                 {
                     Line.SetPosition(0, RaserStartPoint);
-                    Line.SetPosition(1, RaserStartPoint + this.transform.right * 5);
+                    Line.SetPosition(1, RaserStartPoint + this.transform.right * 15);
                     IsHitCrystalBall = false;
                     IsHitRefract = false;
                     //if(!GameManager.Instance.stageManager.stage2.IsInStick)
@@ -81,7 +82,7 @@ public class RefractLaser : MonoBehaviour
             {
                 IsHitRefract = false;
                 Line.SetPosition(0, RaserStartPoint);
-                Line.SetPosition(1, RaserStartPoint + this.transform.right * 5);
+                Line.SetPosition(1, RaserStartPoint + this.transform.right * 15);
             }
         }
     }
@@ -130,7 +131,7 @@ public class RefractLaser : MonoBehaviour
             Line.enabled = true;
             Line.SetPosition(0, this.transform.position + this.transform.forward * 0.25f);
             //Line.SetPosition(1, transform.position + transform.forward * 5);
-            Line.SetPosition(1, transform.position + this.transform.forward * 0.25f + transform.right * 5);
+            Line.SetPosition(1, transform.position + this.transform.forward * 0.25f + transform.right * 15);
             if (Refract != null)
             Refract.Line.enabled = false;
 
