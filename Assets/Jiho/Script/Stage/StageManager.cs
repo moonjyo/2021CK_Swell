@@ -59,7 +59,7 @@ public class StageManager : MonoBehaviour
         stage1.gameObject.SetActive(true);
         stage2.gameObject.SetActive(false);
         PlayerStageIn(0);
-        GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
+        GameManager.Instance.stageManager.stage2.IsMakeStarLaser = false;
         GameManager.Instance.stageManager.IsStage2Clear = false;
         GameManager.Instance.stageManager.stage2.IsInStick = false;
 

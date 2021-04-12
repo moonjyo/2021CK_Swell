@@ -136,7 +136,6 @@ public class RefelctFound : MonoBehaviour
 
             Refract = hit.transform.GetComponent<RefractLaser>();
 
-            //if(Refract.GetRefract(hit.transform.forward))
             GameManager.Instance.stageManager.stage2.OriginShootLaser = Refract;
             if(!GameManager.Instance.stageManager.stage2.HitRefractObj.Contains(Refract))
             {
@@ -155,7 +154,6 @@ public class RefelctFound : MonoBehaviour
             }
         }
         else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity, CheckLayerMask) && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
-        //else if((1 << hit.transform.gameObject.layer) != CheckLayerMask && Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
         {
             Line.SetPosition(0, transform.position);
             Line.SetPosition(1, hit.point);
@@ -164,7 +162,7 @@ public class RefelctFound : MonoBehaviour
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
-            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStarLaser)
                 GameManager.Instance.stageManager.stage2.EraseLaser();
 
         }
@@ -173,12 +171,12 @@ public class RefelctFound : MonoBehaviour
             Line.SetPosition(3, StartPos + value * LaserAdvanceLength);
             ReflectCount = 1;
         }
-        else if (!Physics.Raycast(transform.position, transform.forward, out hit, Mathf.Infinity))
+        else if (!Physics.Raycast(transform.position, transform.forward, Mathf.Infinity))
         {
             IsTouchLens = false;
             if (LensLight != null)
                 LensLight.Line.enabled = false;
-            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+            if (Refract != null && !GameManager.Instance.stageManager.stage2.IsMakeStarLaser)
                 GameManager.Instance.stageManager.stage2.EraseLaser();
 
             Line.SetPosition(0, transform.position);

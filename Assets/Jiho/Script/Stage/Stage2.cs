@@ -8,7 +8,7 @@ public class Stage2 : MonoBehaviour
     [HideInInspector]
     public RefractLaser[] RefractObj;
     [HideInInspector]
-    public bool IsMakeStartLaser = false;
+    public bool IsMakeStarLaser = false;
 
     [HideInInspector]
     public GameObject CrystalballCyilnder;
@@ -29,7 +29,7 @@ public class Stage2 : MonoBehaviour
 
     private void Update()
     {
-        if(IsMakeStartLaser && !GameManager.Instance.stageManager.IsStage2Clear)
+        if(IsMakeStarLaser && !GameManager.Instance.stageManager.IsStage2Clear)
         {
             int i = 0;
             foreach (RefractLaser target in RefractObj)
@@ -62,6 +62,12 @@ public class Stage2 : MonoBehaviour
         RefractObj[3] = GameObject.Find("Jewerly4").gameObject.GetComponent<RefractLaser>();
         RefractObj[4] = GameObject.Find("Jewerly5").gameObject.GetComponent<RefractLaser>();
 
+        RefractObj[0].ForMakeStarRefractObj = RefractObj[2];
+        RefractObj[1].ForMakeStarRefractObj = RefractObj[3];
+        RefractObj[2].ForMakeStarRefractObj = RefractObj[4];
+        RefractObj[3].ForMakeStarRefractObj = RefractObj[0];
+        RefractObj[4].ForMakeStarRefractObj = RefractObj[1];
+
         CrystalballCyilnder = GameObject.Find("Star");
         Curtain[0] = GameObject.Find("ClockDoor1");
         Curtain[1] = GameObject.Find("ClockDoor2");
@@ -69,7 +75,7 @@ public class Stage2 : MonoBehaviour
         Stage2ToStage1EnterPoint = GameObject.Find("Stage2ToStage1EnterPoint");
         StickInterAction = CrystalballCyilnder.GetComponentInChildren<StarStick>();
 
-        GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
+        GameManager.Instance.stageManager.stage2.IsMakeStarLaser = false;
         GameManager.Instance.stageManager.IsStage2Clear = false;
         GameManager.Instance.stageManager.stage2.IsInStick = false;
 
@@ -88,33 +94,33 @@ public class Stage2 : MonoBehaviour
     public bool SuccessMakeStartLaser() 
     {
         int i = 0;
-        foreach (RefractLaser target in RefractObj)
+
+        foreach(RefractLaser target in RefractObj)
         {
-            if (target.IsHitRefractObj())
+            if(target.ForMakeStarRefractObj == target.GetRefractObj())
             {
                 i++;
             }
         }
 
-        if (i >= 5) // 5개 빛을 모두 보석에 모았을 때
+        if (i >= 5) // 5개 빛이 모두 별모양을 그렸을 때, 보석들이 비추어야 할 다른 보석들을 비추고 있을 때
         {
             foreach (RefractLaser target in RefractObj)
             {
                 target.Line.enabled = true;
             }
-            if (!IsMakeStartLaser)
+            if (!IsMakeStarLaser)
             {
                 CrystalballCyilnder.transform.DOMoveY(0.5f, 0.5f, false);
-                //StartCoroutine(Stage2ClearProduction());
-                IsMakeStartLaser = true;
+                IsMakeStarLaser = true;
             }
 
             return true;
         }
-        else if (IsMakeStartLaser && !IsInStick)
+        else if (IsMakeStarLaser && !IsInStick)
         {
             CrystalballCyilnder.transform.DOMoveY(-1.0f, 0.5f, false);
-            IsMakeStartLaser = false;
+            IsMakeStarLaser = false;
             return false;
         }
         else
@@ -127,12 +133,10 @@ public class Stage2 : MonoBehaviour
 
     IEnumerator Stage2ClearProduction()
     {
-        //CrystalballCyilnder.transform.DOMoveY(2.7f, 3f, false);
         yield return new WaitForSeconds(3f);
         Curtain[0].transform.DOLocalMoveZ(Curtain[0].transform.localPosition.z + 0.45f, 2f);
         Curtain[1].transform.DOLocalMoveZ(Curtain[1].transform.localPosition.z - 0.45f, 2f);
-        //Curtain[0].transform.DOLocalMoveZ(0.81f, 2f);
-        //Curtain[1].transform.DOLocalMoveZ(-0.81f, 2f);
+
 
     }
 

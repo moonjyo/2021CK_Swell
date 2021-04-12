@@ -12,6 +12,7 @@ public class RefractLaser : MonoBehaviour
     public LayerMask ItemLayerMask;
 
     RefractLaser Refract;
+    public RefractLaser ForMakeStarRefractObj;
 
     bool IsHitRefract = false;
     public bool IsHitCrystalBall = false;
@@ -25,14 +26,14 @@ public class RefractLaser : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerManager.Instance.flashLight.gameObject.activeInHierarchy == false && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+        if (PlayerManager.Instance.flashLight.gameObject.activeInHierarchy == false && !GameManager.Instance.stageManager.stage2.IsMakeStarLaser)
         {
             Line.enabled = false;
             //GameManager.Instance.stageManager.stage2.SuccessMakeStartLaser();
             return;
         }
 
-        if (GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+        if (GameManager.Instance.stageManager.stage2.IsMakeStarLaser)
         {
             RaserStartPoint = this.transform.position + this.transform.forward * 0.25f;
             RaycastHit hit;
@@ -56,14 +57,10 @@ public class RefractLaser : MonoBehaviour
 
                 else if ((1 << hit.transform.gameObject.layer) == PlayerLayerMask || (1 << hit.transform.gameObject.layer) == ItemLayerMask) // 캐릭터 일때 꺼지더라도 지나가고나면 빛은 유지되게
                 {
-                    //IsHitCrystalBall = false;
-                    //IsHitRefract = false;
-                    //if (!GameManager.Instance.stageManager.stage2.IsInStick)
-                    //{
-                    //    GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
-                    //}
+
                     Line.SetPosition(0, RaserStartPoint);
                     Line.SetPosition(1, hit.point);
+                    Refract = null; // 유지할지말지 고민
                 }
                 else
                 {
@@ -71,10 +68,7 @@ public class RefractLaser : MonoBehaviour
                     Line.SetPosition(1, RaserStartPoint + this.transform.right * 15);
                     IsHitCrystalBall = false;
                     IsHitRefract = false;
-                    //if(!GameManager.Instance.stageManager.stage2.IsInStick)
-                    //{
-                    //    GameManager.Instance.stageManager.stage2.IsMakeStartLaser = false;
-                    //}
+                    Refract = null;
                     
                 }
             }
@@ -105,7 +99,7 @@ public class RefractLaser : MonoBehaviour
             {
                 if(target == Refract)
                 {
-                    Refract = null;
+                    //Refract = null;
                     GameManager.Instance.stageManager.stage2.HitRefractObj.Clear();
                     return true;
                 }
@@ -118,7 +112,7 @@ public class RefractLaser : MonoBehaviour
 
             return true;
         }
-        else if(!GameManager.Instance.stageManager.stage2.IsMakeStartLaser)
+        else if(!GameManager.Instance.stageManager.stage2.IsMakeStarLaser)
         {
             GameManager.Instance.stageManager.stage2.EraseLaser(); // 간혹 버그유발?
 
@@ -136,19 +130,17 @@ public class RefractLaser : MonoBehaviour
             Refract.Line.enabled = false;
 
             Refract = null;
-            //GameManager.Instance.stageManager.stage2.Stage2Count = 0;
             return false;
         }
         else
         {
-            //GameManager.Instance.stageManager.stage2.Stage2Count = 0;
             return false;
         }
     }
 
     public void EraseLaser()
     {
-        if(Line != null && !GameManager.Instance.stageManager.stage2.IsMakeStartLaser && !IsHitRefract) // 빛을 받고있지 않은애들 지우기, 라인이 존재하고있어야하고 이후엔 사라져야 할 떄
+        if(Line != null && !GameManager.Instance.stageManager.stage2.IsMakeStarLaser && !IsHitRefract) // 빛을 받고있지 않은애들 지우기, 라인이 존재하고있어야하고 이후엔 사라져야 할 떄
         this.Line.enabled = false;
     }
 
@@ -171,6 +163,11 @@ public class RefractLaser : MonoBehaviour
     public void SetIsHitCrystalBallObj(bool setvalue)
     {
         IsHitCrystalBall = setvalue;
+    }
+
+    public RefractLaser GetRefractObj()
+    {
+        return Refract;
     }
 
 }
