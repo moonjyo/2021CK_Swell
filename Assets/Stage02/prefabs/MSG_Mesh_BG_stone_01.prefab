@@ -13,9 +13,7 @@ GameObject:
   - component: {fileID: 7950538861405475527}
   - component: {fileID: 1382856092}
   - component: {fileID: 1382856096}
-  - component: {fileID: 1772064075}
   - component: {fileID: 1866546678}
-  - component: {fileID: 1866546673}
   - component: {fileID: 1866546676}
   m_Layer: 16
   m_Name: MSG_Mesh_BG_stone_01
@@ -96,8 +94,8 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.24
-  m_Center: {x: -0.014442057, y: -0.01440871, z: 0.25725242}
+  m_Radius: 0.32829896
+  m_Center: {x: -0.014442059, y: -0.02240584, z: 0.25725245}
 --- !u!114 &1382856096
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,20 +118,10 @@ MonoBehaviour:
   PlayerLayerMask:
     serializedVersion: 2
     m_Bits: 256
+  ItemLayerMask:
+    serializedVersion: 2
+    m_Bits: 4096
   IsHitCrystalBall: 0
---- !u!135 &1772064075
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454664460809581330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.24
-  m_Center: {x: -0.014442045, y: -0.014408766, z: 0.25725248}
 --- !u!54 &1866546678
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -150,19 +138,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!135 &1866546673
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8454664460809581330}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.24
-  m_Center: {x: -0.014442056, y: -0.014408711, z: 0.25725248}
 --- !u!120 &1866546676
 LineRenderer:
   m_ObjectHideFlags: 0

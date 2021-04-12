@@ -6,14 +6,14 @@ public class PushColliderCheck : MonoBehaviour
 {
     public LayerMask PushLayer;
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-         if((1 << other.gameObject.layer & PushLayer) != 0 && PlayerManager.Instance.playerMove.PushItemCheck())
-         {
+        if ((1 << other.gameObject.layer & PushLayer) != 0 && PlayerManager.Instance.playerMove.PushItemCheck())
+        {
             PlayerManager.Instance.playerMove.IsInterActionCol = true;
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.ItemTouch);
 
-          Rigidbody InterActionrb  =  other.GetComponent<Rigidbody>();
+            Rigidbody InterActionrb = other.GetComponent<Rigidbody>();
             if (InterActionrb != null)
             {
                 PlayerManager.Instance.playerMove.SetInterActionObj(InterActionrb);
