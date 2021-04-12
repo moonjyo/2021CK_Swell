@@ -12,6 +12,7 @@ public class RefractLaser : MonoBehaviour
     public LayerMask ItemLayerMask;
 
     RefractLaser Refract;
+    public RefractLaser ForMakeStarRefractObj;
 
     bool IsHitRefract = false;
     public bool IsHitCrystalBall = false;
@@ -105,7 +106,7 @@ public class RefractLaser : MonoBehaviour
             {
                 if(target == Refract)
                 {
-                    Refract = null;
+                    //Refract = null;
                     GameManager.Instance.stageManager.stage2.HitRefractObj.Clear();
                     return true;
                 }
@@ -171,6 +172,11 @@ public class RefractLaser : MonoBehaviour
     public void SetIsHitCrystalBallObj(bool setvalue)
     {
         IsHitCrystalBall = setvalue;
+    }
+
+    public RefractLaser GetRefractObj()
+    {
+        return Refract;
     }
 
 }

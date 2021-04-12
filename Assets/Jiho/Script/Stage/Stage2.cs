@@ -62,6 +62,12 @@ public class Stage2 : MonoBehaviour
         RefractObj[3] = GameObject.Find("Jewerly4").gameObject.GetComponent<RefractLaser>();
         RefractObj[4] = GameObject.Find("Jewerly5").gameObject.GetComponent<RefractLaser>();
 
+        RefractObj[0].ForMakeStarRefractObj = RefractObj[2];
+        RefractObj[1].ForMakeStarRefractObj = RefractObj[3];
+        RefractObj[2].ForMakeStarRefractObj = RefractObj[4];
+        RefractObj[3].ForMakeStarRefractObj = RefractObj[0];
+        RefractObj[4].ForMakeStarRefractObj = RefractObj[1];
+
         CrystalballCyilnder = GameObject.Find("Star");
         Curtain[0] = GameObject.Find("ClockDoor1");
         Curtain[1] = GameObject.Find("ClockDoor2");
@@ -88,9 +94,17 @@ public class Stage2 : MonoBehaviour
     public bool SuccessMakeStartLaser() 
     {
         int i = 0;
-        foreach (RefractLaser target in RefractObj)
+        //foreach (RefractLaser target in RefractObj)
+        //{
+        //    if (target.IsHitRefractObj())
+        //    {
+        //        i++;
+        //    }
+        //}
+
+        foreach(RefractLaser target in RefractObj)
         {
-            if (target.IsHitRefractObj())
+            if(target.ForMakeStarRefractObj == target.GetRefractObj())
             {
                 i++;
             }
