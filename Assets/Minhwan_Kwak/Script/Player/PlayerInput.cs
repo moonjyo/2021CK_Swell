@@ -64,7 +64,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (GameManager.Instance.stageManager.CurrentSceneName == "Stage02")
         {
-            if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick)
+            if (GameManager.Instance.stageManager.stage2.StickInterAction.IsOnTriggerStick && IsPickUpItem)
             {
                 GameManager.Instance.stageManager.stage2.StickInterAction.StartStickInterAction();
             }
