@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8540768725931371173
+--- !u!114 &-4157594653145560086
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,8 +20,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Glass_shader
-  m_Shader: {fileID: -6465566751694194690, guid: 1e781cc8ec325b74a8d67c52d3a147b6,
+  m_Name: MSG_Shader_VolumetricLight
+  m_Shader: {fileID: -6465566751694194690, guid: 4dc58e4b7ef42494faeb7d890c75fd62,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -33,10 +33,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - Texture2D_4CDE8D87:
-        m_Texture: {fileID: 2800000, guid: 9c4d0e6efb5578941895058b68a2c022, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -61,16 +57,22 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_C27DF67A_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 1f89fed00b6bc904c861ab847a811cb8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _SampleTexture2D_DBE12117_Texture_1:
+        m_Texture: {fileID: 2800000, guid: 84e89252cb747a945a899a3aa252686a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - Vector1_2ACFFEB8: 0.58
-    - Vector1_56B981A8: 0.04
-    - Vector1_7056C9C1: 1
-    - Vector1_7124B3CC: 2.36
-    - Vector1_81C965A1: 0.05
+    - Boolean_8F0344D3: 1
+    - Vector1_48354B04: 0.1
+    - Vector1_70F3DE74: 0.86
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -93,7 +95,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_4F5A2A29: {r: 0, g: 0, b: 0, a: 0}
+    - Color_72C24FB8: {r: 1, g: 0.7846135, b: 0.3537736, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
