@@ -40,8 +40,12 @@ public class FunctionTimer
 
     public static FunctionTimer Create(Action  action , float timer, string timerName = null)
     {
-            InitIfNeeded();
-
+        InitIfNeeded();
+        bool IsSame =  SameNameStopTimer(timerName);
+        if (IsSame)
+        {
+            return null;
+        }
             GameObject gameObject = new GameObject("FunctionTimer", typeof(MonoBehavidourHook));
 
             FunctionTimer functionTimer = new FunctionTimer(action, timer, timerName, gameObject);
@@ -50,6 +54,19 @@ public class FunctionTimer
 
             activeTimeList.Add(functionTimer);
             return functionTimer;
+        
+    }
+
+    public static bool SameNameStopTimer(string CreateTimerName)
+    {
+        for(int i =0; i < activeTimeList.Count; ++i)
+        {
+            if(activeTimeList[i].timername == CreateTimerName)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     private static void RemoveTimer(FunctionTimer functionTimer)
@@ -57,7 +74,6 @@ public class FunctionTimer
         InitIfNeeded();
         activeTimeList.Remove(functionTimer);
     }
-  
     private Action action;
     private float timer;
     private bool isDestroyed;
@@ -72,10 +88,6 @@ public class FunctionTimer
         this.isDestroyed = false;
     }
 
-    private void MyAction()
-    {
-
-    }
 
     public void Update()
     {

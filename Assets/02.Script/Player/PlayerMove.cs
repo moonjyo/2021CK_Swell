@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 public class PlayerMove : MonoBehaviour
 {
 
@@ -15,10 +16,7 @@ public class PlayerMove : MonoBehaviour
 
     public bool IsGravity = false;
     public Vector3 moveDirection;
-    public float jumpspeed = 8.0f;
-    public float Gravity = 20f;
-    public float GravityAcceleration = 12f;
-
+    
 
     //현재 tr과 다른 자식 tr을 알기위해
     public Transform Root_Tr;
@@ -46,41 +44,26 @@ public class PlayerMove : MonoBehaviour
 
     public CharacterController Controller;
 
-    private bool IsTime = false;
-    private float deltime = 0f;
 
-    public float PullSpeed;
-    public float PushSpeed;
-    public float WalkSpeed;
 
     public Vector2 ClimingOffsetVec;
 
 
     private float DelTimeWalkSoundTime = 0f;
-    public float WalkSoundTIme = 1f;
-    private bool isSoundStart = false;
 
 
     //현재 light를 가지고있는지 check 
     public bool IsLight = false;
 
+    public PlayerData playerData;
+
     private void FixedUpdate()
     {
-        DelTimeWalkSoundTime += Time.fixedDeltaTime;
-        if (WalkSoundTIme < DelTimeWalkSoundTime)
-        {
-            DelTimeWalkSoundTime = 0f;
-            isSoundStart = true;
-        }
-       PushItemCheck();
-
-        //Debug.Log(test);
+        PushItemCheck();
         if (WalkVec == Vector3.zero && moveDirection.y < 0f)
         {
             Idle();
         }
-
-        ItemTimeTick();
         MoveCheck();
         GravityFall();
     }
@@ -95,10 +78,10 @@ public class PlayerMove : MonoBehaviour
     {
         if (!IsGravity)
         {
-            moveDirection.y -= Gravity * Time.fixedDeltaTime;
-            if (moveDirection.y < GravityAcceleration)
+            moveDirection.y -= playerData.Gravity * Time.fixedDeltaTime;
+            if (moveDirection.y < playerData.GravityAcceleration)
             {
-                moveDirection.y = GravityAcceleration;
+                moveDirection.y = playerData.GravityAcceleration;
             }
             Controller.Move(moveDirection * Time.fixedDeltaTime);
         }
@@ -132,7 +115,7 @@ public class PlayerMove : MonoBehaviour
                                 {
                                     return;
                                 }
-                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * PullSpeed;
+                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 Controller.Move(WalkMove);
@@ -156,7 +139,7 @@ public class PlayerMove : MonoBehaviour
                                 {
                                     return;
                                 }
-                                Vector3 WalkMove = WalkVec * PushSpeed * Time.fixedDeltaTime;
+                                Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
@@ -199,14 +182,10 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseWalk()
     {
-        Vector3 WalkMove = WalkVec * WalkSpeed * Time.fixedDeltaTime;
+        Vector3 WalkMove = WalkVec * playerData.WalkSpeed * Time.fixedDeltaTime;
         if (IsGrounded())
         {
-            if (isSoundStart)
-            {
-                isSoundStart = false;
-                AudioManager.Instance.PlayOneShot("event:/Player/Walk");
-            }
+            FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
            
@@ -214,6 +193,11 @@ public class PlayerMove : MonoBehaviour
         Body_Tr.LookAt(transform.position + WalkVec);
         Vector3 test = transform.TransformDirection(Vector3.forward);
         Controller.Move(WalkMove);
+    }
+
+    private void OnWalkSound()
+    {
+        AudioManager.Instance.PlayOneShot("event:/Player/Walk");
     }
 
 
@@ -232,7 +216,7 @@ public class PlayerMove : MonoBehaviour
             //AudioManager.Instance.PlayOneShot("event:/Jump");q
             PlayerManager.Instance.PlayerInput.IsJumpCanceled = false;
 
-            moveDirection.y = jumpspeed;
+            moveDirection.y = playerData.jumpspeed;
         }
     }
 
@@ -412,19 +396,6 @@ public class PlayerMove : MonoBehaviour
         else if (MasValue <= 100)
         {
 
-        }
-    }
-
-    private void ItemTimeTick()
-    {
-        if (IsTime)
-        {
-            deltime += Time.fixedDeltaTime;
-        }
-        if (deltime > 1.0f)
-        {
-            deltime = 0f;
-            IsTime = false;
         }
     }
     private void MoveCheck()
