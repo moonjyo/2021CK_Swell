@@ -9,13 +9,7 @@ public class RotateByMouse : MonoBehaviour
 
     public GameObject GO;
 
-    public Camera cam;
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        cam = Camera.main;
-    }
+    public Canvas FadeCanvas;
 
     public void SetRotateInput(Vector2 value)
     {
@@ -29,11 +23,19 @@ public class RotateByMouse : MonoBehaviour
         if (Mathf.Abs(RotHInput) > 0.1f)
         {
             GO.transform.Rotate(Vector3.up, -RotHInput);
+            //GO.transform.RotateAround(GO.transform.position, Vector3.up, -RotHInput);
+
         }
 
         if (Mathf.Abs(RotVInput) > 0.1f)
         {
             GO.transform.Rotate(Vector3.right, RotVInput);
+            //GO.transform.RotateAround(GO.transform.position, Vector3.right, RotVInput);
         }
+    }
+
+    public void DummyExit()
+    {
+        FadeCanvas.gameObject.SetActive(false);
     }
 }
