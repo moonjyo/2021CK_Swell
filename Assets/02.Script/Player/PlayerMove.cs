@@ -49,8 +49,6 @@ public class PlayerMove : MonoBehaviour
     public Vector2 ClimingOffsetVec;
 
 
-    private float DelTimeWalkSoundTime = 0f;
-
 
     //현재 light를 가지고있는지 check 
     public bool IsLight = false;
@@ -197,7 +195,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnWalkSound()
     {
-        AudioManager.Instance.PlayOneShot("event:/Player/Walk");
+       // AudioManager.Instance.PlayOneShot("event:/Player/Walk");
     }
 
 

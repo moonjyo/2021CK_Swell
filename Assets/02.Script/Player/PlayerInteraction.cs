@@ -4,20 +4,44 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    public LayerMask WallLayer;
+    [SerializeField]
+    private LayerMask InterActionLayer;
 
-    private void OnCollisionEnter(Collision collision)
+
+    [SerializeField]
+    private float radius;
+
+
+    private void Update()
     {
-        if ((1 << collision.gameObject.layer & WallLayer) != 0)
+        RaycastHit[] hits = Physics.SphereCastAll(transform.position, radius, Vector3.up, 0f,InterActionLayer);
+
+
+        if (hits.Length != 0)
         {
-            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Wall);
+            for (int i = 0; i < hits.Length; ++i)
+            {
+                IInteractbale InterAct = hits[i].transform.GetComponent<IInteractbale>();
+                if (InterAct == null) continue;
+                InterAct.Interact();
+            }
+        }
+        else
+        {
+            foreach (var target in GameManager.Instance.uiManager.AllInterActionUI)
+            {
+                target.SetActive(false);
+            }
         }
     }
-    private void OnCollisionExit(Collision collision)
-    { 
-        if ((1 << collision.gameObject.layer & WallLayer) != 0)
-        {
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Wall);
-        }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+
+        Gizmos.DrawWireSphere(transform.position, radius);
+        
     }
+
 }
