@@ -18,6 +18,7 @@ public class MouseInput : MonoBehaviour
         {
             if(!IsLeftMousePressed)
             {
+                MouseFunction.SetRotateInput(Vector2.zero);
                 return;
             }
         }
@@ -40,7 +41,12 @@ public class MouseInput : MonoBehaviour
 
     public void OnMousePosition(InputAction.CallbackContext context)
     {
+        //if (IsSelectItemIcon)
+        //{
+            // 마우스 포지션 전달
+        //}
         Vector2 input = context.ReadValue<Vector2>();
         uiInventory.SetMousePosVal(input);
+        
     }
 }
