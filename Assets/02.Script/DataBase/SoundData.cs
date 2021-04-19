@@ -5,8 +5,8 @@ using System.IO;
 
 public class SoundData : MonoBehaviour
 {
-    private string StrSfxData = "1";
-    private string StrBgmData = "1";
+    private string StrSfxData;
+    private string StrBgmData;
 
 
     [HideInInspector]
