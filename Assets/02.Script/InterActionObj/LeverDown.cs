@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LeverDown : MonoBehaviour
+public class LeverDown : MonoBehaviour , IInteractbale
 {
     public Animator LeverDownAnim;
     public GameObject BaseMentObj;
@@ -19,18 +19,10 @@ public class LeverDown : MonoBehaviour
     public Vector3 OffsetPos;
 
 
-
-    private void OnCollisionEnter(Collision collision)
+    public void Interact()
     {
-          if ((1 << collision.transform.gameObject.layer & PlayerLayer) != 0)
-         {
-            LeverDownOn();
-          }
-     }
-
-    public void LeverDownOn()
-    {
-        StartCoroutine(InterActionLever());
+        Debug.Log("Lever");
+       // StartCoroutine(InterActionLever());
     }
 
     public IEnumerator InterActionLever()
