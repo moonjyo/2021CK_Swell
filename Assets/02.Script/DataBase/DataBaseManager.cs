@@ -12,20 +12,32 @@ public class DataBaseManager : MonoBehaviour
 
     public static bool IsFinish = false;
 
+    public DialogueParser DialogueParser;
+    public SoundData SoundData;
+
     private void Awake()
     {
         if(Instance == null)
         {
             Instance = this;
-            DialogueParser therParser = GetComponent<DialogueParser>();
-            Dialogue[] dialogues = therParser.Parse(csv_FileName);
-            for(int i = 0; i < dialogues.Length; ++i)
-            {
-                dialogueDic.Add(i + 1, dialogues[i]);
-            }
-            IsFinish = true;    
+            DialougeDataInit();
+            SoundData.ReadCsv("Data/SoundText.csv");
         }
     }
+
+
+    public void DialougeDataInit()
+    {
+        Dialogue[] dialogues = DialogueParser.Parse(csv_FileName);
+        for (int i = 0; i < dialogues.Length; ++i)
+        {
+            dialogueDic.Add(i + 1, dialogues[i]);
+        }
+        IsFinish = true;
+
+    }
+
+
 
     public Dialogue[] GetDialogue(int _StartNum , int _EndNum)
     {

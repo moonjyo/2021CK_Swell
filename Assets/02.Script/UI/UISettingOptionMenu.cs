@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class UISettingOptionMenu : UIView
 {
+
     public override void Initialize()
     {
         base.Initialize();
         Toggle(false);
-
     }
 
     public override void Toggle(bool value)
@@ -16,9 +16,13 @@ public class UISettingOptionMenu : UIView
         base.Toggle(value);
 
     }
-        
-    public void BackToMain()
+
+    public void ToggleOff(bool value)
     {
-        Toggle(false);
+        base.Toggle(false);
     }
+
+
+
+
 }

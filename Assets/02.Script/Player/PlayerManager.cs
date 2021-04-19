@@ -30,4 +30,5 @@ public class PlayerManager : MonoBehaviour
         }
         DontDestroyOnLoad(transform);
     }
+
 }

@@ -25,16 +25,10 @@ public class AudioManager : MonoBehaviour
             Instance = this;
         }
 
-
         MasterBus = RuntimeManager.GetBus("bus:/Master");
         BgmBus = RuntimeManager.GetBus("bus:/Master/BGM");
         sfxBus = RuntimeManager.GetBus("bus:/Master/SFX");
-    }
 
-    private void Start()
-    {
-        //   Change(0);
-        //   Play();
     }
 
     public void Change(int index)
@@ -74,8 +68,5 @@ public class AudioManager : MonoBehaviour
 
     public void setBGMVolume(float Value) => BgmBus.setVolume(Value);
     public void setSFXVolume(float Value) => sfxBus.setVolume(Value);
-
-
-
 
 }
