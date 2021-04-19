@@ -35,5 +35,6 @@ public class RotateByMouse : MonoBehaviour
     public void DummyExit()
     {
         FadeCanvas.gameObject.SetActive(false);
+        GO.SetActive(false);
     }
 }

@@ -8,6 +8,7 @@ public class MouseInput : MonoBehaviour
 {
 
     public RotateByMouse MouseFunction;
+    public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
 
@@ -35,5 +36,11 @@ public class MouseInput : MonoBehaviour
         {
             IsLeftMousePressed = false;
         }
+    }
+
+    public void OnMousePosition(InputAction.CallbackContext context)
+    {
+        Vector2 input = context.ReadValue<Vector2>();
+        uiInventory.SetMousePosVal(input);
     }
 }
