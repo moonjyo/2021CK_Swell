@@ -37,7 +37,7 @@ public class RotateByMouse : MonoBehaviour
         // 관찰자모드 Enter
     }
 
-    public void DummyExit()
+    public void DummyExit() // 관찰자 모드 Exit
     {
         FadeCanvas.gameObject.SetActive(false);
         GO.SetActive(false);

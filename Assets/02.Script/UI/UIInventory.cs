@@ -10,9 +10,10 @@ public class UIInventory : UIView
 {
     public GameObject InventoryPanel;
     
-    public GameObject[] ItemImageIcon = new GameObject[5];
-    public List<GameObject> ItemIconImage = new List<GameObject>();
-    Vector3[] OriginIconPos = new Vector3[5];
+    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[5];
+    public List<UIInventoryElement> ItemIconImage = new List<UIInventoryElement>();
+    [HideInInspector]
+    public UIInventoryElement CurrentItemIcon;
 
     Vector2 mousePos;
 
@@ -21,14 +22,13 @@ public class UIInventory : UIView
 
     Vector2 ClickOffset;
 
+    public Sprite EmptySprite;
+
     private void Start()
     {
-        int i = 0;
-        foreach(GameObject image in ItemImageIcon)
+        foreach(UIInventoryElement image in ItemImageIcon)
         {
             ItemIconImage.Add(image);
-            OriginIconPos[i] = image.GetComponent<RectTransform>().anchoredPosition;
-            i++;
         }
     }
 
@@ -66,74 +66,21 @@ public class UIInventory : UIView
         //InventoryPanel.SetActive(false);
     }
 
-    //public void DownItemIcon()
-    //{
-        //if()  클릭한 인벤토리아이템을 지정하여 알 수 있게하는 조건?
-        // PointEnter일 때 전부 다 계산해서 값 지정하기?
-    //}
-
-    public void DownItemIcon1()
+    public void DownItemIcon()
     {
-        float Xvalue = mousePos.x - ItemIconImage[0].GetComponent<RectTransform>().position.x;
-        float Yvalue = mousePos.y - ItemIconImage[0].GetComponent<RectTransform>().position.y;
-        ClickOffset = new Vector2(Xvalue, Yvalue);
-    }
-    public void DownItemIcon2()
-    {
-        float Xvalue = mousePos.x - ItemIconImage[1].GetComponent<RectTransform>().position.x;
-        float Yvalue = mousePos.y - ItemIconImage[1].GetComponent<RectTransform>().position.y;
-        ClickOffset = new Vector2(Xvalue, Yvalue);
-    }
-    public void DownItemIcon3()
-    {
-        float Xvalue = mousePos.x - ItemIconImage[2].GetComponent<RectTransform>().position.x;
-        float Yvalue = mousePos.y - ItemIconImage[2].GetComponent<RectTransform>().position.y;
-        ClickOffset = new Vector2(Xvalue, Yvalue);
-    }
-    public void DownItemIcon4()
-    {
-        float Xvalue = mousePos.x - ItemIconImage[3].GetComponent<RectTransform>().position.x;
-        float Yvalue = mousePos.y - ItemIconImage[3].GetComponent<RectTransform>().position.y;
-        ClickOffset = new Vector2(Xvalue, Yvalue);
-    }
-    public void DownItemIcon5()
-    {
-        float Xvalue = mousePos.x - ItemIconImage[4].GetComponent<RectTransform>().position.x;
-        float Yvalue = mousePos.y - ItemIconImage[4].GetComponent<RectTransform>().position.y;
-        ClickOffset = new Vector2(Xvalue, Yvalue);
+        ClickOffset = CurrentItemIcon.CalculateOffsetMousePos(mousePos.x, mousePos.y);
     }
 
-    public void DragItemIcon1()
+    public void DragItemIcon()
     {
-        
-        ItemIconImage[0].GetComponent<RectTransform>().position = mousePos - ClickOffset;
+        CurrentItemIcon.GetComponent<RectTransform>().position = mousePos - ClickOffset;
         IsSelectItemIcon = true;
-        
-    }
-    public void DragItemIcon2()
-    {
-        ItemIconImage[1].GetComponent<RectTransform>().position = mousePos - ClickOffset;
-        IsSelectItemIcon = true;
-    }
-    public void DragItemIcon3()
-    {
-        ItemIconImage[2].GetComponent<RectTransform>().position = mousePos - ClickOffset;
-        IsSelectItemIcon = true;
-    }
-    public void DragItemIcon4()
-    {
-        ItemIconImage[3].GetComponent<RectTransform>().position = mousePos - ClickOffset;
-        IsSelectItemIcon = true;
-    }
-    public void DragItemIcon5()
-    {
-        ItemIconImage[4].GetComponent<RectTransform>().position = mousePos - ClickOffset;
-        IsSelectItemIcon = true;
+
     }
 
-    public void DropItemIcon1()
+    public void DropItemIcon()
     {
-        ItemIconImage[0].GetComponent<RectTransform>().anchoredPosition = OriginIconPos[0];
+        CurrentItemIcon.GetComponent<RectTransform>().anchoredPosition = CurrentItemIcon.GetOriginPos();
         IsSelectItemIcon = false;
         ExitInventoryWindow();
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
@@ -142,31 +89,37 @@ public class UIInventory : UIView
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name);
+            if(hit.collider.name == "Cube")
+            {
+                CurrentItemIcon.IsInteract = true;
+                for (int i = 0; i < ItemIconImage.Count; i++)
+                {
+                    if (ItemImageIcon[i].IsInteract)
+                    {
+                        for (int j = i; j < ItemIconImage.Count - 1; j++)
+                        {
+                            ItemImageIcon[j].ElementImage.sprite = ItemImageIcon[j + 1].ElementImage.sprite;
+                            ItemIconImage[j] = ItemIconImage[j + 1];
+                            //데이터 옮겨오면서 image도 같이 옮겨가야함
+                        }
+                        
+                    }
+                }
+                CurrentItemIcon.IsInteract = false;
+                ItemIconImage.Pop();
+                ItemImageIcon[ItemIconImage.Count].ElementImage.sprite = EmptySprite;
+            }
         }
     }
-    public void DropItemIcon2()
+
+    public void GetItemIcon() // 아이템을 얻었을 때
     {
-        ItemIconImage[1].GetComponent<RectTransform>().anchoredPosition = OriginIconPos[1];
-        IsSelectItemIcon = false;
-        ExitInventoryWindow();
-    }
-    public void DropItemIcon3()
-    {
-        ItemIconImage[2].GetComponent<RectTransform>().anchoredPosition = OriginIconPos[2];
-        IsSelectItemIcon = false;
-        ExitInventoryWindow();
-    }
-    public void DropItemIcon4()
-    {
-        ItemIconImage[3].GetComponent<RectTransform>().anchoredPosition = OriginIconPos[3];
-        IsSelectItemIcon = false;
-        ExitInventoryWindow();
-    }
-    public void DropItemIcon5()
-    {
-        ItemIconImage[4].GetComponent<RectTransform>().anchoredPosition = OriginIconPos[4];
-        IsSelectItemIcon = false;
-        ExitInventoryWindow();
+        if(ItemIconImage.Count >= 5)
+        {
+            return;
+        }
+
+        //ItemIconImage.Add(item)
     }
 
     public void SetMousePosVal(Vector2 value)

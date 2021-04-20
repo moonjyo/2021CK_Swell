@@ -287,6 +287,7 @@ GameObject:
   - component: {fileID: 129385403}
   - component: {fileID: 129385402}
   - component: {fileID: 129385404}
+  - component: {fileID: 129385405}
   m_Layer: 5
   m_Name: ItemIcon5
   m_TagString: Untagged
@@ -332,7 +333,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 79b8fdfc0061f634f96f8d4bb54d886b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -368,7 +369,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DragItemIcon5
+          m_MethodName: DragItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -383,7 +384,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DropItemIcon5
+          m_MethodName: DropItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -397,8 +398,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1002841852}
-          m_MethodName: DownItemIcon5
+        - m_Target: {fileID: 129385405}
+          m_MethodName: SetCurrentItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -408,6 +409,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &129385405
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 129385400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcb5906bbd1d824584bc0aa6d86a82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementImage: {fileID: 0}
+  IsInteract: 0
 --- !u!1 &164137645
 GameObject:
   m_ObjectHideFlags: 0
@@ -961,6 +976,7 @@ GameObject:
   - component: {fileID: 350447349}
   - component: {fileID: 350447348}
   - component: {fileID: 350447350}
+  - component: {fileID: 350447351}
   m_Layer: 5
   m_Name: ItemIcon3
   m_TagString: Untagged
@@ -1006,7 +1022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 163916f63d9d41948b6c39d13ad0ac25, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1042,7 +1058,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DragItemIcon3
+          m_MethodName: DragItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1057,7 +1073,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DropItemIcon3
+          m_MethodName: DropItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1071,8 +1087,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1002841852}
-          m_MethodName: DownItemIcon3
+        - m_Target: {fileID: 350447351}
+          m_MethodName: SetCurrentItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -1082,6 +1098,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &350447351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 350447346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcb5906bbd1d824584bc0aa6d86a82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementImage: {fileID: 0}
+  IsInteract: 0
 --- !u!1 &408586408
 GameObject:
   m_ObjectHideFlags: 0
@@ -1588,6 +1618,7 @@ MonoBehaviour:
   UISettingOptionMenu: {fileID: 617764195}
   UIFade: {fileID: 1275385909}
   InterActionUICanvas: {fileID: 0}
+  uISound: {fileID: 0}
   AllInterActionUI: []
 --- !u!224 &658274561
 RectTransform:
@@ -2522,11 +2553,13 @@ MonoBehaviour:
   RootRect: {fileID: 1002841848}
   InventoryPanel: {fileID: 338359529}
   ItemImageIcon:
-  - {fileID: 1672334125}
-  - {fileID: 1511375505}
-  - {fileID: 350447346}
-  - {fileID: 1194154962}
-  - {fileID: 129385400}
+  - {fileID: 1672334130}
+  - {fileID: 1511375510}
+  - {fileID: 350447351}
+  - {fileID: 1194154967}
+  - {fileID: 129385405}
+  CurrentItemIcon: {fileID: 0}
+  EmptySprite: {fileID: 21300000, guid: 385923fd98ed63a4bbb4d9aba3eb0580, type: 3}
 --- !u!1 &1047730179
 GameObject:
   m_ObjectHideFlags: 0
@@ -2986,6 +3019,7 @@ GameObject:
   - component: {fileID: 1194154965}
   - component: {fileID: 1194154964}
   - component: {fileID: 1194154966}
+  - component: {fileID: 1194154967}
   m_Layer: 5
   m_Name: ItemIcon4
   m_TagString: Untagged
@@ -3031,7 +3065,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 8ba80fbd7c986584db5ab57a29af7d20, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3067,7 +3101,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DragItemIcon4
+          m_MethodName: DragItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3082,7 +3116,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DropItemIcon4
+          m_MethodName: DropItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3096,8 +3130,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1002841852}
-          m_MethodName: DownItemIcon4
+        - m_Target: {fileID: 1194154967}
+          m_MethodName: SetCurrentItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3107,6 +3141,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1194154967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194154962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcb5906bbd1d824584bc0aa6d86a82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementImage: {fileID: 0}
+  IsInteract: 0
 --- !u!1 &1195682288
 GameObject:
   m_ObjectHideFlags: 0
@@ -3566,6 +3614,7 @@ GameObject:
   - component: {fileID: 1511375508}
   - component: {fileID: 1511375507}
   - component: {fileID: 1511375509}
+  - component: {fileID: 1511375510}
   m_Layer: 5
   m_Name: ItemIcon2
   m_TagString: Untagged
@@ -3611,7 +3660,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: c49e4a36424bd8649b32e9595c6942db, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3647,7 +3696,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DragItemIcon2
+          m_MethodName: DragItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3662,7 +3711,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DropItemIcon2
+          m_MethodName: DropItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3676,8 +3725,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1002841852}
-          m_MethodName: DownItemIcon2
+        - m_Target: {fileID: 1511375510}
+          m_MethodName: SetCurrentItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3687,6 +3736,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1511375510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511375505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcb5906bbd1d824584bc0aa6d86a82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementImage: {fileID: 0}
+  IsInteract: 0
 --- !u!1 &1516266007
 GameObject:
   m_ObjectHideFlags: 0
@@ -3872,6 +3935,7 @@ GameObject:
   - component: {fileID: 1672334128}
   - component: {fileID: 1672334127}
   - component: {fileID: 1672334129}
+  - component: {fileID: 1672334130}
   m_Layer: 5
   m_Name: ItemIcon1
   m_TagString: Untagged
@@ -3917,7 +3981,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f6497c58b500d0a44b6529041924dd08, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3953,7 +4017,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DragItemIcon1
+          m_MethodName: DragItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3968,7 +4032,7 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1002841852}
-          m_MethodName: DropItemIcon1
+          m_MethodName: DropItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3982,8 +4046,8 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 1002841852}
-          m_MethodName: DownItemIcon1
+        - m_Target: {fileID: 1672334130}
+          m_MethodName: SetCurrentItemIcon
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
@@ -3993,6 +4057,20 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &1672334130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1672334125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfcb5906bbd1d824584bc0aa6d86a82f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ElementImage: {fileID: 0}
+  IsInteract: 0
 --- !u!1 &1676101686
 GameObject:
   m_ObjectHideFlags: 0
