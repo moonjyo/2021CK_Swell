@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ObserveUI : MonoBehaviour,IInteractableUI
+public class FirstInterActionUI : MonoBehaviour, IInteractableUI
 {
     [HideInInspector]
     public GameObject TargetObj;

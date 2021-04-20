@@ -5,13 +5,21 @@ using System;
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
-
-    public void Interact()
+    public void SecondInteract()
     {
-        foreach(var Obj in UIObjList)
+        foreach(var Obj in UISecondObjList)
         {
             Obj.gameObject.SetActive(true);
         }
+    }
+
+    public void FirstInteract()
+    {
+        foreach (var Obj in UIFirstObjList)
+        {
+            Obj.gameObject.SetActive(true);
+        }
+
     }
    
 
@@ -23,8 +31,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
 
     [HideInInspector]
-    public List<GameObject> UIObjList = new List<GameObject>();
-
+    public List<GameObject> UIFirstObjList = new List<GameObject>();
+    [HideInInspector]
+    public List<GameObject> UISecondObjList = new List<GameObject>();
     public bool IsInterAct= false;
 
     private void Start()
@@ -35,12 +44,20 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             Targetobj.SetActive(false);;
             IInteractableUI target = Targetobj.transform.GetComponent<IInteractableUI>();
             
+           
             target.SetTargetObj(transform.gameObject);
             target.SetTargetCanvas(GameManager.Instance.uiManager.InterActionUICanvas);
             target.Init();
 
             GameManager.Instance.uiManager.AllInterActionUI.Add(Targetobj);
-            UIObjList.Insert(i,Targetobj);
+            if(!Targetobj.CompareTag("FirstInterActionUI"))
+            {
+                UIFirstObjList.Add(Targetobj);
+            }
+            else
+            {
+                UISecondObjList.Add(Targetobj);
+            }
         }
     }
 

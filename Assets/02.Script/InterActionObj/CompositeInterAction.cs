@@ -6,7 +6,20 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
 {
     [SerializeField] private List<GameObject> InterActableGameObjects;
 
+    public void FirstInteract()
+    {
+        throw new System.NotImplementedException();
+    }
 
+    public List<GameObject> GetUIFirstList()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public List<GameObject> GetUISecondList()
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void Interact()
     {
@@ -14,7 +27,12 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
         {
             var Interactable = InterActableGameObject.GetComponent<IInteractbale>();
             if (Interactable != null) continue;
-            Interactable.Interact();
+            //Interactable.Interact();
         }
+    }
+
+    public void SecondInteract()
+    {
+        throw new System.NotImplementedException();
     }
 }

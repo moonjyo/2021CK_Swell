@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        uiManager.Init();
+        //uiManager.Init();
     }
 
     public void GameStart()
@@ -31,5 +31,8 @@ public class GameManager : MonoBehaviour
         uiManager.UIFade.Toggle(false);
     }
 
-
+    private void OnApplicationQuit()
+    {
+        DataBaseManager.Instance.SoundData.WriteData();
+    }
 }

@@ -195,7 +195,7 @@ public class PlayerMove : MonoBehaviour
 
     private void OnWalkSound()
     {
-        AudioManager.Instance.PlayOneShot("event:/Player/Walk");
+        //AudioManager.Instance.PlayOneShot("event:/Player/Walk");
     }
 
 

@@ -11,6 +11,7 @@ public class PlayerInput : MonoBehaviour
 
     public bool IsLightGetReady = false;
 
+    public bool IsOnPressedLeftMouse = false;
     private GameObject ObjLight;
     public void OnWalk(InputAction.CallbackContext context)
     {
@@ -145,6 +146,18 @@ public class PlayerInput : MonoBehaviour
     }
 
 
+    public void OnLeftMouseClick(InputAction.CallbackContext context)
+    {
+        if(context.performed || context.started)
+        {
+            IsOnPressedLeftMouse = true;
+            Debug.Log("press");
+        }
+        if(context.canceled)
+        {
+            Debug.Log("canceled");
+        }
+    }
 
 
 }

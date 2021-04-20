@@ -15,7 +15,7 @@ public interface IInteractableUI
      void Init();
 
     Transform GetTransform();
-    
-  
+
+    string GetTag();
 }
 
