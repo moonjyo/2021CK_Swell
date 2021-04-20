@@ -58,4 +58,9 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
         return gameObject.transform;
     }
 
+    public string GetTag()
+    {
+        return transform.tag;
+    }
+
 }

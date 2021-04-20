@@ -1,7 +1,12 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public interface IInteractbale 
 {
-  void Interact();
+  void FirstInteract();
+  void SecondInteract();
+    
+
+
 }
 

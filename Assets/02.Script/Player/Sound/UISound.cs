@@ -35,9 +35,6 @@ public class UISound : MonoBehaviour
         DataBaseManager.Instance.SoundData.SaveBgmData(BgmSlider.value);
     }
 
-    private void OnApplicationQuit()
-    {
-        DataBaseManager.Instance.SoundData.WriteData();
-    }
+   
 
 }

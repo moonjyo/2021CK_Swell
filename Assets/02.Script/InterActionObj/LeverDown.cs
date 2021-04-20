@@ -18,12 +18,7 @@ public class LeverDown : MonoBehaviour , IInteractbale
     
     public Vector3 OffsetPos;
 
-
-    public void Interact()
-    {
-        Debug.Log("Lever");
-       // StartCoroutine(InterActionLever());
-    }
+    
 
     public IEnumerator InterActionLever()
     {
@@ -45,5 +40,23 @@ public class LeverDown : MonoBehaviour , IInteractbale
             }
             yield return null;
         }
+    }
+
+    public void FirstInteract()
+    {
+    }
+
+    public void SecondInteract()
+    {
+    }
+
+    public List<GameObject> GetUIFirstList()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public List<GameObject> GetUISecondList()
+    {
+        throw new System.NotImplementedException();
     }
 }
