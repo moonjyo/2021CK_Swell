@@ -20,14 +20,13 @@ public class UIInventoryElement : MonoBehaviour
         uiInventory = GetComponentInParent<UIInventory>();
         ElementImage = GetComponent<Image>();
         //ElementSprite = ElementImage.sprite;
+
+       
     }
 
     private void Update()
     {
-        //if (EventSystem.current.IsPointerOverGameObject() || uiInventory.GetIsSelectedItemIcon())
-        //{
-
-        //}
+       
     }
 
     public Vector2 CalculateOffsetMousePos(float x, float y)

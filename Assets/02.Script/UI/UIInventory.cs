@@ -5,6 +5,8 @@ using DG.Tweening;
 using System.Collections;
 using Boo.Lang;
 using System;
+using UnityEngine.UI;
+
 
 public class UIInventory : UIView
 {
@@ -29,12 +31,14 @@ public class UIInventory : UIView
 
     UIInventoryElement ui;
 
+    GraphicRaycaster GraphicRay;
+    PointerEventData Pointer;
+    System.Collections.Generic.List<RaycastResult> resultsRay = new System.Collections.Generic.List<RaycastResult>();
+
     private void Start()
     {
-        //foreach(UIInventoryElement image in ItemImageIcon)
-        //{
-        //    ItemIconData.Add(image);
-        //}
+        GraphicRay = this.GetComponent<Canvas>().GetComponent<GraphicRaycaster>();
+        Pointer = new PointerEventData(null);
     }
     public void SetMousePosVal(Vector2 value)
     {
@@ -119,6 +123,10 @@ public class UIInventory : UIView
                 ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
             }
         }
+        Pointer.position = mousePos;
+        GraphicRay.Raycast(Pointer, resultsRay);
+        CombineItemIcon = resultsRay[0].gameObject.GetComponent<UIInventoryElement>();
+        resultsRay.Clear();
     }
 
     public void GetItemIcon() // 아이템을 얻었을 때
@@ -151,7 +159,7 @@ public class UIInventory : UIView
         }
 
         ItemIconData.Remove(CurrentItemIcon);
-        //ItemIconData.Remove()
+        ItemIconData.Remove(CombineItemIcon);
     }
 
     public bool GetIsSelectedItemIcon()
