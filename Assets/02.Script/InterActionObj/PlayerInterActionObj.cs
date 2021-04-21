@@ -35,6 +35,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     [HideInInspector]
     public List<GameObject> UISecondObjList = new List<GameObject>();
     public bool IsInterAct= false;
+    
 
     private void Start()
     {

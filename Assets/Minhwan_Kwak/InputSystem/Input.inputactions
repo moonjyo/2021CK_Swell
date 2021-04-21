@@ -60,6 +60,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "OnMouseLeft",
+                    "type": "Button",
+                    "id": "d764cf35-d87e-4b87-b9e5-c21a32080c1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -225,6 +233,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "LightRotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "MouseLeft",
+                    "id": "cf50be96-c301-4a83-b67e-1f96489ac43f",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "OnMouseLeft",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "up",
+                    "id": "f8bacd4b-b99c-4042-8f92-348fa1506cee",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "OnMouseLeft",
                     "isComposite": false,
                     "isPartOfComposite": true
                 }

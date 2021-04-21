@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 WalkVec;
     private Vector3 JumpVec;
     private Vector3 InterActionVec;
+    private Vector3 MouseLeftVec;
 
     public LayerMask GroundLayer;
     public LayerMask InteractionLayer;
@@ -57,7 +58,7 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
-        PushItemCheck();
+        //PushItemCheck();
         if (WalkVec == Vector3.zero && moveDirection.y < 0f)
         {
             Idle();
@@ -84,6 +85,12 @@ public class PlayerMove : MonoBehaviour
             Controller.Move(moveDirection * Time.fixedDeltaTime);
         }
     }
+    public void SetLeftMouseOn(Vector3 value)
+    {
+        MouseLeftVec = value;
+    }
+
+
     public void SetJump(Vector3 value) // jump check 
     {
         JumpVec = value;
@@ -99,23 +106,28 @@ public class PlayerMove : MonoBehaviour
             DirectionSelect(); //방향성 check 
             if (InterActionrb != null)
             {
-                if (IsInterActionCol && IsGrounded() && !InterActionrb.CompareTag("InterActionItem") && !PlayerManager.Instance.PlayerInput.IsPickUpItem)
+                if (IsGrounded() && !InterActionrb.CompareTag("InterActionItem") && !PlayerManager.Instance.PlayerInput.IsPickUpItem)
                 {
-                    if (InterActionVec.sqrMagnitude > 0.1f) //모든 상호작용  
-                    {
                         if (InterActionrb != null)
                         {
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
                             if (-transform.forward == WalkVec) 
-                            {  //당기기  
-                                if (InterActionrb.CompareTag("DirectionItem"))
-                                {
-                                    return;
-                                }
+                            {  //당기기   
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                                Controller.Move(WalkMove);
+                                InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                            }
+                            else if (transform.forward == WalkVec)
+                            { //밀기 
+                                Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
+                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
+                                InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
+                                transform.LookAt(transform.position + WalkVec);
                                 Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                             }
@@ -131,21 +143,6 @@ public class PlayerMove : MonoBehaviour
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 InterActionrb.transform.Rotate(RotateVec);
                             }
-                            else if (transform.forward == WalkVec)
-                            { //밀기 
-                                if (InterActionrb.CompareTag("DirectionItem"))
-                                {
-                                    return;
-                                }
-                                Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
-                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                                InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
-                                transform.LookAt(transform.position + WalkVec);
-                                Controller.Move(WalkMove);
-                                InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                            }
                             else
                             {
                                 if (InterActionrb.CompareTag("DirectionItem"))
@@ -155,7 +152,7 @@ public class PlayerMove : MonoBehaviour
                                 }
                             }
                         }
-                    }
+                    
                     else
                     {
                         BaseWalk();

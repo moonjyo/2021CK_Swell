@@ -11,16 +11,15 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     public Vector3 OffsetVec;
 
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (IsInit)
         {
-            OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
-
+            //OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
             transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
-
+  
     public void Init()
     {
         transform.parent = Parentcanvas.transform;

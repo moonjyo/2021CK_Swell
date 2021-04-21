@@ -1930,21 +1930,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1814965978978294149, guid: 72381f625257dfe419b0a430ff9ac2b5,
-        type: 3}
-      propertyPath: radius
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814965978978294149, guid: 72381f625257dfe419b0a430ff9ac2b5,
-        type: 3}
-      propertyPath: FirstRadius
-      value: 0.45
-      objectReference: {fileID: 0}
-    - target: {fileID: 1814965978978294149, guid: 72381f625257dfe419b0a430ff9ac2b5,
-        type: 3}
-      propertyPath: SecondRadius
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 7153680393659154136, guid: 72381f625257dfe419b0a430ff9ac2b5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1999,6 +1984,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7168886615681792659, guid: 72381f625257dfe419b0a430ff9ac2b5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 7497695984903431266, guid: 72381f625257dfe419b0a430ff9ac2b5,
         type: 3}
@@ -3006,8 +2996,8 @@ MonoBehaviour:
   m_ShowCameraFrustum: 1
   m_IgnoreTimeScale: 0
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
+  m_UpdateMethod: 0
+  m_BlendUpdateMethod: 0
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
