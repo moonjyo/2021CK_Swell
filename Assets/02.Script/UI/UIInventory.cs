@@ -11,7 +11,7 @@ public class UIInventory : UIView
     public GameObject InventoryPanel;
     
     public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[5];
-    public List<UIInventoryElement> ItemIconImage = new List<UIInventoryElement>();
+    public List<UIInventoryElement> ItemIconData = new List<UIInventoryElement>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
 
@@ -28,7 +28,7 @@ public class UIInventory : UIView
     {
         foreach(UIInventoryElement image in ItemImageIcon)
         {
-            ItemIconImage.Add(image);
+            ItemIconData.Add(image);
         }
     }
 
@@ -92,29 +92,28 @@ public class UIInventory : UIView
             if(hit.collider.name == "Cube")
             {
                 CurrentItemIcon.IsInteract = true;
-                for (int i = 0; i < ItemIconImage.Count; i++)
+                for (int i = 0; i < ItemIconData.Count; i++)
                 {
                     if (ItemImageIcon[i].IsInteract)
                     {
-                        for (int j = i; j < ItemIconImage.Count - 1; j++)
+                        for (int j = i; j < ItemIconData.Count - 1; j++)
                         {
                             ItemImageIcon[j].ElementImage.sprite = ItemImageIcon[j + 1].ElementImage.sprite;
-                            ItemIconImage[j] = ItemIconImage[j + 1];
+                            ItemIconData[j] = ItemIconData[j + 1];
                             //데이터 옮겨오면서 image도 같이 옮겨가야함
                         }
-                        
                     }
                 }
                 CurrentItemIcon.IsInteract = false;
-                ItemIconImage.Pop();
-                ItemImageIcon[ItemIconImage.Count].ElementImage.sprite = EmptySprite;
+                ItemIconData.Pop();
+                ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
             }
         }
     }
 
     public void GetItemIcon() // 아이템을 얻었을 때
     {
-        if(ItemIconImage.Count >= 5)
+        if(ItemIconData.Count >= 5)
         {
             return;
         }

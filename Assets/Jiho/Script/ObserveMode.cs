@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RotateByMouse : MonoBehaviour
+public class ObserveMode : MonoBehaviour
 {
     [HideInInspector]
     public float RotHInput;
@@ -10,16 +10,22 @@ public class RotateByMouse : MonoBehaviour
     public float RotVInput;
 
     public GameObject GO;
-
     public Canvas FadeCanvas;
 
+    Dictionary<int,GameObject> ObserveObj = new Dictionary<int,GameObject>();
     public void SetRotateInput(Vector2 value)
     {
         RotHInput = value.x;
         RotVInput = value.y;
+
     }
 
     void Update()
+    {
+        RotateObj();
+    }
+
+    public void RotateObj()
     {
         if (Mathf.Abs(RotHInput) > 0.1f)
         {
@@ -32,9 +38,29 @@ public class RotateByMouse : MonoBehaviour
         }
     }
 
-    public void EnterObserveMode()
+    public void AddObserveItem(int Keynum, GameObject go)
     {
-        // 관찰자모드 Enter
+        ObserveObj.Add(Keynum, go);
+    }
+
+    public void ActivateObserverItem(int Keynum) // 관찰자모드 아이템 활성화
+    {
+        if(ObserveObj.TryGetValue(Keynum, out GameObject go))
+        {
+            go.SetActive(true);
+            GO = go;
+        }
+    }
+
+    public void DeactivateObserverItem() // 관찰자모드 아이템 비활성화
+    {
+        GO.SetActive(false);
+        GO = null;
+    }
+
+    public void EnterObserveMode() // 관찰자모드 Enter
+    {
+        
     }
 
     public void DummyExit() // 관찰자 모드 Exit

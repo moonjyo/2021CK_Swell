@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class MouseInput : MonoBehaviour
 {
 
-    public RotateByMouse MouseFunction;
+    public ObserveMode MouseFunction;
     public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
