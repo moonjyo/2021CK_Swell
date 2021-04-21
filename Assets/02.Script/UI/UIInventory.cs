@@ -14,23 +14,33 @@ public class UIInventory : UIView
     public List<UIInventoryElement> ItemIconData = new List<UIInventoryElement>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
+    UIInventoryElement CombineItemIcon;
 
     Vector2 mousePos;
 
-    bool IsInventoryWindowOpen = false;
+    [HideInInspector]
+    public bool IsInventoryWindowOpen = false;
     bool IsSelectItemIcon = false;
 
     Vector2 ClickOffset;
 
     public Sprite EmptySprite;
+    public Sprite[] ItemImage = new Sprite[3]; // 아이템 아이콘 이미지들
+
+    UIInventoryElement ui;
 
     private void Start()
     {
-        foreach(UIInventoryElement image in ItemImageIcon)
-        {
-            ItemIconData.Add(image);
-        }
+        //foreach(UIInventoryElement image in ItemImageIcon)
+        //{
+        //    ItemIconData.Add(image);
+        //}
     }
+    public void SetMousePosVal(Vector2 value)
+    {
+        mousePos = value;
+    }
+
 
     public void EnterInventoryWindow()
     {
@@ -118,11 +128,34 @@ public class UIInventory : UIView
             return;
         }
 
-        //ItemIconImage.Add(item)
+        EnterInventoryWindow();
+
+        ItemIconData.Add(ui);
+        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함
+
+        StartCoroutine(WaitForGetItem());
+        
     }
 
-    public void SetMousePosVal(Vector2 value)
+    IEnumerator WaitForGetItem()
     {
-        mousePos = value;
+        yield return new WaitForSeconds(1.5f);
+        ExitInventoryWindow();
+    }
+
+    public void CombineItem()
+    {
+        if(!IsSelectItemIcon || ItemIconData.Count < 3)
+        {
+            return;
+        }
+
+        ItemIconData.Remove(CurrentItemIcon);
+        //ItemIconData.Remove()
+    }
+
+    public bool GetIsSelectedItemIcon()
+    {
+        return IsSelectItemIcon;
     }
 }

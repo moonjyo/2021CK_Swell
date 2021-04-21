@@ -22,9 +22,12 @@ public class MouseInput : MonoBehaviour
                 return;
             }
         }
-
+        
         Vector2 Input = context.ReadValue<Vector2>();
-        MouseFunction.SetRotateInput(Input);
+        if (!uiInventory.IsInventoryWindowOpen)
+        {
+            MouseFunction.SetRotateInput(Input);
+        }
     }
 
     public void OnLeftMouseButton(InputAction.CallbackContext context)
@@ -32,6 +35,7 @@ public class MouseInput : MonoBehaviour
         if(context.started || context.performed)
         {
             IsLeftMousePressed = true;
+
         }
         else
         {

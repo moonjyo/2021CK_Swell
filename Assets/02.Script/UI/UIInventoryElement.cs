@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class UIInventoryElement : MonoBehaviour
 {
@@ -19,6 +20,14 @@ public class UIInventoryElement : MonoBehaviour
         uiInventory = GetComponentInParent<UIInventory>();
         ElementImage = GetComponent<Image>();
         //ElementSprite = ElementImage.sprite;
+    }
+
+    private void Update()
+    {
+        //if (EventSystem.current.IsPointerOverGameObject() || uiInventory.GetIsSelectedItemIcon())
+        //{
+
+        //}
     }
 
     public Vector2 CalculateOffsetMousePos(float x, float y)
