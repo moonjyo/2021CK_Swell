@@ -26,7 +26,6 @@ public class PlayerInput : MonoBehaviour
         Vector2 value = context.ReadValue<Vector2>();
         Vector3 JumpVec = new Vector3(0, value.y, 0);
         PlayerManager.Instance.playerMove.SetJump(JumpVec);
-        PlayerManager.Instance.playerCliming.SetCliming(JumpVec);
 
         if (context.performed)
         {
@@ -148,15 +147,7 @@ public class PlayerInput : MonoBehaviour
 
     public void OnLeftMouseClick(InputAction.CallbackContext context)
     {
-        if(context.performed || context.started)
-        {
-            IsOnPressedLeftMouse = true;
-            Debug.Log("press");
-        }
-        if(context.canceled)
-        {
-            Debug.Log("canceled");
-        }
+      
     }
 
 

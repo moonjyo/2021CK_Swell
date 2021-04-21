@@ -9,7 +9,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerMove playerMove;
     public PlayerInput PlayerInput;
     public PlayerInteraction PlayerInteraction;
-    public PlayerCliming playerCliming;
     public PlayerAnimationEvents playerAnimationEvents;
 
 

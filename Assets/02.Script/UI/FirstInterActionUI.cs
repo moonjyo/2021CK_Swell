@@ -15,7 +15,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
     {
         if (IsInit)
         {
-            OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
+            OffsetVec = TargetObj.transform.Find("UIOffsetFirstCheck").transform.localPosition;
 
             transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
@@ -24,7 +24,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
     public void Init()
     {
         transform.parent = Parentcanvas.transform;
-        OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
+        OffsetVec = TargetObj.transform.Find("UIOffsetFirstCheck").transform.localPosition;
 
         IsInit = true;
     }
