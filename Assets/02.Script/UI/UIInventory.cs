@@ -12,8 +12,8 @@ public class UIInventory : UIView
 {
     public GameObject InventoryPanel;
     
-    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[5];
-    public List<UIInventoryElement> ItemIconData = new List<UIInventoryElement>();
+    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[7];
+    public List<GameObject> ItemIconData = new List<GameObject>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
     UIInventoryElement CombineItemIcon;
@@ -29,11 +29,13 @@ public class UIInventory : UIView
     public Sprite EmptySprite;
     public Sprite[] ItemImage = new Sprite[3]; // 아이템 아이콘 이미지들
 
-    UIInventoryElement ui;
+    GameObject DummyItemObj;
 
     GraphicRaycaster GraphicRay;
     PointerEventData Pointer;
     System.Collections.Generic.List<RaycastResult> resultsRay = new System.Collections.Generic.List<RaycastResult>();
+
+    public ObserveMode ob;
 
     private void Start()
     {
@@ -95,7 +97,7 @@ public class UIInventory : UIView
     public void DropItemIcon()
     {
         CurrentItemIcon.GetComponent<RectTransform>().anchoredPosition = CurrentItemIcon.GetOriginPos();
-        IsSelectItemIcon = false;
+        //IsSelectItemIcon = false;
         ExitInventoryWindow();
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
         RaycastHit hit;
@@ -123,22 +125,40 @@ public class UIInventory : UIView
                 ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
             }
         }
-        Pointer.position = mousePos;
-        GraphicRay.Raycast(Pointer, resultsRay);
-        CombineItemIcon = resultsRay[0].gameObject.GetComponent<UIInventoryElement>();
-        resultsRay.Clear();
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Pointer.position = mousePos;
+            GraphicRay.Raycast(Pointer, resultsRay);
+            if(resultsRay.Count > 0)
+            {
+                CombineItemIcon = resultsRay[0].gameObject.GetComponent<UIInventoryElement>();
+                bool CheckUIIcon = false;
+                foreach (UIInventoryElement ui in ItemImageIcon)
+                {
+                    if (CombineItemIcon == ui && CombineItemIcon != CurrentItemIcon)
+                    {
+                        CheckUIIcon = true;
+                    }
+                }
+                if (!CheckUIIcon)
+                {
+                    CombineItemIcon = null;
+                }
+            }           
+            resultsRay.Clear();
+        }
     }
 
     public void GetItemIcon() // 아이템을 얻었을 때
     {
-        if(ItemIconData.Count >= 5)
+        if(ItemIconData.Count >= 7)
         {
             return;
         }
 
         EnterInventoryWindow();
 
-        ItemIconData.Add(ui);
+        ItemIconData.Add(DummyItemObj);
         ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함
 
         StartCoroutine(WaitForGetItem());
@@ -153,17 +173,51 @@ public class UIInventory : UIView
 
     public void CombineItem()
     {
-        if(!IsSelectItemIcon || ItemIconData.Count < 3)
+        if(!IsSelectItemIcon || ItemIconData.Count < 2 || CombineItemIcon == null)
         {
             return;
         }
+        IsSelectItemIcon = false;
 
-        ItemIconData.Remove(CurrentItemIcon);
-        ItemIconData.Remove(CombineItemIcon);
+        int CurIndex = 0, ComIndex = 0;
+        for(int i = 0; i < ItemIconData.Count; i++)
+        {
+            if(ItemIconData[i] == CurrentItemIcon.HaveItem)
+            {
+                CurIndex = i;
+            }
+            if(ItemIconData[i] == CombineItemIcon.HaveItem)
+            {
+                ComIndex = i;
+            }
+        }
+
+        for (int i = CurIndex; i < ItemIconData.Count - CurIndex - 1; i++)
+        {
+            ItemImageIcon[i].ElementImage.sprite = ItemImageIcon[i].ElementImage.sprite;
+            ItemIconData[i] = ItemIconData[i + 1];
+        }
+        //ItemIconData.Remove(CurrentItemIcon.HaveItem);
+        //ItemIconData.Remove(CombineItemIcon.HaveItem);
+        // 아이템 조합 함수?
+        if(CurIndex > ComIndex) // 상대적 오른쪽에있는 아이콘을 왼쪽아이템으로 조합시도
+        {
+            ItemIconData.Insert(ComIndex, DummyItemObj);
+            //조합된 아이템 이미지 ComIndex 자리에 배치
+        }
+        else if(ComIndex > CurIndex) // 상대적 왼쪽에있는 아이콘을 오른아이템으로 조합시도
+        {
+            ItemIconData.Insert(CurIndex, DummyItemObj);
+            //조합된 아이템 이미지 sprite CurIndex 자리에 배치
+        }
     }
 
-    public bool GetIsSelectedItemIcon()
+    public void ClickItemIcon()
     {
-        return IsSelectItemIcon;
+        if(!IsSelectItemIcon)
+        {
+            //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
+            ob.ActivateObserverItem(0);
+        }
     }
 }

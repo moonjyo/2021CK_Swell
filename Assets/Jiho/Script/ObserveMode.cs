@@ -13,6 +13,8 @@ public class ObserveMode : MonoBehaviour
     public Canvas FadeCanvas;
 
     Dictionary<int,GameObject> ObserveObj = new Dictionary<int,GameObject>();
+
+    bool IsOnObserveMode = false;
     public void SetRotateInput(Vector2 value)
     {
         RotHInput = value.x;
@@ -22,7 +24,11 @@ public class ObserveMode : MonoBehaviour
 
     void Update()
     {
-        RotateObj();
+        if(IsOnObserveMode)
+        {
+            RotateObj();
+        }
+        
     }
 
     public void RotateObj()
@@ -45,27 +51,38 @@ public class ObserveMode : MonoBehaviour
 
     public void ActivateObserverItem(int Keynum) // 관찰자모드 아이템 활성화
     {
-        if(ObserveObj.TryGetValue(Keynum, out GameObject go))
-        {
-            go.SetActive(true);
-            GO = go;
-        }
+        FadeCanvas.gameObject.SetActive(true);
+        //
+        GO.SetActive(true);
+        //
+        IsOnObserveMode = true;
+        //if (ObserveObj.TryGetValue(Keynum, out GameObject go))
+        //{
+        //    go.SetActive(true);
+        //    //go.transform.position = 
+        //    GO = go;
+        //}
+        //else
+        //{
+        //    FadeCanvas.gameObject.SetActive(false);
+        //}
     }
 
     public void DeactivateObserverItem() // 관찰자모드 아이템 비활성화
     {
+        GO.transform.eulerAngles = new Vector3(0, 0, 0);
         GO.SetActive(false);
         GO = null;
+
+        IsOnObserveMode = false;
     }
 
-    public void EnterObserveMode() // 관찰자모드 Enter
+    public void DummyExit() // 관찰자 모드 Exit 더미로사용중ㅂ
     {
-        
-    }
-
-    public void DummyExit() // 관찰자 모드 Exit
-    {
+        GO.transform.eulerAngles = new Vector3(0, 0, 0);
         FadeCanvas.gameObject.SetActive(false);
         GO.SetActive(false);
+
+        IsOnObserveMode = false;
     }
 }
