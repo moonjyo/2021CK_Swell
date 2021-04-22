@@ -159,11 +159,7 @@ public class PlayerMove : MonoBehaviour
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
 
-                            //물체가 벽에 부딫쳤을경우 
-                              if (InterActionrb.velocity.x != 0 || InterActionrb.velocity.z != 0) 
-                              {
-                                return;
-                              }
+                            
                             Controller.Move(WalkMove);
                         }
                             //else if (transform.right == WalkVec)
