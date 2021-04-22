@@ -6,7 +6,7 @@ using System;
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
     public string ItemKey;
-
+    public Sprite InventoryIcon;
     public void SecondInteract()
     {
         foreach(var Obj in UISecondObjList)

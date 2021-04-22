@@ -29,8 +29,6 @@ public class UIInventory : UIView
     public Sprite EmptySprite;
     public Sprite[] ItemImage = new Sprite[3]; // 아이템 아이콘 이미지들
 
-    PlayerInterActionObj DummyItemObj;
-
     GraphicRaycaster GraphicRay;
     PointerEventData Pointer;
     System.Collections.Generic.List<RaycastResult> resultsRay = new System.Collections.Generic.List<RaycastResult>();
@@ -149,7 +147,7 @@ public class UIInventory : UIView
         }
     }
 
-    public void GetItemIcon() // 아이템을 얻었을 때
+    public void GetItemIcon(PlayerInterActionObj Object) // 아이템을 얻었을 때
     {
         if(ItemIconData.Count >= 7)
         {
@@ -158,8 +156,8 @@ public class UIInventory : UIView
 
         EnterInventoryWindow();
 
-        ItemIconData.Add(DummyItemObj);
-        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함
+        ItemIconData.Add(Object);
+        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함 , Object의 이미지 출력
 
         StartCoroutine(WaitForGetItem());
         
@@ -202,22 +200,22 @@ public class UIInventory : UIView
         // 아이템 조합 함수?
         if(CurIndex > ComIndex) // 상대적 오른쪽에있는 아이콘을 왼쪽아이템으로 조합시도
         {
-            ItemIconData.Insert(ComIndex, DummyItemObj);
+            //ItemIconData.Insert(ComIndex, DummyItemObj); // 조합한 아이템 insert
             //조합된 아이템 이미지 ComIndex 자리에 배치
         }
         else if(ComIndex > CurIndex) // 상대적 왼쪽에있는 아이콘을 오른아이템으로 조합시도
         {
-            ItemIconData.Insert(CurIndex, DummyItemObj);
+            //ItemIconData.Insert(CurIndex, DummyItemObj); // 조합한 아이템 insert
             //조합된 아이템 이미지 sprite CurIndex 자리에 배치
         }
     }
 
-    public void ClickItemIcon()
+    public void ClickItemIcon(string KeyName)
     {
         if(!IsSelectItemIcon)
         {
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
-            ob.ActivateObserverItem("d");
+            ob.ActivateObserverItem(KeyName);
         }
     }
 }

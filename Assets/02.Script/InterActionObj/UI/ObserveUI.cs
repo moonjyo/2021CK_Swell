@@ -29,6 +29,7 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     public void Interact()
     {
         Debug.Log("interactOn Observer");
+        GameManager.Instance.uiManager.uiInventory.ClickItemIcon(TargetObj.GetComponent<PlayerInterActionObj>().ItemKey);
 
     }
     public GameObject GetTargetObj()

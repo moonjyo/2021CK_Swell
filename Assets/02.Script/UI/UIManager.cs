@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public UIFade UIFade;
     public Canvas InterActionUICanvas;
     public UISound uISound;
+    public UIInventory uiInventory;
 
     [HideInInspector]
     public List<GameObject> AllInterActionUI = new List<GameObject>();

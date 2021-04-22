@@ -33,7 +33,8 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     }
     public void Interact()
     {
-        //Debug.Log("interactOn PlayerInterAction");
+        Debug.Log("interactOn PlayerInterAction");
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
     }
 
     
