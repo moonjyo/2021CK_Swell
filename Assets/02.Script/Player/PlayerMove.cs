@@ -110,9 +110,38 @@ public class PlayerMove : MonoBehaviour
                 {
                         if (InterActionrb != null)
                         {
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-                            if (-transform.forward == WalkVec) 
+                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
+                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+                         float x  = (float)Math.Abs(transform.forward.x);
+                         float y  = (float)Math.Abs(transform.forward.y);
+                         float z = (float)Math.Abs(transform.forward.z);
+
+                         x = (float)Mathf.Round(x);
+                         y = (float)Mathf.Round(y);
+                         z = (float)Mathf.Round(z);
+
+
+                        if (Mathf.Abs(x) == 1 && Mathf.Abs(z) == 1)
+                        {
+                            x = 0.6f;
+                            z = 0.6f;
+                        }
+
+                        if (Mathf.Sign(transform.forward.x) == -1)  {x  = -x; }
+                        if (Mathf.Sign(transform.forward.y) == -1) { y = -y; }
+                        if (Mathf.Sign(transform.forward.z) == -1) { z = -z; }
+
+
+
+                        Vector3 Direction = new Vector3(x, y, z);
+
+                        WalkVec.x =  (float)Math.Truncate(WalkVec.x * 10) / 10;
+                        WalkVec.y = (float)Math.Truncate(WalkVec.y * 10) / 10;
+                        WalkVec.z = (float)Math.Truncate(WalkVec.z * 10) / 10;
+                        Debug.Log(Direction.x + "," + Direction.y + "," + Direction.z);
+                        Debug.Log(WalkVec.x + "," + WalkVec.y + "," + WalkVec.z);
+                        
+                        if (-Direction == WalkVec) 
                             {  //당기기   
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
@@ -120,7 +149,7 @@ public class PlayerMove : MonoBehaviour
                                 Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                             }
-                            else if (transform.forward == WalkVec)
+                            else if (Direction == WalkVec)
                             { //밀기 
                                 Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
@@ -128,9 +157,15 @@ public class PlayerMove : MonoBehaviour
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
                                 transform.LookAt(transform.position + WalkVec);
-                                Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                            }
+
+                            //물체가 벽에 부딫쳤을경우 
+                              if (InterActionrb.velocity.x != 0 || InterActionrb.velocity.z != 0) 
+                              {
+                                return;
+                              }
+                            Controller.Move(WalkMove);
+                        }
                             else if (transform.right == WalkVec)
                             { // 회전 right
                                 Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
