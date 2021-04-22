@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
 {
     [HideInInspector]
@@ -44,6 +44,7 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
         if (rb != null)
         {
             PlayerManager.Instance.playerMove.SetInterActionObj(rb);
+            PlayerManager.Instance.playerMove.transform.DOLookAt(rb.transform.position, 1f);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
         }
         Debug.Log("InterActionOn");
