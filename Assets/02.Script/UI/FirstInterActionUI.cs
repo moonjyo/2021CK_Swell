@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FirstInterActionUI : MonoBehaviour, IInteractableUI
 {
-    [HideInInspector]
     public GameObject TargetObj;
     public Canvas Parentcanvas;
     private bool IsInit = false;
@@ -23,7 +22,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
 
     public void Init()
     {
-        transform.parent = Parentcanvas.transform;
+        transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetFirstCheck").transform.localPosition;
 
         IsInit = true;

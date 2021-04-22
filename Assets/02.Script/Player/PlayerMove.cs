@@ -166,18 +166,18 @@ public class PlayerMove : MonoBehaviour
                               }
                             Controller.Move(WalkMove);
                         }
-                            else if (transform.right == WalkVec)
-                            { // 회전 right
-                                Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
-                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                                InterActionrb.transform.Rotate(RotateVec);
-                            }
-                            else if (-transform.right == WalkVec)
-                            { //회전 left 
-                                Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
-                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                                InterActionrb.transform.Rotate(RotateVec);
-                            }
+                            //else if (transform.right == WalkVec)
+                            //{ // 회전 right
+                            //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
+                            //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                            //    InterActionrb.transform.Rotate(RotateVec);
+                            //}
+                            //else if (-transform.right == WalkVec)
+                            //{ //회전 left 
+                            //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
+                            //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                            //    InterActionrb.transform.Rotate(RotateVec);
+                            //}
                             else
                             {
                                 if (InterActionrb.CompareTag("DirectionItem"))

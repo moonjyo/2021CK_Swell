@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ObserveUI : MonoBehaviour,IInteractableUI
 {
-    [HideInInspector]
     public GameObject TargetObj;
     public Canvas Parentcanvas;
     private bool IsInit = false;
@@ -15,14 +14,14 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     {
         if (IsInit)
         {
-            //OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
+            OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
             transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
   
     public void Init()
     {
-        transform.parent = Parentcanvas.transform;
+        transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
 
         IsInit = true;
