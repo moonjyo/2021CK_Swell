@@ -217,7 +217,7 @@ public class UIInventory : UIView
         if(!IsSelectItemIcon)
         {
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
-            ob.ActivateObserverItem(0);
+            ob.ActivateObserverItem("d");
         }
     }
 }
