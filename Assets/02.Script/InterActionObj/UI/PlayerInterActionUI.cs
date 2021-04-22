@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
 {
-    [HideInInspector]
     public GameObject TargetObj;
     public Canvas Parentcanvas;
 
@@ -19,14 +18,14 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
     {
         if (IsInit)
         {
-            //OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
+            OffsetVec = TargetObj.transform.Find("UIOffsetInterAction").transform.localPosition;
             transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
 
     public void Init()
     {
-        transform.parent = Parentcanvas.transform;
+        transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetInterAction").transform.localPosition;
 
 
