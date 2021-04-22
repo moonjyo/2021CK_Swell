@@ -5,6 +5,8 @@ using System;
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
+    public string ItemKey;
+
     public void SecondInteract()
     {
         foreach(var Obj in UISecondObjList)

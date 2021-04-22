@@ -13,7 +13,7 @@ public class UIInventory : UIView
     public GameObject InventoryPanel;
     
     public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[7];
-    public List<GameObject> ItemIconData = new List<GameObject>();
+    public List<PlayerInterActionObj> ItemIconData = new List<PlayerInterActionObj>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
     UIInventoryElement CombineItemIcon;
@@ -29,7 +29,7 @@ public class UIInventory : UIView
     public Sprite EmptySprite;
     public Sprite[] ItemImage = new Sprite[3]; // 아이템 아이콘 이미지들
 
-    GameObject DummyItemObj;
+    PlayerInterActionObj DummyItemObj;
 
     GraphicRaycaster GraphicRay;
     PointerEventData Pointer;
@@ -217,7 +217,7 @@ public class UIInventory : UIView
         if(!IsSelectItemIcon)
         {
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
-            ob.ActivateObserverItem(0);
+            ob.ActivateObserverItem("d");
         }
     }
 }

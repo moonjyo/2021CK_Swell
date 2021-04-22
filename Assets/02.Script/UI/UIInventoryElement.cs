@@ -15,7 +15,7 @@ public class UIInventoryElement : MonoBehaviour
     public bool IsInteract = false;
 
     // 가지고있는 아이템에 대한 정보변수 필요함
-    public GameObject HaveItem;
+    public PlayerInterActionObj HaveItem;
 
     void Start()
     {
