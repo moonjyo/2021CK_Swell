@@ -6,7 +6,13 @@ using System;
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
     public string ItemKey;
+
+    public bool IsTake;
+    public bool IsWatch;
+    public bool IsRotate;
+
     public Sprite InventoryIcon;
+
     public void SecondInteract()
     {
         foreach(var Obj in UISecondObjList)

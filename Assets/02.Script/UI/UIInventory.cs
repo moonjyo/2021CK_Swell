@@ -157,7 +157,9 @@ public class UIInventory : UIView
         EnterInventoryWindow();
 
         ItemIconData.Add(Object);
+
         ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함 , Object의 이미지 출력
+
 
         StartCoroutine(WaitForGetItem());
         

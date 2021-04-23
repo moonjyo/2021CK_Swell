@@ -11,7 +11,7 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     private bool IsInit = false;
 
 
-    private bool IsPressed = false;
+    //private bool IsPressed = false;
 
 
     private void FixedUpdate()
@@ -34,7 +34,13 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     public void Interact()
     {
         Debug.Log("interactOn PlayerInterAction");
-        GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
+        if(TargetObj.GetComponent<PlayerInterActionObj>().IsTake)
+        {
+            GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
+
+            Destroy(TargetObj);
+        }
+        
     }
 
     
