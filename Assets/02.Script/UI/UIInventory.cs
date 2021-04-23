@@ -13,7 +13,7 @@ public class UIInventory : UIView
     public GameObject InventoryPanel;
     
     public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[7];
-    public List<PlayerInterActionObj> ItemIconData = new List<PlayerInterActionObj>();
+    List<PlayerInterActionObj> ItemIconData = new List<PlayerInterActionObj>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
     UIInventoryElement CombineItemIcon;
@@ -96,14 +96,14 @@ public class UIInventory : UIView
     {
         CurrentItemIcon.GetComponent<RectTransform>().anchoredPosition = CurrentItemIcon.GetOriginPos();
         //IsSelectItemIcon = false;
-        ExitInventoryWindow();
+        
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name);
-            if(hit.collider.name == "Cube")
+            if(hit.collider.name == "Cube") //상호작용 레이어로 교체해야함
             {
                 CurrentItemIcon.IsInteract = true;
                 for (int i = 0; i < ItemIconData.Count; i++)
@@ -145,6 +145,7 @@ public class UIInventory : UIView
             }           
             resultsRay.Clear();
         }
+        ExitInventoryWindow();
     }
 
     public void GetItemIcon(PlayerInterActionObj Object) // 아이템을 얻었을 때
@@ -159,7 +160,7 @@ public class UIInventory : UIView
         ItemIconData.Add(Object);
 
         ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함 , Object의 이미지 출력
-
+        ItemImageIcon[ItemIconData.Count - 1].HaveItem = Object;
 
         StartCoroutine(WaitForGetItem());
         
@@ -175,9 +176,10 @@ public class UIInventory : UIView
     {
         if(!IsSelectItemIcon || ItemIconData.Count < 2 || CombineItemIcon == null)
         {
+            IsSelectItemIcon = false;
             return;
         }
-        IsSelectItemIcon = false;
+        
 
         int CurIndex = 0, ComIndex = 0;
         for(int i = 0; i < ItemIconData.Count; i++)
@@ -218,6 +220,22 @@ public class UIInventory : UIView
         {
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
             ob.ActivateObserverItem(KeyName);
+        }
+    }
+
+    public void ClickItemIcon()
+    {
+        if (!IsSelectItemIcon)
+        {
+            //for(int i = 0; i < ItemIconData.Count; i++)
+            //{
+            //    if(ItemIconData[i] == CurrentItemIcon)
+            //    {
+            //        CurrentItemIcon.HaveItem = ItemIconData[i];
+            //        break;
+            //    }
+            //}
+            ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey);
         }
     }
 }

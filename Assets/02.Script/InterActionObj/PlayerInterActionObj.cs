@@ -11,7 +11,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public bool IsWatch;
     public bool IsRotate;
 
-    public Sprite InventoryIcon;
+    public Sprite InventoryIcon; // 이 아이템의 아이콘
 
     public void SecondInteract()
     {

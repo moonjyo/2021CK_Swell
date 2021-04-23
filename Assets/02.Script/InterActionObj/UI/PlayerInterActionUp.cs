@@ -12,7 +12,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
     private bool IsInit = false;
 
 
-    private bool IsPressed = false;
+    //private bool IsPressed = false;
 
 
     private void FixedUpdate()

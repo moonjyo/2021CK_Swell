@@ -19,17 +19,21 @@ public class PlayerInteraction : MonoBehaviour
 
     private bool IsFirstCheck = false;
 
+    public ObserveMode Observe;
+
     private void Update()
     {
+
         FirstHitCheck();
         SecondHitCheck();
+
     }
     
     public void FirstHitCheck()
     {
         RaycastHit[] hits = Physics.SphereCastAll(FirstInterActionTr.position, FirstRadius, Vector3.up, 0f, InterActionLayer);
-
-        if (hits.Length != 0)
+        //GameManager.Instance.GetComponent<ObserveMode>().IsOnObserveMode
+        if (hits.Length != 0 && !Observe.IsOnObserveMode)
         {
             for (int i = 0; i < hits.Length; ++i)
             {
@@ -65,8 +69,8 @@ public class PlayerInteraction : MonoBehaviour
         if (!IsFirstCheck)
         {
             RaycastHit[] hits = Physics.SphereCastAll(SecondInterActionTr.position, SecondRadius, Vector3.up, 0f, InterActionLayer);
-
-            if (hits.Length != 0)
+            //GameManager.Instance.GetComponent<ObserveMode>().IsOnObserveMode
+            if (hits.Length != 0 && !Observe.IsOnObserveMode)
             {
                 for (int i = 0; i < hits.Length; ++i)
                 {

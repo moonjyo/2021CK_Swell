@@ -38,7 +38,7 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
         {
             GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
 
-            Destroy(TargetObj);
+            TargetObj.SetActive(false); // ui도 관리해주어야 함
         }
         
     }
