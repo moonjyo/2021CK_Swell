@@ -179,7 +179,7 @@ public class UIInventory : UIView
             IsSelectItemIcon = false;
             return;
         }
-        
+        IsSelectItemIcon = false;
 
         int CurIndex = 0, ComIndex = 0;
         for(int i = 0; i < ItemIconData.Count; i++)
