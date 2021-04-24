@@ -214,14 +214,15 @@ public class UIInventory : UIView
         }
     }
 
-    public void ClickItemIcon(string KeyName)
+    public void ClickItemIcon(string KeyName , PlayerInterActionObj Target)
     {
         if(!IsSelectItemIcon)
         {
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
-            ob.ActivateObserverItem(KeyName);
+            ob.ActivateObserverItem(KeyName , Target);
         }
     }
+
 
     public void ClickItemIcon()
     {
@@ -235,7 +236,7 @@ public class UIInventory : UIView
             //        break;
             //    }
             //}
-            ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey);
+            ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
         }
     }
 }

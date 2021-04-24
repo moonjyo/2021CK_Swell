@@ -8,7 +8,7 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     public Canvas Parentcanvas;
     private bool IsInit = false;
     public Vector3 OffsetVec;
-
+    PlayerInterActionObj TargetInterAction;
 
     private void FixedUpdate()
     {
@@ -28,10 +28,16 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     }
     public void Interact()
     {
+        TargetInterAction = TargetObj.GetComponent<PlayerInterActionObj>();
         Debug.Log("interactOn Observer");
-        if (TargetObj.GetComponent<PlayerInterActionObj>().IsWatch)
+
+        if (TargetInterAction != null)
         {
-            GameManager.Instance.uiManager.uiInventory.ClickItemIcon(TargetObj.GetComponent<PlayerInterActionObj>().ItemKey);
+            if (TargetInterAction.IsWatch)
+            {
+                TargetInterAction.SecondInteractOff();
+                GameManager.Instance.uiManager.uiInventory.ClickItemIcon(TargetInterAction.ItemKey , TargetInterAction);
+            }
         }
     }
     public GameObject GetTargetObj()

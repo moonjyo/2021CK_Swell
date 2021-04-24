@@ -17,7 +17,9 @@ public class ObserveMode : MonoBehaviour
     public bool IsOnObserveMode = false;
     bool IsObjRotate = false;
 
-    public StageCamera baseCam; 
+    public StageCamera baseCam;
+
+    private PlayerInterActionObj CurrentTargetObj;
     public void SetRotateInput(Vector2 value)
     {
         RotHInput = value.x;
@@ -69,8 +71,10 @@ public class ObserveMode : MonoBehaviour
         ObserveObj.Add(Key, go);
     }
 
-    public void ActivateObserverItem(string Key) // 관찰자모드 아이템 활성화
+    public void ActivateObserverItem(string Key , PlayerInterActionObj Target) // 관찰자모드 아이템 활성화
     {
+
+        CurrentTargetObj = Target;
         FadeCanvas.gameObject.SetActive(true);
         //
         //GO.SetActive(true);
@@ -106,6 +110,11 @@ public class ObserveMode : MonoBehaviour
         GO = null;
         FadeCanvas.gameObject.SetActive(false);
         IsOnObserveMode = false;
+        if(CurrentTargetObj != null)
+        {
+            CurrentTargetObj.SecondInteractOn();
+        }
+        
     }
 
     public void DummyExit() // 관찰자 모드 Exit 더미로사용중
