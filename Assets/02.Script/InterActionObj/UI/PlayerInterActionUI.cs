@@ -42,10 +42,9 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
        Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
-
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.SetInterActionObj(rb);
-            PlayerManager.Instance.playerMove.transform.DOLookAt(rb.transform.position, 1f).OnComplete(() =>
+            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x,PlayerManager.Instance.playerMove.Body_Tr.position.y,rb.transform.position.z),      1f).OnComplete(() =>
             {
                 PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
             });

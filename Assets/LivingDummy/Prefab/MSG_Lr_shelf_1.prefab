@@ -187,13 +187,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52cafed7de4844980cb39f72cda41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemKey: shlef_1
+  IsTake: 0
+  IsWatch: 1
+  IsRotate: 0
+  InventoryIcon: {fileID: 0}
   Objs:
   - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
   - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
-  UIFirstObjList: []
   UISecondObjList: []
-  IsInterAct: 0
+  UIFirstObj: {fileID: 0}
 --- !u!1 &2673976892957405024
 GameObject:
   m_ObjectHideFlags: 0
@@ -377,7 +381,7 @@ Transform:
   m_GameObject: {fileID: 7456012060426765045}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.28, y: 0, z: 0}
-  m_LocalScale: {x: 1.3675214, y: 1.8773353, z: 1.3675214}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1019542927075384706}
   - {fileID: 9079768807149111136}

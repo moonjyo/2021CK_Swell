@@ -12,10 +12,10 @@ public class UIManager : MonoBehaviour
     public UISound uISound;
     public UIInventory uiInventory;
 
-    [HideInInspector]
-    public List<GameObject> AllInterActionUI = new List<GameObject>();
+    public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
 
 
+    public bool IsOnFirstInterActionUI = false;
     private bool IsSettingMenu = false;
 
 
@@ -34,6 +34,21 @@ public class UIManager : MonoBehaviour
             IsSettingMenu = !IsSettingMenu;
             UISettingOptionMenu.Toggle(IsSettingMenu);
         }
-        
+    }
+
+    public void OnFirstInterActionUI()
+    { 
+      foreach (var Obj in OnActiveFirstInterActionUI)
+        {
+            Obj.gameObject.SetActive(true);
+        }
+    }
+
+    public void OffFirstInterActionUI()
+    {
+        foreach (var Obj in OnActiveFirstInterActionUI)
+        {
+            Obj.gameObject.SetActive(false);
+        }
     }
 }

@@ -146,7 +146,10 @@ public class PlayerMove : MonoBehaviour
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                                Controller.Move(WalkMove);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
+                            Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                             }
                             else if (Direction == WalkVec)
@@ -155,6 +158,7 @@ public class PlayerMove : MonoBehaviour
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                                 InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
@@ -201,6 +205,7 @@ public class PlayerMove : MonoBehaviour
     {
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
         PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Walk);
         PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Push);
         PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Pull);
@@ -264,7 +269,6 @@ public class PlayerMove : MonoBehaviour
     {
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("BranchToCrounch");
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
-        ClimingJudge();
         PlayerManager.Instance.playerStatus.FsmAllRemove();
     }
 
@@ -280,9 +284,7 @@ public class PlayerMove : MonoBehaviour
 
     public void HangingOn(Vector2 InValue , Transform TargetPos)
     {
-        if (InValue.sqrMagnitude > 0.1f && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart && HangingJudge() && 
-            PlayerManager.Instance.playerStatus.fsm != PlayerFSM.Climing)
-        {
+      
             PlayerManager.Instance.playerMove.IsGravity = true;
             
             PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
@@ -297,7 +299,7 @@ public class PlayerMove : MonoBehaviour
                 Root_Tr.transform.localPosition = new Vector3(Root_Tr.transform.localPosition.x, child.transform.localPosition.y, child.transform.localPosition.z);
            
 
-        }
+        
     }
     public IEnumerator InterActionItemPickUp()
     {
@@ -357,45 +359,8 @@ public class PlayerMove : MonoBehaviour
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
         }
     }
-    public void ClimingJudge()
-    {
-
-        switch (PlayerManager.Instance.playerStatus.direction)
-        {
-            case PlayerDirection.Left:
-                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
-                break;
-            case PlayerDirection.Right:
-                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
-                break;
-            case PlayerDirection.Bottom:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
-                break;
-            case PlayerDirection.Top:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
-                break;
-            default:
-                Debug.Log("잘못된 방향");
-                break;
-        }
-    }
-    public bool HangingJudge()
-    {
-        switch (PlayerManager.Instance.playerStatus.direction)
-        {
-            case PlayerDirection.Right:
-                return true;
-            case PlayerDirection.Left:
-                return true;
-            case PlayerDirection.Top:
-                return true;
-            case PlayerDirection.Bottom:
-                return true;
-            default:
-                Debug.Log("잘못된 방향");
-                return false;
-        }
-    }
+   
+   
     public void ItemMoveDecide(float MasValue)
     {
         //push and pull on 
