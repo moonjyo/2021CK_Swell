@@ -1,6 +1,29 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-5899825034615494157
+--- !u!114 &-7098535941378696455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/BgmTest
+  m_EditorClassIdentifier: 
+  Path: event:/BgmTest
+  guid: aee2bb1c286633499a758b2971a64daa
+  Banks:
+  - {fileID: -5809877096916254536}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &-5809877096916254536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10,12 +33,52 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.bank
+  m_Name: bank:/BGM.bank
   m_EditorClassIdentifier: 
-  Path: Assets/SoundFMODFile/TestSoundFMOD/Build/Desktop/Master.bank
-  Name: Master
-  StudioPath: bank:/Master
-  lastModified: 637522664140519256
+  Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.bank
+  Name: BGM
+  StudioPath: bank:/BGM
+  lastModified: 637548784500329921
+  LoadResult: 0
+  FileSizes: []
+  Exists: 1
+--- !u!114 &-5188821834086711546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/BGM.strings.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.strings.bank
+  Name: BGM.strings
+  StudioPath: bank:/BGM.strings
+  lastModified: 637548784500329921
+  LoadResult: 0
+  FileSizes:
+  - Name: Desktop
+    Value: 970
+  Exists: 1
+--- !u!114 &-3060103990112855777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
+  m_Name: bank:/SFX.bank
+  m_EditorClassIdentifier: 
+  Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/SFX.bank
+  Name: SFX
+  StudioPath: bank:/SFX
+  lastModified: 637548784500339893
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -32,39 +95,20 @@ MonoBehaviour:
   m_Name: FMODStudioCache
   m_EditorClassIdentifier: 
   EditorBanks:
-  - {fileID: 7981311968612049887}
-  - {fileID: -5899825034615494157}
+  - {fileID: -5188821834086711546}
+  - {fileID: -5809877096916254536}
+  - {fileID: -3060103990112855777}
   EditorEvents:
-  - {fileID: 8160253225705001243}
+  - {fileID: -7098535941378696455}
+  - {fileID: 6524245821682734522}
   EditorParameters: []
   MasterBanks:
-  - {fileID: -5899825034615494157}
+  - {fileID: -5809877096916254536}
   StringsBanks:
-  - {fileID: 7981311968612049887}
-  stringsBankWriteTime: 637522664140579267
+  - {fileID: -5188821834086711546}
+  stringsBankWriteTime: 637548784500329921
   cacheVersion: 6
---- !u!114 &7981311968612049887
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/Master.strings.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/SoundFMODFile/TestSoundFMOD/Build/Desktop/Master.strings.bank
-  Name: Master.strings
-  StudioPath: bank:/Master.strings
-  lastModified: 637522664140579267
-  LoadResult: 0
-  FileSizes:
-  - Name: Desktop
-    Value: 746
-  Exists: 1
---- !u!114 &8160253225705001243
+--- !u!114 &6524245821682734522
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -74,16 +118,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SoundTest
+  m_Name: event:/Player/Walk
   m_EditorClassIdentifier: 
-  Path: event:/SoundTest
-  guid: bef4a877a58fa94fad49c07882757f26
+  Path: event:/Player/Walk
+  guid: 123481163dd7c0489d9faa39387991f1
   Banks:
-  - {fileID: -5899825034615494157}
+  - {fileID: -3060103990112855777}
   IsStream: 0
-  Is3D: 1
+  Is3D: 0
   IsOneShot: 1
   Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 200
