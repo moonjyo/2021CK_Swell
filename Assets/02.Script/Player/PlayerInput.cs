@@ -36,7 +36,6 @@ public class PlayerInput : MonoBehaviour
             IsJumpCanceled = true;
             if (PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Climing))
             {
-                PlayerManager.Instance.playerMove.climing();
             }
         }
     }

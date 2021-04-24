@@ -265,11 +265,11 @@ public class PlayerMove : MonoBehaviour
         return IsCheckGround;
     }
 
-    public void climing()
+    public void ClimbingObj()
     {
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("BranchToCrounch");
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
-        PlayerManager.Instance.playerStatus.FsmAllRemove();
+        Body_Tr.DOLocalMove(new Vector3(Body_Tr.position.x + 4f , Body_Tr.position.y + 4f, Body_Tr.position.z + 2f),2f);
+        
     }
 
 

@@ -28,13 +28,11 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
     {
         transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetUp").transform.localPosition;
-
-
         IsInit = true;
     }
     public void Interact()
     {
-        //Debug.Log("interactOn PlayerInterAction");
+        PlayerManager.Instance.playerMove.ClimbingObj();
     }
 
 
