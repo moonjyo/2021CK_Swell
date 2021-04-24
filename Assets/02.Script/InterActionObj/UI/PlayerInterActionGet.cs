@@ -13,6 +13,7 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
 
     //private bool IsPressed = false;
 
+    private PlayerInterActionObj TargetInterActionObj;
 
     private void FixedUpdate()
     {
@@ -34,11 +35,16 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     public void Interact()
     {
         Debug.Log("interactOn PlayerInterAction");
-        if(TargetObj.GetComponent<PlayerInterActionObj>().IsTake)
+        TargetInterActionObj = TargetObj.GetComponent<PlayerInterActionObj>();
+        if (TargetInterActionObj != null)
         {
-            GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
+            if (TargetInterActionObj.IsTake)
+            {
+                GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
 
-            TargetObj.SetActive(false); // ui도 관리해주어야 함
+                TargetObj.SetActive(false); // ui도 관리해주어야 함
+                TargetInterActionObj.AllDestroyObj();
+            }
         }
         
     }

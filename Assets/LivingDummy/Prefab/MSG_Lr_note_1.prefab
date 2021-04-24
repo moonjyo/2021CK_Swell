@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 8254cd50071e4a545bd92b02aa2b3f7a, type: 3}
+  - {fileID: 2100000, guid: 856dcddf2e9e6084d82057d616dbfc6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,14 +96,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52cafed7de4844980cb39f72cda41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemKey: note_1
+  IsTake: 1
+  IsWatch: 1
+  IsRotate: 1
+  InventoryIcon: {fileID: 0}
   Objs:
   - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
   - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
   - {fileID: 1374006460355620723, guid: cd583ba4394598949b7575a8ac15cf00, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
-  UIFirstObjList: []
   UISecondObjList: []
-  IsInterAct: 0
+  UIFirstObj: {fileID: 0}
 --- !u!65 &8928723560623936807
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -112,11 +116,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5355372403042572718}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.46923107, y: 0.100684516, z: 0.70000017}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.46923107, y: 0.100684516, z: 1.8382267}
+  m_Center: {x: -9.821627e-16, y: 0, z: -0.56911343}
 --- !u!1001 &6073640774608590463
 PrefabInstance:
   m_ObjectHideFlags: 0

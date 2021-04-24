@@ -3,9 +3,9 @@ using System.Collections.Generic;
 
 public interface IInteractbale 
 {
-  void FirstInteract();
-  void SecondInteract();
-    
+  void SecondInteractOn();
+  void SecondInteractOff();
+
 
 
 }

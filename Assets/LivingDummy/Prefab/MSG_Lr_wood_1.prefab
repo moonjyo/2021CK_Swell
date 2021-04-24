@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: c8ae17b072b4f3c49a023f64c67bfc62, type: 3}
+  - {fileID: 2100000, guid: 856dcddf2e9e6084d82057d616dbfc6f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -96,14 +96,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e52cafed7de4844980cb39f72cda41d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ItemKey: wood_1 (1)
+  IsTake: 1
+  IsWatch: 1
+  IsRotate: 1
+  InventoryIcon: {fileID: 0}
   Objs:
   - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
   - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
   - {fileID: 1374006460355620723, guid: cd583ba4394598949b7575a8ac15cf00, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
-  UIFirstObjList: []
   UISecondObjList: []
-  IsInterAct: 0
+  UIFirstObj: {fileID: 0}
 --- !u!65 &283369816182804786
 BoxCollider:
   m_ObjectHideFlags: 0
