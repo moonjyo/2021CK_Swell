@@ -32,10 +32,25 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
     }
     public void Interact()
     {
-        PlayerManager.Instance.playerMove.ClimbingObj();
+       ClimbingObj();
     }
 
-
+    public void ClimbingObj()
+    {
+        Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.3f).OnComplete(() =>
+            {
+                PlayerManager.Instance.playerMove.ClimingJudge();
+                PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("BranchToCrounch");
+                PlayerManager.Instance.playerMove.IsGravity = true;
+            });
+        }
+    }
 
 
     public GameObject GetTargetObj()

@@ -103,7 +103,6 @@ public class PlayerMove : MonoBehaviour
     {
         if (WalkVec.sqrMagnitude > 0.1f)
         {
-            DirectionSelect(); //방향성 check 
             if (InterActionrb != null)
             {
                 if (IsGrounded() && !InterActionrb.CompareTag("InterActionItem") && !PlayerManager.Instance.PlayerInput.IsPickUpItem)
@@ -222,7 +221,7 @@ public class PlayerMove : MonoBehaviour
            
         }
         Body_Tr.LookAt(transform.position + WalkVec);
-        Vector3 test = transform.TransformDirection(Vector3.forward);
+    
         Controller.Move(WalkMove);
     }
 
@@ -265,13 +264,40 @@ public class PlayerMove : MonoBehaviour
         return IsCheckGround;
     }
 
-    public void ClimbingObj()
+   
+    public void ClimingJudge()
     {
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("BranchToCrounch");
-        Body_Tr.DOLocalMove(new Vector3(Body_Tr.position.x + 4f , Body_Tr.position.y + 4f, Body_Tr.position.z + 2f),2f);
-        
-    }
+        DirectionSelect();
+        switch (PlayerManager.Instance.playerStatus.direction)
+        {
 
+            case PlayerDirection.Left:
+                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
+                break;
+            case PlayerDirection.Right:
+                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
+                break;
+            case PlayerDirection.Bottom:
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
+                break;
+            case PlayerDirection.Top:
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
+                break;
+            case PlayerDirection.TopLeft:
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
+                break;
+            case PlayerDirection.TopRight:
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
+                break;
+            case PlayerDirection.BottomLeft:
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
+                break;
+            case PlayerDirection.BottomRight:
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y,
+                    ClimingOffsetVec.x), 1f);
+                break;
+        }
+    }
 
     public void HangingOff()
     {
@@ -338,29 +364,64 @@ public class PlayerMove : MonoBehaviour
     }
 
 
+    //임시 
+    public Vector3 VectorTruncate(float x , float y , float z ,int decimalpoint)
+    {
+
+        float tempx = (float)Math.Truncate(x * decimalpoint) / decimalpoint;
+        float tempy = (float)Math.Truncate(y * decimalpoint) / decimalpoint;
+        float tempz = (float)Math.Truncate(z * decimalpoint) / decimalpoint;
+
+
+        return new Vector3(tempx, tempy, tempz);
+        
+    }
+
+
+    
 
     public void DirectionSelect()
     {
+        Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z, 100);
+            
 
-        if (WalkVec.x == 1f && WalkVec.z == 0f)
+        if (transform.forward == Vector3.right)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
         }
-        else if (WalkVec.x == -1f && WalkVec.z == 0f)
+        else if (transform.forward == Vector3.left)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
         }
-        else if (WalkVec.x == 0f && WalkVec.z == 1f)
+        else if (new Vector3(transform.forward.x , transform.forward.z, 0) == Vector3.up)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
         }
-        else if (WalkVec.x == 0f && WalkVec.z == -1f)
+        else if (new Vector3(transform.forward.x, transform.forward.z, 0) == Vector3.down)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
         }
+        else if (DirectionCheck == new Vector3(0.7f, 0 , 0.7f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopLeft;
+        }
+        else if (DirectionCheck == new Vector3(0.7f, 0, -0.7f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopRight;
+        }
+        else if (DirectionCheck == new Vector3(-0.7f, 0, 0.7f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomLeft;
+        }
+        else if (DirectionCheck == new Vector3(-0.7f, 0, -0.7f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomRight;
+        }
+
+
     }
-   
-   
+
+
     public void ItemMoveDecide(float MasValue)
     {
         //push and pull on 
