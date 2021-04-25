@@ -270,7 +270,7 @@ public class PlayerMove : MonoBehaviour
                 break;
             case PlayerDirection.BottomRight:
                 transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y,
-                    ClimingOffsetVec.x), 1f).OnComplete(() =>
+                    -ClimingOffsetVec.x), 1f).OnComplete(() =>
                     { InterActionUIPressed = false; });
                 break;
         }
