@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -1267,6 +1267,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: MSG_Lr_wall_1 (9)
       objectReference: {fileID: 0}
+    - target: {fileID: 1259537233568829725, guid: 0677fd8b3a64d1541b6d6ef1823ded2f,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7684862730248065037, guid: 8de87cb9b7e219e4b82a3c5260f45f24,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0677fd8b3a64d1541b6d6ef1823ded2f, type: 3}
 --- !u!4 &209237727 stripped
@@ -12506,6 +12512,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 81155473}
     m_Modifications:
+    - target: {fileID: 76655485971803921, guid: 80c6897bdb0a1334dbe896db5ca2bc66,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: -7684862730248065037, guid: 8de87cb9b7e219e4b82a3c5260f45f24,
+        type: 3}
     - target: {fileID: 1250726493687960702, guid: 80c6897bdb0a1334dbe896db5ca2bc66,
         type: 3}
       propertyPath: m_LocalPosition.x
