@@ -44,7 +44,7 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
         {
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.SetInterActionObj(rb);
-            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x,PlayerManager.Instance.playerMove.Body_Tr.position.y,rb.transform.position.z),      1f).OnComplete(() =>
+            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x,PlayerManager.Instance.playerMove.Body_Tr.position.y,rb.transform.position.z),      0.5f).OnComplete(() =>
             {
                 PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
             });

@@ -84,6 +84,7 @@ public class ObserveMode : MonoBehaviour
         {
             float a = 300f;
             GO = Instantiate(go, baseCam.transform.position + baseCam.transform.forward, Quaternion.identity);
+            GO.gameObject.layer = 0;
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
@@ -110,10 +111,10 @@ public class ObserveMode : MonoBehaviour
         GO = null;
         FadeCanvas.gameObject.SetActive(false);
         IsOnObserveMode = false;
-        if(CurrentTargetObj != null)
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+        if (CurrentTargetObj != null)
         {
             CurrentTargetObj.SecondInteractOn();
-            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         }
         
     }

@@ -218,6 +218,7 @@ public class UIInventory : UIView
     {
         if(!IsSelectItemIcon)
         {
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
             ob.ActivateObserverItem(KeyName , Target);
         }
