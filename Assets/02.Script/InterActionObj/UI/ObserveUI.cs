@@ -35,6 +35,7 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
         {
             if (TargetInterAction.IsWatch)
             {
+                PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
                 TargetInterAction.SecondInteractOff();
                 GameManager.Instance.uiManager.uiInventory.ClickItemIcon(TargetInterAction.ItemKey , TargetInterAction);
             }

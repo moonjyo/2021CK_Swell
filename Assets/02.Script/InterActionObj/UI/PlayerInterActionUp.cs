@@ -11,8 +11,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
     public Vector3 OffsetVec;
     private bool IsInit = false;
 
-
-    //private bool IsPressed = false;
+    
 
 
     private void FixedUpdate()
@@ -32,7 +31,13 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
     }
     public void Interact()
     {
-       ClimbingObj();
+      
+        if (!PlayerManager.Instance.playerMove.InterActionUIPressed)
+        {
+            PlayerManager.Instance.playerMove.InterActionUIPressed = true;
+            ClimbingObj();
+            Debug.Log("click");
+        }
     }
 
     public void ClimbingObj()
@@ -43,11 +48,11 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.3f).OnComplete(() =>
             {
-                PlayerManager.Instance.playerMove.ClimingJudge();
-                PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetTrigger("BranchToCrounch");
                 PlayerManager.Instance.playerMove.IsGravity = true;
+                PlayerManager.Instance.playerMove.ClimingJudge();
+            
             });
         }
     }

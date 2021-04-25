@@ -45,11 +45,9 @@ public class PlayerMove : MonoBehaviour
 
     public CharacterController Controller;
 
-
-
     public Vector2 ClimingOffsetVec;
 
-
+    public bool InterActionUIPressed = false;
 
     //현재 light를 가지고있는지 check 
     public bool IsLight = false;
@@ -111,28 +109,11 @@ public class PlayerMove : MonoBehaviour
                         {
                          PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
                          PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-                         float x  = (float)Math.Abs(transform.forward.x);
-                         float y  = (float)Math.Abs(transform.forward.y);
-                         float z = (float)Math.Abs(transform.forward.z);
-
-                         x = (float)Mathf.Round(x);
-                         y = (float)Mathf.Round(y);
-                         z = (float)Mathf.Round(z);
 
 
-                        if (Mathf.Abs(x) == 1 && Mathf.Abs(z) == 1)
-                        {
-                            x = 0.6f;
-                            z = 0.6f;
-                        }
+                        Vector3 Direction = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
+                       
 
-                        if (Mathf.Sign(transform.forward.x) == -1)  {x  = -x; }
-                        if (Mathf.Sign(transform.forward.y) == -1) { y = -y; }
-                        if (Mathf.Sign(transform.forward.z) == -1) { z = -z; }
-
-
-
-                        Vector3 Direction = new Vector3(x, y, z);
 
                         WalkVec.x =  (float)Math.Truncate(WalkVec.x * 10) / 10;
                         WalkVec.y = (float)Math.Truncate(WalkVec.y * 10) / 10;
@@ -177,20 +158,8 @@ public class PlayerMove : MonoBehaviour
                             //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                             //    InterActionrb.transform.Rotate(RotateVec);
                             //}
-                            else
-                            {
-                                if (InterActionrb.CompareTag("DirectionItem"))
-                                {
-                                    BaseWalk();
-                                    return;
-                                }
-                            }
                         }
                     
-                    else
-                    {
-                        BaseWalk();
-                    }
                 }
             }
             else if(!IsInterActionCol)
@@ -272,29 +241,37 @@ public class PlayerMove : MonoBehaviour
         {
 
             case PlayerDirection.Left:
-                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
+                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
                 break;
             case PlayerDirection.Right:
-                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
+                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
                 break;
             case PlayerDirection.Bottom:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f)
+                    .OnComplete(() => { InterActionUIPressed = false; }); ;
                 break;
             case PlayerDirection.Top:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f);
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
                 break;
             case PlayerDirection.TopLeft:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
                 break;
             case PlayerDirection.TopRight:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f);
+                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
                 break;
             case PlayerDirection.BottomLeft:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f);
+                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
                 break;
             case PlayerDirection.BottomRight:
                 transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y,
-                    ClimingOffsetVec.x), 1f);
+                    ClimingOffsetVec.x), 1f).OnComplete(() =>
+                    { InterActionUIPressed = false; });
                 break;
         }
     }
@@ -322,10 +299,8 @@ public class PlayerMove : MonoBehaviour
                 return;
             }
 
-                Root_Tr.transform.localPosition = new Vector3(Root_Tr.transform.localPosition.x, child.transform.localPosition.y, child.transform.localPosition.z);
-           
-
-        
+           Root_Tr.transform.localPosition = new Vector3(Root_Tr.transform.localPosition.x, child.transform.localPosition.y, child.transform.localPosition.z);
+          
     }
     public IEnumerator InterActionItemPickUp()
     {
@@ -365,16 +340,30 @@ public class PlayerMove : MonoBehaviour
 
 
     //임시 
-    public Vector3 VectorTruncate(float x , float y , float z ,int decimalpoint)
+    public Vector3 VectorTruncate(float x , float y , float z )
     {
+        x = (float)Math.Abs(transform.forward.x);
+        y = (float)Math.Abs(transform.forward.y);
+        z = (float)Math.Abs(transform.forward.z);
 
-        float tempx = (float)Math.Truncate(x * decimalpoint) / decimalpoint;
-        float tempy = (float)Math.Truncate(y * decimalpoint) / decimalpoint;
-        float tempz = (float)Math.Truncate(z * decimalpoint) / decimalpoint;
+        x = (float)Mathf.Round(x);
+        y = (float)Mathf.Round(y);
+        z = (float)Mathf.Round(z);
 
 
-        return new Vector3(tempx, tempy, tempz);
-        
+        if (Mathf.Abs(x) == 1 && Mathf.Abs(z) == 1)
+        {
+            x = 0.6f;
+            z = 0.6f;
+        }
+
+
+      if (Mathf.Sign(transform.forward.x) == -1) { x = -x; }
+      if (Mathf.Sign(transform.forward.y) == -1) { y = -y; }
+      if (Mathf.Sign(transform.forward.z) == -1) { z = -z; }
+
+      return new Vector3(x, y, z);
+
     }
 
 
@@ -382,42 +371,40 @@ public class PlayerMove : MonoBehaviour
 
     public void DirectionSelect()
     {
-        Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z, 100);
-            
+        Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
 
-        if (transform.forward == Vector3.right)
+        if (DirectionCheck == Vector3.right)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
         }
-        else if (transform.forward == Vector3.left)
+        else if (DirectionCheck == Vector3.left)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
         }
-        else if (new Vector3(transform.forward.x , transform.forward.z, 0) == Vector3.up)
+        else if (new Vector3(DirectionCheck.x , DirectionCheck.z, 0) == Vector3.up)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
         }
-        else if (new Vector3(transform.forward.x, transform.forward.z, 0) == Vector3.down)
+        else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.down)
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
         }
-        else if (DirectionCheck == new Vector3(0.7f, 0 , 0.7f))
+        else if (DirectionCheck == new Vector3(0.6f, 0 , 0.6f))
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopLeft;
         }
-        else if (DirectionCheck == new Vector3(0.7f, 0, -0.7f))
+        else if (DirectionCheck == new Vector3(0.6f, 0, -0.6f))
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopRight;
         }
-        else if (DirectionCheck == new Vector3(-0.7f, 0, 0.7f))
+        else if (DirectionCheck == new Vector3(-0.6f, 0, 0.6f))
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomLeft;
         }
-        else if (DirectionCheck == new Vector3(-0.7f, 0, -0.7f))
+        else if (DirectionCheck == new Vector3(-0.6f, 0, -0.6f))
         {
             PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomRight;
         }
-
 
     }
 
@@ -460,15 +447,11 @@ public class PlayerMove : MonoBehaviour
             }
             if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
             {
-                if (IsGrounded())
-                {
-                    Jump();
-                }
-                else
+                if (!IsGrounded())
                 {
                     PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", true);
-
                 }
+              
                 //hashflag  포함되어있는지 확인 
                 if (MoveFunction != null)
                 {

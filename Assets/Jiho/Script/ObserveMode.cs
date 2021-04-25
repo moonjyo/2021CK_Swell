@@ -113,6 +113,7 @@ public class ObserveMode : MonoBehaviour
         if(CurrentTargetObj != null)
         {
             CurrentTargetObj.SecondInteractOn();
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         }
         
     }
@@ -122,7 +123,6 @@ public class ObserveMode : MonoBehaviour
         GO.transform.eulerAngles = new Vector3(0, 0, 0);
         FadeCanvas.gameObject.SetActive(false);
         GO.SetActive(false);
-
         IsOnObserveMode = false;
     }
 }
