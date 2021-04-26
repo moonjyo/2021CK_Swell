@@ -124,7 +124,6 @@ public class PlayerMove : MonoBehaviour
                         if (-Direction == WalkVec) 
                             {  //당기기   
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
-                                InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
@@ -136,15 +135,12 @@ public class PlayerMove : MonoBehaviour
                             { //밀기 
                                 Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                                InterActionrb.constraints = RigidbodyConstraints.FreezeRotation;
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-
-                            
-                            Controller.Move(WalkMove);
+                                Controller.Move(WalkMove);
                         }
                             //else if (transform.right == WalkVec)
                             //{ // 회전 right
@@ -510,5 +506,32 @@ public class PlayerMove : MonoBehaviour
         return false;
     }
 
+
+    public void InterActionUIPointDown(Rigidbody Targetrb)
+    {
+        if (Targetrb != null)
+        {
+
+
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+            PlayerManager.Instance.playerMove.SetInterActionObj(Targetrb);
+            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(Targetrb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, Targetrb.transform.position.z), 0.5f).OnComplete(() =>
+            {
+                PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+            });
+            Targetrb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
+        }
+
+    }
+
+    public void InterActionUIPointUp()
+    {
+        PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", true);
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+
+    }
    
 }

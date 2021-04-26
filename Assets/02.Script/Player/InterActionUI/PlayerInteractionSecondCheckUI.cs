@@ -36,7 +36,9 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                 GameManager.Instance.uiManager.IsOnFirstInterActionUI = false; // firstinteraction ui 활성화
                 TargetObj.SecondInteractOff(); // 충돌된 second off 
                 GameManager.Instance.uiManager.OnFirstInterActionUI(); //다시 충돌중인 first interaction on 
-             
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
+
             }
         }
 

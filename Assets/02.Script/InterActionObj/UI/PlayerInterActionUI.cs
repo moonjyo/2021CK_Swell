@@ -42,25 +42,15 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
        Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
-            PlayerManager.Instance.playerMove.SetInterActionObj(rb);
-            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x,PlayerManager.Instance.playerMove.Body_Tr.position.y,rb.transform.position.z),      0.5f).OnComplete(() =>
-            {
-                PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
-            });
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
+            PlayerManager.Instance.playerMove.InterActionUIPointDown(rb);
         }
-        Debug.Log("InterActionOn");
     }
 
     public void PointUp()
     {
         IsPressed = false;
-        PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", true);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-        Debug.Log("InterActionOff");
+        PlayerManager.Instance.playerMove.InterActionUIPointUp();
+
     }
 
 
