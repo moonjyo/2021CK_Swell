@@ -9,8 +9,7 @@ public class PlayerInteractionFirstCheckUI : MonoBehaviour
 
     private PlayerInterActionObj TargetObj = null;
 
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         if ((1 << other.gameObject.layer & InterActionLayer) != 0)
         {
@@ -18,9 +17,10 @@ public class PlayerInteractionFirstCheckUI : MonoBehaviour
             // 현재 first interaction ui가 충돌 안됐을경우 시작
             if (TargetObj != null && !GameManager.Instance.uiManager.IsOnFirstInterActionUI)
             {
-                //ui first on 
-                TargetObj.UIFirstObj.gameObject.SetActive(true);
-
+                if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count == 0)
+                {
+                    TargetObj.UIFirstObj.gameObject.SetActive(true);
+                }
                 //충돌된 ui firstobj 넣어줌 
                 if (!GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Contains(TargetObj.UIFirstObj))
                 {
@@ -28,6 +28,7 @@ public class PlayerInteractionFirstCheckUI : MonoBehaviour
                 }
             }
         }
+
     }
 
     private void OnTriggerExit(Collider other)
