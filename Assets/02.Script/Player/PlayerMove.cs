@@ -118,8 +118,6 @@ public class PlayerMove : MonoBehaviour
                         WalkVec.x =  (float)Math.Truncate(WalkVec.x * 10) / 10;
                         WalkVec.y = (float)Math.Truncate(WalkVec.y * 10) / 10;
                         WalkVec.z = (float)Math.Truncate(WalkVec.z * 10) / 10;
-                        Debug.Log(Direction.x + "," + Direction.y + "," + Direction.z);
-                        Debug.Log(WalkVec.x + "," + WalkVec.y + "," + WalkVec.z);
                         
                         if (-Direction == WalkVec) 
                             {  //당기기   
@@ -208,7 +206,7 @@ public class PlayerMove : MonoBehaviour
                 return;
             }
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-            //AudioManager.Instance.PlayOneShot("event:/Jump");q
+            //AudioManager.Instance.PlayOneShot("event:/Jump");
             PlayerManager.Instance.PlayerInput.IsJumpCanceled = false;
 
             moveDirection.y = playerData.jumpspeed;
@@ -221,6 +219,7 @@ public class PlayerMove : MonoBehaviour
         if (IsCheckGround)
         {
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", false);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("BranchToCrounch");
@@ -441,23 +440,20 @@ public class PlayerMove : MonoBehaviour
             {
                 PlayerManager.Instance.PlayerInput.IsPull = true;
             }
-            if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
-            {
-                if (!IsGrounded())
-                {
-                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", true);
-                }
+              if (!IsGrounded())
+              {
+                  PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", true);
+              }
               
-                //hashflag  포함되어있는지 확인 
-                if (MoveFunction != null)
-                {
-                    if (WalkVec == transform.forward && PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
-                    {
-                        return;
-                    }
-                    MoveFunction();
-                }
-            }
+              //hashflag  포함되어있는지 확인 
+              if (MoveFunction != null)
+              {
+                  if (WalkVec == transform.forward && PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
+                  {
+                      return;
+                  }
+                  MoveFunction();
+              }
         }
     }
 

@@ -41,9 +41,14 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
             if (TargetInterActionObj.IsTake)
             {
                 GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
+                if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetInterActionObj))
+                {
+                    GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetInterActionObj);
+                }
 
                 TargetObj.SetActive(false); // ui도 관리해주어야 함
                 TargetInterActionObj.AllDestroyObj();
+
             }
         }
         
