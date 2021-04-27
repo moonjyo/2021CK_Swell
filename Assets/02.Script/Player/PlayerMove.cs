@@ -56,12 +56,12 @@ public class PlayerMove : MonoBehaviour
 
     private void FixedUpdate()
     {
+        MoveCheck();
         //PushItemCheck();
         if (WalkVec == Vector3.zero && moveDirection.y < 0f)
         {
             Idle();
         }
-        MoveCheck();
         GravityFall();
     }
 
@@ -215,16 +215,10 @@ public class PlayerMove : MonoBehaviour
 
     private bool IsGrounded()
     {
+       
         bool IsCheckGround = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x, Controller.bounds.min.y, Controller.bounds.center.z), 0.1f, GroundLayer);
-        if (IsCheckGround)
-        {
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", false);
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", false);
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Falling", false);
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("BranchToCrounch");
-            PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
-        }
+        Debug.Log(IsCheckGround);
+   
         return IsCheckGround;
     }
 
@@ -436,15 +430,14 @@ public class PlayerMove : MonoBehaviour
     {
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
         {
-            if (InterActionVec.sqrMagnitude > 0.1f)
-            {
-                PlayerManager.Instance.PlayerInput.IsPull = true;
-            }
               if (!IsGrounded())
               {
                   PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", true);
               }
-              
+              else
+              {
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", false);
+              }
               //hashflag  포함되어있는지 확인 
               if (MoveFunction != null)
               {
