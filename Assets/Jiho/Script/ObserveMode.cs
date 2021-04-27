@@ -29,11 +29,11 @@ public class ObserveMode : MonoBehaviour
 
     private void Start()
     {
-        PlayerInterActionObj[] go = GameObject.FindObjectsOfType<PlayerInterActionObj>();
+        PlayerInterActionObj[] go = FindObjectsOfType<PlayerInterActionObj>();
         for(int i = 0; i < go.Length; i++)
         {
-
-            AddObserveItem(go[i].ItemKey, go[i].gameObject);
+            //AddObserveItem(go[i].ItemKey, go[i].gameObject);
+            AddObserveItem(go[i].gameObject.name, go[i].gameObject);
         }
     }
 
@@ -82,9 +82,8 @@ public class ObserveMode : MonoBehaviour
         IsOnObserveMode = true;
         if (ObserveObj.TryGetValue(Key, out GameObject go))
         {
-            float a = 300f;
             GO = Instantiate(go, baseCam.transform.position + baseCam.transform.forward, Quaternion.identity);
-            GO.gameObject.layer = 0;
+            GO.gameObject.layer = 18;
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
@@ -117,13 +116,5 @@ public class ObserveMode : MonoBehaviour
             CurrentTargetObj.SecondInteractOn();
         }
         
-    }
-
-    public void DummyExit() // 관찰자 모드 Exit 더미로사용중
-    {
-        GO.transform.eulerAngles = new Vector3(0, 0, 0);
-        FadeCanvas.gameObject.SetActive(false);
-        GO.SetActive(false);
-        IsOnObserveMode = false;
     }
 }

@@ -23,8 +23,6 @@ public class UIInventoryElement : MonoBehaviour
         uiInventory = GetComponentInParent<UIInventory>();
         ElementImage = GetComponent<Image>();
         //ElementSprite = ElementImage.sprite;
-
-       
     }
 
     public Vector2 CalculateOffsetMousePos(float x, float y)

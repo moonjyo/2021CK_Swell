@@ -35,6 +35,50 @@ public class UIInventory : UIView
 
     public ObserveMode ob;
 
+    public LayerMask ObserveObjLayerMask;
+
+    public bool CheckItem(string currentKey, string interactKey)
+    {
+        if(currentKey == "MSG_Lr_matchstick" || currentKey == "MSG_Lr_waxcube" || currentKey == "MSG_Lr_wood_1")
+        {
+            if (interactKey == "MSG_Lr_fireplace_1")
+            {
+                return true;
+            }
+        }
+        else if(currentKey == "MSG_Lr_KeyGreen_1")
+        {
+            if (interactKey == "MSG_Lr_lokerPurple_1")
+            {
+                return true;
+            }
+        }
+        else if(currentKey == "MSG_Lr_keyBrown_1")
+        {
+            if (interactKey == "MSG_Lr_lokerBrown_1")
+            {
+                return true;
+            }
+        }
+        else if(currentKey == "MSG_Lr_keyPurple_1")
+        {
+            if(interactKey == "MSG_Lr_lokerGreen_1")
+            {
+                return true;
+            }
+        }
+        else if(currentKey == "MSG_Lr_jewel_1" || currentKey == "MSG_Lr_jewel_2")
+        {
+            if(interactKey == "MSG_Lr_owlstatue_1")
+            {
+                return true;
+            }
+        }
+
+        return false;
+
+    }
+
     private void Start()
     {
         GraphicRay = this.GetComponent<Canvas>().GetComponent<GraphicRaycaster>();
@@ -103,8 +147,12 @@ public class UIInventory : UIView
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name);
-            if(hit.collider.name == "Cube") //상호작용 레이어로 교체해야함
+            if((1<<hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
             {
+                if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name))
+                {
+                    return;
+                }
                 CurrentItemIcon.IsInteract = true;
                 for (int i = 0; i < ItemIconData.Count; i++)
                 {

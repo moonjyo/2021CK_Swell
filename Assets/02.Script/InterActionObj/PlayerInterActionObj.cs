@@ -55,8 +55,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     //자신에게 할당된 ui를 생성해주는 부분 
     private void Start()
     {
-      
-        for(int i = 0; i < Objs.Length; ++i)
+        ItemKey = this.gameObject.name;
+
+        for (int i = 0; i < Objs.Length; ++i)
         {
             GameObject Targetobj = Instantiate(Objs[i]);
             Targetobj.SetActive(false);;
