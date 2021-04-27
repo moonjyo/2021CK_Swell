@@ -38,4 +38,15 @@ public class PlayerAnimationEvents : MonoBehaviour
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
 
+    public void DownStart()
+    {
+        IsAnimStart = true;
+        PlayerManager.Instance.playerMove.IsGravity = true;
+    }
+    public void DownEnd()
+    {
+        IsAnimStart = false;
+        PlayerManager.Instance.playerMove.IsGravity = false;
+    }
+
 }
