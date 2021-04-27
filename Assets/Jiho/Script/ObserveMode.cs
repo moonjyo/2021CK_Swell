@@ -12,7 +12,14 @@ public class ObserveMode : MonoBehaviour
     public GameObject GO;
     public Canvas FadeCanvas;
 
-    Dictionary<int,GameObject> ObserveObj = new Dictionary<int,GameObject>();
+    Dictionary<string, GameObject> ObserveObj = new Dictionary<string,GameObject>();
+
+    public bool IsOnObserveMode = false;
+    bool IsObjRotate = false;
+
+    public StageCamera baseCam;
+
+    private PlayerInterActionObj CurrentTargetObj;
     public void SetRotateInput(Vector2 value)
     {
         RotHInput = value.x;
@@ -20,9 +27,30 @@ public class ObserveMode : MonoBehaviour
 
     }
 
+    private void Start()
+    {
+        PlayerInterActionObj[] go = GameObject.FindObjectsOfType<PlayerInterActionObj>();
+        for(int i = 0; i < go.Length; i++)
+        {
+
+            AddObserveItem(go[i].ItemKey, go[i].gameObject);
+        }
+    }
+
     void Update()
     {
-        RotateObj();
+        if(IsOnObserveMode && IsObjRotate)
+        {
+            RotateObj();
+        }
+        if(GO != null)
+        {
+            GO.transform.position = baseCam.transform.position + (baseCam.transform.forward * 2.5f);
+            //GO.transform.LookAt(baseCam.transform.position);
+            //Vector3 lookVec = baseCam.transform.position - GO.transform.position;
+            //GO.transform.eulerAngles = lookVec;
+        }
+        
     }
 
     public void RotateObj()
@@ -34,38 +62,68 @@ public class ObserveMode : MonoBehaviour
 
         if (Mathf.Abs(RotVInput) > 0.1f)
         {
-            GO.transform.RotateAround(GO.transform.position, Vector3.right, RotVInput * 40 * Time.deltaTime);
+            GO.transform.RotateAround(GO.transform.position, baseCam.transform.right, RotVInput * 40 * Time.deltaTime);
         }
     }
 
-    public void AddObserveItem(int Keynum, GameObject go)
+    public void AddObserveItem(string Key, GameObject go)
     {
-        ObserveObj.Add(Keynum, go);
+        ObserveObj.Add(Key, go);
     }
 
-    public void ActivateObserverItem(int Keynum) // 관찰자모드 아이템 활성화
+    public void ActivateObserverItem(string Key , PlayerInterActionObj Target) // 관찰자모드 아이템 활성화
     {
-        if(ObserveObj.TryGetValue(Keynum, out GameObject go))
+
+        CurrentTargetObj = Target;
+        FadeCanvas.gameObject.SetActive(true);
+        //
+        //GO.SetActive(true);
+        //
+        IsOnObserveMode = true;
+        if (ObserveObj.TryGetValue(Key, out GameObject go))
         {
-            go.SetActive(true);
-            GO = go;
+            float a = 300f;
+            GO = Instantiate(go, baseCam.transform.position + baseCam.transform.forward, Quaternion.identity);
+            GO.gameObject.layer = 0;
+            GO.SetActive(true);
+            if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
+            {
+                IsObjRotate = false;
+            }
+            else if(go.GetComponent<PlayerInterActionObj>().IsRotate)
+            {
+                IsObjRotate = true;
+            }
+            //go.transform.position = baseCam.transform.position + (baseCam.transform.forward * 1.5f);
+            
+        }
+        else
+        {
+            FadeCanvas.gameObject.SetActive(false);
         }
     }
 
     public void DeactivateObserverItem() // 관찰자모드 아이템 비활성화
     {
-        GO.SetActive(false);
+        //GO.transform.eulerAngles = new Vector3(0, 0, 0);
+        //GO.SetActive(false);
+        Destroy(GO);
         GO = null;
-    }
-
-    public void EnterObserveMode() // 관찰자모드 Enter
-    {
+        FadeCanvas.gameObject.SetActive(false);
+        IsOnObserveMode = false;
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+        if (CurrentTargetObj != null)
+        {
+            CurrentTargetObj.SecondInteractOn();
+        }
         
     }
 
-    public void DummyExit() // 관찰자 모드 Exit
+    public void DummyExit() // 관찰자 모드 Exit 더미로사용중
     {
+        GO.transform.eulerAngles = new Vector3(0, 0, 0);
         FadeCanvas.gameObject.SetActive(false);
         GO.SetActive(false);
+        IsOnObserveMode = false;
     }
 }

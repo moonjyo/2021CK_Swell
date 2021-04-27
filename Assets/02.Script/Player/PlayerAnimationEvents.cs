@@ -15,8 +15,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void CrounchEnd()
     {
         IsAnimStart = false;
-        PlayerManager.Instance.playerMove.IsGravity = false;
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.ResetTrigger("HangIdle");
+        PlayerManager.Instance.playerMove.IsGravity = false;;
     }
 
     public void HangingStart()

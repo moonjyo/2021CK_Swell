@@ -15,6 +15,10 @@ public class PlayerInput : MonoBehaviour
     private GameObject ObjLight;
     public void OnWalk(InputAction.CallbackContext context)
     {
+        //if(GameManager.Instance.GetComponent<ObserveMode>().IsOnObserveMode)
+        //{
+        //    return;
+        //}
         InputValue = context.ReadValue<Vector2>();
 
         Vector3 MoveVec = new Vector3(InputValue.x, 0, InputValue.y);
@@ -32,7 +36,6 @@ public class PlayerInput : MonoBehaviour
             IsJumpCanceled = true;
             if (PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Climing))
             {
-                PlayerManager.Instance.playerMove.climing();
             }
         }
     }

@@ -8,7 +8,9 @@ public class PlayerManager : MonoBehaviour
     public PlayerStatus playerStatus;
     public PlayerMove playerMove;
     public PlayerInput PlayerInput;
-    public PlayerInteraction PlayerInteraction;
+    public PlayerInteractionFirstCheckUI PlayerInteractionFirstCheck;
+    public PlayerInteractionSecondCheckUI PlayerInteractionSecondCheck;
+
     public PlayerAnimationEvents playerAnimationEvents;
 
 

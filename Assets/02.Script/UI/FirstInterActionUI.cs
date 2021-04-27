@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class FirstInterActionUI : MonoBehaviour, IInteractableUI
 {
-    [HideInInspector]
     public GameObject TargetObj;
     public Canvas Parentcanvas;
     private bool IsInit = false;
@@ -15,6 +14,11 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
     {
         if (IsInit)
         {
+            //if (TargetObj == null)
+            //{
+            //    gameObject.SetActive(false);
+            //    return;
+            //}
             OffsetVec = TargetObj.transform.Find("UIOffsetFirstCheck").transform.localPosition;
 
             transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
@@ -23,7 +27,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
 
     public void Init()
     {
-        transform.parent = Parentcanvas.transform;
+        transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetFirstCheck").transform.localPosition;
 
         IsInit = true;

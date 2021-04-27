@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DG.Tweening;
 public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
 {
-    [HideInInspector]
     public GameObject TargetObj;
     public Canvas Parentcanvas;
 
@@ -19,14 +18,14 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
     {
         if (IsInit)
         {
-            //OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
+            OffsetVec = TargetObj.transform.Find("UIOffsetInterAction").transform.localPosition;
             transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
 
     public void Init()
     {
-        transform.parent = Parentcanvas.transform;
+        transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetInterAction").transform.localPosition;
 
 
@@ -43,20 +42,15 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
        Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
-            PlayerManager.Instance.playerMove.SetInterActionObj(rb);
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
+            PlayerManager.Instance.playerMove.InterActionUIPointDown(rb);
         }
-        Debug.Log("InterActionOn");
     }
 
     public void PointUp()
     {
         IsPressed = false;
-        PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", true);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-        Debug.Log("InterActionOff");
+        PlayerManager.Instance.playerMove.InterActionUIPointUp();
+
     }
 
 

@@ -12,8 +12,8 @@ public class UIInventory : UIView
 {
     public GameObject InventoryPanel;
     
-    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[5];
-    public List<UIInventoryElement> ItemIconData = new List<UIInventoryElement>();
+    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[7];
+    List<PlayerInterActionObj> ItemIconData = new List<PlayerInterActionObj>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
     UIInventoryElement CombineItemIcon;
@@ -29,11 +29,11 @@ public class UIInventory : UIView
     public Sprite EmptySprite;
     public Sprite[] ItemImage = new Sprite[3]; // 아이템 아이콘 이미지들
 
-    UIInventoryElement ui;
-
     GraphicRaycaster GraphicRay;
     PointerEventData Pointer;
     System.Collections.Generic.List<RaycastResult> resultsRay = new System.Collections.Generic.List<RaycastResult>();
+
+    public ObserveMode ob;
 
     private void Start()
     {
@@ -95,15 +95,15 @@ public class UIInventory : UIView
     public void DropItemIcon()
     {
         CurrentItemIcon.GetComponent<RectTransform>().anchoredPosition = CurrentItemIcon.GetOriginPos();
-        IsSelectItemIcon = false;
-        ExitInventoryWindow();
+        //IsSelectItemIcon = false;
+        
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name);
-            if(hit.collider.name == "Cube")
+            if(hit.collider.name == "Cube") //상호작용 레이어로 교체해야함
             {
                 CurrentItemIcon.IsInteract = true;
                 for (int i = 0; i < ItemIconData.Count; i++)
@@ -123,23 +123,44 @@ public class UIInventory : UIView
                 ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
             }
         }
-        Pointer.position = mousePos;
-        GraphicRay.Raycast(Pointer, resultsRay);
-        CombineItemIcon = resultsRay[0].gameObject.GetComponent<UIInventoryElement>();
-        resultsRay.Clear();
+        if (EventSystem.current.IsPointerOverGameObject())
+        {
+            Pointer.position = mousePos;
+            GraphicRay.Raycast(Pointer, resultsRay);
+            if(resultsRay.Count > 0)
+            {
+                CombineItemIcon = resultsRay[0].gameObject.GetComponent<UIInventoryElement>();
+                bool CheckUIIcon = false;
+                foreach (UIInventoryElement ui in ItemImageIcon)
+                {
+                    if (CombineItemIcon == ui && CombineItemIcon != CurrentItemIcon)
+                    {
+                        CheckUIIcon = true;
+                    }
+                }
+                if (!CheckUIIcon)
+                {
+                    CombineItemIcon = null;
+                }
+            }           
+            resultsRay.Clear();
+        }
+        ExitInventoryWindow();
     }
 
-    public void GetItemIcon() // 아이템을 얻었을 때
+    public void GetItemIcon(PlayerInterActionObj Object) // 아이템을 얻었을 때
     {
-        if(ItemIconData.Count >= 5)
+        if(ItemIconData.Count >= 7)
         {
             return;
         }
 
         EnterInventoryWindow();
 
-        ItemIconData.Add(ui);
-        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함
+        ItemIconData.Add(Object);
+
+        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함 , Object의 이미지 출력
+        ItemImageIcon[ItemIconData.Count - 1].HaveItem = Object;
 
         StartCoroutine(WaitForGetItem());
         
@@ -153,17 +174,70 @@ public class UIInventory : UIView
 
     public void CombineItem()
     {
-        if(!IsSelectItemIcon || ItemIconData.Count < 3)
+        if(!IsSelectItemIcon || ItemIconData.Count < 2 || CombineItemIcon == null)
         {
+            IsSelectItemIcon = false;
             return;
         }
+        IsSelectItemIcon = false;
 
-        ItemIconData.Remove(CurrentItemIcon);
-        ItemIconData.Remove(CombineItemIcon);
+        int CurIndex = 0, ComIndex = 0;
+        for(int i = 0; i < ItemIconData.Count; i++)
+        {
+            if(ItemIconData[i] == CurrentItemIcon.HaveItem)
+            {
+                CurIndex = i;
+            }
+            if(ItemIconData[i] == CombineItemIcon.HaveItem)
+            {
+                ComIndex = i;
+            }
+        }
+
+        for (int i = CurIndex; i < ItemIconData.Count - CurIndex - 1; i++)
+        {
+            ItemImageIcon[i].ElementImage.sprite = ItemImageIcon[i].ElementImage.sprite;
+            ItemIconData[i] = ItemIconData[i + 1];
+        }
+        //ItemIconData.Remove(CurrentItemIcon.HaveItem);
+        //ItemIconData.Remove(CombineItemIcon.HaveItem);
+        // 아이템 조합 함수?
+        if(CurIndex > ComIndex) // 상대적 오른쪽에있는 아이콘을 왼쪽아이템으로 조합시도
+        {
+            //ItemIconData.Insert(ComIndex, DummyItemObj); // 조합한 아이템 insert
+            //조합된 아이템 이미지 ComIndex 자리에 배치
+        }
+        else if(ComIndex > CurIndex) // 상대적 왼쪽에있는 아이콘을 오른아이템으로 조합시도
+        {
+            //ItemIconData.Insert(CurIndex, DummyItemObj); // 조합한 아이템 insert
+            //조합된 아이템 이미지 sprite CurIndex 자리에 배치
+        }
     }
 
-    public bool GetIsSelectedItemIcon()
+    public void ClickItemIcon(string KeyName , PlayerInterActionObj Target)
     {
-        return IsSelectItemIcon;
+        if(!IsSelectItemIcon)
+        {
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+            //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
+            ob.ActivateObserverItem(KeyName , Target);
+        }
+    }
+
+
+    public void ClickItemIcon()
+    {
+        if (!IsSelectItemIcon)
+        {
+            //for(int i = 0; i < ItemIconData.Count; i++)
+            //{
+            //    if(ItemIconData[i] == CurrentItemIcon)
+            //    {
+            //        CurrentItemIcon.HaveItem = ItemIconData[i];
+            //        break;
+            //    }
+            //}
+            ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
+        }
     }
 }

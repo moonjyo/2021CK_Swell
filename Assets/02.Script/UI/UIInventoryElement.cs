@@ -14,6 +14,9 @@ public class UIInventoryElement : MonoBehaviour
 
     public bool IsInteract = false;
 
+    // 가지고있는 아이템에 대한 정보변수 필요함
+    public PlayerInterActionObj HaveItem;
+
     void Start()
     {
         OriginPos = this.GetComponent<RectTransform>().anchoredPosition;
@@ -21,11 +24,6 @@ public class UIInventoryElement : MonoBehaviour
         ElementImage = GetComponent<Image>();
         //ElementSprite = ElementImage.sprite;
 
-       
-    }
-
-    private void Update()
-    {
        
     }
 

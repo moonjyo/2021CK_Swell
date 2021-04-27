@@ -6,20 +6,6 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
 {
     [SerializeField] private List<GameObject> InterActableGameObjects;
 
-    public void FirstInteract()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public List<GameObject> GetUIFirstList()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    public List<GameObject> GetUISecondList()
-    {
-        throw new System.NotImplementedException();
-    }
 
     public void Interact()
     {
@@ -31,7 +17,13 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
         }
     }
 
-    public void SecondInteract()
+
+    public void SecondInteractOff()
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void SecondInteractOn()
     {
         throw new System.NotImplementedException();
     }

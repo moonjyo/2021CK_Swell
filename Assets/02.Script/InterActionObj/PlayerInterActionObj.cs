@@ -5,23 +5,40 @@ using System;
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
-    public void SecondInteract()
+    public string ItemKey;
+
+    public bool IsTake;
+    public bool IsWatch;
+    public bool IsRotate;
+
+    public Sprite InventoryIcon; // 이 아이템의 아이콘
+
+    public void SecondInteractOn()
     {
-        foreach(var Obj in UISecondObjList)
+        foreach (var Obj in UISecondObjList)
         {
             Obj.gameObject.SetActive(true);
         }
     }
-
-    public void FirstInteract()
+    public void SecondInteractOff()
     {
-        foreach (var Obj in UIFirstObjList)
+        foreach (var Obj in UISecondObjList)
         {
-            Obj.gameObject.SetActive(true);
+            Obj.gameObject.SetActive(false);
         }
-
     }
-   
+    public void AllDestroyObj()
+    {
+        foreach (var Obj in UISecondObjList)
+        {
+            Obj.SetActive(false);
+        }
+        UIFirstObj.gameObject.SetActive(false);
+        GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
+        GameManager.Instance.uiManager.IsOnFirstInterActionUI = false;  
+    }
+
+
 
     [SerializeField]
     private GameObject[] Objs;
@@ -31,14 +48,14 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
 
     [HideInInspector]
-    public List<GameObject> UIFirstObjList = new List<GameObject>();
-    [HideInInspector]
     public List<GameObject> UISecondObjList = new List<GameObject>();
-    public bool IsInterAct= false;
+    public FirstInterActionUI UIFirstObj;
     
 
+    //자신에게 할당된 ui를 생성해주는 부분 
     private void Start()
     {
+      
         for(int i = 0; i < Objs.Length; ++i)
         {
             GameObject Targetobj = Instantiate(Objs[i]);
@@ -50,21 +67,20 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             target.SetTargetCanvas(GameManager.Instance.uiManager.InterActionUICanvas);
             target.Init();
 
-            GameManager.Instance.uiManager.AllInterActionUI.Add(Targetobj);
-            if(!Targetobj.CompareTag("FirstInterActionUI"))
+            if (UIFirstObj == null)
             {
-                UIFirstObjList.Add(Targetobj);
+                UIFirstObj = Targetobj.GetComponent<FirstInterActionUI>();
             }
-            else
+
+            
+            if (Targetobj.CompareTag("SecondInterActionUI"))
             {
                 UISecondObjList.Add(Targetobj);
             }
         }
     }
 
-    private void Update()
-    {
-        IsInterAct = true;
-    }
 
+
+ 
 }
