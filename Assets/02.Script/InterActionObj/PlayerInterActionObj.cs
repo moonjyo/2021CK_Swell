@@ -13,6 +13,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public Sprite InventoryIcon; // 이 아이템의 아이콘
 
+    public Vector3 SizeObj;
+
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
