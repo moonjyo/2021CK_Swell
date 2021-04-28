@@ -16,6 +16,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public Vector3 SizeObj;
 
     public PlayerInterActionObj InteractObj;
+    public string InteractObjKey;
 
     public void SecondInteractOn()
     {
@@ -84,8 +85,4 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             }
         }
     }
-
-
-
- 
 }
