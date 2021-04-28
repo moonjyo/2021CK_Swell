@@ -101,7 +101,7 @@ public class UIInventory : UIView
         IsInventoryWindowOpen = true;
         //InventoryPanel.transform.DOMoveY(InventoryMovePosY, 0.5f);
         //InventoryPanel.GetComponent<RectTransform>().DOMoveY(1080, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0f, 0.3f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0f, 0.1f);
     }
 
     public void ExitInventoryWindow()
@@ -118,7 +118,7 @@ public class UIInventory : UIView
     IEnumerator WaitForExitInventory()
     {
         //InventoryPanel.gameObject.GetComponent<RectTransform>().DOMoveY(1208f, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(128.0f, 0.3f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(128.0f, 0.1f);
         yield return new WaitForSeconds(0.4f);
         IsInventoryWindowOpen = false;
         //InventoryPanel.SetActive(false);
@@ -144,12 +144,16 @@ public class UIInventory : UIView
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, ObserveObjLayerMask))
         {
             Debug.Log(hit.collider.name);
-            if((1<<hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
+            if((1 << hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
             {
-                if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name))
+                if(CurrentItemIcon.HaveItem.InteractObjKey == hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
+                {
+                    Debug.Log("Test");
+                }
+                if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name)) // 키값으로 하나하나 if로 비교하기
                 {
                     return;
                 }

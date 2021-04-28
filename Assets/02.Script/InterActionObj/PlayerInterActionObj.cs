@@ -16,6 +16,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public Vector3 SizeObj;
 
+    public PlayerInterActionObj InteractObj;
+    public string InteractObjKey;
+
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -83,8 +86,4 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             }
         }
     }
-
-
-
- 
 }
