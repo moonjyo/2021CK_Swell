@@ -217,7 +217,7 @@ public class PlayerMove : MonoBehaviour
     {
        
         bool IsCheckGround = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x, Controller.bounds.min.y, Controller.bounds.center.z), 0.1f, GroundLayer);
-        Debug.Log(IsCheckGround);
+      
    
         return IsCheckGround;
     }

@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
     public List<PlayerInterActionObj> OnActiveSecondInterActionUI = new List<PlayerInterActionObj>(); //first ui obj list 
 
+    public MonologueText monologueText;
 
     public bool IsOnFirstInterActionUI = false;
     private bool IsSettingMenu = false;

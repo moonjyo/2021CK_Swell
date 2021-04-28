@@ -13,7 +13,7 @@ public class PlayerInterActionDialogue : MonoBehaviour, IInteractableUI
 
     //private bool IsPressed = false;
 
-    private PlayerInterActionObj TargetInterActionObj;
+    private IDialogue TargetDialogue;
 
     private void FixedUpdate()
     {
@@ -29,12 +29,15 @@ public class PlayerInterActionDialogue : MonoBehaviour, IInteractableUI
         transform.SetParent(Parentcanvas.transform);
         OffsetVec = TargetObj.transform.Find("UIOffsetDialogue").transform.localPosition;
 
-
         IsInit = true;
     }
     public void Interact()
     {
-       
+        TargetDialogue = TargetObj.GetComponent<IDialogue>();
+        if (TargetDialogue != null)
+        {
+           
+        }
     }
 
 

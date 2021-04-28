@@ -24,7 +24,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                 if (!GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Add(TargetObj);
-                    Debug.Log("addobj" + " , " + GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count);
+                 
                 }
             }
         }
@@ -46,7 +46,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetObj);
-                    Debug.Log("remove" + " , " + GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count);
+                   
                 }
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count == 0)
                 {

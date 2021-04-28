@@ -8,10 +8,6 @@ public class DataBaseManager : MonoBehaviour
 
     [SerializeField] string csv_FileName;
 
-    Dictionary<int, Dialogue> dialogueDic = new Dictionary<int, Dialogue>();
-
-    public static bool IsFinish = false;
-
     public DialogueParser DialogueParser;
     public SoundData SoundData;
 
@@ -20,35 +16,12 @@ public class DataBaseManager : MonoBehaviour
         if(Instance == null)
         {
             Instance = this;
-            DialougeDataInit();
             SoundData.ReadCsv("Data/SoundText.csv");
         }
     }
 
 
-    public void DialougeDataInit()
-    {
-        Dialogue[] dialogues = DialogueParser.Parse(csv_FileName);
-        for (int i = 0; i < dialogues.Length; ++i)
-        {
-            dialogueDic.Add(i + 1, dialogues[i]);
-        }
-        IsFinish = true;
 
-    }
-
-
-
-    public Dialogue[] GetDialogue(int _StartNum , int _EndNum)
-    {
-        List<Dialogue> dialogueList = new List<Dialogue>();
-        for(int i = 0; i <= _EndNum - _StartNum; ++i)
-        {
-            dialogueList.Add(dialogueDic[_StartNum + i]);
-        }
-
-        return dialogueList.ToArray();
-    }
 
 
 }

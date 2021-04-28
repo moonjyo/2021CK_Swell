@@ -6,6 +6,7 @@ using System;
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
     public string ItemKey;
+    public string MonologueKey; //임시 
 
     public bool IsTake;
     public bool IsWatch;

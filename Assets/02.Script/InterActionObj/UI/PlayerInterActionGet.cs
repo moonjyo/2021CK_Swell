@@ -34,7 +34,6 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     }
     public void Interact()
     {
-        Debug.Log("interactOn PlayerInterAction");
         TargetInterActionObj = TargetObj.GetComponent<PlayerInterActionObj>();
         if (TargetInterActionObj != null)
         {
@@ -46,8 +45,20 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetInterActionObj);
                 }
 
+
                 TargetObj.SetActive(false); // ui도 관리해주어야 함
                 TargetInterActionObj.AllDestroyObj();
+                
+
+                for(int i = 0; i < GameManager.Instance.uiManager.monologueText.CurrentDialogue.Length; ++i)
+                {
+                    if(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].name == TargetInterActionObj.MonologueKey)
+                    {
+                        GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].context);
+
+                        GameManager.Instance.uiManager.monologueText.ShowMonologue(1, 2);
+                    }
+                }
 
             }
         }
