@@ -147,9 +147,10 @@ public class UIInventory : UIView
         if (Physics.Raycast(ray, out hit))
         {
             Debug.Log(hit.collider.name);
-            if((1<<hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
+            if((1 << hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
             {
-                if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name))
+                if(CurrentItemIcon.HaveItem.InteractObj == hit.transform.GetComponent<PlayerInterActionObj>()) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
+                if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name)) // 키값으로 하나하나 if로 비교하기
                 {
                     return;
                 }

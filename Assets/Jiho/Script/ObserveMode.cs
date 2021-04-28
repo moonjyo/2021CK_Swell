@@ -76,9 +76,7 @@ public class ObserveMode : MonoBehaviour
 
         CurrentTargetObj = Target;
         FadeCanvas.gameObject.SetActive(true);
-        //
-        //GO.SetActive(true);
-        //
+
         IsOnObserveMode = true;
         if (ObserveObj.TryGetValue(Key, out GameObject go))
         {
@@ -92,9 +90,7 @@ public class ObserveMode : MonoBehaviour
             else if(go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
                 IsObjRotate = true;
-            }
-            //go.transform.position = baseCam.transform.position + (baseCam.transform.forward * 1.5f);
-            
+            }            
         }
         else
         {
