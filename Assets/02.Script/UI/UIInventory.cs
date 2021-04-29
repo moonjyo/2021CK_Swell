@@ -149,14 +149,20 @@ public class UIInventory : UIView
             Debug.Log(hit.collider.name);
             if((1 << hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
             {
-                if(CurrentItemIcon.HaveItem.InteractObjKey == hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
+                if(CurrentItemIcon.HaveItem.InteractObjKey + "(Clone)" != hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
                 {
                     Debug.Log("Test");
-                }
-                if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name)) // 키값으로 하나하나 if로 비교하기
-                {
                     return;
                 }
+                //if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name)) // 키값으로 하나하나 if로 비교하기
+                //{
+                    //return;
+                //}
+                //================
+
+                // 판별해서? 상호작용 시키기
+
+                //================
                 CurrentItemIcon.IsInteract = true;
                 for (int i = 0; i < ItemIconData.Count; i++)
                 {

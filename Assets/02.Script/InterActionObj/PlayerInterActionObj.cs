@@ -19,6 +19,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public PlayerInterActionObj InteractObj;
     public string InteractObjKey;
 
+    
+
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)

@@ -7,8 +7,8 @@ using UnityEngine.InputSystem;
 public class MouseInput : MonoBehaviour
 {
 
-    public ObserveMode MouseFunction;
-    public UIInventory uiInventory;
+    //public ObserveMode MouseFunction;
+    //public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
 
@@ -18,15 +18,18 @@ public class MouseInput : MonoBehaviour
         {
             if(!IsLeftMousePressed)
             {
-                MouseFunction.SetRotateInput(Vector2.zero);
+                //MouseFunction.SetRotateInput(Vector2.zero);
+                GameManager.Instance.uiManager.uiInventory.ob.SetRotateInput(Vector2.zero);
                 return;
             }
         }
         
         Vector2 Input = context.ReadValue<Vector2>();
-        if (!uiInventory.IsInventoryWindowOpen)
+        //if (!uiInventory.IsInventoryWindowOpen)
+        if(!GameManager.Instance.uiManager.uiInventory.IsInventoryWindowOpen)
         {
-            MouseFunction.SetRotateInput(Input);
+            //MouseFunction.SetRotateInput(Input);
+            GameManager.Instance.uiManager.uiInventory.ob.SetRotateInput(Input);
         }
     }
 
@@ -50,7 +53,8 @@ public class MouseInput : MonoBehaviour
             // 마우스 포지션 전달
         //}
         Vector2 input = context.ReadValue<Vector2>();
-        uiInventory.SetMousePosVal(input);
+        //uiInventory.SetMousePosVal(input);
+        GameManager.Instance.uiManager.uiInventory.SetMousePosVal(input);
         
     }
 }
