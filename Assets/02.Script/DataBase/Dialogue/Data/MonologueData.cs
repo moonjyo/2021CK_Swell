@@ -16,6 +16,7 @@ public class MonologueData : MonoBehaviour, IDialogue
     private void Start()
     {
         DialougeDataInit();
+        GameManager.Instance.uiManager.monologueText.Init();
     }
 
     public void DialougeDataInit()

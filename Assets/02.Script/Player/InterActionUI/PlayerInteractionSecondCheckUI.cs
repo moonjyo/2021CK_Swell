@@ -48,6 +48,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetObj);
                    
                 }
+
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count == 0)
                 {
                     GameManager.Instance.uiManager.OnFirstInterActionUI(); //다시 충돌중인 first interaction on 

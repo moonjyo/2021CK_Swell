@@ -28,7 +28,6 @@ public class PlayerInteractionFirstCheckUI : MonoBehaviour
                 }
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)

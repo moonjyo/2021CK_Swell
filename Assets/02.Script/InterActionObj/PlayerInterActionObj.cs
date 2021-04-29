@@ -68,7 +68,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         for (int i = 0; i < Objs.Length; ++i)
         {
             GameObject Targetobj = Instantiate(Objs[i]);
-            Targetobj.SetActive(false);;
+            Targetobj.SetActive(false);
             IInteractableUI target = Targetobj.transform.GetComponent<IInteractableUI>();
             
            

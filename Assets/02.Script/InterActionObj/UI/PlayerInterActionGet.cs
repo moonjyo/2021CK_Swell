@@ -56,7 +56,7 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
                     {
                         GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].context);
 
-                        GameManager.Instance.uiManager.monologueText.ShowMonologue(1, 2);
+                        GameManager.Instance.uiManager.monologueText.ShowMonologue();
                     }
                 }
 

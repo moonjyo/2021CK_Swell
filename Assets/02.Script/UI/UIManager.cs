@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TMPro;
+using DG.Tweening;
 
 public class UIManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class UIManager : MonoBehaviour
     public List<PlayerInterActionObj> OnActiveSecondInterActionUI = new List<PlayerInterActionObj>(); //first ui obj list 
 
     public MonologueText monologueText;
+    public DialogueText DialogueText;
 
     public bool IsOnFirstInterActionUI = false;
     private bool IsSettingMenu = false;
@@ -53,4 +56,5 @@ public class UIManager : MonoBehaviour
             Obj.gameObject.SetActive(false);
         }
     }
+  
 }
