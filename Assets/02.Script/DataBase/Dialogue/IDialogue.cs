@@ -6,8 +6,8 @@ public interface IDialogue
 {
    void DialougeDataInit();
     Dialogue[] GetDialogoue(int _strName, int _EndName);
-
-   string GetDialogueName();
+    Dialogue[] GetDialogoue();
+    string GetDialogueName();
    void SetDialogueName(string value);
 
   

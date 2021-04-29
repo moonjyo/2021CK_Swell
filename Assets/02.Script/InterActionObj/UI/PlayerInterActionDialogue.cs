@@ -36,7 +36,10 @@ public class PlayerInterActionDialogue : MonoBehaviour, IInteractableUI
         TargetDialogue = TargetObj.GetComponent<IDialogue>();
         if (TargetDialogue != null)
         {
-           
+            GameManager.Instance.uiManager.DialogueText.IsDialogue = true;
+            GameManager.Instance.uiManager.DialogueText.CurrentDialogue = TargetDialogue.GetDialogoue();
+            StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         }
     }
 

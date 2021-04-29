@@ -409,7 +409,18 @@ MonoBehaviour:
     m_ActionId: db29b416-4510-4f2b-90da-5079a3c122b5
     m_ActionName: Player/Walk[/Keyboard/a,/Keyboard/d,/Keyboard/s,/Keyboard/w]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2817649087651989104}
+        m_MethodName: OnDialogueNext
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 38fa6690-1f2c-423a-b74e-86388b9736c7
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:

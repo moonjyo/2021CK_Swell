@@ -25,17 +25,24 @@ public class PlayerInput : MonoBehaviour
         PlayerManager.Instance.playerMove.SetMove(MoveVec);
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnDialogueNext(InputAction.CallbackContext context)
     {
-        Vector2 value = context.ReadValue<Vector2>();
-        Vector3 JumpVec = new Vector3(0, value.y, 0);
-        PlayerManager.Instance.playerMove.SetJump(JumpVec);
-
         if (context.performed)
         {
-            IsJumpCanceled = true;
-            if (PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Climing))
+            if (GameManager.Instance.uiManager.DialogueText.IsNextDialogue)
             {
+
+                if (GameManager.Instance.uiManager.DialogueText.TextCount  == GameManager.Instance.uiManager.DialogueText.CurrentDialogue.Length) //종료
+                {
+                    GameManager.Instance.uiManager.DialogueText.gameObject.SetActive(false);
+                    GameManager.Instance.uiManager.DialogueText.TextCount = 0;
+                    GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
+                    PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+                    return;
+                }
+
+                GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
+                StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
             }
         }
     }

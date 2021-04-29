@@ -18,34 +18,35 @@ public class MonologueText : MonoBehaviour
 
     public Vector3 OffsetPosVec;
 
-    private void Start()
-    {
-        CurrentDialogue = MonologueData.GetDialogoue(); //수정 예정 하나하나 start에서 호출하는게 아닌 한꺼번에 호출하는게 좋음 
-        gameObject.SetActive(false);
-    }
-
+ 
     private void Update()
     {
         transform.position = Camera.main.WorldToScreenPoint(PlayerManager.Instance.playerMove.transform.position + new Vector3(OffsetPosVec.x, OffsetPosVec.y, OffsetPosVec.z));
     }
 
-
-    public void ShowMonologue(int x , int y)
+    public void Init()
     {
-       
-        gameObject.SetActive(true);
-        DoText(TMPText, ShowTimeSecond);
+        CurrentDialogue = MonologueData.GetDialogoue(); //수정 예정 하나하나 start에서 호출하는게 아닌 한꺼번에 호출하는게 좋음 
+        gameObject.SetActive(false);
     }
 
 
+    public void ShowMonologue()
+    {
+       
+        gameObject.SetActive(true);
+        MonologueDoText(TMPText, ShowTimeSecond);
+    }
+
     //TMP 지원은 Dotween에서 유로사용해야 DoText를 지원해주기 떄문에 임시로 만듬
-    public void DoText(TextMeshProUGUI a_text, float a_duration)
+    public void MonologueDoText(TextMeshProUGUI a_text, float a_duration)
     {
         a_text.maxVisibleCharacters = 0;
         DOTween.To(x => a_text.maxVisibleCharacters = (int)x, 0f, a_text.text.Length, a_duration).OnComplete(() => {
             gameObject.SetActive(false);
         });
     }
+
 
 
     public void SetText(string[] value) //임시 

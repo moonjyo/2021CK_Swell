@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TestModelDialogue : MonoBehaviour, IDialogue
+public class TestNpcDialougeData : MonoBehaviour, IDialogue
 {
     public string DialgoueName;
 
@@ -24,7 +24,7 @@ public class TestModelDialogue : MonoBehaviour, IDialogue
         for (int i = 0; i < dialogues.Length; ++i)
         {
 
-            if (!dialogueDic.ContainsKey(i+1))
+            if (!dialogueDic.ContainsKey(i + 1))
             {
                 dialogueDic.Add(i + 1, dialogues[i]);
             }
@@ -64,5 +64,4 @@ public class TestModelDialogue : MonoBehaviour, IDialogue
     {
         DialgoueName = value;
     }
-
 }
