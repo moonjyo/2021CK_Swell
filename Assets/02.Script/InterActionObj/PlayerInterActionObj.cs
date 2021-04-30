@@ -22,7 +22,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public string InteractObjKey;
 
     // delegate 함수 선언 Action<T> Delegate
-    public delegate void Distinguish(string CurKey);
+    //public delegate void Distinguish(string CurKey);
+    //Distinguish DDistinguish;
 
     public void SecondInteractOn()
     {
@@ -50,7 +51,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     }
 
 
-
     [SerializeField]
     private GameObject[] Objs;
 
@@ -67,6 +67,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     private void Start()
     {
         ItemKey = this.gameObject.name;
+
+        //GameManager.Instance.uiManager.uiInventory.OnDistingush += TestCheck;
 
         for (int i = 0; i < Objs.Length; ++i)
         {
@@ -91,4 +93,22 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             }
         }
     }
+
+    public void GreenKey(GameObject gameObject)
+    {
+        Debug.Log("Open GreenLoker");
+    }
+
+    public void PurpleKey(GameObject gameObject)
+    {
+        Debug.Log("Open PurpleLoker");
+    }
+
+    //public void TestCheck(PlayerInterActionObj Obj)
+    //{
+    //    if(Obj == this.GetComponent<PlayerInterActionObj>())
+    //    {
+    //        Debug.Log("Check Success");
+    //    }
+    //}
 }

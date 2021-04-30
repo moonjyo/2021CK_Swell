@@ -37,49 +37,10 @@ public class UIInventory : UIView
 
     public LayerMask ObserveObjLayerMask;
 
-    public DistinguishItem ItemDistingush;
-
-    //public bool CheckItem(string currentKey, string interactKey)
-    //{
-    //    if(currentKey == "MSG_Lr_matchstick" || currentKey == "MSG_Lr_waxcube" || currentKey == "MSG_Lr_wood_1")
-    //    {
-    //        if (interactKey == "MSG_Lr_fireplace_1")
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    else if(currentKey == "MSG_Lr_KeyGreen_1")
-    //    {
-    //        if (interactKey == "MSG_Lr_lokerPurple_1")
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    else if(currentKey == "MSG_Lr_keyBrown_1")
-    //    {
-    //        if (interactKey == "MSG_Lr_lokerBrown_1")
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    else if(currentKey == "MSG_Lr_keyPurple_1")
-    //    {
-    //        if(interactKey == "MSG_Lr_lokerGreen_1")
-    //        {
-    //            return true;
-    //        }
-    //    }
-    //    else if(currentKey == "MSG_Lr_jewel_1" || currentKey == "MSG_Lr_jewel_2")
-    //    {
-    //        if(interactKey == "MSG_Lr_owlstatue_1")
-    //        {
-    //            return true;
-    //        }
-    //    }
-
-    //    return false;
-
-    //}
+    //public DistinguishItem ItemDistingush;
+    public delegate void Distinguish(GameObject gameObject);
+    Distinguish DDistinguish;
+    //public event Distinguish OnDistingush;
 
     private void Start()
     {
@@ -89,6 +50,11 @@ public class UIInventory : UIView
     public void SetMousePosVal(Vector2 value)
     {
         mousePos = value;
+    }
+
+    public void DistinguishItem(GameObject Obj, Distinguish D)
+    {
+        D(Obj);
     }
 
 
@@ -151,17 +117,22 @@ public class UIInventory : UIView
             Debug.Log(hit.collider.name);
             if((1 << hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
             {
-                if(CurrentItemIcon.HaveItem.InteractObjKey + "(Clone)" != hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
+                if(CurrentItemIcon.HaveItem.InteractObjKey + "(Clone)" == hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
                 {
-                    Debug.Log("Test");
-                    return;
-                }
-                //if(!CheckItem(CurrentItemIcon.HaveItem.ItemKey, hit.transform.gameObject.name)) // 키값으로 하나하나 if로 비교하기
-                //{
-                    //return;
-                //}
-                //================
+                    Distinguish DGreenKey = hit.transform.GetComponent<PlayerInterActionObj>().GreenKey; // 함수의 연결 조건.?
+                    DDistinguish = hit.transform.GetComponent<PlayerInterActionObj>().PurpleKey;
+                    //Distinguish PurpleKey = new Distinguish(CurrentItemIcon.HaveItem.PurpleKey);
+                    DDistinguish(hit.transform.gameObject);
 
+                    DistinguishItem(hit.transform.gameObject, DGreenKey);
+                    //DistinguishItem(CurrentItemIcon.HaveItem.InteractObjKey, PurpleKey);
+
+                    //hit.transform.GetComponent<PlayerInterActionObj>().TestCheck(hit.transform.GetComponent<PlayerInterActionObj>());
+
+                    //return;
+                }
+
+                //================
                 // 판별해서? 상호작용 시키기
                 // 아이템에 delegate Action<T> Delegate
                 //================
