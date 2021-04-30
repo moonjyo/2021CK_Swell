@@ -34,10 +34,7 @@ public class PlayerInput : MonoBehaviour
 
                 if (GameManager.Instance.uiManager.DialogueText.TextCount  == GameManager.Instance.uiManager.DialogueText.CurrentDialogue.Length) //종료
                 {
-                    GameManager.Instance.uiManager.DialogueText.gameObject.SetActive(false);
-                    GameManager.Instance.uiManager.DialogueText.TextCount = 0;
-                    GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
-                    PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+                    EndTalk();
                     return;
                 }
 
@@ -45,6 +42,14 @@ public class PlayerInput : MonoBehaviour
                 StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
             }
         }
+    }
+
+    public void EndTalk()
+    {
+        GameManager.Instance.uiManager.DialogueText.gameObject.SetActive(false);
+        GameManager.Instance.uiManager.DialogueText.TextCount = 0;
+        GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
     }
 
     public void OnInterAction(InputAction.CallbackContext context)

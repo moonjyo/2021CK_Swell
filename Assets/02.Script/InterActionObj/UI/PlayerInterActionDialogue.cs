@@ -20,7 +20,7 @@ public class PlayerInterActionDialogue : MonoBehaviour, IInteractableUI
         if (IsInit)
         {
             OffsetVec = TargetObj.transform.Find("UIOffsetDialogue").transform.localPosition;
-            transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
+            transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x,OffsetVec.y, OffsetVec.z));
         }
     }
 
@@ -36,13 +36,17 @@ public class PlayerInterActionDialogue : MonoBehaviour, IInteractableUI
         TargetDialogue = TargetObj.GetComponent<IDialogue>();
         if (TargetDialogue != null)
         {
-            GameManager.Instance.uiManager.DialogueText.IsDialogue = true;
-            GameManager.Instance.uiManager.DialogueText.CurrentDialogue = TargetDialogue.GetDialogoue();
-            StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
-            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+            StartTalk();
         }
     }
 
+    public void StartTalk()
+    {
+        GameManager.Instance.uiManager.DialogueText.IsDialogue = true;
+        GameManager.Instance.uiManager.DialogueText.CurrentDialogue = TargetDialogue.GetDialogoue();
+        StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+    }
 
 
 
