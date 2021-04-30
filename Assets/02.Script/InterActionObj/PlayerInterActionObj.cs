@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+//enum
+
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
     public string ItemKey;
@@ -19,7 +21,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public PlayerInterActionObj InteractObj;
     public string InteractObjKey;
 
-    
+    // delegate 함수 선언 Action<T> Delegate
+    public delegate void Distinguish(string CurKey);
 
     public void SecondInteractOn()
     {

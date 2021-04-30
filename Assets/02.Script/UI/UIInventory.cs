@@ -37,47 +37,49 @@ public class UIInventory : UIView
 
     public LayerMask ObserveObjLayerMask;
 
-    public bool CheckItem(string currentKey, string interactKey)
-    {
-        if(currentKey == "MSG_Lr_matchstick" || currentKey == "MSG_Lr_waxcube" || currentKey == "MSG_Lr_wood_1")
-        {
-            if (interactKey == "MSG_Lr_fireplace_1")
-            {
-                return true;
-            }
-        }
-        else if(currentKey == "MSG_Lr_KeyGreen_1")
-        {
-            if (interactKey == "MSG_Lr_lokerPurple_1")
-            {
-                return true;
-            }
-        }
-        else if(currentKey == "MSG_Lr_keyBrown_1")
-        {
-            if (interactKey == "MSG_Lr_lokerBrown_1")
-            {
-                return true;
-            }
-        }
-        else if(currentKey == "MSG_Lr_keyPurple_1")
-        {
-            if(interactKey == "MSG_Lr_lokerGreen_1")
-            {
-                return true;
-            }
-        }
-        else if(currentKey == "MSG_Lr_jewel_1" || currentKey == "MSG_Lr_jewel_2")
-        {
-            if(interactKey == "MSG_Lr_owlstatue_1")
-            {
-                return true;
-            }
-        }
+    public DistinguishItem ItemDistingush;
 
-        return false;
+    //public bool CheckItem(string currentKey, string interactKey)
+    //{
+    //    if(currentKey == "MSG_Lr_matchstick" || currentKey == "MSG_Lr_waxcube" || currentKey == "MSG_Lr_wood_1")
+    //    {
+    //        if (interactKey == "MSG_Lr_fireplace_1")
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if(currentKey == "MSG_Lr_KeyGreen_1")
+    //    {
+    //        if (interactKey == "MSG_Lr_lokerPurple_1")
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if(currentKey == "MSG_Lr_keyBrown_1")
+    //    {
+    //        if (interactKey == "MSG_Lr_lokerBrown_1")
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if(currentKey == "MSG_Lr_keyPurple_1")
+    //    {
+    //        if(interactKey == "MSG_Lr_lokerGreen_1")
+    //        {
+    //            return true;
+    //        }
+    //    }
+    //    else if(currentKey == "MSG_Lr_jewel_1" || currentKey == "MSG_Lr_jewel_2")
+    //    {
+    //        if(interactKey == "MSG_Lr_owlstatue_1")
+    //        {
+    //            return true;
+    //        }
+    //    }
 
-    }
+    //    return false;
+
+    //}
 
     private void Start()
     {
@@ -161,7 +163,7 @@ public class UIInventory : UIView
                 //================
 
                 // 판별해서? 상호작용 시키기
-
+                // 아이템에 delegate Action<T> Delegate
                 //================
                 CurrentItemIcon.IsInteract = true;
                 for (int i = 0; i < ItemIconData.Count; i++)
