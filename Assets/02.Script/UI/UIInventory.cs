@@ -111,7 +111,7 @@ public class UIInventory : UIView
         
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
         RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
+        Ray ray = CameraManager.Instance.MainCamera.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ObserveObjLayerMask))
         {
             Debug.Log(hit.collider.name);

@@ -15,7 +15,7 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
         if (IsInit)
         {
             OffsetVec = TargetObj.transform.Find("UIOffsetEyes").transform.localPosition;
-            transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
+            transform.position = CameraManager.Instance.MainCamera.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
   
@@ -29,7 +29,6 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     public void Interact()
     {
         TargetInterAction = TargetObj.GetComponent<PlayerInterActionObj>();
-        Debug.Log("interactOn Observer");
 
         if (TargetInterAction != null)
         {
@@ -38,6 +37,7 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
                 PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
                 TargetInterAction.SecondInteractOff();
                 GameManager.Instance.uiManager.uiInventory.ClickItemIcon(TargetInterAction.ItemKey , TargetInterAction);
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
             }
         }
     }

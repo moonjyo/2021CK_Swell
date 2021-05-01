@@ -161,15 +161,16 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseWalk()
     {
-        Vector3 WalkMove = WalkVec * playerData.WalkSpeed * Time.fixedDeltaTime;
+        Vector3 WalkMove = CameraManager.Instance.MainCamera.transform.forward * WalkVec.x + -CameraManager.Instance.MainCamera.transform.right * WalkVec.z; 
         if (IsGrounded())
         {
             FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.WALK);
         }
-        Body_Tr.LookAt(transform.position + WalkVec);
+        Vector3 VecLook = transform.position + WalkMove;
+        Body_Tr.LookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z));
     
-        Controller.Move(WalkMove);
+        Controller.Move(WalkMove * Time.deltaTime * playerData.WalkSpeed);
     }
 
     private void OnWalkSound()

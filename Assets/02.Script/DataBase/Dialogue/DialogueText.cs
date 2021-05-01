@@ -11,6 +11,13 @@ public class DialogueText : MonoBehaviour
     public TextMeshProUGUI TMPName;
     public TextMeshProUGUI TMPOnNext;
 
+    public Image StandingImageL;
+    public Image StandingImageR;
+
+    public Image TalkTaleL;
+    public Image TalkTaleR;
+
+
     public float ShowTimeSecond = 2f;
 
     public Dialogue[] CurrentDialogue;
@@ -21,6 +28,9 @@ public class DialogueText : MonoBehaviour
     public bool IsDialogue = false;
 
     public int TextCount = 0;
+
+    private Color ActiveTrueColor = new Color(1, 1, 1);
+    private Color ActiveFalseColor = new Color(0.2830189f, 0.2830189f, 0.2830189f);
 
     private void Start()
     {
@@ -38,6 +48,29 @@ public class DialogueText : MonoBehaviour
         TMPName.text = CurrentDialogue[TextCount].name;
         TMPDialogue.text = CurrentDialogue[TextCount].context[0];
         TMPDialogue.text = TMPDialogue.text.Replace("\\n", "\n"); //줄바꿈용
+        if(GameManager.Instance.uiManager.DialogueImageDicL.ContainsKey(CurrentDialogue[TextCount].TextureL))
+        {
+            StandingImageL.sprite = GameManager.Instance.uiManager.DialogueImageDicL[CurrentDialogue[TextCount].TextureL].sprite;
+        }
+        if (GameManager.Instance.uiManager.DialogueImageDicR.ContainsKey(CurrentDialogue[TextCount].TextureR))
+        {
+            StandingImageR.sprite = GameManager.Instance.uiManager.DialogueImageDicR[CurrentDialogue[TextCount].TextureR].sprite;
+        }
+
+        if (CurrentDialogue[TextCount].CurrentTurn == "L") //말차례턴 정해
+        {
+            StandingImageL.color = ActiveTrueColor;
+            StandingImageR.color = ActiveFalseColor;
+            TalkTaleL.gameObject.SetActive(true);
+            TalkTaleR.gameObject.SetActive(false);
+        }
+        else
+        {
+            StandingImageR.color = ActiveTrueColor;
+            StandingImageL.color = ActiveFalseColor; 
+            TalkTaleL.gameObject.SetActive(false);
+            TalkTaleR.gameObject.SetActive(true);
+        }
         gameObject.SetActive(true); 
 
         DialogueDoText(TMPDialogue, ShowTimeSecond);

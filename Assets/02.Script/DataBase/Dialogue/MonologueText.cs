@@ -21,7 +21,7 @@ public class MonologueText : MonoBehaviour
  
     private void Update()
     {
-        transform.position = Camera.main.WorldToScreenPoint(PlayerManager.Instance.playerMove.transform.position + new Vector3(OffsetPosVec.x, OffsetPosVec.y, OffsetPosVec.z));
+        transform.position = CameraManager.Instance.MainCamera.WorldToScreenPoint(PlayerManager.Instance.playerMove.transform.position + new Vector3(OffsetPosVec.x, OffsetPosVec.y, OffsetPosVec.z));
     }
 
     public void Init()

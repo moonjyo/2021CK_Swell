@@ -19,7 +19,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
         if (IsInit)
         {
             OffsetVec = TargetObj.transform.Find("UIOffsetUp").transform.localPosition;
-            transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
+            transform.position = CameraManager.Instance.MainCamera.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
 

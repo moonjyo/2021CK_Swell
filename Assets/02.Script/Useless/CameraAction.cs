@@ -15,7 +15,7 @@ public class CameraAction : MonoBehaviour
     //void Start()
     //{
     //    //camera = new Camera();
-    //    //camera = Camera.main;
+    //    //camera = CameraManager.Instance.MainCamera;
     //    //StartCoroutine(ActionCamera());
     //}
 

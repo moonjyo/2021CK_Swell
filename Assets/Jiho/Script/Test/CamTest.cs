@@ -9,7 +9,7 @@ public class CamTest : MonoBehaviour
 
     public void Start()
     {
-        main = Camera.main;
+        main = CameraManager.Instance.MainCamera;
         main.clearFlags = CameraClearFlags.Depth;
         sub.clearFlags = CameraClearFlags.Depth;
 

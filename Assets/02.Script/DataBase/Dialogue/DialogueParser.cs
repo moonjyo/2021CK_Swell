@@ -19,13 +19,20 @@ public class DialogueParser : MonoBehaviour
             Dialogue dialogue = new Dialogue();
 
             dialogue.name = row[1];
-            Debug.Log(row[1]);
+
             List<string> contextList = new List<string>();
+
+            if (row.Length == 6) // Texture L , R 이 있는경우 
+            {
+                dialogue.TextureL = row[3];
+                dialogue.TextureR = row[4];
+                row[5] = row[5].Replace("\r", ""); // \r삭제 마지막데이터는 \r이 무조건있음
+                dialogue.CurrentTurn = row[5];
+            }
 
             do
             {
                 contextList.Add(row[2]);
-                Debug.Log(row[2]);
                 if (++i < data.Length -1)
                 {
                     row = data[i].Split(new char[] {','});
@@ -35,6 +42,9 @@ public class DialogueParser : MonoBehaviour
                     break;
                 }
             } while (row[0].ToString() == "");
+
+
+          
 
             dialogue.context = contextList.ToArray();
 

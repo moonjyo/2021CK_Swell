@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
@@ -16,6 +17,10 @@ public class UIManager : MonoBehaviour
 
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
     public List<PlayerInterActionObj> OnActiveSecondInterActionUI = new List<PlayerInterActionObj>(); //first ui obj list 
+    public List<Image> AllImageList= new List<Image>(); //first ui obj list 
+
+    public Dictionary<string, Image> DialogueImageDicL = new Dictionary<string, Image>();
+    public Dictionary<string, Image> DialogueImageDicR = new Dictionary<string, Image>();
 
     public MonologueText monologueText;
     public DialogueText DialogueText;
@@ -26,12 +31,33 @@ public class UIManager : MonoBehaviour
 
     public void Init()
     {
-        
+
         //uISound.Init();
 
-        AudioManager.Instance.Change(0);
-        AudioManager.Instance.Play();
+        DialougeImageInit();
+        //AudioManager.Instance.Change(0);
+        //AudioManager.Instance.Play();
     }
+
+    public void DialougeImageInit()
+    {
+        for(int i = 0; i < AllImageList.Count; ++i)
+        {
+            Image Target = Instantiate(AllImageList[i] , transform); //임시로 부모지정 
+            Target.name =  Target.name.Replace("(Clone)","");
+            Target.gameObject.SetActive(false);
+            if(Target.name.Contains("R")) //해당 단어가 있으면 r 없으면 l 따라서 name이 매우 중요 
+            {
+                DialogueImageDicR.Add(Target.name , Target);
+            }
+            else
+            {
+                DialogueImageDicL.Add(Target.name, Target);
+            }
+        }
+    }
+
+
 
     public void OnEsc(InputAction.CallbackContext context)
     {

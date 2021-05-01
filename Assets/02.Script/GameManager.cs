@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-     //   uiManager.Init();
+        uiManager.Init();
     }
 
     public void GameStart()

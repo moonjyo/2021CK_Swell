@@ -9,6 +9,11 @@ public class Dialogue
     public string name;
     [Tooltip("대사 내용")]
     public string[] context;
+    [Tooltip("사용되는 Texture")]
+    public string TextureL;
+    public string TextureR;
+    public string CurrentTurn;
+
 }
 
 [System.Serializable]

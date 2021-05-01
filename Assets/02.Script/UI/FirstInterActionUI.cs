@@ -21,7 +21,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
             //}
             OffsetVec = TargetObj.transform.Find("UIOffsetFirstCheck").transform.localPosition;
 
-            transform.position = Camera.main.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
+            transform.position = CameraManager.Instance.MainCamera.WorldToScreenPoint(TargetObj.transform.position + new Vector3(OffsetVec.x, OffsetVec.y, OffsetVec.z));
         }
     }
 

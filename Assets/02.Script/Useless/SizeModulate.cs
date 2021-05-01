@@ -82,7 +82,7 @@ public class SizeModulate : MonoBehaviour
 
     public void ItemSelect(Vector2 value)
     {
-        Camera mainCamera = Camera.main; // 매니저에서 main한번만 선언후 캐싱해서 가져오는게 베스트
+        Camera mainCamera = CameraManager.Instance.MainCamera; // 매니저에서 main한번만 선언후 캐싱해서 가져오는게 베스트
         Ray ray = mainCamera.ScreenPointToRay(value);
         if(Physics.Raycast(ray, out hit, 1000, ItemLayerMask))
         {
