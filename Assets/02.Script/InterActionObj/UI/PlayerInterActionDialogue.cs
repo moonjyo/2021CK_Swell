@@ -11,8 +11,6 @@ public class PlayerInterActionDialogue : MonoBehaviour, IInteractableUI
     private bool IsInit = false;
 
 
-    //private bool IsPressed = false;
-
     private IDialogue TargetDialogue;
 
     private void FixedUpdate()

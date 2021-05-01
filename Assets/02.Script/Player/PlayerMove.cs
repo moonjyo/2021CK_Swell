@@ -49,19 +49,14 @@ public class PlayerMove : MonoBehaviour
 
     public bool InterActionUIPressed = false;
 
-    //현재 light를 가지고있는지 check 
-    public bool IsLight = false;
-
     public PlayerData playerData;
+
+    public bool IsInterActionItemPress = false; 
 
     private void FixedUpdate()
     {
         MoveCheck();
         //PushItemCheck();
-        if (WalkVec == Vector3.zero && moveDirection.y < 0f)
-        {
-            Idle();
-        }
         GravityFall();
     }
 
@@ -88,11 +83,6 @@ public class PlayerMove : MonoBehaviour
         MouseLeftVec = value;
     }
 
-
-    public void SetJump(Vector3 value) // jump check 
-    {
-        JumpVec = value;
-    }
     public void SetInterAction(Vector3 value)
     {
         InterActionVec = value;
@@ -107,12 +97,9 @@ public class PlayerMove : MonoBehaviour
                 {
                         if (InterActionrb != null)
                         {
-                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
-                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+                           Vector3 Direction = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
 
-
-                        Vector3 Direction = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
-                       
+                          PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
 
 
                         WalkVec.x =  (float)Math.Truncate(WalkVec.x * 10) / 10;
@@ -120,58 +107,57 @@ public class PlayerMove : MonoBehaviour
                         WalkVec.z = (float)Math.Truncate(WalkVec.z * 10) / 10;
                         
                         if (-Direction == WalkVec) 
-                            {  //당기기   
+                        {  //당기기   
                                 Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
                             Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                            }
-                            else if (Direction == WalkVec)
-                            { //밀기 
+                        }
+                        else if (Direction == WalkVec)
+                        { //밀기 
                                 Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", false);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                                 Controller.Move(WalkMove);
                         }
-                            //else if (transform.right == WalkVec)
-                            //{ // 회전 right
-                            //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
-                            //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            //    InterActionrb.transform.Rotate(RotateVec);
-                            //}
-                            //else if (-transform.right == WalkVec)
-                            //{ //회전 left 
-                            //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
-                            //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            //    InterActionrb.transform.Rotate(RotateVec);
-                            //}
-                        }
-                    
+                        //else if (transform.right == WalkVec)
+                        //{ // 회전 right
+                        //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
+                        //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                        //    InterActionrb.transform.Rotate(RotateVec);
+                        //}
+                        //else if (-transform.right == WalkVec)
+                        //{ //회전 left 
+                        //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
+                        //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                        //    InterActionrb.transform.Rotate(RotateVec);
+                        //}  else
+                     
+                    }
+                  
                 }
             }
-            else if(!IsInterActionCol)
+            else
             {
                 BaseWalk();
             }
+        }
+        else
+        {
+            Idle();
         }
     }
 
     public void Idle()
     {
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
-        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Walk);
-        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Push);
-        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Pull);
 
+        if (IsInterActionItemPress)
+        {
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
+        }
     }
     public void BaseWalk()
     {
@@ -179,9 +165,7 @@ public class PlayerMove : MonoBehaviour
         if (IsGrounded())
         {
             FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", true);
-            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Walk);
-           
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.WALK);
         }
         Body_Tr.LookAt(transform.position + WalkVec);
     
@@ -193,25 +177,6 @@ public class PlayerMove : MonoBehaviour
         //AudioManager.Instance.PlayOneShot("event:/Player/Walk");
     }
 
-
-
-    public void Jump()
-    {
-        if (JumpVec.sqrMagnitude > 0.1f && PlayerManager.Instance.PlayerInput.IsJumpCanceled)
-        {
-            bool ispush = PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Push);
-            bool ispull = PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Pull);
-            if ((ispull || ispush) && IsInterActionCol)
-            {
-                return;
-            }
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Jump", true);
-            //AudioManager.Instance.PlayOneShot("event:/Jump");
-            PlayerManager.Instance.PlayerInput.IsJumpCanceled = false;
-
-            moveDirection.y = playerData.jumpspeed;
-        }
-    }
 
     private bool IsGrounded()
     {
@@ -263,33 +228,6 @@ public class PlayerMove : MonoBehaviour
                     { InterActionUIPressed = false; });
                 break;
         }
-    }
-
-    public void HangingOff()
-    {
-        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
-        IsGravity = false;
-        PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.Climing);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", false);
-
-    }
-
-    public void HangingOn(Vector2 InValue , Transform TargetPos)
-    {
-      
-            PlayerManager.Instance.playerMove.IsGravity = true;
-            
-            PlayerManager.Instance.playerStatus.fsm = PlayerFSM.Climing;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("HangIdle", true);
-
-            GameObject child = TargetPos.Find("TargetHangingPos").gameObject;
-            if (child == null)
-            {
-                return;
-            }
-
-           Root_Tr.transform.localPosition = new Vector3(Root_Tr.transform.localPosition.x, child.transform.localPosition.y, child.transform.localPosition.z);
-          
     }
     public IEnumerator InterActionItemPickUp()
     {
@@ -398,53 +336,23 @@ public class PlayerMove : MonoBehaviour
     }
 
 
-    public void ItemMoveDecide(float MasValue)
-    {
-        //push and pull on 
-        if (MasValue <= 10)
-        {
-            //item lift
-            if (MasValue <= 2 && PlayerManager.Instance.PlayerInput.IsPickUpItem)
-            {
-
-                return;
-            }
-            //item pull
-            else if (PlayerManager.Instance.PlayerInput.IsPull)
-            {
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", true);
-                return;
-            }
-
-            //item push 
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", true);
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Walk", false);
-        }
-        //no move
-        else if (MasValue <= 100)
-        {
-
-        }
-    }
+   
     private void MoveCheck()
     {
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
         {
               if (!IsGrounded())
               {
-                  PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", true);
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.DOWN);
               }
               else
               {
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Down", false);
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
               }
               //hashflag  포함되어있는지 확인 
               if (MoveFunction != null)
               {
-                  if (WalkVec == transform.forward && PlayerManager.Instance.playerStatus.fsm.HasFlag(PlayerFSM.Wall))
-                  {
-                      return;
-                  }
+                 
                   MoveFunction();
               }
         }
@@ -487,7 +395,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             PlayerManager.Instance.playerMove.IsInterActionCol = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
             PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
         }
@@ -509,7 +417,7 @@ public class PlayerMove : MonoBehaviour
                 PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
             });
             Targetrb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", true);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
         }
 
     }
@@ -517,10 +425,7 @@ public class PlayerMove : MonoBehaviour
     public void InterActionUIPointUp()
     {
         PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Idle", true);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
     }
    
 }

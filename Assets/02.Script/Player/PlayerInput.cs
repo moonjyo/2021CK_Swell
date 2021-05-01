@@ -52,28 +52,6 @@ public class PlayerInput : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
     }
 
-    public void OnInterAction(InputAction.CallbackContext context)
-    {
-        Vector2 value = context.ReadValue<Vector2>();
-        Vector3 PullVec = new Vector3(value.x, 0, 0);
-        PlayerManager.Instance.playerMove.SetInterAction(PullVec);
-
-        if(context.performed)
-        {
-            InterActionStick();
-            PickUpItem();
-            if(IsLightGetReady)
-            {
-                PlayerManager.Instance.playerMove.IsLight = true;
-                Destroy(ObjLight);  
-            }
-        }
-        if (context.canceled)
-        {
-            IsPull = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
-        }
-    }
 
     public void InterActionStick()
     {
@@ -141,23 +119,7 @@ public class PlayerInput : MonoBehaviour
     }
 
 
-    public void LightOnOff(InputAction.CallbackContext context)
-    {
-        if (context.performed && PlayerManager.Instance.playerMove.IsLight)
-        {
-            PlayerManager.Instance.flashLight.Toggle();
-        }
-    }
 
-    public void LighAngle(InputAction.CallbackContext context)
-    {
-        InputValue = context.ReadValue<Vector2>();
-        if (PlayerManager.Instance.playerMove.IsLight)
-        {
-            Vector3 AngleValue = new Vector3(InputValue.x, InputValue.y, 0);
-            PlayerManager.Instance.flashLight.SetAngleValue(AngleValue);
-        }
-    }
 
 
     public void OnLeftMouseClick(InputAction.CallbackContext context)
