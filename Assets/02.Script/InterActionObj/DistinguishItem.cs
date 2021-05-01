@@ -1,49 +1,21 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DistinguishItem
+public class DistinguishItem : MonoBehaviour
 {
-    void Distinguish(string Key)
+    public Dictionary<string, Action> DistinguishItemDic = new Dictionary<string, Action>();
+
+    public void init()
     {
-        switch (Key)
-        {
-            case "MSG_Lr_matchstick" :
+        DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1", InteractGreenLocker);
+        //DistinguishItemDic.Add()
 
-                break;
+    }
 
-            case "MSG_Lr_waxcube":
-
-                break;
-
-            case "MSG_Lr_wood_1":
-
-                break;
-
-            case "MSG_Lr_KeyGreen_1":
-
-                break;
-
-            case "MSG_Lr_keyBrown_1":
-
-                break;
-
-            case "MSG_Lr_keyPurple_1":
-
-                break;
-
-            case "MSG_Lr_jewel_1":
-
-                break;
-
-            case "MSG_Lr_jewel_2":
-
-                break;
-
-
-
-
-        }
-
+    public void InteractGreenLocker()
+    {
+        Debug.Log("GreenLocker");
     }
 }
