@@ -39,7 +39,6 @@ public class WallShelf : MonoBehaviour
                         transform.gameObject.layer = 10; // ground 
                         IsPlay = true;
                         anim.SetTrigger("Trigeron");
-                        PlayerManager.Instance.playerMove.HangingOff();
                         col.isTrigger = false;
                     }
                 }

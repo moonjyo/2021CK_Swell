@@ -11,7 +11,6 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
     private bool IsInit = false;
 
 
-    private bool IsPressed = false;
 
 
     private void FixedUpdate()
@@ -38,7 +37,7 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
 
     public void PointDown()
     {
-       IsPressed = true;
+        PlayerManager.Instance.playerMove.IsInterActionItemPress = true;  
        Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
         if (rb != null)
         {
@@ -48,7 +47,8 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
 
     public void PointUp()
     {
-        IsPressed = false;
+
+        PlayerManager.Instance.playerMove.IsInterActionItemPress = false;
         PlayerManager.Instance.playerMove.InterActionUIPointUp();
 
     }

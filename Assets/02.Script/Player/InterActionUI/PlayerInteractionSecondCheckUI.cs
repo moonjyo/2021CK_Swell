@@ -40,8 +40,6 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                 GameManager.Instance.uiManager.IsOnFirstInterActionUI = false; // firstinteraction ui 활성화
                 TargetObj.SecondInteractOff(); // 충돌된 second off 
                
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Push", false);
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Pull", false);
 
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
@@ -60,7 +58,6 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                     if (PlayerManager.Instance.playerMove.InterActionrb.gameObject == other.gameObject)
                     {
                         PlayerManager.Instance.playerMove.InterActionrb = null;
-                        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetBool("Hold", false);
                     }
                 }
 

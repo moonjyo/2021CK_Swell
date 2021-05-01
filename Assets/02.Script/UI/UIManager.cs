@@ -26,7 +26,8 @@ public class UIManager : MonoBehaviour
 
     public void Init()
     {
-        uISound.Init();
+        
+        //uISound.Init();
 
         AudioManager.Instance.Change(0);
         AudioManager.Instance.Play();

@@ -11,7 +11,6 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     private bool IsInit = false;
 
 
-    //private bool IsPressed = false;
 
     private PlayerInterActionObj TargetInterActionObj;
 
