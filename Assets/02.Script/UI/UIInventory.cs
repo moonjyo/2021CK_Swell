@@ -37,26 +37,24 @@ public class UIInventory : UIView
 
     public LayerMask ObserveObjLayerMask;
 
-    //public DistinguishItem ItemDistingush;
-    public delegate void Distinguish(GameObject gameObject);
-    Distinguish DDistinguish;
-    //public event Distinguish OnDistingush;
+    public DistinguishItem Distinguish;
+
+    public delegate void DelDistinguish(Action act);
+    DelDistinguish Del;
+
+    public Action act;
 
     private void Start()
     {
         GraphicRay = this.GetComponent<Canvas>().GetComponent<GraphicRaycaster>();
         Pointer = new PointerEventData(null);
+
+        Distinguish.init();
     }
     public void SetMousePosVal(Vector2 value)
     {
         mousePos = value;
     }
-
-    public void DistinguishItem(GameObject Obj, Distinguish D)
-    {
-        D(Obj);
-    }
-
 
     public void EnterInventoryWindow()
     {
@@ -119,22 +117,17 @@ public class UIInventory : UIView
             {
                 if(CurrentItemIcon.HaveItem.InteractObjKey + "(Clone)" == hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
                 {
-                    Distinguish DGreenKey = hit.transform.GetComponent<PlayerInterActionObj>().GreenKey; // 함수의 연결 조건.?
-                    DDistinguish = hit.transform.GetComponent<PlayerInterActionObj>().PurpleKey;
-                    //Distinguish PurpleKey = new Distinguish(CurrentItemIcon.HaveItem.PurpleKey);
-                    DDistinguish(hit.transform.gameObject);
-
-                    DistinguishItem(hit.transform.gameObject, DGreenKey);
-                    //DistinguishItem(CurrentItemIcon.HaveItem.InteractObjKey, PurpleKey);
-
-                    //hit.transform.GetComponent<PlayerInterActionObj>().TestCheck(hit.transform.GetComponent<PlayerInterActionObj>());
-
-                    //return;
+                    if (Distinguish.DistinguishItemDic.TryGetValue(CurrentItemIcon.HaveItem.InteractObjKey, out Action value))
+                    {
+                        //value();
+                        act += value;
+                        act();
+                    }
                 }
 
                 //================
                 // 판별해서? 상호작용 시키기
-                // 아이템에 delegate Action<T> Delegate
+                // Dictionary<string Key, delegate>.TryGetValue() 해서 실행
                 //================
                 CurrentItemIcon.IsInteract = true;
                 for (int i = 0; i < ItemIconData.Count; i++)

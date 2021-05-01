@@ -17,7 +17,7 @@ public class ObserveMode : MonoBehaviour
     public bool IsOnObserveMode = false;
     bool IsObjRotate = false;
 
-    public StageCamera baseCam;
+    public Camera ObserveCam;
 
     private PlayerInterActionObj CurrentTargetObj;
     public void SetRotateInput(Vector2 value)
@@ -45,7 +45,7 @@ public class ObserveMode : MonoBehaviour
         }
         if(GO != null)
         {
-            GO.transform.position = baseCam.transform.position + (baseCam.transform.forward * 2.5f);
+            GO.transform.position = ObserveCam.transform.position + (ObserveCam.transform.forward * 2.5f);
             //GO.transform.LookAt(baseCam.transform.position);
             //Vector3 lookVec = baseCam.transform.position - GO.transform.position;
             //GO.transform.eulerAngles = lookVec;
@@ -62,7 +62,7 @@ public class ObserveMode : MonoBehaviour
 
         if (Mathf.Abs(RotVInput) > 0.1f)
         {
-            GO.transform.RotateAround(GO.transform.position, baseCam.transform.right, RotVInput * 40 * Time.deltaTime);
+            GO.transform.RotateAround(GO.transform.position, ObserveCam.transform.right, RotVInput * 40 * Time.deltaTime);
         }
     }
 
@@ -80,7 +80,7 @@ public class ObserveMode : MonoBehaviour
         IsOnObserveMode = true;
         if (ObserveObj.TryGetValue(Key, out GameObject go))
         {
-            GO = Instantiate(go, baseCam.transform.position + baseCam.transform.forward, Quaternion.identity);
+            GO = Instantiate(go, ObserveCam.transform.position + ObserveCam.transform.forward, Quaternion.identity);
             GO.gameObject.layer = 18;
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
