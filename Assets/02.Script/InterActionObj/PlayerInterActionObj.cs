@@ -18,12 +18,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public Vector3 SizeObj;
 
-    public PlayerInterActionObj InteractObj;
+    //public PlayerInterActionObj InteractObj;
     public string InteractObjKey;
-
-    // delegate 함수 선언 Action<T> Delegate
-    //public delegate void Distinguish(string CurKey);
-    //Distinguish DDistinguish;
 
     public void SecondInteractOn()
     {

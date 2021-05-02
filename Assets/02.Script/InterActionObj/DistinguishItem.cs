@@ -9,13 +9,13 @@ public class DistinguishItem : MonoBehaviour
 
     public void init()
     {
-        DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1", InteractGreenLocker);
+        DistinguishItemDic.Add("MSG_Lr_lokerGreen_1", InteractGreenLocker); // 상호작용이 되는 오브젝트 이름을 키로잡음
         //DistinguishItemDic.Add()
 
     }
 
     public void InteractGreenLocker()
     {
-        Debug.Log("GreenLocker");
+        Debug.Log("GreenLocker Open");
     }
 }

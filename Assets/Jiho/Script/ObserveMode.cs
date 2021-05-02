@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class ObserveMode : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class ObserveMode : MonoBehaviour
     [HideInInspector]
     public float RotVInput;
 
+    [HideInInspector]
     public GameObject GO;
     public Canvas FadeCanvas;
 
@@ -16,8 +18,6 @@ public class ObserveMode : MonoBehaviour
 
     public bool IsOnObserveMode = false;
     bool IsObjRotate = false;
-
-    public Camera ObserveCam;
 
     private PlayerInterActionObj CurrentTargetObj;
     public void SetRotateInput(Vector2 value)
@@ -45,10 +45,7 @@ public class ObserveMode : MonoBehaviour
         }
         if(GO != null)
         {
-            GO.transform.position = ObserveCam.transform.position + (ObserveCam.transform.forward * 2.5f);
-            //GO.transform.LookAt(baseCam.transform.position);
-            //Vector3 lookVec = baseCam.transform.position - GO.transform.position;
-            //GO.transform.eulerAngles = lookVec;
+            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 2.5f);
         }
         
     }
@@ -62,7 +59,7 @@ public class ObserveMode : MonoBehaviour
 
         if (Mathf.Abs(RotVInput) > 0.1f)
         {
-            GO.transform.RotateAround(GO.transform.position, ObserveCam.transform.right, RotVInput * 40 * Time.deltaTime);
+            GO.transform.RotateAround(GO.transform.position, CameraManager.Instance.ObserveCamera.transform.right, RotVInput * 40 * Time.deltaTime);
         }
     }
 
@@ -75,13 +72,17 @@ public class ObserveMode : MonoBehaviour
     {
 
         CurrentTargetObj = Target;
+
+        CameraManager.Instance.CaptureCamera.gameObject.SetActive(true);
         FadeCanvas.gameObject.SetActive(true);
+        CameraManager.Instance.ObserveCamera.gameObject.SetActive(true);
 
         IsOnObserveMode = true;
         if (ObserveObj.TryGetValue(Key, out GameObject go))
         {
-            GO = Instantiate(go, ObserveCam.transform.position + ObserveCam.transform.forward, Quaternion.identity);
+            GO = Instantiate(go, CameraManager.Instance.ObserveCamera.transform.position + CameraManager.Instance.ObserveCamera.transform.forward, Quaternion.identity);
             GO.gameObject.layer = 18;
+            GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
@@ -94,7 +95,9 @@ public class ObserveMode : MonoBehaviour
         }
         else
         {
+            CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
             FadeCanvas.gameObject.SetActive(false);
+            CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
         }
     }
 
@@ -104,7 +107,9 @@ public class ObserveMode : MonoBehaviour
         //GO.SetActive(false);
         Destroy(GO);
         GO = null;
+        CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
         FadeCanvas.gameObject.SetActive(false);
+        CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         if (CurrentTargetObj != null)
