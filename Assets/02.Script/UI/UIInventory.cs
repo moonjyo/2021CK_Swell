@@ -67,7 +67,7 @@ public class UIInventory : UIView
         IsInventoryWindowOpen = true;
         //InventoryPanel.transform.DOMoveY(InventoryMovePosY, 0.5f);
         //InventoryPanel.GetComponent<RectTransform>().DOMoveY(1080, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0f, 0.1f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0f, 0.2f);
     }
 
     public void ExitInventoryWindow()
@@ -84,7 +84,7 @@ public class UIInventory : UIView
     IEnumerator WaitForExitInventory()
     {
         //InventoryPanel.gameObject.GetComponent<RectTransform>().DOMoveY(1208f, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(128.0f, 0.1f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(128.0f, 0.2f);
         yield return new WaitForSeconds(0.4f);
         IsInventoryWindowOpen = false;
         //InventoryPanel.SetActive(false);
@@ -109,7 +109,8 @@ public class UIInventory : UIView
         
         // Drop 했을 때 레이캐스트를 쏘아서 레이어를 파악하고 상호작용할지 그냥 되돌릴지 정하면 된다.
         RaycastHit hit;
-        Ray ray = CameraManager.Instance.MainCamera.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
+        //Ray ray = CameraManager.Instance.MainCamera.ScreenPointToRay(mousePos); // 카메라는 매니저로 이동하기
+        Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(mousePos);
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, ObserveObjLayerMask))
         {
             Debug.Log(hit.collider.name);
@@ -119,32 +120,30 @@ public class UIInventory : UIView
                 {
                     if (Distinguish.DistinguishItemDic.TryGetValue(CurrentItemIcon.HaveItem.InteractObjKey, out Action value))
                     {
-                        //value();
-                        act += value;
-                        act();
-                    }
-                }
+                        value();
+                        //act += value;
+                        //act();
 
-                //================
-                // 판별해서? 상호작용 시키기
-                // Dictionary<string Key, delegate>.TryGetValue() 해서 실행
-                //================
-                CurrentItemIcon.IsInteract = true;
-                for (int i = 0; i < ItemIconData.Count; i++)
-                {
-                    if (ItemImageIcon[i].IsInteract)
-                    {
-                        for (int j = i; j < ItemIconData.Count - 1; j++)
+                        CurrentItemIcon.IsInteract = true;
+                        for (int i = 0; i < ItemIconData.Count; i++)
                         {
-                            ItemImageIcon[j].ElementImage.sprite = ItemImageIcon[j + 1].ElementImage.sprite;
-                            ItemIconData[j] = ItemIconData[j + 1];
-                            //데이터 옮겨오면서 image도 같이 옮겨가야함
+                            if (ItemImageIcon[i].IsInteract)
+                            {
+                                for (int j = i; j < ItemIconData.Count - 1; j++)
+                                {
+                                    ItemImageIcon[j].ElementImage.sprite = ItemImageIcon[j + 1].ElementImage.sprite;
+                                    ItemIconData[j] = ItemIconData[j + 1];
+                                    //데이터 옮겨오면서 image도 같이 옮겨가야함
+                                }
+                            }
                         }
+                        CurrentItemIcon.IsInteract = false;
+                        ItemIconData.Pop();
+                        ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
+
+                        ob.DeactivateObserverItem();
                     }
                 }
-                CurrentItemIcon.IsInteract = false;
-                ItemIconData.Pop();
-                ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
             }
         }
         if (EventSystem.current.IsPointerOverGameObject())
@@ -183,7 +182,10 @@ public class UIInventory : UIView
 
         ItemIconData.Add(Object);
 
-        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // 어떤 아이템인지 판별해야함 , Object의 이미지 출력
+        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // Object의 이미지 출력
+        //ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = Object.InventoryIcon;
+
+
         ItemImageIcon[ItemIconData.Count - 1].HaveItem = Object;
 
         StartCoroutine(WaitForGetItem());
@@ -192,7 +194,7 @@ public class UIInventory : UIView
 
     IEnumerator WaitForGetItem()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.8f);
         ExitInventoryWindow();
     }
 
