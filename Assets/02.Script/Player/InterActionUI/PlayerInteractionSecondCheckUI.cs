@@ -7,14 +7,51 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
     [SerializeField]
     private LayerMask InterActionLayer;
 
+    [SerializeField]
+    private LayerMask CameraActionLayer;
+
     private PlayerInterActionObj TargetObj = null;
 
 
     private void OnTriggerEnter(Collider other)
     {
+        InterActionCheckIn(other);
+        CamActionCheckIn(other);
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        InterActionCheckOut(other);
+        CamActionCheckOut(other);
+    }
+
+
+    public void CamActionCheckIn(Collider other)
+    {
+        if ((1 << other.gameObject.layer & CameraActionLayer) != 0)
+        {
+            if(other.gameObject.CompareTag("RSideCol"))
+            {
+                CameraManager.Instance.StageCam.GoToRSide();
+            }
+            else
+            {
+                CameraManager.Instance.StageCam.GoToLSide();
+            }
+        }
+    }
+    public void CamActionCheckOut(Collider other)
+    {
+        if ((1 << other.gameObject.layer & CameraActionLayer) != 0)
+        {
+            CameraManager.Instance.StageCam.GoToBase();
+        }
+    }
+    public void InterActionCheckIn(Collider other)
+    {
         if ((1 << other.gameObject.layer & InterActionLayer) != 0)
         {
-
             TargetObj = other.GetComponent<PlayerInterActionObj>();
             if (TargetObj != null)
             {
@@ -24,13 +61,14 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                 if (!GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Add(TargetObj);
-                 
+
                 }
             }
         }
+
     }
 
-    private void OnTriggerExit(Collider other)
+    public void InterActionCheckOut(Collider other)
     {
         if ((1 << other.gameObject.layer & InterActionLayer) != 0)
         {
@@ -39,12 +77,11 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
             {
                 GameManager.Instance.uiManager.IsOnFirstInterActionUI = false; // firstinteraction ui 활성화
                 TargetObj.SecondInteractOff(); // 충돌된 second off 
-               
+
 
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetObj);
-                   
                 }
 
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count == 0)
@@ -60,9 +97,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                         PlayerManager.Instance.playerMove.InterActionrb = null;
                     }
                 }
-
             }
         }
-
     }
 }

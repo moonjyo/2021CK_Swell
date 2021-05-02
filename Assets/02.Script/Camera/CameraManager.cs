@@ -10,20 +10,22 @@ public class CameraManager : MonoBehaviour
     public  Camera MainCamera;
     public static CameraManager Instance;
 
+
+
     private void Awake()
     {
         if(Instance == null)
         {
             Instance = this;    
         }
-        
     }
 
     private void Start()
     {
-
         StageCam.Init();
     }
+
+
 
 
 }
