@@ -34,6 +34,13 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     public void Interact()
     {
         TargetInterActionObj = TargetObj.GetComponent<PlayerInterActionObj>();
+
+        if (TargetInterActionObj.gameObject.layer == LayerMask.NameToLayer("InterActionscheduler")) //해당 아이템획득시 layer check 전제척으로 
+        {
+            PlayerManager.Instance.PlayerInteractionFirstCheck.InterActionLayer.value = 1 << 20 | 1 << 17;
+            PlayerManager.Instance.PlayerInteractionSecondCheck.InterActionLayer.value = 1 << 20 | 1 << 17;
+        }
+
         if (TargetInterActionObj != null)
         {
             if (TargetInterActionObj.IsTake)

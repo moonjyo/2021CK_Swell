@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerInteractionFirstCheckUI : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask InterActionLayer;
+    public LayerMask InterActionLayer;
 
     private PlayerInterActionObj TargetObj = null;
 

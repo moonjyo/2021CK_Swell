@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class PlayerInteractionSecondCheckUI : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask InterActionLayer;
+    public LayerMask InterActionLayer;
 
     [SerializeField]
     private LayerMask CameraActionLayer;
