@@ -45,9 +45,15 @@ public class ObserveMode : MonoBehaviour
         }
         if(GO != null)
         {
-            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 2.5f);
+            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 3f);
         }
-        
+
+        RaycastHit hit;
+        Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
+        {
+
+        }
     }
 
     public void RotateObj()
@@ -82,6 +88,12 @@ public class ObserveMode : MonoBehaviour
         {
             GO = Instantiate(go, CameraManager.Instance.ObserveCamera.transform.position + CameraManager.Instance.ObserveCamera.transform.forward, Quaternion.identity);
             GO.gameObject.layer = 18;
+            Transform[] GOArray = GO.GetComponentsInChildren<Transform>();
+            foreach (Transform Object in GOArray)
+            {
+                Object.gameObject.layer = 18;
+            }
+            GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
             GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)

@@ -39,8 +39,8 @@ public class UIInventory : UIView
 
     public DistinguishItem Distinguish;
 
-    public delegate void DelDistinguish(Action act);
-    DelDistinguish Del;
+    public delegate void DelDistinguish(GameObject Obj);
+    public DelDistinguish Del;
 
     public Action act;
 
@@ -54,6 +54,11 @@ public class UIInventory : UIView
     public void SetMousePosVal(Vector2 value)
     {
         mousePos = value;
+    }
+
+    public Vector2 GetMousePosVal()
+    {
+        return mousePos;
     }
 
     public void EnterInventoryWindow()
@@ -116,11 +121,12 @@ public class UIInventory : UIView
             Debug.Log(hit.collider.name);
             if((1 << hit.transform.gameObject.layer) == ObserveObjLayerMask) //상호작용 레이어로 교체해야함
             {
-                if(CurrentItemIcon.HaveItem.InteractObjKey + "(Clone)" == hit.transform.GetComponent<PlayerInterActionObj>().ItemKey) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
+                if(CurrentItemIcon.HaveItem.InteractObjKey == hit.collider.name) // 오브젝트에 상호작용할 오브젝트 변수를 인스펙터로 주어지게하기
                 {
-                    if (Distinguish.DistinguishItemDic.TryGetValue(CurrentItemIcon.HaveItem.InteractObjKey, out Action value))
+                    if (Distinguish.DistinguishItemDic.TryGetValue(CurrentItemIcon.HaveItem.InteractObjKey, out Action<GameObject> value))
                     {
-                        value();
+                        //value(hit.collider.gameObject);
+                        value(hit.transform.gameObject);
                         //act += value;
                         //act();
 
@@ -141,7 +147,7 @@ public class UIInventory : UIView
                         ItemIconData.Pop();
                         ItemImageIcon[ItemIconData.Count].ElementImage.sprite = EmptySprite;
 
-                        ob.DeactivateObserverItem();
+                        //ob.DeactivateObserverItem();
                     }
                 }
             }
