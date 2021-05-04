@@ -11,6 +11,10 @@ public class MouseInput : MonoBehaviour
     //public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
+    bool IsLeftMouseClick;
+
+    public delegate void OnClickEvent();
+    public static event OnClickEvent OnClick;
 
     public void OnLook(InputAction.CallbackContext context)
     {
@@ -44,6 +48,18 @@ public class MouseInput : MonoBehaviour
         {
             IsLeftMousePressed = false;
         }
+
+        if (context.canceled)
+        {
+            IsLeftMouseClick = true;
+            GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(IsLeftMouseClick);
+        }
+        else
+        {
+            IsLeftMouseClick = false;
+            GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(IsLeftMouseClick);
+        }
+
     }
 
     public void OnMousePosition(InputAction.CallbackContext context)

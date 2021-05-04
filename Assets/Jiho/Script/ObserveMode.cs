@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using System;
 
 public class ObserveMode : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class ObserveMode : MonoBehaviour
     public float RotHInput;
     [HideInInspector]
     public float RotVInput;
+
+    public bool IsClickCol = false;
 
     [HideInInspector]
     public GameObject GO;
@@ -20,11 +23,17 @@ public class ObserveMode : MonoBehaviour
     bool IsObjRotate = false;
 
     private PlayerInterActionObj CurrentTargetObj;
+
+    public DistinguishItem Distinguish;
     public void SetRotateInput(Vector2 value)
     {
         RotHInput = value.x;
         RotVInput = value.y;
+    }
 
+    public void SetClickInput(bool value)
+    {
+        IsClickCol = value;
     }
 
     private void Start()
@@ -48,11 +57,9 @@ public class ObserveMode : MonoBehaviour
             GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 3f);
         }
 
-        RaycastHit hit;
-        Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
+        if(IsClickCol)
         {
-
+            CheckClick();
         }
     }
 
@@ -128,6 +135,22 @@ public class ObserveMode : MonoBehaviour
         {
             CurrentTargetObj.SecondInteractOn();
         }
-        
+    }
+
+    public void CheckClick()
+    {
+        RaycastHit hit;
+        Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
+        {
+            if (hit.transform.gameObject.name != GO.name)
+                return;
+            if(Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
+            {
+                value(GO);
+            }
+        }
+
+        IsClickCol = false;
     }
 }
