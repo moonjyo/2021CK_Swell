@@ -61,6 +61,7 @@ public class DistinguishItem : MonoBehaviour
 
     public void ShowpasswordUI(GameObject Obj)
     {
-
+        // 비밀번호 ui창 보여주기
+        //GameManager.Instance.uiManager.
     }
 }

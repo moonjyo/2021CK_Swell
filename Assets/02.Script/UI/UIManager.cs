@@ -14,6 +14,7 @@ public class UIManager : MonoBehaviour
     public Canvas InterActionUICanvas;
     public UISound uISound;
     public UIInventory uiInventory;
+    public UIRingCasePassword uiRingCasePassword;
 
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
     public List<PlayerInterActionObj> OnActiveSecondInterActionUI = new List<PlayerInterActionObj>(); //first ui obj list 
