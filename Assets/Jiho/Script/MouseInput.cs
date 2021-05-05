@@ -1,20 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.Remoting.Contexts;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class MouseInput : MonoBehaviour
 {
-
     //public ObserveMode MouseFunction;
     //public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
     bool IsLeftMouseClick;
-
-    public delegate void OnClickEvent();
-    public static event OnClickEvent OnClick;
 
     public void OnLook(InputAction.CallbackContext context)
     {
@@ -61,7 +56,6 @@ public class MouseInput : MonoBehaviour
         }
 
     }
-
     public void OnMousePosition(InputAction.CallbackContext context)
     {
         //if (IsSelectItemIcon)
@@ -71,6 +65,5 @@ public class MouseInput : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         //uiInventory.SetMousePosVal(input);
         GameManager.Instance.uiManager.uiInventory.SetMousePosVal(input);
-        
     }
 }

@@ -58,14 +58,20 @@ public class UIManager : MonoBehaviour
         }
     }
 
-
-
     public void OnEsc(InputAction.CallbackContext context)
     {
        if(context.performed)
         {
             IsSettingMenu = !IsSettingMenu;
             UISettingOptionMenu.Toggle(IsSettingMenu);
+        }
+    }
+
+    public void OnEnter(InputAction.CallbackContext context)
+    {
+        if(context.started)
+        {
+            uiRingCasePassword.RingCaseOpen();
         }
     }
 

@@ -15,7 +15,7 @@ public class DistinguishItem : MonoBehaviour
         
     }
 
-    public void InteractGreenLocker(GameObject Obj)
+    public void InteractGreenLocker(GameObject Obj) // 초록색 좌물쇠 열었을 때
     {
         Debug.Log("GreenLocker Open");
 
@@ -51,17 +51,16 @@ public class DistinguishItem : MonoBehaviour
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCase.name, RingCase.GetComponent<PlayerInterActionObj>());
 
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>());
+        //GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
-
-
     }
 
-    public void ShowpasswordUI(GameObject Obj)
+    public void ShowpasswordUI(GameObject Obj) // 반지 케이스 자리 클릭
     {
         // 비밀번호 ui창 보여주기
-        //GameManager.Instance.uiManager.
+        GameManager.Instance.uiManager.uiRingCasePassword.Toggle(true);
     }
 }
