@@ -168,7 +168,7 @@ public class PlayerMove : MonoBehaviour
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.WALK);
         }
         Vector3 VecLook = transform.position + WalkMove;
-        Body_Tr.LookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z));
+        Body_Tr.DOLookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z) , 0.25f);
     
         Controller.Move(WalkMove * Time.deltaTime * playerData.WalkSpeed);
     }
