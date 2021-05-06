@@ -54,9 +54,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
             TargetObj = other.GetComponent<PlayerInterActionObj>();
             if (TargetObj != null)
             {
-                GameManager.Instance.uiManager.IsOnFirstInterActionUI = true; // start  firstinteraction ui exit 
                 TargetObj.SecondInteractOn(); //현재 충돌된 interaction 에 second ui 들 on 
-                GameManager.Instance.uiManager.OffFirstInterActionUI(); // 현재 충돌된 firstinteraction ui off 
                 if (!GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Add(TargetObj);
@@ -74,18 +72,12 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
             TargetObj = other.GetComponent<PlayerInterActionObj>();
             if (TargetObj != null)
             {
-                GameManager.Instance.uiManager.IsOnFirstInterActionUI = false; // firstinteraction ui 활성화
                 TargetObj.SecondInteractOff(); // 충돌된 second off 
 
 
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetObj);
-                }
-
-                if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Count == 0)
-                {
-                    GameManager.Instance.uiManager.OnFirstInterActionUI(); //다시 충돌중인 first interaction on 
                 }
 
 

@@ -12,7 +12,11 @@ public class DataBaseManager : MonoBehaviour
     public SoundData SoundData;
 
     public MonologueData monologueData;
-    public DialogueText dialogue;
+
+    private void Awake()
+    {
+        SingletonInit();
+    }
 
     public void SingletonInit()
     {
@@ -21,13 +25,11 @@ public class DataBaseManager : MonoBehaviour
             Instance = this;
             SoundData.ReadCsv("Data/SoundText.csv");
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     public void Init()
     {
         monologueData.Init();
-        dialogue.Init();
     }
 
 

@@ -11,7 +11,10 @@ public class CameraManager : MonoBehaviour
     public Camera CaptureCamera;
     public Camera ObserveCamera;
     public static CameraManager Instance;
-
+    private void Awake()
+    {
+        SingletonInit();
+    }
 
     public void SingletonInit()
     {

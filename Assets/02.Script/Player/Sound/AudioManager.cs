@@ -18,6 +18,10 @@ public class AudioManager : MonoBehaviour
     private Bus sfxBus;
 
 
+    private void Awake()
+    {
+        SingletonInit();
+    }
 
     public void SingletonInit()
     {
@@ -30,7 +34,6 @@ public class AudioManager : MonoBehaviour
         BgmBus = RuntimeManager.GetBus("bus:/Master/BGM");
         sfxBus = RuntimeManager.GetBus("bus:/Master/SFX");
 
-        DontDestroyOnLoad(gameObject);
 
     }
 

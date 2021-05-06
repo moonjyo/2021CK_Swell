@@ -29,13 +29,19 @@ public class StageCamera : MonoBehaviour
     public void GoToRSide()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, RSideVec, OffsetSpeed);
+        transposer.m_XDamping = 0;
+
     }
     public void GoToLSide()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, LSideVec, OffsetSpeed);
+        transposer.m_XDamping = 0;
+
     }
     public void GoToBase()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, BaseVec, OffsetSpeed);
+        transposer.m_XDamping = 20;
+
     }
 }

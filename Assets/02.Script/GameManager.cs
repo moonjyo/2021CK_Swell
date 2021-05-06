@@ -8,16 +8,11 @@ public class GameManager : MonoBehaviour
 
     public StageManager stageManager;
     public UIManager uiManager;
-  
+    
+
     private void Awake()
     {
         SingletonInit();
-        ObjectPooler.Instance.SingletonInit();
-        PlayerManager.Instance.SingletonInit();
-        CameraManager.Instance.SingletonInit();
-        DataBaseManager.Instance.SingletonInit();
-        AudioManager.Instance.SingletonInit();
-
     }
 
     public void SingletonInit()

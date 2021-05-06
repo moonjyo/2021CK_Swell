@@ -8,7 +8,6 @@ public class PlayerManager : MonoBehaviour
     public PlayerStatus playerStatus;
     public PlayerMove playerMove;
     public PlayerInput PlayerInput;
-    public PlayerInteractionFirstCheckUI PlayerInteractionFirstCheck;
     public PlayerInteractionSecondCheckUI PlayerInteractionSecondCheck;
 
     public PlayerAnimationEvents playerAnimationEvents;
@@ -18,7 +17,10 @@ public class PlayerManager : MonoBehaviour
     //public FlashLight flashLight;
     public RefelctFound flashLight;
 
-
+    private void Awake()
+    {
+        SingletonInit();
+    }
 
     public void SingletonInit()
     {
@@ -30,7 +32,6 @@ public class PlayerManager : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-        DontDestroyOnLoad(transform);
     }
 
 }

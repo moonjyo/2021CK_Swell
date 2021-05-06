@@ -17,14 +17,17 @@ public class ObjectPooler : MonoBehaviour
 
     public static ObjectPooler Instance;
 
- 
+    private void Awake()
+    {
+        SingletonInit();
+    }
+
     public void SingletonInit()
     {
         if (!Instance)
         {
             Instance = this;
         }
-        DontDestroyOnLoad(gameObject);
     }
 
     void Init()
