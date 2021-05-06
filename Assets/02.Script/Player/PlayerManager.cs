@@ -19,13 +19,14 @@ public class PlayerManager : MonoBehaviour
     public RefelctFound flashLight;
 
 
-    private void Awake()
+
+    public void SingletonInit()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
         }
-        else if(Instance != null)
+        else if (Instance != null)
         {
             Destroy(this.gameObject);
         }

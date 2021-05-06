@@ -13,20 +13,21 @@ public class CameraManager : MonoBehaviour
     public static CameraManager Instance;
 
 
-
-    private void Awake()
+    public void SingletonInit()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
-            Instance = this;    
+            Instance = this;
         }
+        DontDestroyOnLoad(gameObject);
+
     }
 
-    private void Start()
+
+    public void Init()
     {
         StageCam.Init();
     }
-
 
 
 

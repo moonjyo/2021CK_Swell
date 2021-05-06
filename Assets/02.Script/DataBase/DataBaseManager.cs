@@ -11,13 +11,23 @@ public class DataBaseManager : MonoBehaviour
     public DialogueParser DialogueParser;
     public SoundData SoundData;
 
-    private void Awake()
+    public MonologueData monologueData;
+    public DialogueText dialogue;
+
+    public void SingletonInit()
     {
-        if(Instance == null)
+        if (Instance == null)
         {
             Instance = this;
             SoundData.ReadCsv("Data/SoundText.csv");
         }
+        DontDestroyOnLoad(gameObject);
+    }
+
+    public void Init()
+    {
+        monologueData.Init();
+        dialogue.Init();
     }
 
 

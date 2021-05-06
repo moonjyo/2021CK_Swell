@@ -11,17 +11,30 @@ public class GameManager : MonoBehaviour
   
     private void Awake()
     {
+        SingletonInit();
+        ObjectPooler.Instance.SingletonInit();
+        PlayerManager.Instance.SingletonInit();
+        CameraManager.Instance.SingletonInit();
+        DataBaseManager.Instance.SingletonInit();
+        AudioManager.Instance.SingletonInit();
+
+    }
+
+    public void SingletonInit()
+    {
         if (!Instance)
         {
             Instance = this;
         }
-
         DontDestroyOnLoad(gameObject);
     }
+
 
     private void Start()
     {
         uiManager.Init();
+        CameraManager.Instance.Init();
+        DataBaseManager.Instance.Init();
     }
 
     public void GameStart()

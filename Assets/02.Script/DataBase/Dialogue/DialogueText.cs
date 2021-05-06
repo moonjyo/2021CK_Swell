@@ -32,7 +32,8 @@ public class DialogueText : MonoBehaviour
     private Color ActiveTrueColor = new Color(1, 1, 1);
     private Color ActiveFalseColor = new Color(0.2830189f, 0.2830189f, 0.2830189f);
 
-    private void Start()
+    
+    public void Init()
     {
         gameObject.SetActive(false);
     }
