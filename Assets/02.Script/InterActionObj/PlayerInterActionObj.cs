@@ -3,9 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.EventSystems;
-using JetBrains.Annotations;
-
-//enum
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
@@ -66,13 +63,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     {
         ItemKey = this.gameObject.name;
 
-        EventTrigger eventTrigger = gameObject.AddComponent<EventTrigger>();
-
-        EventTrigger.Entry entry_PointerClick = new EventTrigger.Entry();
-        entry_PointerClick.eventID = EventTriggerType.PointerClick;
-        entry_PointerClick.callback.AddListener((data) => { OnPointerClick((PointerEventData)data); });
-        eventTrigger.triggers.Add(entry_PointerClick);
-
         for (int i = 0; i < Objs.Length; ++i)
         {
             GameObject Targetobj = Instantiate(Objs[i]);
@@ -97,8 +87,5 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         }
     }
 
-    public void OnPointerClick(PointerEventData data)
-    {
-
-    }
+   
 }

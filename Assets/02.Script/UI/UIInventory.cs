@@ -257,19 +257,19 @@ public class UIInventory : UIView
     }
 
 
-    public void ClickItemIcon()
-    {
-        if (!IsSelectItemIcon)
-        {
-            //for(int i = 0; i < ItemIconData.Count; i++)
-            //{
-            //    if(ItemIconData[i] == CurrentItemIcon)
-            //    {
-            //        CurrentItemIcon.HaveItem = ItemIconData[i];
-            //        break;
-            //    }
-            //}
-            ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
-        }
-    }
+    //public void ClickItemIcon()
+    //{
+    //    if (!IsSelectItemIcon)
+    //    {
+    //        //for(int i = 0; i < ItemIconData.Count; i++)
+    //        //{
+    //        //    if(ItemIconData[i] == CurrentItemIcon)
+    //        //    {
+    //        //        CurrentItemIcon.HaveItem = ItemIconData[i];
+    //        //        break;
+    //        //    }
+    //        //}
+    //        ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
+    //    }
+    //}
 }
