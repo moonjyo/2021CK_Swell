@@ -16,8 +16,8 @@ public class UIMainMenu : UIView
 
     public void Start()
     {
-        testtext.DOText("This is DOText testing code, 한국어", 3f, false, ScrambleMode.None, null);
-        StartCoroutine(OnTyping(0.1f, "This is DOText testing code, 한국어"));
+        //testtext.DOText("This is DOText testing code, 한국어", 3f, false, ScrambleMode.None, null);
+        //StartCoroutine(OnTyping(0.1f, "This is DOText testing code, 한국어"));
     }
 
 
@@ -63,12 +63,12 @@ public class UIMainMenu : UIView
         GameManager.Instance.uiManager.UISettingOptionMenu.Toggle(true);
     }
 
-    IEnumerator OnTyping(float interval, string Say)
-    {
-        foreach(char item in Say)
-        {
-            test.text += item;
-            yield return new WaitForSeconds(interval);
-        }
-    }   
+    //IEnumerator OnTyping(float interval, string Say)
+    //{
+    //    foreach(char item in Say)
+    //    {
+    //        test.text += item;
+    //        yield return new WaitForSeconds(interval);
+    //    }
+    //}   
 }

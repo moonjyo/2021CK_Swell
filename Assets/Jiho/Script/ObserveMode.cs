@@ -25,6 +25,8 @@ public class ObserveMode : MonoBehaviour
     private PlayerInterActionObj CurrentTargetObj;
 
     public DistinguishItem Distinguish;
+
+    RaycastHit HitOrigin;
     public void SetRotateInput(Vector2 value)
     {
         RotHInput = value.x;
@@ -145,7 +147,10 @@ public class ObserveMode : MonoBehaviour
         {
             if (hit.transform.gameObject.name != GO.name)
                 return;
-            if(Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
+
+            HitOrigin = hit;
+
+            if (Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
             {
                 value(GO);
             }
