@@ -12,8 +12,18 @@ public class ObjectPooler : MonoBehaviour
         public int size;
     }
 
-    public List<Pool> pools;
+    [System.Serializable]
+    public class ObservePool
+    {
+        public string Objname;
+        public GameObject Prefab;
+    }
+
+    public List<Pool> pools; // inspector 에서 받아옴
     public Dictionary<string, Queue<GameObject>> poolDictionary;
+
+    public List<ObservePool> ObservePools;
+    public Dictionary<string, GameObject> ObservePoolDictionary;
 
     public static ObjectPooler Instance;
 
@@ -33,6 +43,7 @@ public class ObjectPooler : MonoBehaviour
     void Init()
     {
         poolDictionary = new Dictionary<string, Queue<GameObject>>();
+        ObservePoolDictionary = new Dictionary<string, GameObject>();
 
         foreach(var pool in pools)
         {
@@ -45,6 +56,14 @@ public class ObjectPooler : MonoBehaviour
 
             }
             poolDictionary.Add(pool.tag, objectpool);
+        }
+
+        foreach(var Pool in ObservePools)
+        {
+            GameObject Obj = Instantiate(Pool.Prefab);
+            Obj.SetActive(false);
+
+            ObservePoolDictionary.Add(Pool.Objname, Obj);
         }
     }
 
@@ -60,6 +79,18 @@ public class ObjectPooler : MonoBehaviour
             poolDictionary[tag].Enqueue(obj);
             return obj;
         }
+        return null;
+    }
+
+    public GameObject SpawnObserveObj(string name)
+    {
+        ObservePoolDictionary.TryGetValue(name, out GameObject obj);
+        if(obj != null)
+        {
+            obj.SetActive(true);
+            return obj;
+        }
+
         return null;
     }
 }

@@ -7,6 +7,7 @@ using DG.Tweening;
 public class DistinguishItem : MonoBehaviour
 {
     public Dictionary<string, Action<GameObject>> DistinguishItemDic = new Dictionary<string, Action<GameObject>>();
+    // 연출될 옵젝과 클릭될 옵젝에 Tag를 지정하여 Tag가 있는 오브젝트만 찾은 뒤 Dictionary에 담아둔다? FindTag사용 오브젝트풀로 미리 생성?
 
     public void init()
     {
