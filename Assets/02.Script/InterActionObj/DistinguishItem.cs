@@ -8,9 +8,17 @@ public class DistinguishItem : MonoBehaviour
 {
     public Dictionary<string, Action<GameObject>> DistinguishItemDic = new Dictionary<string, Action<GameObject>>();
     // 연출될 옵젝과 클릭될 옵젝에 Tag를 지정하여 Tag가 있는 오브젝트만 찾은 뒤 Dictionary에 담아둔다? FindTag사용 오브젝트풀로 미리 생성?
+    public Dictionary<string, GameObject> ProductionClickItem = new Dictionary<string, GameObject>();
 
     public void init()
     {
+        GameObject[] go = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
+
+        for(int i =0; i < go.Length; i ++)
+        {
+            ProductionClickItem.Add(go[i].name, go[i]);
+        }
+
         DistinguishItemDic.Add("MSG_Lr_lokerGreen_1", InteractGreenLocker); // 상호작용이 되는 오브젝트 이름을 키로잡음
         DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1(Clone)", ShowpasswordUI);
         
@@ -39,14 +47,14 @@ public class DistinguishItem : MonoBehaviour
             {
                 Locker = value;
             }
-            else if(value.name == "MSG_Lr_ringcaseGreen_1")
+            else if (value.name == "MSG_Lr_ringcaseGreen_1")
             {
                 RingCase = value.gameObject;
             }
         }
 
         //LockerRing.DOMoveY(LockerRing.transform.position.y + 0.06f, 0.4f).OnComplete(() => Locker.gameObject.SetActive(false)).OnComplete(() => OpenBox.DOMoveX(OpenBox.transform.position.x - 1.0f, 1.0f));
-       
+
         // 머테리얼이 나오면 서서히 사라지게 설정
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCase.name, RingCase.GetComponent<PlayerInterActionObj>());

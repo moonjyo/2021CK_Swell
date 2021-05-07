@@ -125,10 +125,7 @@ public class UIInventory : UIView
                 {
                     if (Distinguish.DistinguishItemDic.TryGetValue(CurrentItemIcon.HaveItem.InteractObjKey, out Action<GameObject> value))
                     {
-                        //value(hit.collider.gameObject);
                         value(hit.transform.gameObject);
-                        //act += value;
-                        //act();
 
                         CurrentItemIcon.IsInteract = true;
                         for (int i = 0; i < ItemIconData.Count; i++)
@@ -138,6 +135,7 @@ public class UIInventory : UIView
                                 for (int j = i; j < ItemIconData.Count - 1; j++)
                                 {
                                     ItemImageIcon[j].ElementImage.sprite = ItemImageIcon[j + 1].ElementImage.sprite;
+                                    ItemImageIcon[j].HaveItem = ItemImageIcon[j + 1].HaveItem;
                                     ItemIconData[j] = ItemIconData[j + 1];
                                     //데이터 옮겨오면서 image도 같이 옮겨가야함
                                 }
@@ -256,20 +254,19 @@ public class UIInventory : UIView
         }
     }
 
-
-    //public void ClickItemIcon()
-    //{
-    //    if (!IsSelectItemIcon)
-    //    {
-    //        //for(int i = 0; i < ItemIconData.Count; i++)
-    //        //{
-    //        //    if(ItemIconData[i] == CurrentItemIcon)
-    //        //    {
-    //        //        CurrentItemIcon.HaveItem = ItemIconData[i];
-    //        //        break;
-    //        //    }
-    //        //}
-    //        ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
-    //    }
-    //}
+    public void ClickItemIcon()
+    {
+        if (!IsSelectItemIcon)
+        {
+            //for(int i = 0; i < ItemIconData.Count; i++)
+            //{
+            //    if(ItemIconData[i] == CurrentItemIcon)
+            //    {
+            //        CurrentItemIcon.HaveItem = ItemIconData[i];
+            //        break;
+            //    }
+            //}
+            ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
+        }
+    }
 }

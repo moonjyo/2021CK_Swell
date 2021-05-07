@@ -27,7 +27,8 @@ public class UIRingCasePassword : UIView
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         // 연출 : 반지케이스 뚜껑 열림
         // 기능 : 작은 보석 획득
-        //GameManager.Instance.uiManager.uiInventory.GetItemIcon()
+        GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("MSG_Lr_jewel_1", out GameObject go);
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
 
     }
 }

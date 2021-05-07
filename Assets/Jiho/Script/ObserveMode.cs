@@ -24,7 +24,7 @@ public class ObserveMode : MonoBehaviour
 
     private PlayerInterActionObj CurrentTargetObj;
 
-    public DistinguishItem Distinguish;
+    //public DistinguishItem Distinguish;
 
     RaycastHit HitOrigin;
     public void SetRotateInput(Vector2 value)
@@ -103,7 +103,7 @@ public class ObserveMode : MonoBehaviour
                 Object.gameObject.layer = 18;
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
-            GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
+            GO.transform.forward = CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position;
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
@@ -145,12 +145,12 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if (hit.transform.gameObject.name != GO.name)
+            if (GO == null || hit.transform.gameObject.name != GO.name || hit.collider.tag != "ProductionInteractionObj")
                 return;
 
             HitOrigin = hit;
 
-            if (Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
+            if (GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
             {
                 value(GO);
             }
