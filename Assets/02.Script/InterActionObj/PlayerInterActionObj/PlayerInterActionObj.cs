@@ -41,8 +41,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         {
             Obj.SetActive(false);
         }
-        UIFirstObj.gameObject.SetActive(false);
-        GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
+        //UIFirstObj.gameObject.SetActive(false);
+       // GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
         GameManager.Instance.uiManager.IsOnFirstInterActionUI = false;  
     }
 

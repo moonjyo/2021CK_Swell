@@ -17,14 +17,14 @@ public class ObserveMode : MonoBehaviour
     public GameObject GO;
     public Canvas FadeCanvas;
 
-    Dictionary<string, GameObject> ObserveObj = new Dictionary<string,GameObject>();
+    public Dictionary<string, GameObject> ObserveObj = new Dictionary<string,GameObject>();
 
     public bool IsOnObserveMode = false;
     bool IsObjRotate = false;
 
     private PlayerInterActionObj CurrentTargetObj;
 
-    public DistinguishItem Distinguish;
+    //public DistinguishItem Distinguish;
 
     RaycastHit HitOrigin;
     public void SetRotateInput(Vector2 value)
@@ -97,13 +97,14 @@ public class ObserveMode : MonoBehaviour
         {
             GO = Instantiate(go, CameraManager.Instance.ObserveCamera.transform.position + CameraManager.Instance.ObserveCamera.transform.forward, Quaternion.identity);
             GO.gameObject.layer = 18;
+            GO.GetComponent<BoxCollider>().enabled = false;
             Transform[] GOArray = GO.GetComponentsInChildren<Transform>();
             foreach (Transform Object in GOArray)
             {
                 Object.gameObject.layer = 18;
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
-            GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
+            GO.transform.forward = CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position;
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
@@ -119,6 +120,7 @@ public class ObserveMode : MonoBehaviour
             CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
             FadeCanvas.gameObject.SetActive(false);
             CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
+            GO.GetComponent<BoxCollider>().enabled = true;
         }
     }
 
@@ -126,11 +128,13 @@ public class ObserveMode : MonoBehaviour
     {
         //GO.transform.eulerAngles = new Vector3(0, 0, 0);
         //GO.SetActive(false);
+        GO.GetComponent<BoxCollider>().enabled = true;
         Destroy(GO);
         GO = null;
         CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
         FadeCanvas.gameObject.SetActive(false);
         CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
+       
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         if (CurrentTargetObj != null)
@@ -145,12 +149,15 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if (hit.transform.gameObject.name != GO.name)
+            if (GO == null || hit.collider.tag != "ProductionInteractionObj" || GO != hit.transform.gameObject)
+            {
+                IsClickCol = false;
                 return;
+            }
 
             HitOrigin = hit;
 
-            if (Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
+            if (GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
             {
                 value(GO);
             }
