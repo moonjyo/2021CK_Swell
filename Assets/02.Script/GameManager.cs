@@ -28,8 +28,8 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         uiManager.Init();
-        CameraManager.Instance.Init();
-        DataBaseManager.Instance.Init();
+        //CameraManager.Instance.Init();
+        //DataBaseManager.Instance.Init();
     }
 
     public void GameStart()
@@ -41,6 +41,6 @@ public class GameManager : MonoBehaviour
 
     private void OnApplicationQuit()
     {
-        DataBaseManager.Instance.SoundData.WriteData();
+        //DataBaseManager.Instance.SoundData.WriteData();
     }
 }

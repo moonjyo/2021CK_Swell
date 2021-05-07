@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public class DialogueText : MonoBehaviour
+public class DialogueText : MonoBehaviour , IDialogueText
 {
     public TextMeshProUGUI TMPDialogue;
     public TextMeshProUGUI TMPName;
