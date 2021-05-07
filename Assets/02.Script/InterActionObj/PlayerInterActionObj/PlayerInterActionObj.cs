@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-using UnityEngine.EventSystems;
+
+//enum
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
@@ -63,6 +64,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     {
         ItemKey = this.gameObject.name;
 
+        //GameManager.Instance.uiManager.uiInventory.OnDistingush += TestCheck;
+
         for (int i = 0; i < Objs.Length; ++i)
         {
             GameObject Targetobj = Instantiate(Objs[i]);
@@ -87,5 +90,21 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         }
     }
 
-   
+    public void GreenKey(GameObject gameObject)
+    {
+        Debug.Log("Open GreenLoker");
+    }
+
+    public void PurpleKey(GameObject gameObject)
+    {
+        Debug.Log("Open PurpleLoker");
+    }
+
+    //public void TestCheck(PlayerInterActionObj Obj)
+    //{
+    //    if(Obj == this.GetComponent<PlayerInterActionObj>())
+    //    {
+    //        Debug.Log("Check Success");
+    //    }
+    //}
 }
