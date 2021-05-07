@@ -1,5 +1,30 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!114 &6250173103437656982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 654987340230840655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemKey: 
+  MonologueKey: 
+  IsTake: 0
+  IsWatch: 0
+  IsRotate: 0
+  InventoryIcon: {fileID: 0}
+  SizeObj: {x: 0, y: 0, z: 0}
+  InteractObjKey: 
+  Objs:
+  - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
+  UIOffsetVec: {x: 0, y: 0, z: 0}
+  UISecondObjList: []
+  UIFirstObj: {fileID: 0}
 --- !u!1 &7692432255198908650
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,11 +141,18 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 17
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 861906812783908310, guid: b78ff39565840c947a6c777e8d91f272, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b78ff39565840c947a6c777e8d91f272, type: 3}
 --- !u!4 &3330241501357764416 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2466049399063287508, guid: b78ff39565840c947a6c777e8d91f272,
+    type: 3}
+  m_PrefabInstance: {fileID: 868719586941008276}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &654987340230840655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 367241662228637915, guid: b78ff39565840c947a6c777e8d91f272,
     type: 3}
   m_PrefabInstance: {fileID: 868719586941008276}
   m_PrefabAsset: {fileID: 0}
@@ -401,7 +433,8 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 17
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8489008115894451326, guid: a1314d7e09e972846b9262bcde3aa710, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a1314d7e09e972846b9262bcde3aa710, type: 3}
 --- !u!4 &2773147588360066070 stripped
 Transform:
