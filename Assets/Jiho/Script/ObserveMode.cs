@@ -97,6 +97,7 @@ public class ObserveMode : MonoBehaviour
         {
             GO = Instantiate(go, CameraManager.Instance.ObserveCamera.transform.position + CameraManager.Instance.ObserveCamera.transform.forward, Quaternion.identity);
             GO.gameObject.layer = 18;
+            GO.GetComponent<BoxCollider>().enabled = false;
             Transform[] GOArray = GO.GetComponentsInChildren<Transform>();
             foreach (Transform Object in GOArray)
             {
@@ -119,6 +120,7 @@ public class ObserveMode : MonoBehaviour
             CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
             FadeCanvas.gameObject.SetActive(false);
             CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
+            GO.GetComponent<BoxCollider>().enabled = true;
         }
     }
 
@@ -126,11 +128,13 @@ public class ObserveMode : MonoBehaviour
     {
         //GO.transform.eulerAngles = new Vector3(0, 0, 0);
         //GO.SetActive(false);
+        GO.GetComponent<BoxCollider>().enabled = true;
         Destroy(GO);
         GO = null;
         CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
         FadeCanvas.gameObject.SetActive(false);
         CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
+       
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         if (CurrentTargetObj != null)
@@ -146,7 +150,10 @@ public class ObserveMode : MonoBehaviour
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
             if (GO == null || hit.transform.gameObject.name != GO.name || hit.collider.tag != "ProductionInteractionObj")
+            {
+                IsClickCol = false;
                 return;
+            }
 
             HitOrigin = hit;
 

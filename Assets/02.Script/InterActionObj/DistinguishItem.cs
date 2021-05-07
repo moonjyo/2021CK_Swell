@@ -10,6 +10,8 @@ public class DistinguishItem : MonoBehaviour
     // 연출될 옵젝과 클릭될 옵젝에 Tag를 지정하여 Tag가 있는 오브젝트만 찾은 뒤 Dictionary에 담아둔다? FindTag사용 오브젝트풀로 미리 생성?
     public Dictionary<string, GameObject> ProductionClickItem = new Dictionary<string, GameObject>();
 
+    bool IsInWood = false;
+
     public void init()
     {
         GameObject[] go = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
@@ -21,6 +23,9 @@ public class DistinguishItem : MonoBehaviour
 
         DistinguishItemDic.Add("MSG_Lr_lokerGreen_1", InteractGreenLocker); // 상호작용이 되는 오브젝트 이름을 키로잡음
         DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1(Clone)", ShowpasswordUI);
+        DistinguishItemDic.Add("MSG_Lr_owlstaute_head", JewelyinOwlEye);
+        DistinguishItemDic.Add("Pivot_woodstorage", OpenWoodBox);
+        DistinguishItemDic.Add("MSG_Lr_fireplace_1", InteractFirePlace);
         
     }
 
@@ -71,5 +76,30 @@ public class DistinguishItem : MonoBehaviour
     {
         // 비밀번호 ui창 보여주기
         GameManager.Instance.uiManager.uiRingCasePassword.Toggle(true);
+    }
+
+    public void JewelyinOwlEye(GameObject Obj) // 부엉이 동상 눈에 보석맞췄을 때
+    {
+        // 연출 : 머리가 열린다, 열쇠가 보인다.
+        // 기능 : 장작보관함 열쇠 획득
+        ProductionClickItem.TryGetValue(Obj.name, out GameObject go);
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
+    }
+
+    public void OpenWoodBox(GameObject Obj)
+    {
+        // 연출, 기능 : 장작보관함이 열린다.
+    }
+
+    public void ClickWood(GameObject Obj) // 장작 보관함이 열린 후 장작을 터치했을 때
+    {
+       
+        // 연출 : ??
+        // 기능 : 장작 획득
+    }
+
+    public void InteractFirePlace(GameObject Obj)
+    {
+        // bool로 먼저 받아온거 저장?
     }
 }
