@@ -125,7 +125,8 @@ public class UIInventory : UIView
                 {
                     if (Distinguish.DistinguishItemDic.TryGetValue(CurrentItemIcon.HaveItem.InteractObjKey, out Action<GameObject> value))
                     {
-                        value(hit.transform.gameObject);
+                        //value(hit.transform.gameObject);
+                        value(hit.collider.gameObject);
 
                         CurrentItemIcon.IsInteract = true;
                         for (int i = 0; i < ItemIconData.Count; i++)
@@ -258,14 +259,6 @@ public class UIInventory : UIView
     {
         if (!IsSelectItemIcon)
         {
-            //for(int i = 0; i < ItemIconData.Count; i++)
-            //{
-            //    if(ItemIconData[i] == CurrentItemIcon)
-            //    {
-            //        CurrentItemIcon.HaveItem = ItemIconData[i];
-            //        break;
-            //    }
-            //}
             ClickItemIcon(CurrentItemIcon.HaveItem.ItemKey, null);
         }
     }

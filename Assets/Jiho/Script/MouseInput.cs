@@ -9,7 +9,11 @@ public class MouseInput : MonoBehaviour
     //public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
-    bool IsLeftMouseClick;
+    //bool IsLeftMouseClick;
+
+    Vector2 MoveInput;
+    Vector2 BeforeVec;
+    Vector2 AfterVec;
 
     public void OnLook(InputAction.CallbackContext context)
     {
@@ -22,7 +26,7 @@ public class MouseInput : MonoBehaviour
                 return;
             }
         }
-        
+
         Vector2 Input = context.ReadValue<Vector2>();
         //if (!uiInventory.IsInventoryWindowOpen)
         if(!GameManager.Instance.uiManager.uiInventory.IsInventoryWindowOpen)
@@ -37,33 +41,37 @@ public class MouseInput : MonoBehaviour
         if(context.started || context.performed)
         {
             IsLeftMousePressed = true;
-
         }
         else
         {
             IsLeftMousePressed = false;
         }
 
-        if (context.canceled)
+        if (context.started)
         {
-            IsLeftMouseClick = true;
-            GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(IsLeftMouseClick);
+            BeforeVec = MoveInput;
+
+
         }
+        else if(context.canceled)
+        {
+            AfterVec = MoveInput;
+        }
+
+        if(AfterVec == BeforeVec)
+            GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(true);
         else
-        {
-            IsLeftMouseClick = false;
-            GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(IsLeftMouseClick);
-        }
+            GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(false);
 
     }
     public void OnMousePosition(InputAction.CallbackContext context)
     {
         //if (IsSelectItemIcon)
         //{
-            // 마우스 포지션 전달
+        // 마우스 포지션 전달
         //}
-        Vector2 input = context.ReadValue<Vector2>();
+        MoveInput = context.ReadValue<Vector2>();
         //uiInventory.SetMousePosVal(input);
-        GameManager.Instance.uiManager.uiInventory.SetMousePosVal(input);
+        GameManager.Instance.uiManager.uiInventory.SetMousePosVal(MoveInput);
     }
 }

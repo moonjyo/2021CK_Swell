@@ -11,6 +11,8 @@ public class DistinguishItem : MonoBehaviour
     public Dictionary<string, GameObject> ProductionClickItem = new Dictionary<string, GameObject>();
 
     bool IsInWood = false;
+    bool IsInMatchStick = false;
+    bool IsInWaxCube = false;
 
     public void init()
     {
@@ -24,7 +26,8 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_Lr_lokerGreen_1", InteractGreenLocker); // 상호작용이 되는 오브젝트 이름을 키로잡음
         DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1(Clone)", ShowpasswordUI);
         DistinguishItemDic.Add("MSG_Lr_owlstaute_head", JewelyinOwlEye);
-        DistinguishItemDic.Add("Pivot_woodstorage", OpenWoodBox);
+        DistinguishItemDic.Add("MSG_Lr_woodstorage_door_1 1", OpenWoodBox);
+        DistinguishItemDic.Add("Pivot_woodstorage(Clone)", ClickWood);
         DistinguishItemDic.Add("MSG_Lr_fireplace_1", InteractFirePlace);
         
     }
@@ -33,7 +36,9 @@ public class DistinguishItem : MonoBehaviour
     {
         Debug.Log("GreenLocker Open");
 
-        Transform[] GO = Obj.GetComponentsInChildren<Transform>();
+        GameObject go = GameManager.Instance.uiManager.uiInventory.ob.GO;
+
+        Transform[] GO = go.GetComponentsInChildren<Transform>();
         Transform LockerRing = null;
         Transform OpenBox = null;
         Transform Locker = null;
@@ -69,7 +74,7 @@ public class DistinguishItem : MonoBehaviour
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
-        Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
+        //Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
     }
 
     public void ShowpasswordUI(GameObject Obj) // 반지 케이스 자리 클릭
@@ -82,24 +87,70 @@ public class DistinguishItem : MonoBehaviour
     {
         // 연출 : 머리가 열린다, 열쇠가 보인다.
         // 기능 : 장작보관함 열쇠 획득
-        ProductionClickItem.TryGetValue(Obj.name, out GameObject go);
+        ProductionClickItem.TryGetValue("MSG_Lr_keyBrown_1", out GameObject go);
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
     }
 
     public void OpenWoodBox(GameObject Obj)
     {
         // 연출, 기능 : 장작보관함이 열린다.
+        ProductionClickItem.TryGetValue("MSG_Lr_woodstorage_door_1 1", out GameObject obj); // 게임 씬 내 오브젝트
+        obj.SetActive(false);
+
+        GameObject go = GameManager.Instance.uiManager.uiInventory.ob.GO;
+        Transform[] GO = go.GetComponentsInChildren<Transform>();
+        foreach(Transform value in GO)
+        {
+            if(value.name == "MSG_Lr_woodstorage_door_1 1")
+            {
+                value.gameObject.SetActive(false);
+            }
+            else if(value.name == "MSG_Lr_woodstorage_door_1")
+            {
+                //회전될놈
+            }
+        }
     }
 
     public void ClickWood(GameObject Obj) // 장작 보관함이 열린 후 장작을 터치했을 때
     {
-       
         // 연출 : ??
         // 기능 : 장작 획득
+        ProductionClickItem.TryGetValue("MSG_Lr_wood_1", out GameObject obj);
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(obj.GetComponent<PlayerInterActionObj>());
     }
 
-    public void InteractFirePlace(GameObject Obj)
+    public void InteractFirePlace(GameObject Obj) // 벽난로 상호작용
     {
-        // bool로 먼저 받아온거 저장?
+        if (GameManager.Instance.uiManager.uiInventory.CurrentItemIcon.HaveItem.name == "MSG_Lr_wood_1") // 장작 넣었을 때
+        {
+            IsInWood = true;
+            // 벽난로에 장작 생성
+            return;
+        }
+        else if (!IsInWood)
+            return;
+
+        if (GameManager.Instance.uiManager.uiInventory.CurrentItemIcon.HaveItem.name == "MSG_Lr_matchstick")// 성냥갑 넣었을 때
+        {
+            IsInMatchStick = true;
+            // 벽난로에 불
+
+            return;
+        }
+        else if (!IsInMatchStick)
+            return;
+
+        if (GameManager.Instance.uiManager.uiInventory.CurrentItemIcon.HaveItem.name == "MSG_Lr_Waxcube") // 밀랍큐브 넣었을 때
+        {
+            IsInWaxCube = true;
+            // 밀랍큐브 녹음
+
+
+            return;
+        }
+        else if (!IsInWaxCube)
+            return;
+        
     }
 }

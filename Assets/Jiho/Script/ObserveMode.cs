@@ -17,7 +17,7 @@ public class ObserveMode : MonoBehaviour
     public GameObject GO;
     public Canvas FadeCanvas;
 
-    Dictionary<string, GameObject> ObserveObj = new Dictionary<string,GameObject>();
+    public Dictionary<string, GameObject> ObserveObj = new Dictionary<string,GameObject>();
 
     public bool IsOnObserveMode = false;
     bool IsObjRotate = false;
@@ -149,7 +149,7 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if (GO == null || hit.transform.gameObject.name != GO.name || hit.collider.tag != "ProductionInteractionObj")
+            if (GO == null || hit.collider.tag != "ProductionInteractionObj" || GO != hit.transform.gameObject)
             {
                 IsClickCol = false;
                 return;
