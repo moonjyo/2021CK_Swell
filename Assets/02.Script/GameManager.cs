@@ -23,15 +23,6 @@ public class GameManager : MonoBehaviour
         }
         DontDestroyOnLoad(gameObject);
     }
-
-
-    private void Start()
-    {
-        uiManager.Init();
-        //CameraManager.Instance.Init();
-        //DataBaseManager.Instance.Init();
-    }
-
     public void GameStart()
     {
         uiManager.UIMainMenu.Toggle(true);

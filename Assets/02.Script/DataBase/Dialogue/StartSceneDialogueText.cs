@@ -20,13 +20,14 @@ public class StartSceneDialogueText : MonoBehaviour , IDialogueText
     public Vector3 OffsetPosVec;
 
     public bool IsNextDialogue = false;
-    public bool IsDialogue = false;
+    public bool IsDialogueStart = false;
 
     public int TextCount = 0;
 
     public StartSceneDialogueData dialoguedata;
 
 
+    public UIManager uIManager;
    
     public void Init()
     {
@@ -38,7 +39,7 @@ public class StartSceneDialogueText : MonoBehaviour , IDialogueText
         TMPDialogue.text = CurrentDialogue[TextCount].context[0];
         TMPDialogue.text = TMPDialogue.text.Replace("\\n", "\n"); //줄바꿈용
        
-        StandingImageL.sprite = GameManager.Instance.uiManager.DialogueImageDicR[CurrentDialogue[TextCount].TextureL].sprite;
+        StandingImageL.sprite = uIManager.DialogueImageDicR[CurrentDialogue[TextCount].TextureL].sprite;
         
         gameObject.SetActive(true);
 
@@ -64,6 +65,7 @@ public class StartSceneDialogueText : MonoBehaviour , IDialogueText
 
     public void StartDialogue()
     {
+        IsDialogueStart = true;
         transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(30f, -335f);
         CurrentDialogue = dialoguedata.GetDialogoue();
         ShowDialogue();

@@ -75,15 +75,18 @@ public class StartSceneDialogueData : MonoBehaviour , IDialogue
     {
         if(value.performed)
         {
-          if (startSceneDialogueText.TextCount == startSceneDialogueText.CurrentDialogue.Length) //종료
+          if (startSceneDialogueText.TextCount == startSceneDialogueText.CurrentDialogue.Length && startSceneDialogueText.IsDialogueStart) //종료
           {
               EndTalk();
 
               return;
           }
 
-          startSceneDialogueText.IsNextDialogue = false;
-          StartCoroutine(startSceneDialogueText.SetText()); 
+            if (startSceneDialogueText.IsNextDialogue)
+            {
+                startSceneDialogueText.IsNextDialogue = false;
+                StartCoroutine(startSceneDialogueText.SetText());
+            }
         }
     }
 

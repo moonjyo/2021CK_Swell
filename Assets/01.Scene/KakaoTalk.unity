@@ -1263,7 +1263,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transition: {fileID: 0}
-  TransitionTIme: 1
+  TransitionTIme: 0
 --- !u!4 &863473154
 Transform:
   m_ObjectHideFlags: 0
@@ -2367,10 +2367,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2129641468}
-  - component: {fileID: 2129641467}
   - component: {fileID: 2129641466}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: TempUImanager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2403,20 +2402,6 @@ MonoBehaviour:
   monologueText: {fileID: 0}
   DialogueText: {fileID: 0}
   IsOnFirstInterActionUI: 0
---- !u!114 &2129641467
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2129641465}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7370e20bd518e94b9109ba2c8ead969, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  stageManager: {fileID: 0}
-  uiManager: {fileID: 2129641466}
 --- !u!4 &2129641468
 Transform:
   m_ObjectHideFlags: 0
@@ -2635,9 +2620,10 @@ MonoBehaviour:
   CurrentDialogue: []
   OffsetPosVec: {x: 0, y: 0, z: 0}
   IsNextDialogue: 0
-  IsDialogue: 0
+  IsDialogueStart: 0
   TextCount: 0
   dialoguedata: {fileID: 1070329331}
+  uIManager: {fileID: 2129641466}
 --- !u!114 &7472448352082117597
 MonoBehaviour:
   m_ObjectHideFlags: 0
