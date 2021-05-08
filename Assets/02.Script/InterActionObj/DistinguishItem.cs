@@ -61,9 +61,11 @@ public class DistinguishItem : MonoBehaviour
             {
                 RingCase = value.gameObject;
             }
-        }
+        } // 오브젝트 풀링 적용 이후 dictionary에 담아두고 찾아오기
 
         //LockerRing.DOMoveY(LockerRing.transform.position.y + 0.06f, 0.4f).OnComplete(() => Locker.gameObject.SetActive(false)).OnComplete(() => OpenBox.DOMoveX(OpenBox.transform.position.x - 1.0f, 1.0f));
+
+        Obj.SetActive(false);
 
         // 머테리얼이 나오면 서서히 사라지게 설정
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
@@ -75,6 +77,8 @@ public class DistinguishItem : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         //Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
+
+       
     }
 
     public void ShowpasswordUI(GameObject Obj) // 반지 케이스 자리 클릭
@@ -109,7 +113,7 @@ public class DistinguishItem : MonoBehaviour
             {
                 //회전될놈
             }
-        }
+        } // 오브젝트 풀링 적용 이후 dictionary에 담아두고 찾아오기
     }
 
     public void ClickWood(GameObject Obj) // 장작 보관함이 열린 후 장작을 터치했을 때
@@ -144,13 +148,31 @@ public class DistinguishItem : MonoBehaviour
         if (GameManager.Instance.uiManager.uiInventory.CurrentItemIcon.HaveItem.name == "MSG_Lr_Waxcube") // 밀랍큐브 넣었을 때
         {
             IsInWaxCube = true;
-            // 밀랍큐브 녹음
+            // 연출 : 밀랍큐브 녹음
+            // 기능 : 보라색 열쇠 획득
 
+
+            ProductionClickItem.TryGetValue("MSG_Lr_keyPurple_1", out GameObject go);
+            GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
 
             return;
         }
         else if (!IsInWaxCube)
             return;
         
+    }
+
+    public void InteractPurpleLocker(GameObject Obj) // 보라색 자물쇠 열었을 때
+    {
+        ProductionClickItem.TryGetValue("MSG_Lr_Phone", out GameObject phoneObj);
+        ProductionClickItem.TryGetValue("MSG_Lr_articleMeteor", out GameObject MeteorObj);
+
+
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(phoneObj.GetComponent<PlayerInterActionObj>());
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(MeteorObj.GetComponent<PlayerInterActionObj>());
+
+
+
+        Obj.SetActive(false);
     }
 }
