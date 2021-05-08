@@ -9,7 +9,7 @@ public class MouseInput : MonoBehaviour
     //public UIInventory uiInventory;
 
     private bool IsLeftMousePressed;
-    //bool IsLeftMouseClick;
+    
 
     Vector2 MoveInput;
     Vector2 BeforeVec;
@@ -50,8 +50,7 @@ public class MouseInput : MonoBehaviour
         if (context.started)
         {
             BeforeVec = MoveInput;
-
-
+            GameManager.Instance.uiManager.uiInventory.ob.CheckMouseDown();
         }
         else if(context.canceled)
         {
