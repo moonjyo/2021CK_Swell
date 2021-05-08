@@ -22,9 +22,15 @@ public class ObserveMode : MonoBehaviour
     public bool IsOnObserveMode = false;
     bool IsObjRotate = false;
 
+    bool IsOnRotateChildObj = false;
+    GameObject RotateChildObj;
+
     private PlayerInterActionObj CurrentTargetObj;
 
     //public DistinguishItem Distinguish;
+
+    bool IsReachTimeHand = false;
+    bool IsReachMinuteHand = false;
 
     RaycastHit HitOrigin;
     public void SetRotateInput(Vector2 value)
@@ -53,6 +59,19 @@ public class ObserveMode : MonoBehaviour
         if(IsOnObserveMode && IsObjRotate)
         {
             RotateObj();
+            if(GO.name == "MSG_Lr_zodiacclock(Clone)")
+            {
+                if(CheckClockHand())
+                {
+                    //if(GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> Method))
+                    //{
+                    //    Method(GO);
+                    //}
+                    RotateChildObj = null;
+                    GameManager.Instance.uiManager.uiInventory.Distinguish.InteractClock(GO);
+                }
+            }
+            
         }
         if(GO != null)
         {
@@ -67,15 +86,50 @@ public class ObserveMode : MonoBehaviour
 
     public void RotateObj()
     {
-        if (Mathf.Abs(RotHInput) > 0.1f)
+        if (!IsOnRotateChildObj)
         {
-            GO.transform.RotateAround(GO.transform.position, Vector3.up, -RotHInput * 40 * Time.deltaTime);
+            if (Mathf.Abs(RotHInput) > 0.1f)
+            {
+                GO.transform.RotateAround(GO.transform.position, Vector3.up, -RotHInput * 40 * Time.deltaTime);
+            }
+
+            if (Mathf.Abs(RotVInput) > 0.1f)
+            {
+                GO.transform.RotateAround(GO.transform.position, CameraManager.Instance.ObserveCamera.transform.right, RotVInput * 40 * Time.deltaTime);
+            }
+        }
+        else
+        {
+            if (Mathf.Abs(RotHInput) > 0.1f)
+            {
+                //시침 분침의 rotation.z값을 보내주어서 둘다 정해진 값으로 들어오면 갈색 열쇠 획득?
+                RotateChildObj.transform.Rotate(0, 0, -RotHInput * 30 * Time.deltaTime);
+            }
+
+        }
+    }
+
+    public bool CheckClockHand()
+    {
+        if (RotateChildObj == null)
+            return false;
+
+        if (RotateChildObj.transform.localEulerAngles.z <= 270.0f + 2.0f && RotateChildObj.transform.localEulerAngles.z >= 270.0f - 2.0f && RotateChildObj.name == "time")
+        {
+            IsReachTimeHand = true;
+        }
+        if (RotateChildObj.transform.localEulerAngles.z <= 239.0f + 2.0f && RotateChildObj.transform.localEulerAngles.z >= 239.0f - 2.0f && RotateChildObj.name == "minute")
+        {
+            IsReachMinuteHand = true;
         }
 
-        if (Mathf.Abs(RotVInput) > 0.1f)
+        if (IsReachTimeHand && IsReachMinuteHand)
         {
-            GO.transform.RotateAround(GO.transform.position, CameraManager.Instance.ObserveCamera.transform.right, RotVInput * 40 * Time.deltaTime);
+            return true;
         }
+        else
+            return false;
+        
     }
 
     public void AddObserveItem(string Key, GameObject go)
@@ -85,6 +139,8 @@ public class ObserveMode : MonoBehaviour
 
     public void ActivateObserverItem(string Key , PlayerInterActionObj Target) // 관찰자모드 아이템 활성화
     {
+        if (IsOnObserveMode)
+            return;
 
         CurrentTargetObj = Target;
 
@@ -164,5 +220,31 @@ public class ObserveMode : MonoBehaviour
         }
 
         IsClickCol = false;
+    }
+
+    public void CheckMouseDown()
+    {
+        RaycastHit hit;
+        Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
+        {
+            if (hit.collider.tag != "ProductionInteractionObj" || hit.collider.gameObject == hit.transform.gameObject) //|| !hit.collider.gameObject.GetComponent<PlayerInterActionObj>().IsRotate) 
+            {
+                IsOnRotateChildObj = false;
+                return;
+            }
+
+            IsOnRotateChildObj = true;
+            RotateChildObj = hit.collider.gameObject;
+
+
+
+            if (GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
+            {
+                value(GO);
+            }
+        }
+        else
+            IsOnRotateChildObj = false;
     }
 }
