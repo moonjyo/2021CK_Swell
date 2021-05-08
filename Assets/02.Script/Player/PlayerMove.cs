@@ -108,17 +108,17 @@ public class PlayerMove : MonoBehaviour
                         
                         if (-Direction == WalkVec) 
                         {  //당기기   
-                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                Vector3 WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
-                            Controller.Move(WalkMove);
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                                Controller.Move(WalkMove);
                         }
                         else if (Direction == WalkVec)
                         { //밀기 
-                                Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
+                                Vector3 WalkMove = -WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                                 Controller.Move(WalkMove);
@@ -153,7 +153,6 @@ public class PlayerMove : MonoBehaviour
 
     public void Idle()
     {
-
         if (IsInterActionItemPress)
         {
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);

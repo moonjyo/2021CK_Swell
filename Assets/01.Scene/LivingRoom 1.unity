@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 5b195869a12765149a81430054b41429,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -987,6 +987,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 864044942}
     m_Modifications:
+    - target: {fileID: 1769076561489295238, guid: 2b8fc203f8d10e6469c96b7732486097,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 1769076561489295238, guid: 2b8fc203f8d10e6469c96b7732486097,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.03
+      objectReference: {fileID: 0}
     - target: {fileID: 2153938266807427612, guid: 2b8fc203f8d10e6469c96b7732486097,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1050,7 +1060,7 @@ PrefabInstance:
     - target: {fileID: 7568995221916039027, guid: 2b8fc203f8d10e6469c96b7732486097,
         type: 3}
       propertyPath: m_Constraints
-      value: 0
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 7568995221916039027, guid: 2b8fc203f8d10e6469c96b7732486097,
         type: 3}
@@ -1061,6 +1071,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Mass
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793250259127271931, guid: 2b8fc203f8d10e6469c96b7732486097,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.73668385
+      objectReference: {fileID: 0}
+    - target: {fileID: 7793250259127271931, guid: 2b8fc203f8d10e6469c96b7732486097,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.13165808
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2b8fc203f8d10e6469c96b7732486097, type: 3}
@@ -2418,7 +2438,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &629901129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4082,8 +4102,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 10.994539, y: 7.0515213, z: 23.451176}
-  m_Center: {x: -0.07181263, y: 3.0257607, z: 5.4521084}
+  m_Size: {x: 10.7568, y: 7.0515213, z: 23.451176}
+  m_Center: {x: 0.04705715, y: 3.0257607, z: 5.4521084}
 --- !u!4 &1215162902
 Transform:
   m_ObjectHideFlags: 0

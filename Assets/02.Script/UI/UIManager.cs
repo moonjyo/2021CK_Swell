@@ -104,5 +104,25 @@ public class UIManager : MonoBehaviour
             Obj.gameObject.SetActive(false);
         }
     }
-  
+    public void OnSecondInterActionUI()
+    {
+        foreach (var Objs in OnActiveSecondInterActionUI)
+        {
+            foreach(var obj in Objs.UISecondObjList)
+            {
+                obj.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void OffSecondInterActionUI()
+    {
+        foreach (var Objs in OnActiveSecondInterActionUI)
+        {
+            foreach (var obj in Objs.UISecondObjList)
+            {
+                obj.gameObject.SetActive(false);
+            }
+        }
+    }
 }
