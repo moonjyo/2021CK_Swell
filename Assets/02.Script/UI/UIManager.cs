@@ -30,6 +30,11 @@ public class UIManager : MonoBehaviour
     private bool IsSettingMenu = false;
 
 
+    private void Start()
+    {
+        Init();
+    }
+
     public void Init()
     {
 

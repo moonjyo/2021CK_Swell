@@ -17,6 +17,10 @@ public class DataBaseManager : MonoBehaviour
     {
         SingletonInit();
     }
+    private void Start()
+    {
+        Init();
+    }
 
     public void SingletonInit()
     {
@@ -31,9 +35,4 @@ public class DataBaseManager : MonoBehaviour
     {
         monologueData.Init();
     }
-
-
-
-
-
 }
