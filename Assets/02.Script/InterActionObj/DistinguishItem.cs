@@ -14,6 +14,9 @@ public class DistinguishItem : MonoBehaviour
     bool IsInMatchStick = false;
     bool IsInWaxCube = false;
 
+    public float HourHandValue = -90.0f; //안팎2값
+    public float MinuteHandValue = -121.0f; //안팎2값
+
     public void init()
     {
         GameObject[] go = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
@@ -29,6 +32,8 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_Lr_woodstorage_door_1 1", OpenWoodBox);
         DistinguishItemDic.Add("Pivot_woodstorage(Clone)", ClickWood);
         DistinguishItemDic.Add("MSG_Lr_fireplace_1", InteractFirePlace);
+
+        //DistinguishItemDic.Add("MSG_Lr_zodiacclock(Clone)", InteractClock);
         
     }
 
@@ -72,7 +77,7 @@ public class DistinguishItem : MonoBehaviour
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCase.name, RingCase.GetComponent<PlayerInterActionObj>());
 
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>());
-        //GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
+        //GameManager.Instance.uiManager.uiInventory.GetItemIcon(.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
@@ -91,7 +96,7 @@ public class DistinguishItem : MonoBehaviour
     {
         // 연출 : 머리가 열린다, 열쇠가 보인다.
         // 기능 : 장작보관함 열쇠 획득
-        ProductionClickItem.TryGetValue("MSG_Lr_keyBrown_1", out GameObject go);
+        ProductionClickItem.TryGetValue("MSG_Lr_keyBrown_1", out GameObject go); // 장작보관함 열쇠로 따로 바꾸어야한다.
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
     }
 
@@ -165,14 +170,24 @@ public class DistinguishItem : MonoBehaviour
     public void InteractPurpleLocker(GameObject Obj) // 보라색 자물쇠 열었을 때
     {
         ProductionClickItem.TryGetValue("MSG_Lr_Phone", out GameObject phoneObj);
-        ProductionClickItem.TryGetValue("MSG_Lr_articleMeteor", out GameObject MeteorObj);
+        ProductionClickItem.TryGetValue("MSG_Lr_articleMeteor", out GameObject ArticleObj);
 
 
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(phoneObj.GetComponent<PlayerInterActionObj>());
-        GameManager.Instance.uiManager.uiInventory.GetItemIcon(MeteorObj.GetComponent<PlayerInterActionObj>());
-
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(ArticleObj.GetComponent<PlayerInterActionObj>());
 
 
         Obj.SetActive(false);
+    }
+
+    public void InteractClock(GameObject Obj)
+    {
+        // 시침분침이 4시35분을 가리킬 때
+        // 갈색열쇠 획득
+        // 연출 : 시계 뚜껑이 열린다
+
+        ProductionClickItem.TryGetValue("MSG_Lr_keyBrown_1", out GameObject go);
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
+
     }
 }
