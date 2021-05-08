@@ -161,7 +161,18 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseWalk()
     {
-        Vector3 WalkMove = CameraManager.Instance.MainCamera.transform.forward * WalkVec.x + -CameraManager.Instance.MainCamera.transform.right * WalkVec.z; 
+        Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
+
+        if (!CameraManager.Instance.StageCam.IsLside)
+        {
+            WalkMove = new Vector3(WalkMove.y, 0, WalkMove.z);
+        }
+        else
+        {
+            WalkMove = new Vector3(-WalkMove.y, 0, WalkMove.z);
+        }
+
+
         if (IsGrounded())
         {
             FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
@@ -170,7 +181,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 VecLook = transform.position + WalkMove;
         Body_Tr.DOLookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z) , 0.25f);
     
-        Controller.Move(WalkMove * Time.deltaTime * playerData.WalkSpeed);
+        Controller.Move(WalkMove * Time.fixedDeltaTime * playerData.WalkSpeed);
     }
 
     private void OnWalkSound()

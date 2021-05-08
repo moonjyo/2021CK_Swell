@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine;
 using DG.Tweening;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
-public class DialogueText : MonoBehaviour , IDialogueText
+public class CutScene1DialogueText : MonoBehaviour , IDialogueText
 {
     public TextMeshProUGUI TMPDialogue;
     public TextMeshProUGUI TMPName;
@@ -32,18 +32,16 @@ public class DialogueText : MonoBehaviour , IDialogueText
 
     public TestNpcDialougeData dialoguedata;
 
-    public DialogueText dialogueText;
+    public CutScene1DialogueText dialogueText;
 
     public bool IsDialogueStart = false;
 
     private Color ActiveTrueColor = new Color(1, 1, 1);
     private Color ActiveFalseColor = new Color(0.2830189f, 0.2830189f, 0.2830189f);
 
-    private void Start()
-    {
-        Init();
-    }
+    public UIManager uiManager;
 
+    private bool isStart = false;
     public void Init()
     {
         gameObject.SetActive(false);
@@ -55,18 +53,20 @@ public class DialogueText : MonoBehaviour , IDialogueText
     }
 
     public IEnumerator SetText()
-    {   
+    {
         TMPOnNext.gameObject.SetActive(false);
         TMPName.text = CurrentDialogue[TextCount].name;
         TMPDialogue.text = CurrentDialogue[TextCount].context[0];
         TMPDialogue.text = TMPDialogue.text.Replace("\\n", "\n"); //줄바꿈용
-        if(GameManager.Instance.uiManager.DialogueImageDicL.ContainsKey(CurrentDialogue[TextCount].TextureL))
+
+        if (uiManager.DialogueImageDicL.ContainsKey(CurrentDialogue[TextCount].TextureL))
         {
-            StandingImageL.sprite = GameManager.Instance.uiManager.DialogueImageDicL[CurrentDialogue[TextCount].TextureL].sprite;
+            StandingImageL.sprite = uiManager.DialogueImageDicL[CurrentDialogue[TextCount].TextureL].sprite;
         }
-        if (GameManager.Instance.uiManager.DialogueImageDicR.ContainsKey(CurrentDialogue[TextCount].TextureR))
+
+        if (uiManager.DialogueImageDicR.ContainsKey(CurrentDialogue[TextCount].TextureR))
         {
-            StandingImageR.sprite = GameManager.Instance.uiManager.DialogueImageDicR[CurrentDialogue[TextCount].TextureR].sprite;
+            StandingImageR.sprite = uiManager.DialogueImageDicR[CurrentDialogue[TextCount].TextureR].sprite;
         }
 
         if (CurrentDialogue[TextCount].CurrentTurn == "L") //말차례턴 정해
@@ -79,14 +79,14 @@ public class DialogueText : MonoBehaviour , IDialogueText
         else
         {
             StandingImageR.color = ActiveTrueColor;
-            StandingImageL.color = ActiveFalseColor; 
+            StandingImageL.color = ActiveFalseColor;
             TalkTaleL.gameObject.SetActive(false);
             TalkTaleR.gameObject.SetActive(true);
         }
-        gameObject.SetActive(true); 
+        gameObject.SetActive(true);
 
         DialogueDoText(TMPDialogue, ShowTimeSecond);
-    
+
         yield return new WaitForSeconds(0f);
     }
 
@@ -96,7 +96,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
         a_text.maxVisibleCharacters = 0;
         DOTween.To(x => a_text.maxVisibleCharacters = (int)x, 0f, a_text.text.Length, a_duration).OnComplete(() => {
             IsNextDialogue = true;
-            ++TextCount; 
+            ++TextCount;
             TMPOnNext.gameObject.SetActive(true);
         });
     }
@@ -111,4 +111,30 @@ public class DialogueText : MonoBehaviour , IDialogueText
     }
 
 
+
+    public void OnSpaceBar(InputAction.CallbackContext value)
+    {
+        if (value.performed)
+        {
+            if (dialogueText.TextCount == dialogueText.CurrentDialogue.Length && dialogueText.IsDialogueStart && !isStart) //종료
+            {
+                isStart = true;
+                EndTalk();
+
+                return;
+            }
+
+            if (dialogueText.IsNextDialogue)
+            {
+                dialogueText.IsNextDialogue = false;
+                StartCoroutine(dialogueText.SetText());
+            }
+        }
+    }
+
+
+    public void EndTalk()
+    {
+        LevelLoader.Instance.LoadNextLevel((int)LoadSceneIndex.LivingRoom1);
+    }
 }

@@ -30,6 +30,15 @@ public class UIManager : MonoBehaviour
     private bool IsSettingMenu = false;
 
 
+    private void Awake()
+    {
+        GameObject Canvas = GameObject.Find("BaseUICanvas");
+        if (Canvas)
+        {
+            InterActionUICanvas = Canvas.GetComponent<Canvas>();
+        }
+    }
+
     private void Start()
     {
         Init();

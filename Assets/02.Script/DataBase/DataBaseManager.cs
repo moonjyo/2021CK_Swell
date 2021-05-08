@@ -19,7 +19,10 @@ public class DataBaseManager : MonoBehaviour
     }
     private void Start()
     {
-        Init();
+        if (monologueData != null)
+        {
+            Init();
+        }
     }
 
     public void SingletonInit()
@@ -27,7 +30,10 @@ public class DataBaseManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            SoundData.ReadCsv("Data/SoundText.csv");
+            if (SoundData != null)
+            {
+                SoundData.ReadCsv("Data/SoundText.csv");
+            }
         }
     }
 
