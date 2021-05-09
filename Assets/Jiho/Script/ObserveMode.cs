@@ -59,7 +59,7 @@ public class ObserveMode : MonoBehaviour
         if(IsOnObserveMode && IsObjRotate)
         {
             RotateObj();
-            if(GO.name == "MSG_Lr_zodiacclock(Clone)")
+            if(GO.name == "Pivot_zodiacclock(Clone)")
             {
                 if(CheckClockHand())
                 {

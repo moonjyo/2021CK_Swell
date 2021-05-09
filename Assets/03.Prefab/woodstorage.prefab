@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &157253615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631222478680785292}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2371858, y: 1.2416563, z: 0.12813}
+  m_Center: {x: -0.53622985, y: 0.75525445, z: -0.22133535}
 --- !u!1 &7066712278543423096
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +22,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1595042740331137314}
-  m_Layer: 0
+  - component: {fileID: 157253613}
+  - component: {fileID: 157253611}
+  - component: {fileID: 157253612}
+  m_Layer: 17
   m_Name: Pivot_woodstorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,7 +40,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7066712278543423096}
   m_LocalRotation: {x: 0.07449302, y: 0.9923229, z: -0.09832979, w: -0.008790375}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.179, y: 0.693, z: -0.143}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5697190863094232042}
@@ -33,6 +49,60 @@ Transform:
   m_Father: {fileID: 7345802825218199134}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 11.177001, y: 181.87498, z: 8.77}
+--- !u!54 &157253613
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066712278543423096}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
+--- !u!65 &157253611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066712278543423096}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.2248178, y: 1.3551955, z: 1.3694223}
+  m_Center: {x: 0.016137648, y: 0.8615918, z: 0.019202009}
+--- !u!114 &157253612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7066712278543423096}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemKey: 
+  MonologueKey: 
+  IsTake: 0
+  IsWatch: 1
+  IsRotate: 0
+  InventoryIcon: {fileID: 0}
+  SizeObj: {x: 0.7, y: 0.7, z: 0.7}
+  InteractObjKey: 
+  Objs:
+  - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
+  UIOffsetVec: {x: 0, y: 0, z: 0}
+  UISecondObjList: []
+  UIFirstObj: {fileID: 0}
 --- !u!1 &7345802825218199133
 GameObject:
   m_ObjectHideFlags: 0
@@ -42,7 +112,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7345802825218199134}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: woodstorage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,10 +141,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2361436411187518467}
     m_Modifications:
+    - target: {fileID: 1947693245370313270, guid: 7dcaf3173829a374b9864c0872875f4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 3115662270103237817, guid: 7dcaf3173829a374b9864c0872875f4d,
         type: 3}
       propertyPath: m_Name
       value: MSG_Lr_woodstorage_door_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3115662270103237817, guid: 7dcaf3173829a374b9864c0872875f4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 4745333798641742040, guid: 7dcaf3173829a374b9864c0872875f4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 4806954266795950951, guid: 7dcaf3173829a374b9864c0872875f4d,
         type: 3}
@@ -136,6 +221,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d00a013bc5f46044e9fbb4eedd9b6f9d, type: 2}
+    - target: {fileID: 6757026110819597334, guid: 7dcaf3173829a374b9864c0872875f4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7dcaf3173829a374b9864c0872875f4d, type: 3}
 --- !u!1001 &2555102207454387309
@@ -148,22 +238,22 @@ PrefabInstance:
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.6700243
+      value: -0.5962914
       objectReference: {fileID: 0}
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.28968018
+      value: -0.43647584
       objectReference: {fileID: 0}
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.6172474
+      value: 0.61711067
       objectReference: {fileID: 0}
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.07584303
+      value: -0.075843036
       objectReference: {fileID: 0}
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
@@ -173,12 +263,12 @@ PrefabInstance:
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.09056649
+      value: 0.0905665
       objectReference: {fileID: 0}
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.009296023
+      value: -0.009295903
       objectReference: {fileID: 0}
     - target: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
@@ -205,6 +295,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: MSG_Lr_woodstorage_glass_1
       objectReference: {fileID: 0}
+    - target: {fileID: 3879516656573357537, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879516656573357537, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
+        type: 3}
+      propertyPath: m_TagString
+      value: ProductionInteractionObj
+      objectReference: {fileID: 0}
     - target: {fileID: 7223853147142217141, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -220,8 +320,19 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8001656861869704975, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ba98e73a9063f47ac8918ac1ab07a8, type: 3}
+--- !u!1 &1631222478680785292 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3879516656573357537, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
+    type: 3}
+  m_PrefabInstance: {fileID: 2555102207454387309}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2361436411187518467 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 265723424681476206, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
@@ -238,37 +349,37 @@ PrefabInstance:
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.744
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000011175871
+      value: -0.000000018626453
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.70811427
+      value: -0.7081143
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.0000000037252903
+      value: 0.0000000037252907
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70609784
+      value: 0.7060978
       objectReference: {fileID: 0}
     - target: {fileID: 1054141926258248216, guid: b28790d235ec99342abb50e7cb02051b,
         type: 3}
@@ -295,6 +406,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIOffsetEyes
       objectReference: {fileID: 0}
+    - target: {fileID: 9071859882876625800, guid: b28790d235ec99342abb50e7cb02051b,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b28790d235ec99342abb50e7cb02051b, type: 3}
 --- !u!4 &5697190863094232042 stripped
@@ -313,22 +429,22 @@ PrefabInstance:
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.02719894
+      value: 0.046533942
       objectReference: {fileID: 0}
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.026483
+      value: 0.30032712
       objectReference: {fileID: 0}
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.069922626
+      value: 0.069786295
       objectReference: {fileID: 0}
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.000000007450582
+      value: 0.000000007450582
       objectReference: {fileID: 0}
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
@@ -338,12 +454,12 @@ PrefabInstance:
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.000000033644035
+      value: -0.000000030617237
       objectReference: {fileID: 0}
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.0014255939
+      value: -0.0014255311
       objectReference: {fileID: 0}
     - target: {fileID: 2386298512522455195, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
@@ -380,10 +496,20 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d00a013bc5f46044e9fbb4eedd9b6f9d, type: 2}
+    - target: {fileID: 4085952828236384137, guid: 67c58487f2cf7d341ae67c5abacad5a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
     - target: {fileID: 8106886473912644559, guid: 67c58487f2cf7d341ae67c5abacad5a3,
         type: 3}
       propertyPath: m_Name
       value: MSG_Lr_woodstorage_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8106886473912644559, guid: 67c58487f2cf7d341ae67c5abacad5a3,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 67c58487f2cf7d341ae67c5abacad5a3, type: 3}
@@ -400,10 +526,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7983766731888241731}
     m_Modifications:
+    - target: {fileID: 802396170994821512, guid: a1314d7e09e972846b9262bcde3aa710,
+        type: 3}
+      propertyPath: InteractObjKey
+      value: MSG_Lr_fireplace_1
+      objectReference: {fileID: 0}
     - target: {fileID: 1893410935241680558, guid: a1314d7e09e972846b9262bcde3aa710,
         type: 3}
       propertyPath: m_Name
       value: MSG_Lr_wood_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893410935241680558, guid: a1314d7e09e972846b9262bcde3aa710,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 1893410935241680558, guid: a1314d7e09e972846b9262bcde3aa710,
+        type: 3}
+      propertyPath: m_TagString
+      value: ProductionInteractionObj
       objectReference: {fileID: 0}
     - target: {fileID: 4728804170001652700, guid: a1314d7e09e972846b9262bcde3aa710,
         type: 3}
