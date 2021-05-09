@@ -79,11 +79,15 @@ public class DistinguishItem : MonoBehaviour
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCase.name, RingCase.GetComponent<PlayerInterActionObj>());
 
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>());
-        //GameManager.Instance.uiManager.uiInventory.GetItemIcon(.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
+
+        ProductionClickItem.TryGetValue("MSG_Lr_photoAcademy", out GameObject PhotoAcademy);
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(PhotoAcademy.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
-        Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
+
+        GameManager.Instance.uiManager.uiInventory.ob.GO.GetComponent<PlayerInterActionObj>().SecondInteractOff();
+        //Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
 
        
     }

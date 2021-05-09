@@ -68,6 +68,7 @@ public class ObserveMode : MonoBehaviour
                     //    Method(GO);
                     //}
                     RotateChildObj = null;
+                    IsOnRotateChildObj = false;
                     GameManager.Instance.uiManager.uiInventory.Distinguish.InteractClock(GO);
                 }
             }
