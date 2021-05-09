@@ -4441,7 +4441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1043469089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,6 +5005,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 864044942}
     m_Modifications:
+    - target: {fileID: 863545010, guid: d9e2be1dc5402844090f1d37b8440245, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133601008, guid: d9e2be1dc5402844090f1d37b8440245, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1346432854, guid: d9e2be1dc5402844090f1d37b8440245, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4040237227073796255, guid: d9e2be1dc5402844090f1d37b8440245,
         type: 3}
       propertyPath: m_LocalPosition.x

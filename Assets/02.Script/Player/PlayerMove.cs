@@ -51,8 +51,9 @@ public class PlayerMove : MonoBehaviour
 
     public PlayerData playerData;
 
-    public bool IsInterActionItemPress = false; 
+    public bool IsInterActionItemPress = false;
 
+    private Vector3 WalkMove;
     private void FixedUpdate()
     {
         MoveCheck();
@@ -108,7 +109,15 @@ public class PlayerMove : MonoBehaviour
                         
                         if (-Direction == WalkVec) 
                         {  //당기기   
-                                Vector3 WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+
+                            if (!CameraManager.Instance.StageCam.IsLside)
+                            {
+                                 WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                            }
+                            else
+                            {
+                                 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                            }
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
@@ -116,8 +125,15 @@ public class PlayerMove : MonoBehaviour
                         }
                         else if (Direction == WalkVec)
                         { //밀기 
-                                Vector3 WalkMove = -WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
-                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
+                            if (!CameraManager.Instance.StageCam.IsLside)
+                            {
+                                 WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                            }
+                            else
+                            {
+                                 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                            }
+                            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
