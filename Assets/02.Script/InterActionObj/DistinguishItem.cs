@@ -49,7 +49,6 @@ public class DistinguishItem : MonoBehaviour
         Transform LockerRing = null;
         Transform OpenBox = null;
         Transform Locker = null;
-        GameObject RingCase = null;
         foreach (Transform value in GO)
         {
             if (value.name == "MSG_Lr_lokerGreen_4")
@@ -64,10 +63,6 @@ public class DistinguishItem : MonoBehaviour
             {
                 Locker = value;
             }
-            else if (value.name == "MSG_Lr_ringcaseGreen_1")
-            {
-                RingCase = value.gameObject;
-            }
         } // 오브젝트 풀링 적용 이후 dictionary에 담아두고 찾아오기
 
         //LockerRing.DOMoveY(LockerRing.transform.position.y + 0.06f, 0.4f).OnComplete(() => Locker.gameObject.SetActive(false)).OnComplete(() => OpenBox.DOMoveX(OpenBox.transform.position.x - 1.0f, 1.0f));
@@ -75,12 +70,16 @@ public class DistinguishItem : MonoBehaviour
         Obj.SetActive(false);
 
         // 머테리얼이 나오면 서서히 사라지게 설정
-        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
-        GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCase.name, RingCase.GetComponent<PlayerInterActionObj>());
 
+        ProductionClickItem.TryGetValue("MSG_Lr_ringcaseGreen_1", out GameObject RingCaseObj);
         ProductionClickItem.TryGetValue("MSG_Lr_photoAcademy", out GameObject PhotoAcademy);
+
+        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCaseObj.name, RingCaseObj.GetComponent<PlayerInterActionObj>());
+
+       
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(PhotoAcademy.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
-        GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>());
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCaseObj.GetComponent<PlayerInterActionObj>());
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
