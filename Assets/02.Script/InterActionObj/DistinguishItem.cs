@@ -129,6 +129,7 @@ public class DistinguishItem : MonoBehaviour
         ProductionClickItem.TryGetValue("MSG_Lr_wood_1", out GameObject obj);
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(obj.GetComponent<PlayerInterActionObj>());
         Obj.SetActive(false);
+        obj.SetActive(false);
     }
 
     public void InteractFirePlace(GameObject Obj) // 벽난로 상호작용

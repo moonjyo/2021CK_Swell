@@ -203,7 +203,7 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if (GO == null || hit.collider.tag != "ProductionInteractionObj")
+            if (GO == null || hit.collider.tag != "ProductionInteractionObj" || !IsOnObserveMode || HitOrigin.collider != hit.collider)
             {
                 IsClickCol = false;
                 return;
@@ -222,13 +222,13 @@ public class ObserveMode : MonoBehaviour
             if (!IsPass)
                 return;
 
- 
-
-            HitOrigin = hit;
+            if (hit.collider.name == "MSG_Lr_woodstorage_glass_1")
+                return;
 
             if (GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
             {
-                value(hit.transform.gameObject);
+
+                value(hit.collider.gameObject);
             }
         }
 
@@ -241,6 +241,8 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
+            HitOrigin = hit;
+
             if (hit.collider.gameObject.GetComponent<PlayerInterActionObj>() == null)
                 return;
 
@@ -249,6 +251,8 @@ public class ObserveMode : MonoBehaviour
                 IsOnRotateChildObj = false;
                 return;
             }
+
+           
 
             IsOnRotateChildObj = true;
             RotateChildObj = hit.collider.gameObject;

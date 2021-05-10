@@ -14,7 +14,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4806954266795950951
 Transform:
@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3115662270103237817}
-  m_LocalRotation: {x: -0, y: -0, z: 0.09521571, w: 0.9954567}
+  m_LocalRotation: {x: 0, y: 0, z: 0.095211595, w: 0.9954571}
   m_LocalPosition: {x: -1.406, y: 0.311, z: 10.202}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -47,7 +47,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &6236948776402069164
 Transform:
@@ -90,7 +90,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 670224309865224971, guid: 72941b2b0a5f85849b2d860ba53c90a1, type: 3}
+  - {fileID: 2100000, guid: d00a013bc5f46044e9fbb4eedd9b6f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -192,6 +192,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MSG_Lr_woodstorage_glass_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3879516656573357537, guid: 56ba98e73a9063f47ac8918ac1ab07a8,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56ba98e73a9063f47ac8918ac1ab07a8, type: 3}
