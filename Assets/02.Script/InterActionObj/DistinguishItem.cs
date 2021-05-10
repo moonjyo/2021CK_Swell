@@ -84,7 +84,7 @@ public class DistinguishItem : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
 
-        GameManager.Instance.uiManager.uiInventory.ob.GO.GetComponent<PlayerInterActionObj>().SecondInteractOff();
+        GameManager.Instance.uiManager.OffSecondInterActionUI();
         //Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
 
        

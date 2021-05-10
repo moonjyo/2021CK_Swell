@@ -252,6 +252,8 @@ public class UIInventory : UIView
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             //ob.ActivateObserverItem(CurrentItemIcon.HaveItem.Key)
             ob.ActivateObserverItem(KeyName , Target);
+
+            GameManager.Instance.uiManager.OffSecondInterActionUI();
         }
     }
 
