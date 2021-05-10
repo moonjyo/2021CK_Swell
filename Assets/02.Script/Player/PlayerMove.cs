@@ -113,13 +113,14 @@ public class PlayerMove : MonoBehaviour
                             if (!CameraManager.Instance.StageCam.IsLside)
                             {
                                  WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
                             }
                             else
                             {
                                  WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
                             }
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                                 Controller.Move(WalkMove);
                         }
@@ -128,13 +129,14 @@ public class PlayerMove : MonoBehaviour
                             if (!CameraManager.Instance.StageCam.IsLside)
                             {
                                  WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
                             }
                             else
                             {
                                  WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
                             }
                             PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                                 Controller.Move(WalkMove);
