@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6074400620687598606}
+  - component: {fileID: 204827518}
+  - component: {fileID: 204827517}
   m_Layer: 0
   m_Name: MSG_Lr_keyBrown_1
-  m_TagString: Untagged
+  m_TagString: ProductionInteractionObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +33,43 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &204827518
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545486017471070210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.11689079, y: 0.15817738, z: 0.055799484}
+  m_Center: {x: -0.00029248, y: 0.0030493736, z: 0.007809639}
+--- !u!114 &204827517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8545486017471070210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemKey: 
+  MonologueKey: 
+  IsTake: 1
+  IsWatch: 0
+  IsRotate: 1
+  InventoryIcon: {fileID: 0}
+  SizeObj: {x: 3, y: 3, z: 3}
+  InteractObjKey: MSG_Lr_woodstorage_glass_1
+  Objs: []
+  UIOffsetVec: {x: 0, y: 0, z: 0}
+  UISecondObjList: []
+  UIFirstObj: {fileID: 0}
 --- !u!1001 &8654955714965258536
 PrefabInstance:
   m_ObjectHideFlags: 0
