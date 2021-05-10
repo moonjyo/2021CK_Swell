@@ -18,17 +18,18 @@ public class CameraManager : MonoBehaviour
 
     public void SingletonInit()
     {
-        if (Instance == null)
+        if (!Instance)
         {
             Instance = this;
         }
-        DontDestroyOnLoad(gameObject);
-
     }
 
     private void Start()
     {
-        Init();
+        if (StageCam != null)
+        {
+            Init();
+        }
     }
 
 

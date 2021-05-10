@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using UnityEngine.InputSystem;
 
 public class DialogueText : MonoBehaviour , IDialogueText
 {
@@ -29,8 +30,15 @@ public class DialogueText : MonoBehaviour , IDialogueText
 
     public int TextCount = 0;
 
+    public TestNpcDialougeData dialoguedata;
+
+    public DialogueText dialogueText;
+
+    public bool IsDialogueStart = false;
+
     private Color ActiveTrueColor = new Color(1, 1, 1);
     private Color ActiveFalseColor = new Color(0.2830189f, 0.2830189f, 0.2830189f);
+
     private void Start()
     {
         Init();
@@ -92,4 +100,15 @@ public class DialogueText : MonoBehaviour , IDialogueText
             TMPOnNext.gameObject.SetActive(true);
         });
     }
+
+    public void StartDialogue()
+    {
+        IsDialogueStart = true;
+        transform.GetComponent<RectTransform>().anchoredPosition = new Vector2(30f, -335f);
+        CurrentDialogue = dialoguedata.GetDialogoue();
+        ShowDialogue();
+        StartCoroutine(SetText());
+    }
+
+
 }

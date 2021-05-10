@@ -59,7 +59,7 @@ public class ObserveMode : MonoBehaviour
         if(IsOnObserveMode && IsObjRotate)
         {
             RotateObj();
-            if(GO.name == "MSG_Lr_zodiacclock(Clone)")
+            if(GO.name == "Pivot_zodiacclock(Clone)")
             {
                 if(CheckClockHand())
                 {
@@ -68,6 +68,7 @@ public class ObserveMode : MonoBehaviour
                     //    Method(GO);
                     //}
                     RotateChildObj = null;
+                    IsOnRotateChildObj = false;
                     GameManager.Instance.uiManager.uiInventory.Distinguish.InteractClock(GO);
                 }
             }
@@ -193,10 +194,7 @@ public class ObserveMode : MonoBehaviour
        
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
-        if (CurrentTargetObj != null)
-        {
-            CurrentTargetObj.SecondInteractOn();
-        }
+        GameManager.Instance.uiManager.OnSecondInterActionUI();
     }
 
     public void CheckClick()
@@ -205,17 +203,32 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if (GO == null || hit.collider.tag != "ProductionInteractionObj" || GO != hit.transform.gameObject)
+            if (GO == null || hit.collider.tag != "ProductionInteractionObj")
             {
                 IsClickCol = false;
                 return;
             }
 
+            bool IsPass = false;
+            Transform[] tr = GO.GetComponentsInChildren<Transform>();
+            foreach (Transform transform in tr)
+            {
+                if (transform == hit.transform)
+                {
+                    IsPass = true;
+                }
+            }
+
+            if (!IsPass)
+                return;
+
+ 
+
             HitOrigin = hit;
 
             if (GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
             {
-                value(GO);
+                value(hit.transform.gameObject);
             }
         }
 
@@ -228,7 +241,10 @@ public class ObserveMode : MonoBehaviour
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if (hit.collider.tag != "ProductionInteractionObj" || hit.collider.gameObject == hit.transform.gameObject) //|| !hit.collider.gameObject.GetComponent<PlayerInterActionObj>().IsRotate) 
+            if (hit.collider.gameObject.GetComponent<PlayerInterActionObj>() == null)
+                return;
+
+            if (hit.collider.tag != "ProductionInteractionObj" || hit.collider.gameObject == hit.transform.gameObject || !hit.collider.gameObject.GetComponent<PlayerInterActionObj>().IsRotate) 
             {
                 IsOnRotateChildObj = false;
                 return;

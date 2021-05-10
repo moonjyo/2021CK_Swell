@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 
     public StageManager stageManager;
     public UIManager uiManager;
-    
+
 
     private void Awake()
     {
@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
         }
-        DontDestroyOnLoad(gameObject);
+     
     }
     public void GameStart()
     {

@@ -120,12 +120,19 @@ public class PlayerInput : MonoBehaviour
 
 
 
-
-
-    public void OnLeftMouseClick(InputAction.CallbackContext context)
+    public void OnRightCam(InputAction.CallbackContext context)
     {
-      
+        if(context.performed)
+        {
+            CameraManager.Instance.StageCam.GoToRSide();
+        }
     }
-
+    public void OnLeftCam(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            CameraManager.Instance.StageCam.GoToLSide();
+        }
+    }
 
 }

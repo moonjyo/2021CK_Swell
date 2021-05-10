@@ -18,6 +18,8 @@ public class StageCamera : MonoBehaviour
     public Vector3 RSideVec;
     public Vector3 BaseVec;
 
+    public bool IsLside = false;
+
     public void Init()
     {
         BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
@@ -28,20 +30,16 @@ public class StageCamera : MonoBehaviour
 
     public void GoToRSide()
     {
+        IsLside = false;
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, RSideVec, OffsetSpeed);
-        transposer.m_XDamping = 0;
-
     }
     public void GoToLSide()
     {
+        IsLside = true;
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, LSideVec, OffsetSpeed);
-        transposer.m_XDamping = 0;
-
     }
     public void GoToBase()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, BaseVec, OffsetSpeed);
-        transposer.m_XDamping = 20;
-
     }
 }

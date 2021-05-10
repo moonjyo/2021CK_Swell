@@ -28,6 +28,10 @@ public class LevelLoader : MonoBehaviour
     {
        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
     }
+    public void LoadNextLevel(int Index)
+    {
+        StartCoroutine(LoadLevel(Index));
+    }
 
     IEnumerator LoadLevel(int  levelIndex)
     {
@@ -42,5 +46,14 @@ public class LevelLoader : MonoBehaviour
         SceneManager.LoadScene(levelIndex);
 
     }
+
+}
+
+
+public enum LoadSceneIndex
+{
+    MotherTalk = 0, 
+    LivingRoom1 = 1,
+    Cutscene1 = 2,
 
 }

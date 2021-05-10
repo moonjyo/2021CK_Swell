@@ -29,9 +29,11 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_Lr_lokerGreen_1", InteractGreenLocker); // 상호작용이 되는 오브젝트 이름을 키로잡음
         DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1(Clone)", ShowpasswordUI);
         DistinguishItemDic.Add("MSG_Lr_owlstaute_head", JewelyinOwlEye);
-        DistinguishItemDic.Add("MSG_Lr_woodstorage_door_1 1", OpenWoodBox);
+        DistinguishItemDic.Add("MSG_Lr_woodstorage_glass_1", OpenWoodBox);
         DistinguishItemDic.Add("Pivot_woodstorage(Clone)", ClickWood);
         DistinguishItemDic.Add("MSG_Lr_fireplace_1", InteractFirePlace);
+
+        DistinguishItemDic.Add("MSG_Lr_lokerPurple_1", InteractPurpleLocker);
 
         //DistinguishItemDic.Add("MSG_Lr_zodiacclock(Clone)", InteractClock);
         
@@ -47,7 +49,6 @@ public class DistinguishItem : MonoBehaviour
         Transform LockerRing = null;
         Transform OpenBox = null;
         Transform Locker = null;
-        GameObject RingCase = null;
         foreach (Transform value in GO)
         {
             if (value.name == "MSG_Lr_lokerGreen_4")
@@ -62,10 +63,6 @@ public class DistinguishItem : MonoBehaviour
             {
                 Locker = value;
             }
-            else if (value.name == "MSG_Lr_ringcaseGreen_1")
-            {
-                RingCase = value.gameObject;
-            }
         } // 오브젝트 풀링 적용 이후 dictionary에 담아두고 찾아오기
 
         //LockerRing.DOMoveY(LockerRing.transform.position.y + 0.06f, 0.4f).OnComplete(() => Locker.gameObject.SetActive(false)).OnComplete(() => OpenBox.DOMoveX(OpenBox.transform.position.x - 1.0f, 1.0f));
@@ -73,14 +70,21 @@ public class DistinguishItem : MonoBehaviour
         Obj.SetActive(false);
 
         // 머테리얼이 나오면 서서히 사라지게 설정
-        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
-        GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCase.name, RingCase.GetComponent<PlayerInterActionObj>());
 
-        GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCase.GetComponent<PlayerInterActionObj>());
-        //GameManager.Instance.uiManager.uiInventory.GetItemIcon(.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
+        ProductionClickItem.TryGetValue("MSG_Lr_ringcaseGreen_1", out GameObject RingCaseObj);
+        ProductionClickItem.TryGetValue("MSG_Lr_photoAcademy", out GameObject PhotoAcademy);
+
+        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem(RingCaseObj.name, RingCaseObj.GetComponent<PlayerInterActionObj>());
+
+       
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(PhotoAcademy.GetComponent<PlayerInterActionObj>()); // 같이있던 학회사진 획득
+        GameManager.Instance.uiManager.uiInventory.GetItemIcon(RingCaseObj.GetComponent<PlayerInterActionObj>());
 
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+
+        GameManager.Instance.uiManager.uiInventory.ob.GO.GetComponent<PlayerInterActionObj>().SecondInteractOff();
         //Obj.GetComponent<PlayerInterActionObj>().SecondInteractOff();
 
        
@@ -103,21 +107,18 @@ public class DistinguishItem : MonoBehaviour
     public void OpenWoodBox(GameObject Obj)
     {
         // 연출, 기능 : 장작보관함이 열린다.
-        ProductionClickItem.TryGetValue("MSG_Lr_woodstorage_door_1 1", out GameObject obj); // 게임 씬 내 오브젝트
+        ProductionClickItem.TryGetValue("MSG_Lr_woodstorage_glass_1", out GameObject obj); // 게임 씬 내 오브젝트
         obj.SetActive(false);
 
         GameObject go = GameManager.Instance.uiManager.uiInventory.ob.GO;
         Transform[] GO = go.GetComponentsInChildren<Transform>();
         foreach(Transform value in GO)
         {
-            if(value.name == "MSG_Lr_woodstorage_door_1 1")
+            if(value.name == "MSG_Lr_woodstorage_glass_1") // 회전될 부모
             {
                 value.gameObject.SetActive(false);
             }
-            else if(value.name == "MSG_Lr_woodstorage_door_1")
-            {
-                //회전될놈
-            }
+
         } // 오브젝트 풀링 적용 이후 dictionary에 담아두고 찾아오기
     }
 
@@ -127,6 +128,7 @@ public class DistinguishItem : MonoBehaviour
         // 기능 : 장작 획득
         ProductionClickItem.TryGetValue("MSG_Lr_wood_1", out GameObject obj);
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(obj.GetComponent<PlayerInterActionObj>());
+        Obj.SetActive(false);
     }
 
     public void InteractFirePlace(GameObject Obj) // 벽난로 상호작용

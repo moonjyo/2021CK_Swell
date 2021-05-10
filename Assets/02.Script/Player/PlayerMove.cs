@@ -51,8 +51,9 @@ public class PlayerMove : MonoBehaviour
 
     public PlayerData playerData;
 
-    public bool IsInterActionItemPress = false; 
+    public bool IsInterActionItemPress = false;
 
+    private Vector3 WalkMove;
     private void FixedUpdate()
     {
         MoveCheck();
@@ -108,17 +109,34 @@ public class PlayerMove : MonoBehaviour
                         
                         if (-Direction == WalkVec) 
                         {  //당기기   
-                                Vector3 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+
+                            if (!CameraManager.Instance.StageCam.IsLside)
+                            {
+                                 WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
+                            }
+                            else
+                            {
+                                 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
+                            }
                                 PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
-                            Controller.Move(WalkMove);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                                Controller.Move(WalkMove);
                         }
                         else if (Direction == WalkVec)
                         { //밀기 
-                                Vector3 WalkMove = WalkVec * playerData.PushSpeed * Time.fixedDeltaTime;
-                                PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
+                            if (!CameraManager.Instance.StageCam.IsLside)
+                            {
+                                 WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
+                            }
+                            else
+                            {
+                                 WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
+                            }
+                            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
                                 transform.LookAt(transform.position + WalkVec);
                                 InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
                                 Controller.Move(WalkMove);
@@ -153,7 +171,6 @@ public class PlayerMove : MonoBehaviour
 
     public void Idle()
     {
-
         if (IsInterActionItemPress)
         {
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
@@ -161,7 +178,18 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseWalk()
     {
-        Vector3 WalkMove = CameraManager.Instance.MainCamera.transform.forward * WalkVec.x + -CameraManager.Instance.MainCamera.transform.right * WalkVec.z; 
+        Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
+
+        if (!CameraManager.Instance.StageCam.IsLside)
+        {
+            WalkMove = new Vector3(WalkMove.y, 0, WalkMove.z);
+        }
+        else
+        {
+            WalkMove = new Vector3(-WalkMove.y, 0, WalkMove.z);
+        }
+
+
         if (IsGrounded())
         {
             FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
@@ -170,7 +198,7 @@ public class PlayerMove : MonoBehaviour
         Vector3 VecLook = transform.position + WalkMove;
         Body_Tr.DOLookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z) , 0.25f);
     
-        Controller.Move(WalkMove * Time.deltaTime * playerData.WalkSpeed);
+        Controller.Move(WalkMove * Time.fixedDeltaTime * playerData.WalkSpeed);
     }
 
     private void OnWalkSound()

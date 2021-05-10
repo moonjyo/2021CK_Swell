@@ -68,6 +68,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "RightCam",
+                    "type": "Button",
+                    "id": "a7378264-844a-4836-83aa-926310fc02b4",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "LeftCam",
+                    "type": "Button",
+                    "id": "88c007b6-a59d-4193-b437-2182dbcbc862",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -257,6 +273,28 @@
                     "action": "OnMouseLeft",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "0b4e0be6-3b8e-4730-83e9-2f55a194184d",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f6173e7e-4bf9-4631-a7fa-4a03d52c13f5",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "LeftCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         },

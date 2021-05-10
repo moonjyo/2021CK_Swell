@@ -30,6 +30,15 @@ public class UIManager : MonoBehaviour
     private bool IsSettingMenu = false;
 
 
+    private void Awake()
+    {
+        GameObject Canvas = GameObject.Find("BaseUICanvas");
+        if (Canvas)
+        {
+            InterActionUICanvas = Canvas.GetComponent<Canvas>();
+        }
+    }
+
     private void Start()
     {
         Init();
@@ -95,5 +104,25 @@ public class UIManager : MonoBehaviour
             Obj.gameObject.SetActive(false);
         }
     }
-  
+    public void OnSecondInterActionUI()
+    {
+        foreach (var Objs in OnActiveSecondInterActionUI)
+        {
+            foreach(var obj in Objs.UISecondObjList)
+            {
+                obj.gameObject.SetActive(true);
+            }
+        }
+    }
+
+    public void OffSecondInterActionUI()
+    {
+        foreach (var Objs in OnActiveSecondInterActionUI)
+        {
+            foreach (var obj in Objs.UISecondObjList)
+            {
+                obj.gameObject.SetActive(false);
+            }
+        }
+    }
 }
