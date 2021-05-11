@@ -435,10 +435,8 @@ public class PlayerMove : MonoBehaviour
 
     public void InterActionUIPointDown(Rigidbody Targetrb)
     {
-        if (Targetrb != null)
+        if (Targetrb != null && !PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
         {
-
-
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.SetInterActionObj(Targetrb);
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(Targetrb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, Targetrb.transform.position.z), 0.5f).OnComplete(() =>
@@ -448,13 +446,15 @@ public class PlayerMove : MonoBehaviour
             Targetrb.constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionY;
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
         }
-
     }
 
     public void InterActionUIPointUp()
     {
-        PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
+        if (!InterActionUIPressed) 
+        {
+            PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
+        }
     }
    
 }

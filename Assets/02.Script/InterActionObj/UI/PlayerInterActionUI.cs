@@ -37,24 +37,29 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
 
     public void PointDown()
     {
-        PlayerManager.Instance.playerMove.IsInterActionItemPress = true;  
-       Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart &&  !PlayerManager.Instance.playerMove.InterActionUIPressed)
         {
-            PlayerManager.Instance.playerMove.InterActionUIPointDown(rb);
+            PlayerManager.Instance.playerMove.IsInterActionItemPress = true;
+            Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
+            if (rb != null && !PlayerManager.Instance.playerMove.InterActionUIPressed)
+            {
+                PlayerManager.Instance.playerMove.InterActionUIPointDown(rb);
+
+            }
+            Debug.Log("point down");
         }
     }
 
     public void PointUp()
     {
 
+        Debug.Log("point up");
         PlayerManager.Instance.playerMove.IsInterActionItemPress = false;
         PlayerManager.Instance.playerMove.InterActionUIPointUp();
-
     }
 
 
-    
+
     public GameObject GetTargetObj()
     {
         return gameObject;

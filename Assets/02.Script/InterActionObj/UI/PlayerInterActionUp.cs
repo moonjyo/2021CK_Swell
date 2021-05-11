@@ -43,7 +43,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
     public void ClimbingObj()
     {
         Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
-        if (rb != null)
+        if (rb != null) 
         {
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.3f).OnComplete(() =>
@@ -51,7 +51,6 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CROUNCH);
                 PlayerManager.Instance.playerMove.IsGravity = true;
                 PlayerManager.Instance.playerMove.ClimingJudge();
-            
             });
         }
     }
