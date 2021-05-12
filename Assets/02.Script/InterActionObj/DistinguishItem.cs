@@ -189,6 +189,23 @@ public class DistinguishItem : MonoBehaviour
 
         ProductionClickItem.TryGetValue("MSG_Lr_keyBrown_1", out GameObject go);
         GameManager.Instance.uiManager.uiInventory.GetItemIcon(go.GetComponent<PlayerInterActionObj>());
+    }
 
+    //=========================================================================================================//
+
+    public void InteractPhotoFrame(GameObject Obj) // 액자를 똑바로 조정했을 때
+    {
+        // 시계 분침이 바닥에 떨어진다.
+    }
+
+    public void ThrowInClock(GameObject Obj) // 시계에 분침을 꽂았을 때
+    {
+        // 시계의 분침을 setactive false 해놓았다가 true로 전환
+    }
+
+    public void AdjustFinishedMinutehand(GameObject Obj) // 시계의 시곗바늘을 맞추었을 때
+    {
+        // 벽난로의 불이 꺼진다.
+        // 벽난로 속의 재 사이에 반짝이는 것이 보인다.
     }
 }
