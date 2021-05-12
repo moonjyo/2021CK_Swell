@@ -222,7 +222,6 @@ public class PlayerMove : MonoBehaviour
         DirectionSelect();
         switch (PlayerManager.Instance.playerStatus.direction)
         {
-
             case PlayerDirection.Left:
                 transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
                 { InterActionUIPressed = false; });

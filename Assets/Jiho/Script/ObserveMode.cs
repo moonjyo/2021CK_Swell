@@ -54,12 +54,14 @@ public class ObserveMode : MonoBehaviour
         }
     }
 
+   
+
     void Update()
     {
         if(IsOnObserveMode && IsObjRotate)
         {
             RotateObj();
-            if(GO.name == "Pivot_zodiacclock(Clone)")
+            if(DivideRotateChildObj(GO.name))
             {
                 if(CheckClockHand())
                 {
@@ -110,27 +112,14 @@ public class ObserveMode : MonoBehaviour
         }
     }
 
-    public bool CheckClockHand()
+    public bool DivideRotateChildObj(string GoName)
     {
-        if (RotateChildObj == null)
-            return false;
-
-        if (RotateChildObj.transform.localEulerAngles.z <= 270.0f + 2.0f && RotateChildObj.transform.localEulerAngles.z >= 270.0f - 2.0f && RotateChildObj.name == "time")
-        {
-            IsReachTimeHand = true;
-        }
-        if (RotateChildObj.transform.localEulerAngles.z <= 239.0f + 2.0f && RotateChildObj.transform.localEulerAngles.z >= 239.0f - 2.0f && RotateChildObj.name == "minute")
-        {
-            IsReachMinuteHand = true;
-        }
-
-        if (IsReachTimeHand && IsReachMinuteHand)
+        if (GoName == "Pivot_zodiacclock(Clone)")
         {
             return true;
         }
-        else
-            return false;
-        
+
+        return false;
     }
 
     public void AddObserveItem(string Key, GameObject go)
@@ -250,14 +239,10 @@ public class ObserveMode : MonoBehaviour
             {
                 IsOnRotateChildObj = false;
                 return;
-            }
-
-           
+            }           
 
             IsOnRotateChildObj = true;
             RotateChildObj = hit.collider.gameObject;
-
-
 
             if (GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(GO.name, out Action<GameObject> value))
             {
@@ -266,5 +251,27 @@ public class ObserveMode : MonoBehaviour
         }
         else
             IsOnRotateChildObj = false;
+    }
+
+    public bool CheckClockHand()
+    {
+        if (RotateChildObj == null)
+            return false;
+
+        if (RotateChildObj.transform.localEulerAngles.z <= 270.0f + 2.0f && RotateChildObj.transform.localEulerAngles.z >= 270.0f - 2.0f && RotateChildObj.name == "time")
+        {
+            IsReachTimeHand = true;
+        }
+        if (RotateChildObj.transform.localEulerAngles.z <= 239.0f + 2.0f && RotateChildObj.transform.localEulerAngles.z >= 239.0f - 2.0f && RotateChildObj.name == "minute")
+        {
+            IsReachMinuteHand = true;
+        }
+
+        if (IsReachTimeHand && IsReachMinuteHand)
+        {
+            return true;
+        }
+        else
+            return false;
     }
 }

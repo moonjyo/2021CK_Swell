@@ -46,7 +46,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
         if (rb != null) 
         {
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
-            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.3f).OnComplete(() =>
+            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>
             {
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CROUNCH);
                 PlayerManager.Instance.playerMove.IsGravity = true;

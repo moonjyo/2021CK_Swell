@@ -37,11 +37,11 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637546403848764487
+  lastModified: 637564245842870663
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 970
+    Value: 1064
   Exists: 1
 --- !u!114 &-5539058353283648720
 MonoBehaviour:
@@ -58,10 +58,33 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637546403848774734
+  lastModified: 637564245843967732
   LoadResult: 0
   FileSizes: []
   Exists: 1
+--- !u!114 &-2547549036326527007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/testSound
+  m_EditorClassIdentifier: 
+  Path: event:/Player/testSound
+  guid: 96db6a8a2aa98343b346c41bc06acaf5
+  Banks:
+  - {fileID: -1759250838567322972}
+  IsStream: 0
+  Is3D: 1
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 0
 --- !u!114 &-1759250838567322972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,7 +100,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637546403848744545
+  lastModified: 637564245842790881
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -146,12 +169,14 @@ MonoBehaviour:
   EditorEvents:
   - {fileID: -4767378682329066}
   - {fileID: 4096609792511286029}
+  - {fileID: 7987026917941029653}
+  - {fileID: -2547549036326527007}
   EditorParameters: []
   MasterBanks:
   - {fileID: -1759250838567322972}
   StringsBanks:
   - {fileID: -7751762982320538542}
-  stringsBankWriteTime: 637546403848764487
+  stringsBankWriteTime: 637564245842870663
   cacheVersion: 6
 --- !u!114 &2819761305967116896
 MonoBehaviour:
@@ -189,6 +214,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/BgmTest
   guid: aee2bb1c286633499a758b2971a64daa
+  Banks:
+  - {fileID: -1759250838567322972}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters: []
+  MinDistance: 0
+  MaxDistance: 0
+  Length: 0
+--- !u!114 &7987026917941029653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/Player/test
+  m_EditorClassIdentifier: 
+  Path: event:/Player/test
+  guid: 17751b10e1552349bf96698a125fbe3f
   Banks:
   - {fileID: -1759250838567322972}
   IsStream: 0
