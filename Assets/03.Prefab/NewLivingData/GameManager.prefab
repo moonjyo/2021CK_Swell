@@ -4804,6 +4804,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88abdccf2028f0646a55c979688f132e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HourHandValue: -90
+  MinuteHandValue: -121
 --- !u!1 &7456002250313501438
 GameObject:
   m_ObjectHideFlags: 0
@@ -5396,7 +5398,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stageManager: {fileID: 7456002250869158742}
   uiManager: {fileID: 1242412133}
-  IsCutScene: 0
 --- !u!114 &7456002251400726334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6007,7 +6008,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5947914257366406060, guid: 9961c15ffd5d4444ea1bacb17a1c6523, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9961c15ffd5d4444ea1bacb17a1c6523, type: 3}
 --- !u!4 &5947914257520433935 stripped
 Transform:
