@@ -9,7 +9,7 @@ public class DistinguishItem : MonoBehaviour
     public Dictionary<string, Action<GameObject>> DistinguishItemDic = new Dictionary<string, Action<GameObject>>();
     // 연출될 옵젝과 클릭될 옵젝에 Tag를 지정하여 Tag가 있는 오브젝트만 찾은 뒤 Dictionary에 담아둔다? FindTag사용 오브젝트풀로 미리 생성?
     public Dictionary<string, GameObject> ProductionClickItem = new Dictionary<string, GameObject>(); // 연출할 아이템 담아두는 변수
-    public Dictionary<string, GameObject> ClickItem = new Dictionary<string, GameObject>(); // 클릭할 아이템 담아두는 변수
+    public Dictionary<string, GameObject> ClickGetItem = new Dictionary<string, GameObject>(); // 클릭할 아이템 담아두는 변수
 
     bool IsInWood = false;
     bool IsInMatchStick = false;
@@ -20,12 +20,19 @@ public class DistinguishItem : MonoBehaviour
 
     public void init()
     {
-        GameObject[] go = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
+        GameObject[] ProductionObject = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
 
-        for(int i =0; i < go.Length; i ++)
+        for(int i =0; i < ProductionObject.Length; i ++)
         {
-            ProductionClickItem.Add(go[i].name, go[i]);
+            ProductionClickItem.Add(ProductionObject[i].name, ProductionObject[i]);
         }
+
+        //GameObject[] ClickGetObject = GameObject.FindGameObjectsWithTag("ClickGetObject");
+
+        //for (int i = 0; i < ClickGetObject.Length; i++)
+        //{
+        //    ClickGetItem.Add(ClickGetObject[i].name, ClickGetObject[i]);
+        //}
 
         DistinguishItemDic.Add("MSG_Lr_lokerGreen_1", InteractGreenLocker); // 상호작용이 되는 오브젝트 이름을 키로잡음
         DistinguishItemDic.Add("MSG_Lr_ringcaseGreen_1(Clone)", ShowpasswordUI);

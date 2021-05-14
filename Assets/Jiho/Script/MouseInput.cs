@@ -56,6 +56,11 @@ public class MouseInput : MonoBehaviour
         {
             AfterVec = MoveInput;
         }
+        //Vector2 Difference = AfterVec - BeforeVec; 
+        //if(Difference.sqrMagnitude < 2.0f ) // 처음 MouseDown과 MonseUp의 포지션 오차값 조정? sqrMagnitude는 벡터 길이를 제곱한 값이므로 플레이해보며 체크
+        //{
+
+        //}
 
         if(AfterVec == BeforeVec)
             GameManager.Instance.uiManager.uiInventory.ob.SetClickInput(true);
