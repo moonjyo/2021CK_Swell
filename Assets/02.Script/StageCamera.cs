@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using DG.Tweening;
+using System;
 
 public class StageCamera : MonoBehaviour
 {
@@ -10,9 +11,13 @@ public class StageCamera : MonoBehaviour
     public CinemachineVirtualCamera BaseCam;
     [HideInInspector]
     public CinemachineTransposer transposer;
+    [HideInInspector]
+    public CinemachineComposer composer;
+
 
     public float OffsetSpeed = 2f;
 
+    private Action ActionMoveScreenFunc;
 
     public Vector3 LSideVec;
     public Vector3 RSideVec;
@@ -26,19 +31,21 @@ public class StageCamera : MonoBehaviour
         BaseCam.LookAt = PlayerManager.Instance.playerMove.Body_Tr;
        
         transposer = BaseCam.GetCinemachineComponent<CinemachineTransposer>();
+        composer = BaseCam.GetCinemachineComponent<CinemachineComposer>();
     }
 
-    public void GoToRSide()
+
+    public void MoveScreenX(float value , float time , Action EndFunc)
     {
-        IsLside = false;
-        DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, RSideVec, OffsetSpeed);
+        DOTween.To(() => composer.m_ScreenX, x => composer.m_ScreenX = x, value, time).OnComplete(() => { EndFunc?.Invoke(); });
     }
-    public void GoToLSide()
+    public void MoveScreenX(float value, float time)
     {
-        IsLside = true;
-        DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, LSideVec, OffsetSpeed);
+        DOTween.To(() => composer.m_ScreenX, x => composer.m_ScreenX = x, value, time);
     }
-    public void GoToBase()
+
+
+    public void MoveBasecamOffset()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, BaseVec, OffsetSpeed);
     }

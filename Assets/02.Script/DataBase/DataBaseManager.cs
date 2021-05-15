@@ -22,6 +22,7 @@ public class DataBaseManager : MonoBehaviour
         if (monologueData != null)
         {
             Init();
+            GameManager.Instance.uiManager.DialogueText.Init();
         }
     }
 

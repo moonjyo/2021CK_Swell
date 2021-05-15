@@ -19,11 +19,6 @@ public class MonologueText : MonoBehaviour
     public Vector3 OffsetPosVec;
 
 
-    private void Start()
-    {
-        Init();
-    }
-
     private void Update()
     {
         transform.position = CameraManager.Instance.MainCamera.WorldToScreenPoint(PlayerManager.Instance.playerMove.transform.position + new Vector3(OffsetPosVec.x, OffsetPosVec.y, OffsetPosVec.z));

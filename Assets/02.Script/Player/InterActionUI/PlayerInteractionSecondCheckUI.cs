@@ -15,38 +15,16 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         InterActionCheckIn(other);
-        CamActionCheckIn(other);
+      
     }
 
 
     private void OnTriggerExit(Collider other)
     {
         InterActionCheckOut(other);
-        CamActionCheckOut(other);
+            
     }
 
-
-    public void CamActionCheckIn(Collider other)
-    {
-        if ((1 << other.gameObject.layer & CameraActionLayer) != 0)
-        {
-            if(other.gameObject.CompareTag("RSideCol"))
-            {
-                CameraManager.Instance.StageCam.GoToRSide();
-            }
-            else
-            {
-                CameraManager.Instance.StageCam.GoToLSide();
-            }
-        }
-    }
-    public void CamActionCheckOut(Collider other)
-    {
-        if ((1 << other.gameObject.layer & CameraActionLayer) != 0)
-        {
-            CameraManager.Instance.StageCam.GoToBase();
-        }
-    }
     public void InterActionCheckIn(Collider other)
     {
         if ((1 << other.gameObject.layer & InterActionLayer) != 0)
@@ -62,7 +40,6 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
                 }
             }
         }
-
     }
 
     public void InterActionCheckOut(Collider other)

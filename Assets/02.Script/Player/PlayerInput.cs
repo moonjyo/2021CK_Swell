@@ -29,25 +29,30 @@ public class PlayerInput : MonoBehaviour
     {
         if (context.performed)
         {
-            if (GameManager.Instance.uiManager.DialogueText.IsNextDialogue)
-            {
-
-                if (GameManager.Instance.uiManager.DialogueText.TextCount  == GameManager.Instance.uiManager.DialogueText.CurrentDialogue.Length) //종료
-                {
-                    EndTalk();
-                    return;
-                }
-
-                GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
-                StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
-            }
+            NextDialogue();
         }
     }
 
+    public void NextDialogue()
+    {
+        if (GameManager.Instance.uiManager.DialogueText.IsNextDialogue)
+        {
+            if (GameManager.Instance.uiManager.DialogueText.TextStartCount >= GameManager.Instance.uiManager.DialogueText.TextEndCount) //종료
+            {
+                EndTalk();
+                return;
+            }
+
+            GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
+            StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
+        }
+    }
+
+
     public void EndTalk()
     {
+        CameraManager.Instance.StageCam.MoveScreenX(0.533f, 0f);
         GameManager.Instance.uiManager.DialogueText.gameObject.SetActive(false);
-        GameManager.Instance.uiManager.DialogueText.TextCount = 0;
         GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
     }
@@ -120,19 +125,5 @@ public class PlayerInput : MonoBehaviour
 
 
 
-    public void OnRightCam(InputAction.CallbackContext context)
-    {
-        if(context.performed)
-        {
-            CameraManager.Instance.StageCam.GoToRSide();
-        }
-    }
-    public void OnLeftCam(InputAction.CallbackContext context)
-    {
-        if (context.performed)
-        {
-            CameraManager.Instance.StageCam.GoToLSide();
-        }
-    }
 
 }

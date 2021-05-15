@@ -28,7 +28,9 @@ public class DialogueText : MonoBehaviour , IDialogueText
     public bool IsNextDialogue = false;
     public bool IsDialogue = false;
 
-    public int TextCount = 0;
+    public int TextStartCount = 0;
+
+    public int TextEndCount = 0;
 
     public TestNpcDialougeData dialoguedata;
 
@@ -39,50 +41,31 @@ public class DialogueText : MonoBehaviour , IDialogueText
     private Color ActiveTrueColor = new Color(1, 1, 1);
     private Color ActiveFalseColor = new Color(0.2830189f, 0.2830189f, 0.2830189f);
 
-    private void Start()
-    {
-        Init();
-    }
 
     public void Init()
     {
         gameObject.SetActive(false);
+        CurrentDialogue = DataBaseManager.Instance.monologueData.GetDialogoue();
     }
 
     public void ShowDialogue()
     {
         gameObject.SetActive(true);
+        StartCoroutine(SetText());
     }
 
     public IEnumerator SetText()
-    {   
+    {
         TMPOnNext.gameObject.SetActive(false);
-        TMPName.text = CurrentDialogue[TextCount].name;
-        TMPDialogue.text = CurrentDialogue[TextCount].context[0];
+        TMPName.text = CurrentDialogue[TextStartCount].name;
+        TMPDialogue.text = CurrentDialogue[TextStartCount].context[0];
         TMPDialogue.text = TMPDialogue.text.Replace("\\n", "\n"); //줄바꿈용
-        if(GameManager.Instance.uiManager.DialogueImageDicL.ContainsKey(CurrentDialogue[TextCount].TextureL))
+        if(GameManager.Instance.uiManager.DialogueImageDicL.ContainsKey(CurrentDialogue[TextStartCount].TextureL))
         {
-            StandingImageL.sprite = GameManager.Instance.uiManager.DialogueImageDicL[CurrentDialogue[TextCount].TextureL].sprite;
+            StandingImageL.sprite = GameManager.Instance.uiManager.DialogueImageDicL[CurrentDialogue[TextStartCount].TextureL].sprite;
         }
-        if (GameManager.Instance.uiManager.DialogueImageDicR.ContainsKey(CurrentDialogue[TextCount].TextureR))
-        {
-            StandingImageR.sprite = GameManager.Instance.uiManager.DialogueImageDicR[CurrentDialogue[TextCount].TextureR].sprite;
-        }
+   
 
-        if (CurrentDialogue[TextCount].CurrentTurn == "L") //말차례턴 정해
-        {
-            StandingImageL.color = ActiveTrueColor;
-            StandingImageR.color = ActiveFalseColor;
-            TalkTaleL.gameObject.SetActive(true);
-            TalkTaleR.gameObject.SetActive(false);
-        }
-        else
-        {
-            StandingImageR.color = ActiveTrueColor;
-            StandingImageL.color = ActiveFalseColor; 
-            TalkTaleL.gameObject.SetActive(false);
-            TalkTaleR.gameObject.SetActive(true);
-        }
         gameObject.SetActive(true); 
 
         DialogueDoText(TMPDialogue, ShowTimeSecond);
@@ -96,7 +79,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
         a_text.maxVisibleCharacters = 0;
         DOTween.To(x => a_text.maxVisibleCharacters = (int)x, 0f, a_text.text.Length, a_duration).OnComplete(() => {
             IsNextDialogue = true;
-            ++TextCount; 
+            ++TextStartCount; 
             TMPOnNext.gameObject.SetActive(true);
         });
     }
@@ -108,6 +91,13 @@ public class DialogueText : MonoBehaviour , IDialogueText
         CurrentDialogue = dialoguedata.GetDialogoue();
         ShowDialogue();
         StartCoroutine(SetText());
+    }
+
+
+    public void DialogueCount(int startcount , int endCount)
+    {
+        TextStartCount = startcount;
+        TextEndCount = endCount;
     }
 
 
