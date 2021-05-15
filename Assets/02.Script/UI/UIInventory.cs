@@ -190,8 +190,12 @@ public class UIInventory : UIView
         ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // Object의 이미지 출력
         //ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = Object.InventoryIcon;
 
-
         ItemImageIcon[ItemIconData.Count - 1].HaveItem = Object;
+
+        //if(Distinguish.DistinguishItemDic.TryGetValue(Object.name, out Action<GameObject> Method))
+        //{
+        //    Method(Object);
+        //}
 
         StartCoroutine(WaitForGetItem());
         
