@@ -180,14 +180,14 @@ public class PlayerMove : MonoBehaviour
     {
         Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
 
-        if (!CameraManager.Instance.StageCam.IsLside)
-        {
-            WalkMove = new Vector3(WalkMove.y, 0, WalkMove.z);
-        }
-        else
-        {
-            WalkMove = new Vector3(-WalkMove.y, 0, WalkMove.z);
-        }
+        //if (!CameraManager.Instance.StageCam.IsLside)
+        //{
+        //    WalkMove = new Vector3(WalkMove.y, 0, WalkMove.z);
+        //}
+        //else
+        //{
+        //    WalkMove = new Vector3(-WalkMove.y, 0, WalkMove.z);
+        //}
 
 
         if (IsGrounded())
