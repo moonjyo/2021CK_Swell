@@ -220,6 +220,10 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_Lr_clock_1", out GameObject ClockObj))
         {
             ClockObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            //ClockObj.gameObject.layer = 0;
+            
+            ClockObj.GetComponent<BoxCollider>().enabled = false;
+           
         }
 
         if (ProductionClickItem.TryGetValue("Sphere", out GameObject BallObj))
@@ -228,8 +232,9 @@ public class DistinguishItem : MonoBehaviour
         }
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        GameManager.Instance.uiManager.OffSecondInterActionUI();
 
-     
+
 
 
     }
