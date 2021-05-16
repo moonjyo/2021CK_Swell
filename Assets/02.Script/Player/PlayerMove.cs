@@ -372,6 +372,7 @@ public class PlayerMove : MonoBehaviour
         {
               if (!IsGrounded())
               {
+                Debug.Log("down");
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.DOWN);
               }
               else
@@ -454,7 +455,7 @@ public class PlayerMove : MonoBehaviour
         if (!InterActionUIPressed) 
         {
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         }
     }
    

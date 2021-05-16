@@ -32,8 +32,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
     }
     public void Interact()
     {
-        Debug.Log("interactOn Observer");
-
+        TargetObj.GetComponent<IInteractbale>().InterAct();
     }
     public GameObject GetTargetObj()
     {
