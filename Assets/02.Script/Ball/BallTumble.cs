@@ -71,7 +71,7 @@ public class BallTumble : MonoBehaviour , IInteractbale
     private void FixedUpdate()
     {
         fTime += Time.fixedDeltaTime;
-        if (fTime < 3.5f)
+        if (fTime < 4.1f)
         {
             rigidBody.AddForce(movement * 10.0f);
         }
