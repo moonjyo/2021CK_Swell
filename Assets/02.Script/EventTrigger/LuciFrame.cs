@@ -20,14 +20,12 @@ public class LuciFrame : MonoBehaviour , IEventTrigger
 
 
 
-        yield return new WaitForSeconds(0.5f);
-        FrameAnim.SetTrigger("InterActionOn");
-
-        yield return new WaitForSeconds(0.3f);
-
+        yield return new WaitForSeconds(0.7f);
         GameManager.Instance.uiManager.DialogueText.DialogueCount(4, 6);
         Action act = GameManager.Instance.uiManager.DialogueText.ShowDialogue;
         CameraManager.Instance.StageCam.MoveScreenX(0.2f, 3f, act);
+        yield return new WaitForSeconds(1.8f);
+        FrameAnim.SetTrigger("InterActionOn");
     }
 
     public bool SetOnTrigger(bool IsOnTrigger)

@@ -14,6 +14,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public bool IsWatch;
     public bool IsRotate;
 
+    public bool IsInterAction = false;
+
     public Sprite InventoryIcon; // 이 아이템의 아이콘
 
     public Vector3 SizeObj;
@@ -62,6 +64,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     //자신에게 할당된 ui를 생성해주는 부분 
     private void Start()
     {
+        IsInterAction = true;
         ItemKey = this.gameObject.name;
 
         //GameManager.Instance.uiManager.uiInventory.OnDistingush += TestCheck;
@@ -76,11 +79,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             target.SetTargetObj(transform.gameObject);
             target.SetTargetCanvas(GameManager.Instance.uiManager.InterActionUICanvas);
             target.Init();
-
-            if (UIFirstObj == null)
-            {
-                UIFirstObj = Targetobj.GetComponent<FirstInterActionUI>();
-            }
 
             
             if (Targetobj.CompareTag("SecondInterActionUI"))
@@ -98,6 +96,15 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public void PurpleKey(GameObject gameObject)
     {
         Debug.Log("Open PurpleLoker");
+    }
+    public List<GameObject> GetUIObjList()
+    {
+        return UISecondObjList;
+    }
+
+    public bool IsGetInterAction()
+    {
+        return IsInterAction;
     }
 
     //public void TestCheck(PlayerInterActionObj Obj)

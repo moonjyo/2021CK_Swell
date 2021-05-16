@@ -8,8 +8,6 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
     public Canvas Parentcanvas;
     private bool IsInit = false;
     public Vector3 OffsetVec;
-
-
     private void Update()
     {
         if (IsInit)

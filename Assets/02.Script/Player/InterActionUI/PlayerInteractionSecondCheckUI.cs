@@ -9,7 +9,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
     [SerializeField]
     private LayerMask CameraActionLayer;
 
-    private PlayerInterActionObj TargetObj = null;
+    private IInteractbale TargetObj = null;
 
 
     private void OnTriggerEnter(Collider other)
@@ -29,7 +29,7 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & InterActionLayer) != 0)
         {
-            TargetObj = other.GetComponent<PlayerInterActionObj>();
+            TargetObj = other.GetComponent<IInteractbale>();
             if (TargetObj != null)
             {
                 TargetObj.SecondInteractOn(); //현재 충돌된 interaction 에 second ui 들 on 
@@ -46,9 +46,12 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
     {
         if ((1 << other.gameObject.layer & InterActionLayer) != 0)
         {
-            TargetObj = other.GetComponent<PlayerInterActionObj>();
+            
+            TargetObj = other.GetComponent<IInteractbale>();
             if (TargetObj != null)
             {
+
+                PlayerManager.Instance.playerMove.InterActionUIPointUp();
                 TargetObj.SecondInteractOff(); // 충돌된 second off 
 
 

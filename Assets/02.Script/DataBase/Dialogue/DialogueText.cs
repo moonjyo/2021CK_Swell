@@ -45,7 +45,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
     public void Init()
     {
         gameObject.SetActive(false);
-        CurrentDialogue = DataBaseManager.Instance.monologueData.GetDialogoue();
+        CurrentDialogue = DataBaseManager.Instance.dialogueData.GetDialogoue();
     }
 
     public void ShowDialogue()

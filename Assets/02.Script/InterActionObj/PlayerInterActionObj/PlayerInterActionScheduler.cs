@@ -12,6 +12,8 @@ public class PlayerInterActionScheduler : MonoBehaviour  , IInteractbale
     public bool IsWatch;
     public bool IsRotate;
 
+    public bool IsInterAction = false;
+
     public Sprite InventoryIcon; // 이 아이템의 아이콘
 
     public Vector3 SizeObj;
@@ -43,7 +45,10 @@ public class PlayerInterActionScheduler : MonoBehaviour  , IInteractbale
         GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
         GameManager.Instance.uiManager.IsOnFirstInterActionUI = false;
     }
-
+    public List<GameObject> GetUIObjList()
+    {
+        return UISecondObjList;
+    }
 
     [SerializeField]
     private GameObject[] Objs;
@@ -83,7 +88,13 @@ public class PlayerInterActionScheduler : MonoBehaviour  , IInteractbale
             {
                 UISecondObjList.Add(Targetobj);
             }
+
+
         }
     }
 
+    public bool IsGetInterAction()
+    {
+        return IsInterAction;
+    }
 }

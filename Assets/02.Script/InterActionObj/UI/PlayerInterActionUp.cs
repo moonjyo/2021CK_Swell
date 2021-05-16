@@ -34,7 +34,6 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
       
         if (!PlayerManager.Instance.playerMove.InterActionUIPressed)
         {
-            PlayerManager.Instance.playerMove.InterActionUIPressed = true;
             ClimbingObj();
             Debug.Log("click");
         }
@@ -42,9 +41,12 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
 
     public void ClimbingObj()
     {
+
         Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
-        if (rb != null) 
+        IInteractbale inter = TargetObj.GetComponent<IInteractbale>();
+        if (rb != null && inter.IsGetInterAction())
         {
+            PlayerManager.Instance.playerMove.InterActionUIPressed = true;
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>
             {
@@ -52,6 +54,16 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
                 PlayerManager.Instance.playerMove.IsGravity = true;
                 PlayerManager.Instance.playerMove.ClimingJudge();
             });
+        }
+        else
+        {
+            
+            GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[0].context);
+            
+            GameManager.Instance.uiManager.monologueText.ShowMonologue();
+                
+            
+            Debug.Log("서랍을 더 열어야 올라 갈 수 있을거 같아.");
         }
     }
 

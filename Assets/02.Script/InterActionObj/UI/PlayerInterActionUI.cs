@@ -54,7 +54,6 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
     {
 
         Debug.Log("point up");
-        PlayerManager.Instance.playerMove.IsInterActionItemPress = false;
         PlayerManager.Instance.playerMove.InterActionUIPointUp();
     }
 

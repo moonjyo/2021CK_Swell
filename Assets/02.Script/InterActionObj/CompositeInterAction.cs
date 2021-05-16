@@ -6,6 +6,11 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
 {
     [SerializeField] private List<GameObject> InterActableGameObjects;
 
+    public bool IsInterAction = false;
+    public List<GameObject> GetUIObjList()
+    {
+        throw new System.NotImplementedException();
+    }
 
     public void Interact()
     {
@@ -26,5 +31,10 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
     public void SecondInteractOn()
     {
         throw new System.NotImplementedException();
+    }
+
+    public bool IsGetInterAction()
+    {
+        return IsInterAction;
     }
 }

@@ -33,7 +33,6 @@ public class MonologueText : MonoBehaviour
 
     public void ShowMonologue()
     {
-       
         gameObject.SetActive(true);
         MonologueDoText(TMPText, ShowTimeSecond);
     }
@@ -53,4 +52,6 @@ public class MonologueText : MonoBehaviour
     {
         TMPText.SetText(value[0]);
     }
+
+    
 }

@@ -12,6 +12,7 @@ public class DataBaseManager : MonoBehaviour
     public SoundData SoundData;
 
     public MonologueData monologueData;
+    public DialogueData dialogueData;
 
     private void Awake()
     {
@@ -41,5 +42,6 @@ public class DataBaseManager : MonoBehaviour
     public void Init()
     {
         monologueData.Init();
+        dialogueData.Init();
     }
 }

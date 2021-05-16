@@ -450,6 +450,7 @@ public class PlayerMove : MonoBehaviour
 
     public void InterActionUIPointUp()
     {
+        PlayerManager.Instance.playerMove.IsInterActionItemPress = false;
         if (!InterActionUIPressed) 
         {
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();

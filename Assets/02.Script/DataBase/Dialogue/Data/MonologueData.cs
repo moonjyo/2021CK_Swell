@@ -25,7 +25,6 @@ public class MonologueData : MonoBehaviour, IDialogue
         Dialogue[] dialogues = DataBaseManager.Instance.DialogueParser.Parse(GetDialogueFileName);
         for (int i = 0; i < dialogues.Length; ++i)
         {
-
             if (!dialogueDic.ContainsKey(i+1))
             {
                 dialogueDic.Add(i + 1, dialogues[i]);
@@ -66,5 +65,5 @@ public class MonologueData : MonoBehaviour, IDialogue
     {
         DialgoueName = value;
     }
-
+        
 }

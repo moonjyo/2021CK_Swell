@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     public UIRingCasePassword uiRingCasePassword;
 
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
-    public List<PlayerInterActionObj> OnActiveSecondInterActionUI = new List<PlayerInterActionObj>(); //first ui obj list 
+    public List<IInteractbale> OnActiveSecondInterActionUI = new List<IInteractbale>(); //first ui obj list 
     public List<Image> AllImageList= new List<Image>(); //first ui obj list 
 
     public Dictionary<string, Image> DialogueImageDicL = new Dictionary<string, Image>();
@@ -108,7 +108,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (var Objs in OnActiveSecondInterActionUI)
         {
-            foreach(var obj in Objs.UISecondObjList)
+            foreach(var obj in Objs.GetUIObjList())
             {
                 obj.gameObject.SetActive(true);
             }
@@ -119,7 +119,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (var Objs in OnActiveSecondInterActionUI)
         {
-            foreach (var obj in Objs.UISecondObjList)
+            foreach (var obj in Objs.GetUIObjList())
             {
                 obj.gameObject.SetActive(false);
             }
