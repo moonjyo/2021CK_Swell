@@ -37,4 +37,9 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
     {
         return IsInterAction;
     }
+
+    public void InterAct()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -23,6 +23,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     //public PlayerInterActionObj InteractObj;
     public string InteractObjKey;
 
+    public Animator InterActAnim;
+
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -105,6 +107,11 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     public bool IsGetInterAction()
     {
         return IsInterAction;
+    }
+
+    public void InterAct()
+    {
+        InterActAnim.SetTrigger("InterActionOff");
     }
 
     //public void TestCheck(PlayerInterActionObj Obj)

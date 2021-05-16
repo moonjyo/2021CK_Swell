@@ -7,8 +7,10 @@ public interface IInteractbale
   void SecondInteractOff();
 
 
-    bool IsGetInterAction();
-    List<GameObject> GetUIObjList();
+  bool IsGetInterAction();
+  List<GameObject> GetUIObjList();
+
+    void InterAct();
 
 }
 

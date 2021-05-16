@@ -97,4 +97,9 @@ public class PlayerInterActionScheduler : MonoBehaviour  , IInteractbale
     {
         return IsInterAction;
     }
+
+    public void InterAct()
+    {
+        throw new NotImplementedException();
+    }
 }
