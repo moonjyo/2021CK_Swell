@@ -37,7 +37,7 @@ public class PlayerInput : MonoBehaviour
     {
         if (GameManager.Instance.uiManager.DialogueText.IsNextDialogue)
         {
-            if (GameManager.Instance.uiManager.DialogueText.TextStartCount >= GameManager.Instance.uiManager.DialogueText.TextEndCount) //종료
+             if (GameManager.Instance.uiManager.DialogueText.TextStartCount >= GameManager.Instance.uiManager.DialogueText.TextEndCount) //종료
             {
                 EndTalk();
                 return;

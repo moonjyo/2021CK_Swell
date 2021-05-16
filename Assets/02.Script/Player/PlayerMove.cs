@@ -179,7 +179,8 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseWalk()
     {
-        Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
+
+       Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
 
         //if (!CameraManager.Instance.StageCam.IsLside)
         //{
@@ -377,7 +378,10 @@ public class PlayerMove : MonoBehaviour
               }
               else
               {
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+                if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
+                {
+                    PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+                }
               }
               //hashflag  포함되어있는지 확인 
               if (MoveFunction != null)

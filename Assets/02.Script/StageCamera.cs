@@ -19,8 +19,7 @@ public class StageCamera : MonoBehaviour
 
     private Action ActionMoveScreenFunc;
 
-    public Vector3 LSideVec;
-    public Vector3 RSideVec;
+    public Vector3 FirePlaceVec;
     public Vector3 BaseVec;
 
     public bool IsLside = false;
@@ -48,5 +47,10 @@ public class StageCamera : MonoBehaviour
     public void MoveBasecamOffset()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, BaseVec, OffsetSpeed);
+    }
+
+    public void MoveFirePlaceOffset()
+    {
+        DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, FirePlaceVec, OffsetSpeed);
     }
 }

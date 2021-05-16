@@ -43,6 +43,7 @@ public class MonologueText : MonoBehaviour
         a_text.maxVisibleCharacters = 0;
         DOTween.To(x => a_text.maxVisibleCharacters = (int)x, 0f, a_text.text.Length, a_duration).OnComplete(() => {
             gameObject.SetActive(false);
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         });
     }
 

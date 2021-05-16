@@ -12,6 +12,11 @@ public enum AnimState
     DOWN = 6,
     GETITEM = 7,
     HOLD = 8,
+    FRAME = 9,
+    CRAWL = 10,
+    PICKUPDOWN = 11,
+    LOOKAROUND = 12,
+
     CANCEL = -1,
 
 }
@@ -62,6 +67,18 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PlayerManager.Instance.playerMove.IsGravity = false;
         IsAnimStart = false;
+    }
+
+
+    public void FrameStart()
+    {
+        IsAnimStart = true;
+    }
+
+    public void FrameEnd()
+    {
+        IsAnimStart = false;
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
     }
 
 }

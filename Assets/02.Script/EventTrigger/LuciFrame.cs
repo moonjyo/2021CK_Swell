@@ -7,6 +7,7 @@ public class LuciFrame : MonoBehaviour , IEventTrigger
 {
     public bool IsOnTrigger = false;
 
+    public bool IsLuciFrame = false;
     public GameObject DogSound;
     public Animator FrameAnim;
 
@@ -18,8 +19,6 @@ public class LuciFrame : MonoBehaviour , IEventTrigger
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
 
-
-
         yield return new WaitForSeconds(0.7f);
         GameManager.Instance.uiManager.DialogueText.DialogueCount(4, 6);
         Action act = GameManager.Instance.uiManager.DialogueText.ShowDialogue;
@@ -30,6 +29,7 @@ public class LuciFrame : MonoBehaviour , IEventTrigger
 
     public bool SetOnTrigger(bool IsOnTrigger)
     {
+
         return IsOnTrigger;
     }
 

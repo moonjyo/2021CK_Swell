@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public StageManager stageManager;
     public UIManager uiManager;
 
+    public TimeLineController timeLine;
 
     private void Awake()
     {

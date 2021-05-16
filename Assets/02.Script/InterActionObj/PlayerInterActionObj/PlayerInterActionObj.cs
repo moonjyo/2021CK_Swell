@@ -25,6 +25,10 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public Animator InterActAnim;
 
+    public LuciFrame luciFrame;
+
+
+    private bool IsFrameStart;
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -111,7 +115,13 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public void InterAct()
     {
+        if (!IsFrameStart)
+        {
+            IsFrameStart = true;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
+        }
         InterActAnim.SetTrigger("InterActionOff");
+        luciFrame.IsLuciFrame = true;
     }
 
     //public void TestCheck(PlayerInterActionObj Obj)

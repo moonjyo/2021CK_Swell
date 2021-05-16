@@ -130,6 +130,8 @@ public class BallTumble : MonoBehaviour , IInteractbale
 
     public void InterAct()
     {
-        
+        GameManager.Instance.timeLine.Play("FirePlace");
+        SecondInteractOff();
+        gameObject.SetActive(false);
     }
 }
