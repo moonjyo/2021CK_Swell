@@ -12,7 +12,7 @@ public class UIInventory : UIView
 {
     public GameObject InventoryPanel;
     
-    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[7];
+    public UIInventoryElement[] ItemImageIcon = new UIInventoryElement[3];
     List<PlayerInterActionObj> ItemIconData = new List<PlayerInterActionObj>();
     [HideInInspector]
     public UIInventoryElement CurrentItemIcon;
@@ -72,7 +72,7 @@ public class UIInventory : UIView
         IsInventoryWindowOpen = true;
         //InventoryPanel.transform.DOMoveY(InventoryMovePosY, 0.5f);
         //InventoryPanel.GetComponent<RectTransform>().DOMoveY(1080, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(0f, 0.2f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosX(0f, 0.2f);
     }
 
     public void ExitInventoryWindow()
@@ -89,7 +89,7 @@ public class UIInventory : UIView
     IEnumerator WaitForExitInventory()
     {
         //InventoryPanel.gameObject.GetComponent<RectTransform>().DOMoveY(1208f, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosY(128.0f, 0.2f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosX(-155.0f, 0.2f);
         yield return new WaitForSeconds(0.4f);
         IsInventoryWindowOpen = false;
         //InventoryPanel.SetActive(false);
@@ -178,7 +178,7 @@ public class UIInventory : UIView
 
     public void GetItemIcon(PlayerInterActionObj Object) // 아이템을 얻었을 때
     {
-        if(ItemIconData.Count >= 7)
+        if(ItemIconData.Count >= 3)
         {
             return;
         }

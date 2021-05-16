@@ -25,6 +25,10 @@ public class DistinguishItem : MonoBehaviour
         for(int i =0; i < ProductionObject.Length; i ++)
         {
             ProductionClickItem.Add(ProductionObject[i].name, ProductionObject[i]);
+            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "Sphere")
+            {
+                ProductionObject[i].SetActive(false);
+            }
         }
 
         //GameObject[] ClickGetObject = GameObject.FindGameObjectsWithTag("ClickGetObject");
@@ -41,7 +45,7 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("Pivot_woodstorage(Clone)", ClickWood);
         DistinguishItemDic.Add("MSG_Lr_fireplace_1", InteractFirePlace);
 
-        DistinguishItemDic.Add("MSG_Lr_clock_1", ThrowInClock);
+        DistinguishItemDic.Add("MSG_Lr_clock_1(Clone)", ThrowInClock);
 
         DistinguishItemDic.Add("MSG_Lr_lokerPurple_1", InteractPurpleLocker);
 
@@ -208,6 +212,31 @@ public class DistinguishItem : MonoBehaviour
     public void ThrowInClock(GameObject Obj) // 시계에 분침을 꽂았을 때
     {
         // 시계의 분침을 setactive false 해놓았다가 true로 전환
+        if(ProductionClickItem.TryGetValue("Plane012 (1)", out GameObject MinuteHand))
+        {
+            MinuteHand.SetActive(true);
+        }
+
+        if(ProductionClickItem.TryGetValue("MSG_Lr_clock_1", out GameObject ClockObj))
+        {
+            ClockObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            //ClockObj.gameObject.layer = 0;
+            
+            ClockObj.GetComponent<BoxCollider>().enabled = false;
+           
+        }
+
+        if (ProductionClickItem.TryGetValue("Sphere", out GameObject BallObj))
+        {
+            BallObj.SetActive(true);
+        }
+
+        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        GameManager.Instance.uiManager.OffSecondInterActionUI();
+
+
+
+
     }
 
     public void GetBall(GameObject Obj) // 공을 주웠을 때

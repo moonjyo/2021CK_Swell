@@ -143,14 +143,14 @@ public class ObserveMode : MonoBehaviour
         {
             GO = Instantiate(go, CameraManager.Instance.ObserveCamera.transform.position + CameraManager.Instance.ObserveCamera.transform.forward, Quaternion.identity);
             GO.gameObject.layer = 18;
-            GO.GetComponent<BoxCollider>().enabled = false;
+            //GO.GetComponent<BoxCollider>().enabled = false;
             Transform[] GOArray = GO.GetComponentsInChildren<Transform>();
             foreach (Transform Object in GOArray)
             {
                 Object.gameObject.layer = 18;
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
-            GO.transform.forward = CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position;
+            GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
             GO.SetActive(true);
             if(!go.GetComponent<PlayerInterActionObj>().IsRotate)
             {
