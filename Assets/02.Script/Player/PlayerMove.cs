@@ -47,6 +47,8 @@ public class PlayerMove : MonoBehaviour
 
     public Vector2 ClimingOffsetVec;
 
+    public Vector2 DownOffsetVec;
+
     public bool InterActionUIPressed = false;
 
     public PlayerData playerData;
@@ -256,6 +258,47 @@ public class PlayerMove : MonoBehaviour
             case PlayerDirection.BottomRight:
                 transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y,
                     -ClimingOffsetVec.x), 1f).OnComplete(() =>
+                    { InterActionUIPressed = false; });
+                break;
+        }
+    }
+
+    public void ClimingJudgeDown()
+    {
+        DirectionSelect();
+        switch (PlayerManager.Instance.playerStatus.direction)
+        {
+            case PlayerDirection.Left:
+                transform.DOMove(transform.position - new Vector3(0, DownOffsetVec.y, DownOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
+                break;
+            case PlayerDirection.Right:
+                transform.DOMove(transform.position - new Vector3(0, DownOffsetVec.y, -DownOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
+                break;
+            case PlayerDirection.Bottom:
+                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y, 0), 1f)
+                    .OnComplete(() => { InterActionUIPressed = false; }); ;
+                break;
+            case PlayerDirection.Top:
+                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, 0), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
+                break;
+            case PlayerDirection.TopLeft:
+                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
+                break;
+            case PlayerDirection.TopRight:
+                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, -DownOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
+                break;
+            case PlayerDirection.BottomLeft:
+                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 1f).OnComplete(() =>
+                { InterActionUIPressed = false; });
+                break;
+            case PlayerDirection.BottomRight:
+                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y,
+                    -DownOffsetVec.x), 1f).OnComplete(() =>
                     { InterActionUIPressed = false; });
                 break;
         }
