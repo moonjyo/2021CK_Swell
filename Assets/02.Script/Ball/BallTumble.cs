@@ -38,6 +38,11 @@ public class BallTumble : MonoBehaviour, IInteractbale
     public List<GameObject> UISecondObjList = new List<GameObject>();
     public FirstInterActionUI UIFirstObj;
 
+    void Awake()
+    {
+        this.gameObject.GetComponent<FMODUnity.StudioEventEmitter>().enabled = false;
+    }
+
     void Start()
     {
         rigidBody = GetComponent<Rigidbody>();

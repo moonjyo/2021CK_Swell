@@ -233,6 +233,7 @@ public class DistinguishItem : MonoBehaviour
         if (ProductionClickItem.TryGetValue("Sphere", out GameObject BallObj)) // 테니스 공 찾아옴
         {
             BallObj.SetActive(true);
+            BallObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
         }
 
         if (ProductionClickItem.TryGetValue("MSG_Lr_fireplace_1 (1)", out GameObject firePlace)) // 테니스 공 찾아옴
