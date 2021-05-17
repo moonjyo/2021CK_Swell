@@ -113,7 +113,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         return IsInterAction;
     }
 
-    public void InterAct()
+    public IEnumerator InterAct()
     {
         if (!IsFrameStart)
         {
@@ -121,7 +121,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
         }
         InterActAnim.SetTrigger("InterActionOff");
-        luciFrame.IsLuciFrame = true;
+        GameManager.Instance.eventCommand.IsLuciFrame = true;
+
+         yield break;
     }
 
     //public void TestCheck(PlayerInterActionObj Obj)

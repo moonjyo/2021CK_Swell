@@ -42,4 +42,9 @@ public class CompositeInterAction : MonoBehaviour, IInteractbale
     {
         throw new System.NotImplementedException();
     }
+
+    IEnumerator IInteractbale.InterAct()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BallTumble : MonoBehaviour , IInteractbale
+public class BallTumble : MonoBehaviour, IInteractbale
 {
     Rigidbody rigidBody;
     Vector3 movement;
@@ -81,7 +81,7 @@ public class BallTumble : MonoBehaviour , IInteractbale
             gameObject.layer = 17;
         }
     }
-   
+
 
     public void SecondInteractOn()
     {
@@ -128,8 +128,12 @@ public class BallTumble : MonoBehaviour , IInteractbale
         return IsInterAction;
     }
 
-    public void InterAct()
+
+    public IEnumerator InterAct()
     {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
+
+        yield return new WaitForSeconds(1.4f);
         GameManager.Instance.timeLine.Play("FirePlace");
         SecondInteractOff();
         gameObject.SetActive(false);

@@ -102,4 +102,9 @@ public class PlayerInterActionScheduler : MonoBehaviour  , IInteractbale
     {
         throw new NotImplementedException();
     }
+
+    IEnumerator IInteractbale.InterAct()
+    {
+        throw new NotImplementedException();
+    }
 }

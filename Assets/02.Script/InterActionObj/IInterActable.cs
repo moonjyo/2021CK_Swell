@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public interface IInteractbale 
 {
@@ -10,7 +11,7 @@ public interface IInteractbale
   bool IsGetInterAction();
   List<GameObject> GetUIObjList();
 
-    void InterAct();
+    IEnumerator InterAct();
 
 }
 
