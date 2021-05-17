@@ -21,16 +21,18 @@ public class StageCamera : MonoBehaviour
 
     public Vector3 FirePlaceVec;
     public Vector3 BaseVec;
+    public Vector3 BaseTrackedOffsetVec;
+    public Vector3 FireTrackedOffsetVec;
 
     public bool IsLside = false;
 
     public void Init()
     {
         BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
-        BaseCam.LookAt = PlayerManager.Instance.playerMove.Body_Tr;
-       
-        transposer = BaseCam.GetCinemachineComponent<CinemachineTransposer>();
+
         composer = BaseCam.GetCinemachineComponent<CinemachineComposer>();
+        transposer = BaseCam.GetCinemachineComponent<CinemachineTransposer>();
+     
     }
 
 
@@ -48,9 +50,20 @@ public class StageCamera : MonoBehaviour
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, BaseVec, OffsetSpeed);
     }
+    public void MoveBaseTrackedOffset()
+    {
+        DOTween.To(() => composer.m_TrackedObjectOffset, x => composer.m_TrackedObjectOffset = x, BaseTrackedOffsetVec, OffsetSpeed);
+    }
 
     public void MoveFirePlaceOffset()
     {
         DOTween.To(() => transposer.m_FollowOffset, x => transposer.m_FollowOffset = x, FirePlaceVec, OffsetSpeed);
     }
+
+    public void MoveFireTrackedOffset()
+    {
+
+        DOTween.To(() => composer.m_TrackedObjectOffset, x => composer.m_TrackedObjectOffset = x, FireTrackedOffsetVec, OffsetSpeed);
+    }
+
 }

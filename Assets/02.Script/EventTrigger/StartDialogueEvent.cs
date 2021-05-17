@@ -14,10 +14,6 @@ public class StartDialogueEvent : MonoBehaviour, IEventTrigger
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
     }
 
-    public bool SetOnTrigger(bool OnTrigger)
-    {
-       return IsOnTrigger = OnTrigger;
-    }
 
 
     private void OnTriggerEnter(Collider other)

@@ -127,4 +127,9 @@ public class PlayerInterActionShelf : MonoBehaviour , IInteractbale
     {
         throw new System.NotImplementedException();
     }
+
+    IEnumerator IInteractbale.InterAct()
+    {
+        throw new System.NotImplementedException();
+    }
 }

@@ -32,7 +32,7 @@ public class FirstInterActionUI : MonoBehaviour, IInteractableUI
     }
     public void Interact()
     {
-        TargetObj.GetComponent<IInteractbale>().InterAct();
+        StartCoroutine(TargetObj.GetComponent<IInteractbale>().InterAct());
     }
     public GameObject GetTargetObj()
     {

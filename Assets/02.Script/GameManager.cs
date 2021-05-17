@@ -11,6 +11,8 @@ public class GameManager : MonoBehaviour
 
     public TimeLineController timeLine;
 
+    public EventCommand eventCommand;
+
     private void Awake()
     {
         SingletonInit();

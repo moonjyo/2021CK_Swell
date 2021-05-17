@@ -4,8 +4,9 @@ using System.Collections;
 using DG.Tweening;
 public class PuzzleSolve : MonoBehaviour , IEventTrigger
 {
-    public  LuciFrame luciFrame;
     public bool IsOnTrigger = false;
+    public bool IsLuciFrame = false;
+
 
     public void EventOn()
     {
@@ -23,7 +24,7 @@ public class PuzzleSolve : MonoBehaviour , IEventTrigger
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !luciFrame.IsLuciFrame)
+        if (other.CompareTag("Player") && !GameManager.Instance.eventCommand.IsLuciFrame)
         {
             EventOn();
         }

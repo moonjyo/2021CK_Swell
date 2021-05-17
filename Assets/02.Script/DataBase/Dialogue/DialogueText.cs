@@ -69,8 +69,8 @@ public class DialogueText : MonoBehaviour , IDialogueText
         gameObject.SetActive(true); 
 
         DialogueDoText(TMPDialogue, ShowTimeSecond);
-    
-        yield return new WaitForSeconds(0f);
+
+        yield break;
     }
 
     //TMP 지원은 Dotween에서 유로사용해야 DoText를 지원해주기 떄문에 임시로 만듬
