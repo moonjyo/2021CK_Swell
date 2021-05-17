@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 7025d0701b1e6914c913c4f0419c91b6,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -7868,11 +7868,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1010444932, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1686570997, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2051672543301750880, guid: 627a4ae317dedf145955a442504c7c42,
         type: 3}
@@ -18290,10 +18290,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1708504140}
     m_Modifications:
-    - target: {fileID: 1017680014, guid: 0d49a1aa11715e54cb0f96bccba66a7d, type: 3}
-      propertyPath: MonologueKey
-      value: Shelf
-      objectReference: {fileID: 0}
     - target: {fileID: 3132319091136830512, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -18349,40 +18345,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3256413837313496120, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.02
-      objectReference: {fileID: 0}
-    - target: {fileID: 3256413837313496120, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.32
-      objectReference: {fileID: 0}
-    - target: {fileID: 4931203445396702528, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 17
-      objectReference: {fileID: 0}
     - target: {fileID: 6493878987854616410, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
         type: 3}
       propertyPath: m_Name
       value: MSG_BGLR_2Shelf
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898189663530332534, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
-        type: 3}
-      propertyPath: m_Size.x
-      value: 2.0897713
-      objectReference: {fileID: 0}
-    - target: {fileID: 6898189663530332534, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
-        type: 3}
-      propertyPath: m_Center.x
-      value: 0.02825886
-      objectReference: {fileID: 0}
-    - target: {fileID: 8792724408085708065, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
-        type: 3}
-      propertyPath: m_Layer
-      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0d49a1aa11715e54cb0f96bccba66a7d, type: 3}

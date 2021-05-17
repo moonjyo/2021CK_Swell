@@ -46,15 +46,15 @@ public class PlayerInterActionShelf : MonoBehaviour , IInteractbale
 
     private void Update()
     {
-        if(transform.localPosition.z > 0.9f)
+        if(transform.localPosition.z > 0.7f)
         {
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.9f);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.7f);
             IsInterAction = true;
         }
-        else if(transform.localPosition.z < 0.6f)
+        else if(transform.localPosition.z < 0.4f)
         {
             IsInterAction = false;
-            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.6f);
+            transform.localPosition = new Vector3(transform.localPosition.x, transform.localPosition.y, 0.4f);
         }
     }
 

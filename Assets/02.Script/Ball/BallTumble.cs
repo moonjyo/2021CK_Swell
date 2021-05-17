@@ -137,7 +137,7 @@ public class BallTumble : MonoBehaviour, IInteractbale
     public IEnumerator InterAct()
     {
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
-
+        GameManager.Instance.uiManager.uiInventory.Distinguish.FirePlace();
         yield return new WaitForSeconds(1.4f);
         GameManager.Instance.timeLine.Play("FirePlace");
         SecondInteractOff();
