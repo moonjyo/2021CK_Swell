@@ -77,7 +77,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637568565937342908
+  lastModified: 637567682288627560
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -106,6 +106,26 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 1600
+--- !u!114 &-7513786232344865512
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Fire/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-7120124812521651705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -170,7 +190,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -4801894093570534296}
+  - {fileID: -7513786232344865512}
   MinDistance: 1
   MaxDistance: 20
   Length: 25137
@@ -232,7 +252,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637568565937492199
+  lastModified: 637567682288717503
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -443,7 +463,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637568565937188927
+  lastModified: 637567682288627560
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -619,7 +639,7 @@ MonoBehaviour:
   - {fileID: -1759250838567322972}
   StringsBanks:
   - {fileID: -7751762982320538542}
-  stringsBankWriteTime: 637568565937342908
+  stringsBankWriteTime: 637567682288627560
   cacheVersion: 6
 --- !u!114 &86829651675817203
 MonoBehaviour:
@@ -724,7 +744,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -7120124812521651705}
+  - {fileID: 8837260834448450914}
   MinDistance: 1
   MaxDistance: 20
   Length: 3000
@@ -788,7 +808,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/AMB.bank
   Name: AMB
   StudioPath: bank:/AMB
-  lastModified: 637568565937159011
+  lastModified: 637567682288607571
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -972,6 +992,26 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/AMB_Fire/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &8837260834448450914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Clock/Parameter 1
   m_EditorClassIdentifier: 
   Name: Parameter 1
   Min: 0
