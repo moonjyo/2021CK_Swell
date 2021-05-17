@@ -15,6 +15,7 @@ public class UIManager : MonoBehaviour
     public UISound uISound;
     public UIInventory uiInventory;
     public UIRingCasePassword uiRingCasePassword;
+    public UIPauseWindow uiPauseWindow;
 
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
     public List<IInteractbale> OnActiveSecondInterActionUI = new List<IInteractbale>(); //first ui obj list 
@@ -74,10 +75,14 @@ public class UIManager : MonoBehaviour
 
     public void OnEsc(InputAction.CallbackContext context)
     {
-       if(context.performed)
+       //if(context.performed)
+       // {
+       //     IsSettingMenu = !IsSettingMenu;
+       //     UISettingOptionMenu.Toggle(IsSettingMenu);
+       // }
+       if(context.started)
         {
-            IsSettingMenu = !IsSettingMenu;
-            UISettingOptionMenu.Toggle(IsSettingMenu);
+
         }
     }
 

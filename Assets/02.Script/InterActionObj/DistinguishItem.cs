@@ -233,14 +233,5 @@ public class DistinguishItem : MonoBehaviour
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
-
-
-
-
-    }
-
-    public void GetBall(GameObject Obj) // 공을 주웠을 때
-    {
-        // 시네마틱?
     }
 }
