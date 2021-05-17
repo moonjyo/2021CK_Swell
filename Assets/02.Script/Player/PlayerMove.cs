@@ -224,22 +224,22 @@ public class PlayerMove : MonoBehaviour
    
     public void ClimingJudge()
     {
-        DirectionSelect();
+        UpDirectionSelect();
         switch (PlayerManager.Instance.playerStatus.direction)
         {
-            case PlayerDirection.Left:
+            case PlayerDirection.Top:
                 transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
                 { InterActionUIPressed = false; });
                 break;
-            case PlayerDirection.Right:
+            case PlayerDirection.Bottom:
                 transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f).OnComplete(() =>
                 { InterActionUIPressed = false; });
                 break;
-            case PlayerDirection.Bottom:
+            case PlayerDirection.Right:
                 transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f)
                     .OnComplete(() => { InterActionUIPressed = false; }); ;
                 break;
-            case PlayerDirection.Top:
+            case PlayerDirection.Left:
                 transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f).OnComplete(() =>
                 { InterActionUIPressed = false; });
                 break;
@@ -265,36 +265,30 @@ public class PlayerMove : MonoBehaviour
 
     public void ClimingJudgeDown()
     {
-        DirectionSelect();
+        DownDirectionSelect();
+        Debug.Log(PlayerManager.Instance.playerStatus.direction);
         switch (PlayerManager.Instance.playerStatus.direction)
         {
-            case PlayerDirection.Left:
-                transform.DOMove(transform.position - new Vector3(0, DownOffsetVec.y, DownOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
             case PlayerDirection.Right:
-                transform.DOMove(transform.position - new Vector3(0, DownOffsetVec.y, -DownOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
+                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(0.4f, -0.3f, 0), 0.3f).OnComplete(()=> { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; });
                 break;
-            case PlayerDirection.Bottom:
-                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y, 0), 1f)
-                    .OnComplete(() => { InterActionUIPressed = false; }); ;
+            case PlayerDirection.Left:
+                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(-0.4f, -0.3f, 0), 0.3f).OnComplete(() => { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; }); 
                 break;
             case PlayerDirection.Top:
-                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, 0), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
+                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(0f, -0.3f, 0.4f), 0.3f).OnComplete(() => { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; }); 
+                break;
+            case PlayerDirection.Bottom:
+                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(0f, -0.3f, -0.4f), 0.3f).OnComplete(() => { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; }); 
                 break;
             case PlayerDirection.TopLeft:
-                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
+                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 0.1f);
                 break;
             case PlayerDirection.TopRight:
-                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, -DownOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
+                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, -DownOffsetVec.x), 0.1f);
                 break;
             case PlayerDirection.BottomLeft:
-                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
+                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 0.1f);
                 break;
             case PlayerDirection.BottomRight:
                 transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y,
@@ -370,25 +364,25 @@ public class PlayerMove : MonoBehaviour
 
     
 
-    public void DirectionSelect()
+    public void UpDirectionSelect()
     {
         Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
 
         if (DirectionCheck == Vector3.right)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
         }
         else if (DirectionCheck == Vector3.left)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
         }
         else if (new Vector3(DirectionCheck.x , DirectionCheck.z, 0) == Vector3.up)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
         }
         else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.down)
         {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
         }
         else if (DirectionCheck == new Vector3(0.6f, 0 , 0.6f))
         {
@@ -408,9 +402,46 @@ public class PlayerMove : MonoBehaviour
         }
 
     }
+    public void DownDirectionSelect()
+    {
+        Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
+
+        if (DirectionCheck == Vector3.right)
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
+        }
+        else if (DirectionCheck == Vector3.left)
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
+        }
+        else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.up)
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
+        }
+        else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.down)
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
+        }
+        else if (DirectionCheck == new Vector3(0.6f, 0, 0.6f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopLeft;
+        }
+        else if (DirectionCheck == new Vector3(0.6f, 0, -0.6f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopRight;
+        }
+        else if (DirectionCheck == new Vector3(-0.6f, 0, 0.6f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomLeft;
+        }
+        else if (DirectionCheck == new Vector3(-0.6f, 0, -0.6f))
+        {
+            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomRight;
+        }
+
+    }
 
 
-   
     private void MoveCheck()
     {
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)

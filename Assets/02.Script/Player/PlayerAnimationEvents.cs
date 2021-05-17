@@ -59,19 +59,22 @@ public class PlayerAnimationEvents : MonoBehaviour
         IsAnimStart = false;
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
-    public void DownEnd()
-    {
-        PlayerManager.Instance.playerMove.IsGravity = true;
-        //PlayerManager.Instance.playerMove.ClimingJudgeDown();
-        IsAnimStart = true;
-    }
-  
+
 
     public void DownStart()
     {
+        PlayerManager.Instance.playerMove.IsGravity = true;
+        PlayerManager.Instance.playerMove.ClimingJudgeDown();
+    }
+
+    public void DownEnd()
+    {
+
         PlayerManager.Instance.playerMove.IsGravity = false;
         IsAnimStart = false;
     }
+  
+
 
 
     public void FrameStart()
