@@ -115,11 +115,11 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public IEnumerator InterAct()
     {
-        if (!IsFrameStart)
-        {
-            IsFrameStart = true;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
-        }
+       
+        IsFrameStart = true;
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        SecondInteractOff();
         InterActAnim.SetTrigger("InterActionOff");
         GameManager.Instance.eventCommand.IsLuciFrame = true;
 
