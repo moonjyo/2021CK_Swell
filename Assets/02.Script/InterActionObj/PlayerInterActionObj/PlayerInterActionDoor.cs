@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
 
-public class PlayerInterActionStove : MonoBehaviour , IInteractbale
+public class PlayerInterActionDoor : MonoBehaviour, IInteractbale
 {
     public string ItemKey;
     public string MonologueKey; //임시 
@@ -23,6 +22,12 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
 
     public Animator InterActAnim;
 
+    public LuciFrame luciFrame;
+
+    public GameObject ShowSpeech;
+
+
+    private bool IsFrameStart;
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -41,7 +46,7 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
     {
         foreach (var Obj in UISecondObjList)
         {
-            Destroy(Obj);
+            Obj.SetActive(false);
         }
         //UIFirstObj.gameObject.SetActive(false);
         // GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
@@ -60,7 +65,6 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
     public List<GameObject> UISecondObjList = new List<GameObject>();
     public FirstInterActionUI UIFirstObj;
 
-    public GameObject EndTrigger;
 
     //자신에게 할당된 ui를 생성해주는 부분 
     private void Start()
@@ -110,25 +114,13 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
 
     public IEnumerator InterAct()
     {
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
-        //AllDestroyObj(); //수정필요 
-        PlayerManager.Instance.playerMove.IsGravity = true;
-        EndTrigger.SetActive(true);
-
-        if(GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("Key", out GameObject KeyObj))
+        if(ShowSpeech.activeInHierarchy)
         {
-            GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
+            yield break;
         }
-        
-
+        ShowSpeech.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        ShowSpeech.SetActive(false);
         yield break;
     }
-
-    //public void TestCheck(PlayerInterActionObj Obj)
-    //{
-    //    if(Obj == this.GetComponent<PlayerInterActionObj>())
-    //    {
-    //        Debug.Log("Check Success");
-    //    }
-    //}
 }

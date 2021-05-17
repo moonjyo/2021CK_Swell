@@ -9,9 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8596506462505241654}
+  - component: {fileID: 8909415322260532870}
+  - component: {fileID: 7344305798537343724}
   m_Layer: 0
   m_Name: Key
-  m_TagString: Untagged
+  m_TagString: ProductionInteractionObj
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31,6 +33,46 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8909415322260532870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451066912117028640}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemKey: 
+  MonologueKey: 
+  IsTake: 1
+  IsWatch: 0
+  IsRotate: 0
+  IsInterAction: 0
+  InventoryIcon: {fileID: 0}
+  SizeObj: {x: 4, y: 4, z: 4}
+  InteractObjKey: Pivot_Door_Rm
+  InterActAnim: {fileID: 0}
+  luciFrame: {fileID: 0}
+  Objs: []
+  UIOffsetVec: {x: 0, y: 0, z: 0}
+  UISecondObjList: []
+  UIFirstObj: {fileID: 0}
+--- !u!65 &7344305798537343724
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8451066912117028640}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.10373616, y: 0.17225194, z: 0.0459404}
+  m_Center: {x: 0.020333052, y: -0.009057507, z: -0.00017642975}
 --- !u!1001 &8486717136105761568
 PrefabInstance:
   m_ObjectHideFlags: 0
