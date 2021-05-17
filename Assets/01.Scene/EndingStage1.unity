@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 7025d0701b1e6914c913c4f0419c91b6,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3748,18 +3748,16 @@ PlayableDirector:
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
   m_SceneBindings:
-  - key: {fileID: 1023903883852904378, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
-    value: {fileID: 957760350}
-  - key: {fileID: -7264797097418676818, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
-    value: {fileID: 711916705}
-  - key: {fileID: 422945516044645228, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
-    value: {fileID: 2569939883954284477}
   - key: {fileID: 6181367655479827170, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
     value: {fileID: 970205012}
   - key: {fileID: -7984613630350247489, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
     value: {fileID: 1367210683}
   - key: {fileID: 7322785515734465947, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
     value: {fileID: 490685865}
+  - key: {fileID: -651226963700333622, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -2954489385027743127, guid: a6d389c70517c6c48a78a2fcfe727e40, type: 2}
+    value: {fileID: 711916705}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &957760352
@@ -10023,6 +10021,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0.254
       objectReference: {fileID: 0}
+    - target: {fileID: 1838644409184685209, guid: d911c55f0ca2ad146b6f15890b9bd691,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 126
+      objectReference: {fileID: 0}
     - target: {fileID: 3817338247534170620, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
       propertyPath: m_IsActive
@@ -10051,17 +10054,22 @@ PrefabInstance:
     - target: {fileID: 4342607096710264646, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0.0000001222751
+      value: 0.00001934995
       objectReference: {fileID: 0}
     - target: {fileID: 4342607096710264646, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0.4614079
+      value: 0.03002014
       objectReference: {fileID: 0}
     - target: {fileID: 4342607096710264646, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0.00000001805432
+      value: 0.000005019095
+      objectReference: {fileID: 0}
+    - target: {fileID: 4991503308149728511, guid: d911c55f0ca2ad146b6f15890b9bd691,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5442212153487792112, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
@@ -10113,7 +10121,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MSG_BGLR_Door_Rm
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1838644409184685209, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}
+    - {fileID: 4991503308149728511, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}
+    - {fileID: 152332264939283264, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}
+    - {fileID: 2918378681863690593, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}
 --- !u!4 &2569939883954284473 stripped
 Transform:

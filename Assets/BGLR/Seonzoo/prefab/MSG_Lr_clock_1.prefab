@@ -162,9 +162,10 @@ MonoBehaviour:
   IsRotate: 0
   IsInterAction: 0
   InventoryIcon: {fileID: 0}
-  SizeObj: {x: 2, y: 2, z: 2}
+  SizeObj: {x: 3, y: 3, z: 3}
   InteractObjKey: 
   InterActAnim: {fileID: 0}
+  luciFrame: {fileID: 0}
   Objs:
   - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
@@ -256,6 +257,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034598548642125118, guid: ddbfd127f874d4d40b97088b8436404f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.003
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034598548642125118, guid: ddbfd127f874d4d40b97088b8436404f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 5034598548642125118, guid: ddbfd127f874d4d40b97088b8436404f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.004
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ddbfd127f874d4d40b97088b8436404f, type: 3}
