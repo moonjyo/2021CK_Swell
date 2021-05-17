@@ -63,6 +63,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void DownStart()
     {
         PlayerManager.Instance.playerMove.IsGravity = true;
+        PlayerManager.Instance.playerMove.ClimingJudgeDown();
         IsAnimStart = true;
     }
     public void DownEnd()
