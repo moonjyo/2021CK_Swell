@@ -28,11 +28,11 @@ public class StageCamera : MonoBehaviour
 
     public void Init()
     {
-        BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
+       // BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
+       // BaseCam.LookAt = PlayerManager.Instance.playerMove.Body_Tr;
 
         composer = BaseCam.GetCinemachineComponent<CinemachineComposer>();
         transposer = BaseCam.GetCinemachineComponent<CinemachineTransposer>();
-     
     }
 
 
