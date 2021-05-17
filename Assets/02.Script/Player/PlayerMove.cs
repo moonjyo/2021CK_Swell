@@ -205,7 +205,8 @@ public class PlayerMove : MonoBehaviour
 
     private void OnWalkSound()
     {
-        //AudioManager.Instance.PlayOneShot("event:/Player/Walk");
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Foot", GetComponent<Transform>().position);
+        //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Player/SFX_Player_Foot", this.gameObject);
     }
 
 

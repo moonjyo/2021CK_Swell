@@ -89,7 +89,7 @@ public class UIInventory : UIView
     IEnumerator WaitForExitInventory()
     {
         //InventoryPanel.gameObject.GetComponent<RectTransform>().DOMoveY(1208f, 0.3f);
-        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosX(-155.0f, 0.2f);
+        InventoryPanel.gameObject.GetComponent<RectTransform>().DOAnchorPosX(-136.0f, 0.2f);
         yield return new WaitForSeconds(0.4f);
         IsInventoryWindowOpen = false;
         //InventoryPanel.SetActive(false);

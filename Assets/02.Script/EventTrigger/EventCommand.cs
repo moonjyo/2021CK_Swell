@@ -30,7 +30,9 @@ public class EventCommand : MonoBehaviour
 
             PlayerManager.Instance.playerMove.IsGravity = true;
 
-            PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
+
+
+        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
 
 
             GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);
@@ -65,7 +67,9 @@ public class EventCommand : MonoBehaviour
     }
     private IEnumerator LuciFrameCo()
     {
-      
+
+        CameraManager.Instance.StageCam.BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
+        CameraManager.Instance.StageCam.BaseCam.LookAt = PlayerManager.Instance.playerMove.Body_Tr;
         DogSound.SetActive(true);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;

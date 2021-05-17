@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class DistinguishItem : MonoBehaviour
 {
@@ -50,9 +51,11 @@ public class DistinguishItem : MonoBehaviour
 
         DistinguishItemDic.Add("MSG_Lr_lokerPurple_1", InteractPurpleLocker);
 
+        DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
+
         //DistinguishItemDic.Add("테니스공", GetBall);
 
-        
+
     }
 
     public void InteractGreenLocker(GameObject Obj) // 초록색 좌물쇠 열었을 때
@@ -241,5 +244,11 @@ public class DistinguishItem : MonoBehaviour
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
         
+    }
+
+    public void InteractDoor(GameObject Obj)
+    {
+        //GameManager.Instance.stageManager.SceneChange("EndingStage1");
+        SceneManager.LoadSceneAsync("EndingStage1", LoadSceneMode.Single);
     }
 }

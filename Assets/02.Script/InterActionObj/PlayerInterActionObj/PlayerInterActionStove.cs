@@ -111,9 +111,15 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
     public IEnumerator InterAct()
     {
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
-        AllDestroyObj(); //수정필요 
+        //AllDestroyObj(); //수정필요 
         PlayerManager.Instance.playerMove.IsGravity = true;
         EndTrigger.SetActive(true);
+
+        if(GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("Key", out GameObject KeyObj))
+        {
+            GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
+        }
+        
 
         yield break;
     }
