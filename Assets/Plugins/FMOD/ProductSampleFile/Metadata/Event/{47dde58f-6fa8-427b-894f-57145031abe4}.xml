@@ -2,7 +2,7 @@
 <objects serializationModel="Studio.02.01.00">
 	<object class="Event" id="{47dde58f-6fa8-427b-894f-57145031abe4}">
 		<property name="name">
-			<value>SFX_FrameShake</value>
+			<value>SFX_St1_FrameShake</value>
 		</property>
 		<property name="outputFormat">
 			<value>1</value>
@@ -60,7 +60,7 @@
 	<object class="MarkerTrack" id="{7ff6daf2-af91-4215-a2ac-b95691ca5353}" />
 	<object class="GroupTrack" id="{377d8696-1f21-41e2-87a1-1ba4eb42cb9f}">
 		<relationship name="modules">
-			<destination>{c0a7dbef-b616-4342-bdd1-2f7dc6f8abb7}</destination>
+			<destination>{5a622f94-2f60-490e-917b-c71eb4bae811}</destination>
 		</relationship>
 		<relationship name="mixerGroup">
 			<destination>{6debad23-e92d-40b7-a391-91fb4f14e25d}</destination>
@@ -68,7 +68,7 @@
 	</object>
 	<object class="Timeline" id="{cdc72b13-bfea-441d-aee2-64b00459aba2}">
 		<relationship name="modules">
-			<destination>{c0a7dbef-b616-4342-bdd1-2f7dc6f8abb7}</destination>
+			<destination>{5a622f94-2f60-490e-917b-c71eb4bae811}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerMaster" id="{fdb00e08-dc77-4b95-9b05-a4051276302d}">
@@ -88,15 +88,12 @@
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{651b37cb-8ed4-4f19-a356-72d62a5719b0}" />
-	<object class="SingleSound" id="{c0a7dbef-b616-4342-bdd1-2f7dc6f8abb7}">
+	<object class="SingleSound" id="{5a622f94-2f60-490e-917b-c71eb4bae811}">
 		<property name="length">
-			<value>0.29999999999999999</value>
-		</property>
-		<property name="timelockedOffset">
-			<value>0.10000000000000003</value>
+			<value>0.25174603174603177</value>
 		</property>
 		<relationship name="audioFile">
-			<destination>{765c2c19-92db-40a8-9dec-bfa40b24623c}</destination>
+			<destination>{2f04e71e-40d3-4fe1-a026-9d29236ca898}</destination>
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{6debad23-e92d-40b7-a391-91fb4f14e25d}">
