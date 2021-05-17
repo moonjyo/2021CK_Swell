@@ -204,6 +204,46 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2690
+--- !u!114 &-6469499950590109057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Clock/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-6103856593363299856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Fire/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-5590993829453246338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,7 +259,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637568533017445894
+  lastModified: 637567424816263109
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -282,11 +322,31 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637568854743607604
+  lastModified: 637568828910655731
   LoadResult: 0
   FileSizes:
   - Name: Desktop
     Value: 2298
+  Exists: 1
+--- !u!114 &-3969718813555798557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
+  m_EditorClassIdentifier: 
+  Name: PlayerFoot
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
   Exists: 1
 --- !u!114 &-2537318438416669412
 MonoBehaviour:
@@ -308,10 +368,30 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 2916738223430433724}
+  - {fileID: -2306427497213645341}
   MinDistance: 1
   MaxDistance: 20
   Length: 9000
+--- !u!114 &-2306427497213645341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_St1_ClockBell/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-1778668288654695906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +458,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -4161737815747596126}
+  - {fileID: -3969718813555798557}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -497,7 +577,7 @@ MonoBehaviour:
   - {fileID: -5590993829453246338}
   StringsBanks:
   - {fileID: -4142132261379054741}
-  stringsBankWriteTime: 637568854743607604
+  stringsBankWriteTime: 637568828910655731
   cacheVersion: 6
 --- !u!114 &617409006813199846
 MonoBehaviour:
@@ -514,7 +594,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/AMB.bank
   Name: AMB
   StudioPath: bank:/AMB
-  lastModified: 637568855609157312
+  lastModified: 637568828910645998
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -645,7 +725,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637568855610851902
+  lastModified: 637568828910685656
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -778,7 +858,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 2132222863488956813}
+  - {fileID: -6469499950590109057}
   MinDistance: 1
   MaxDistance: 20
   Length: 3000
@@ -845,7 +925,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 6909899661421587742}
+  - {fileID: -6103856593363299856}
   MinDistance: 1
   MaxDistance: 20
   Length: 25137
