@@ -150,9 +150,6 @@
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
-		<relationship name="modulators">
-			<destination>{a1d48a8f-bd68-4b3a-8903-a6772623166e}</destination>
-		</relationship>
 		<relationship name="effectChain">
 			<destination>{c54d755e-b3e0-4f7a-89cb-77efba233e7b}</destination>
 		</relationship>
@@ -184,9 +181,6 @@
 		<property name="name">
 			<value>Audio 2</value>
 		</property>
-		<relationship name="modulators">
-			<destination>{c93dbcad-46f6-4c20-b6a5-931788bedf45}</destination>
-		</relationship>
 		<relationship name="effectChain">
 			<destination>{89615310-7ea9-44dc-880c-5f9ad89fcffa}</destination>
 		</relationship>
@@ -274,40 +268,12 @@
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{5356eea2-1716-4056-9fd3-feb2d118dc75}" />
-	<object class="ADSRModulator" id="{a1d48a8f-bd68-4b3a-8903-a6772623166e}">
-		<property name="nameOfPropertyBeingModulated">
-			<value>volume</value>
-		</property>
-		<property name="initialValue">
-			<value>-80</value>
-		</property>
-		<property name="releaseTime">
-			<value>3000</value>
-		</property>
-		<property name="finalValue">
-			<value>-80</value>
-		</property>
-	</object>
 	<object class="MixerBusEffectChain" id="{c54d755e-b3e0-4f7a-89cb-77efba233e7b}">
 		<relationship name="effects">
 			<destination>{0b62f167-b3cb-4c07-93e7-f8ae5629dcb0}</destination>
 		</relationship>
 	</object>
 	<object class="MixerBusPanner" id="{7fd79cec-de53-4695-9b40-8f011b9ab0e9}" />
-	<object class="ADSRModulator" id="{c93dbcad-46f6-4c20-b6a5-931788bedf45}">
-		<property name="nameOfPropertyBeingModulated">
-			<value>volume</value>
-		</property>
-		<property name="initialValue">
-			<value>-80</value>
-		</property>
-		<property name="releaseTime">
-			<value>3000</value>
-		</property>
-		<property name="finalValue">
-			<value>-80</value>
-		</property>
-	</object>
 	<object class="MixerBusEffectChain" id="{89615310-7ea9-44dc-880c-5f9ad89fcffa}">
 		<relationship name="effects">
 			<destination>{706c2908-4391-45a3-9b3e-0b578744d120}</destination>

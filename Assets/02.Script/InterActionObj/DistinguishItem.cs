@@ -226,21 +226,12 @@ public class DistinguishItem : MonoBehaviour
            
         }
 
-        if (ProductionClickItem.TryGetValue("Sphere", out GameObject BallObj))
+        if (ProductionClickItem.TryGetValue("Sphere", out GameObject BallObj)) // 테니스 공 찾아옴
         {
             BallObj.SetActive(true);
         }
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
-
-
-
-
-    }
-
-    public void GetBall(GameObject Obj) // 공을 주웠을 때
-    {
-        // 시네마틱?
     }
 }
