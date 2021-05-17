@@ -82,7 +82,7 @@ public class UIManager : MonoBehaviour
        // }
        if(context.started)
         {
-
+            uiPauseWindow.Toggle(!uiPauseWindow.gameObject.activeSelf);
         }
     }
 

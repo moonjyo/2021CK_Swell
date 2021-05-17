@@ -344,7 +344,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1122290486
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1762,7 +1762,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2745959230729355437
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2504,6 +2504,7 @@ MonoBehaviour:
   stageManager: {fileID: 2745959230823521517}
   uiManager: {fileID: 2745959232009274427}
   timeLine: {fileID: 0}
+  eventCommand: {fileID: 0}
 --- !u!114 &2745959231346813061
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4388,6 +4389,7 @@ GameObject:
   - component: {fileID: 2745959232009274424}
   - component: {fileID: 2745959232009274425}
   - component: {fileID: 2745959232009274427}
+  - component: {fileID: 791539219}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -4498,7 +4500,7 @@ MonoBehaviour:
   uISound: {fileID: 0}
   uiInventory: {fileID: 2745959231151661662}
   uiRingCasePassword: {fileID: 0}
-  uiPauseWindow: {fileID: 0}
+  uiPauseWindow: {fileID: 1122290487}
   OnActiveFirstInterActionUI: []
   AllImageList:
   - {fileID: 3082212589672869886, guid: ff58d479a02dc0442b15a62b3eea40bd, type: 3}
@@ -4506,6 +4508,56 @@ MonoBehaviour:
   monologueText: {fileID: 0}
   DialogueText: {fileID: 0}
   IsOnFirstInterActionUI: 0
+--- !u!114 &791539219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2745959232009274420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d9ee02f3d80ab0e4784dd2b7057ef4a8,
+    type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2745959232009274427}
+        m_MethodName: OnEsc
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 800f5941-ef26-497e-ad14-64c79d7be38b
+    m_ActionName: UI/ESCButtonOn[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2471bd1e-a081-4f3b-bcee-a7a128ac3924
+    m_ActionName: UI/EnterButtonOn[/Keyboard/enter]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: UI
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &2745959232023031812
 GameObject:
   m_ObjectHideFlags: 0
