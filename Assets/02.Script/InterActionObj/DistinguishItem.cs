@@ -235,16 +235,19 @@ public class DistinguishItem : MonoBehaviour
             BallObj.SetActive(true);
         }
 
-        if (ProductionClickItem.TryGetValue("MSG_Lr_fireplace_1 (1)", out GameObject firePlace)) // 테니스 공 찾아옴
-        {
-            firePlace.GetComponent<BoxCollider>().enabled = true;   
-        }
-
-
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
-        
+      
     }
+
+    public void FirePlace()
+    {
+        if (ProductionClickItem.TryGetValue("MSG_Lr_fireplace_1 (1)", out GameObject firePlace)) // 테니스 공 찾아옴
+        {
+            firePlace.GetComponent<BoxCollider>().enabled = true;
+        }
+    }
+
 
     public void InteractDoor(GameObject Obj)
     {
