@@ -459,6 +459,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10, y: 1.2000015, z: 0.0923414}
   m_Center: {x: 0, y: 0, z: 0.00000025704503}
+--- !u!20 &204252999 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 5947914256873011542, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
+    type: 3}
+  m_PrefabInstance: {fileID: 704352023}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &217963610
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -903,26 +909,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 445195de54856cc49ac0c79783ef07ef, type: 3}
---- !u!1 &247107706 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2745959231074698738, guid: f187a2b0f6d7ce4479b5540dec1f6696,
-    type: 3}
-  m_PrefabInstance: {fileID: 495450031}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &247107707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247107706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631c5b9bc6e2bab4da3bc7f23226c55d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DialgoueName: LuciDialogue
-  GetDialogueFileName: LuciDialogueData
 --- !u!4 &249145073 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3556756703922513585, guid: 1a47f71a54fe0f4499343739d91f683a,
@@ -1873,21 +1859,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2745959231074698736, guid: f187a2b0f6d7ce4479b5540dec1f6696,
+    - target: {fileID: 2745959230729355442, guid: f187a2b0f6d7ce4479b5540dec1f6696,
         type: 3}
-      propertyPath: dialogueData
+      propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 247107707}
-    - target: {fileID: 2745959231074698743, guid: f187a2b0f6d7ce4479b5540dec1f6696,
-        type: 3}
-      propertyPath: GetDialogueFileName
-      value: MonologueData
-      objectReference: {fileID: 0}
-    - target: {fileID: 2745959231074698743, guid: f187a2b0f6d7ce4479b5540dec1f6696,
-        type: 3}
-      propertyPath: DialgoueName
-      value: LuciMonologueData
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 204252999}
     - target: {fileID: 2745959231346813058, guid: f187a2b0f6d7ce4479b5540dec1f6696,
         type: 3}
       propertyPath: m_Name
@@ -4094,6 +4070,7 @@ MonoBehaviour:
   SizeObj: {x: 0, y: 0, z: 0}
   InteractObjKey: 
   InterActAnim: {fileID: 0}
+  luciFrame: {fileID: 0}
   Objs:
   - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
@@ -5744,6 +5721,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsOnTrigger: 0
+  IsLuciFrame: 0
   DogSound: {fileID: 2090620867}
   FrameAnim: {fileID: 771903261}
 --- !u!1001 &1188651288
@@ -5830,11 +5808,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1010444932, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1686570997, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2051672543301750880, guid: 627a4ae317dedf145955a442504c7c42,
         type: 3}
@@ -6294,7 +6272,7 @@ MonoBehaviour:
     type: 3}
   m_PrefabInstance: {fileID: 495450031}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 247107706}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7b32a8c1ea6d8df4fab042838658f889, type: 3}
