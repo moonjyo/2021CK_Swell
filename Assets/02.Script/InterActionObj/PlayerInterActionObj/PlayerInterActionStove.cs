@@ -23,9 +23,6 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
 
     public Animator InterActAnim;
 
-    public LuciFrame luciFrame;
-
-
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -44,7 +41,7 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
     {
         foreach (var Obj in UISecondObjList)
         {
-            Obj.SetActive(false);
+            Destroy(Obj);
         }
         //UIFirstObj.gameObject.SetActive(false);
         // GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
@@ -114,7 +111,7 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
     public IEnumerator InterAct()
     {
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
-        SecondInteractOff();
+        AllDestroyObj(); //수정필요 
         PlayerManager.Instance.playerMove.IsGravity = true;
         EndTrigger.SetActive(true);
 

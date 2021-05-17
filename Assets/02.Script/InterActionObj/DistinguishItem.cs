@@ -18,6 +18,7 @@ public class DistinguishItem : MonoBehaviour
     public float HourHandValue = -90.0f; //안팎2값
     public float MinuteHandValue = -121.0f; //안팎2값
 
+    public BoxCollider InterActionStove;
     public void init()
     {
         GameObject[] ProductionObject = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
@@ -231,7 +232,14 @@ public class DistinguishItem : MonoBehaviour
             BallObj.SetActive(true);
         }
 
+        if (ProductionClickItem.TryGetValue("MSG_Lr_fireplace_1 (1)", out GameObject firePlace)) // 테니스 공 찾아옴
+        {
+            firePlace.GetComponent<BoxCollider>().enabled = true;   
+        }
+
+
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
+        
     }
 }
