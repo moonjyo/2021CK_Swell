@@ -114,13 +114,9 @@ public class PlayerInterActionDoor : MonoBehaviour, IInteractbale
 
     public IEnumerator InterAct()
     {
-        if(ShowSpeech.activeInHierarchy)
-        {
-            yield break;
-        }
-        ShowSpeech.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        ShowSpeech.SetActive(false);
+
+        GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[2].context);
+        GameManager.Instance.uiManager.monologueText.ShowMonologue();
         yield break;
     }
 }
