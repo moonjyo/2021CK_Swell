@@ -7,7 +7,6 @@ public class BallTumble : MonoBehaviour, IInteractbale
     Rigidbody rigidBody;
     Vector3 movement;
     float fTime = 0.0f;
-    bool IsTumbleEnd = false;
 
     public string ItemKey;
     public string MonologueKey; //임시 
@@ -82,7 +81,6 @@ public class BallTumble : MonoBehaviour, IInteractbale
         }
         else
         {
-            IsTumbleEnd = true;
             gameObject.layer = 17;
         }
     }

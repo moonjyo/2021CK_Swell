@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
     public DialogueText DialogueText;
 
     public bool IsOnFirstInterActionUI = false;
-    private bool IsSettingMenu = false;
+    //private bool IsSettingMenu = false;
 
 
     private void Awake()
