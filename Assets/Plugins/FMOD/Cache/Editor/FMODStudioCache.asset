@@ -20,7 +20,7 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-8689404356520510074
+--- !u!114 &-8797716417902289909
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -29,43 +29,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Dog/SFX_Dog_Wheezing
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
   m_EditorClassIdentifier: 
-  Path: event:/SFX/Dog/SFX_Dog_Wheezing
-  guid: 2f355c482bf5554dada0b9cd2e17e0c7
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 926
---- !u!114 &-8660141637246011382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/SFX_Player_Pick
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/SFX_Player_Pick
-  guid: 6c7f4890e00be9459f73c9020fab5579
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 270
+  Name: PlayerFoot
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-8649600405591608566
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -80,7 +54,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_FrameSet
   guid: e6787332dd45d240b40d398fe0b54cf5
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -102,7 +77,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_BallRoll
   guid: 8d135ed44c98c4439af811067d59e748
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -124,7 +100,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Opening/SFX_O_Throw
   guid: 211b22f42bd66c458597f9967e01fae7
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -192,29 +169,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-8108481625457813571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_ClockSet
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_ClockSet
-  guid: 6628ba0b3a952a45b4bca9f51beaa62e
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 254
 --- !u!114 &-8017269028503846840
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +243,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Door/SFX_Door_Lockoff
   guid: afcc7b847625f544ac47b4ffcace93ce
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -317,29 +272,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-7667365012074194540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/SFX_Player_Crouch
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/SFX_Player_Crouch
-  guid: 756b27e7a6b64246bcd53255394ae280
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 468
 --- !u!114 &-7659896169312263989
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,7 +286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_DreesserOpen
   guid: 5d6c5d862d951e4ca84da6e09e88db3b
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -396,7 +329,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Door/SFX_Door_Lock
   guid: df696eb3d2a3654f8e7f2dde723c705f
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -424,29 +358,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-6985072189246835374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Door/SFX_Door_Lock
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Door/SFX_Door_Lock
-  guid: df696eb3d2a3654f8e7f2dde723c705f
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 441
 --- !u!114 &-6958816950635036825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -461,7 +372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Dog/SFX_Dog_Bark
   guid: f6e1f43aad8322488ec9cbbaf9243959
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -503,7 +415,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Opening/SFX_O_DoorOpen
   guid: d0a150df7fe97c45a1e67c72a4932144
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -511,26 +424,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 2690
---- !u!114 &-6528987068651350589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Fire/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &-6525575326534275741
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -571,29 +464,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-6015861223721983637
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Enemy1/SFX_Enemy1_Foot
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Enemy1/SFX_Enemy1_Foot
-  guid: 1b3ac7339d2b4d45a37beb68655df5cc
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 650
 --- !u!114 &-5777226626072358047
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -629,76 +499,9 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637569355468439723
+  lastModified: 637568560692076098
   LoadResult: 0
   FileSizes: []
-  Exists: 1
---- !u!114 &-5485402804348122915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/SFX_Player_Foot
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/SFX_Player_Foot
-  guid: dc4d3546b4827640bc8916434a24b328
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters:
-  - {fileID: 5384180410862238625}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
---- !u!114 &-4984969279270828542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_DreesserOpen
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_DreesserOpen
-  guid: 5d6c5d862d951e4ca84da6e09e88db3b
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1000
---- !u!114 &-4894040240046240557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Dog_Whine/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
   Exists: 1
 --- !u!114 &-4527039864354615765
 MonoBehaviour:
@@ -724,7 +527,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 6100
---- !u!114 &-4505996577927774832
+--- !u!114 &-4520446482589725993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -744,49 +547,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-4409455702029960713
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Dog_Whine/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
---- !u!114 &-4369040312557342533
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Door/SFX_Door_Lockoff
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Door/SFX_Door_Lockoff
-  guid: afcc7b847625f544ac47b4ffcace93ce
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 530
 --- !u!114 &-4161737815747596126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -822,33 +582,13 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637569355468469641
+  lastModified: 637568990030596990
   LoadResult: 0
   FileSizes:
   - Name: Desktop
-    Value: 2298
+    Value: 2342
   Exists: 1
---- !u!114 &-3944015235057879699
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Fire/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &-3937731596240868912
+--- !u!114 &-4053718549353361340
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -867,8 +607,8 @@ MonoBehaviour:
   ID:
     data1: 0
     data2: 0
-  Exists: 0
---- !u!114 &-3717077947653838980
+  Exists: 1
+--- !u!114 &-3944015235057879699
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -878,9 +618,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
+  m_Name: parameter:/AMB_Fire/Parameter 1
   m_EditorClassIdentifier: 
-  Name: PlayerFoot
+  Name: Parameter 1
   Min: 0
   Max: 1
   Default: 0
@@ -908,53 +648,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
---- !u!114 &-3356377296946669290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_ClockBell
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_ClockBell
-  guid: 0ec0df681d32ec4d81fdbe5cf384aea6
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: -4505996577927774832}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 9000
---- !u!114 &-3192232628522146373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Player/SFX_Player_Stand
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Player/SFX_Player_Stand
-  guid: 66a91aa5217784449afd138078d927cc
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 589
 --- !u!114 &-3119489218149854355
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -975,7 +668,7 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-3040122932219155998
+--- !u!114 &-2841613381687325724
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -985,9 +678,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Fire/Parameter 1
+  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
   m_EditorClassIdentifier: 
-  Name: Parameter 1
+  Name: PlayerFoot
   Min: 0
   Max: 1
   Default: 0
@@ -995,29 +688,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-2670028768580045783
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Door/SFX_Door_Close
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Door/SFX_Door_Close
-  guid: f141579182095c42a321bf5a01c3e6a0
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1415
 --- !u!114 &-2537318438416669412
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1032,12 +702,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_ClockBell
   guid: 0ec0df681d32ec4d81fdbe5cf384aea6
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 1
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 4848842067534121420}
+  - {fileID: -4520446482589725993}
   MinDistance: 1
   MaxDistance: 20
   Length: 9000
@@ -1061,6 +732,46 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-2149001077661252240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_St1_ClockBell/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &-2137851725773124950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Fire/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-1792500476653747205
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1095,7 +806,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_FireOut
   guid: 6a5064ac94ae7d488fa5ca3f778847fd
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1117,7 +829,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Dog/SFX_Dog_Wheezing
   guid: 2f355c482bf5554dada0b9cd2e17e0c7
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1138,26 +851,6 @@ MonoBehaviour:
   m_Name: parameter:/SFX_Player_Foot/PlayerFoot
   m_EditorClassIdentifier: 
   Name: PlayerFoot
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &-1385745074211551319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Fire/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
   Min: 0
   Max: 1
   Default: 0
@@ -1199,12 +892,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Player/SFX_Player_Foot
   guid: dc4d3546b4827640bc8916434a24b328
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: -3717077947653838980}
+  - {fileID: -2841613381687325724}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -1228,26 +922,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &-867928724054823819
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Fire/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &-839387948739323318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1302,7 +976,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_ClockSet
   guid: 6628ba0b3a952a45b4bca9f51beaa62e
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1344,28 +1019,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Door/SFX_Door_Close
   guid: f141579182095c42a321bf5a01c3e6a0
-  Banks: []
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1415
---- !u!114 &-4223333552258086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_FrameSet
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_FrameSet
-  guid: e6787332dd45d240b40d398fe0b54cf5
   Banks:
   - {fileID: 2364339035660732972}
   IsStream: 0
@@ -1374,7 +1027,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 475
+  Length: 1415
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1397,78 +1050,36 @@ MonoBehaviour:
   - {fileID: 1153853612040418108}
   - {fileID: -4527039864354615765}
   - {fileID: 6608386548151404970}
-  - {fileID: -3356377296946669290}
-  - {fileID: 6090076972533958807}
-  - {fileID: -6015861223721983637}
-  - {fileID: 4352479000514835944}
-  - {fileID: -8689404356520510074}
-  - {fileID: -4984969279270828542}
-  - {fileID: -8108481625457813571}
-  - {fileID: -3192232628522146373}
-  - {fileID: 2781313686692142827}
-  - {fileID: -8660141637246011382}
-  - {fileID: -7667365012074194540}
-  - {fileID: 7135127528226543331}
-  - {fileID: 57545472142867492}
-  - {fileID: -4369040312557342533}
-  - {fileID: 3098579531072960649}
-  - {fileID: 667759781581508859}
-  - {fileID: -5485402804348122915}
-  - {fileID: -6985072189246835374}
-  - {fileID: 1517315737225577047}
-  - {fileID: -4223333552258086}
-  - {fileID: -2670028768580045783}
-  - {fileID: 6922103342990957616}
+  - {fileID: -2537318438416669412}
+  - {fileID: 5751550611728515130}
+  - {fileID: 8828486450680313720}
+  - {fileID: -8565942608128520655}
+  - {fileID: -1775452336125572078}
+  - {fileID: -7659896169312263989}
+  - {fileID: -506426061086192683}
+  - {fileID: 682527697456628742}
+  - {fileID: -1778668288654695906}
+  - {fileID: 6594113222910852886}
+  - {fileID: 1154551347340928718}
+  - {fileID: -8596061022122051629}
+  - {fileID: 766905163163614495}
+  - {fileID: -7773487473569233707}
+  - {fileID: 6797789879599720549}
+  - {fileID: -6542266862050257287}
+  - {fileID: -968859402646275040}
+  - {fileID: -7508907018227146830}
+  - {fileID: 5031976503228407585}
+  - {fileID: -8649600405591608566}
+  - {fileID: -38934515623765608}
+  - {fileID: -6958816950635036825}
+  - {fileID: 6702072735877234998}
   EditorParameters: []
   MasterBanks:
   - {fileID: -5590993829453246338}
   StringsBanks:
   - {fileID: -4142132261379054741}
-  stringsBankWriteTime: 637569355468469641
+  stringsBankWriteTime: 637568990030596990
   cacheVersion: 6
---- !u!114 &57545472142867492
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_FrameShake
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_FrameShake
-  guid: 8fe5dd47a86f7b42894f57145031abe4
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 251
---- !u!114 &98650699474843531
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Dog_Whine/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
 --- !u!114 &477028347410261093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1504,33 +1115,10 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/AMB.bank
   Name: AMB
   StudioPath: bank:/AMB
-  lastModified: 637569355468399839
+  lastModified: 637568839066523099
   LoadResult: 0
   FileSizes: []
   Exists: 1
---- !u!114 &667759781581508859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Opening/SFX_O_DoorOpen
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Opening/SFX_O_DoorOpen
-  guid: d0a150df7fe97c45a1e67c72a4932144
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2690
 --- !u!114 &682527697456628742
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,7 +1133,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Player/SFX_Player_Stand
   guid: 66a91aa5217784449afd138078d927cc
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1567,7 +1156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Stage1/SFX_St1_FrameShake
   guid: 8fe5dd47a86f7b42894f57145031abe4
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1575,7 +1165,7 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 251
---- !u!114 &779718967301771789
+--- !u!114 &933308131275167989
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1585,9 +1175,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
+  m_Name: parameter:/AMB_Clock/Parameter 1
   m_EditorClassIdentifier: 
-  Name: PlayerFoot
+  Name: Parameter 1
   Min: 0
   Max: 1
   Default: 0
@@ -1652,7 +1242,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Player/SFX_Player_Crouch
   guid: 756b27e7a6b64246bcd53255394ae280
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -1680,30 +1271,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &1517315737225577047
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Dog/SFX_Dog_Whine
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Dog/SFX_Dog_Whine
-  guid: e43672615ff48847b97641194c374fd5
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 1
-  Is3D: 1
-  IsOneShot: 0
-  Parameters:
-  - {fileID: 98650699474843531}
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 5500
 --- !u!114 &1682848353975187859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1744,26 +1311,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &2338144002575045572
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Clock/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &2364339035660732972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1779,77 +1326,11 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637569355469137855
+  lastModified: 637568990030778763
   LoadResult: 0
   FileSizes: []
   Exists: 1
---- !u!114 &2781313686692142827
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_FireOut
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_FireOut
-  guid: 6a5064ac94ae7d488fa5ca3f778847fd
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 689
 --- !u!114 &2916738223430433724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_St1_ClockBell/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &3098579531072960649
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Opening/SFX_O_Foot
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Opening/SFX_O_Foot
-  guid: c832c8feed9837438cf030e06adbf440
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 4181
---- !u!114 &3427990032132254848
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1909,29 +1390,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &4352479000514835944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Opening/SFX_O_Throw
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Opening/SFX_O_Throw
-  guid: 211b22f42bd66c458597f9967e01fae7
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 379
 --- !u!114 &4402882646043985892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1943,26 +1401,6 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/AMB_Fire/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &4848842067534121420
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_St1_ClockBell/Parameter 1
   m_EditorClassIdentifier: 
   Name: Parameter 1
   Min: 0
@@ -1986,7 +1424,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Dog/SFX_Dog_Whine
   guid: e43672615ff48847b97641194c374fd5
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 1
   Is3D: 1
   IsOneShot: 1
@@ -2054,26 +1493,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &5384180410862238625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
-  m_EditorClassIdentifier: 
-  Name: PlayerFoot
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
 --- !u!114 &5600401156741261441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2095,28 +1514,6 @@ MonoBehaviour:
     data2: 0
   Exists: 1
 --- !u!114 &5751550611728515130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Door/SFX_Door_Open
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Door/SFX_Door_Open
-  guid: 13e2be5f41d8a344adc0f7769c12ace8
-  Banks: []
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 1324
---- !u!114 &6090076972533958807
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2159,6 +1556,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &6228991149796737780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Fire/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &6594113222910852886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2173,7 +1590,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Player/SFX_Player_Pick
   guid: 6c7f4890e00be9459f73c9020fab5579
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2201,7 +1619,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 8143586515726120627}
+  - {fileID: -4053718549353361340}
   MinDistance: 1
   MaxDistance: 20
   Length: 3000
@@ -2219,7 +1637,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Player/SFX_Player_Foot1
   guid: 5bbf00b71e77134291be5b36eb21735f
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -2241,7 +1660,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Opening/SFX_O_Foot
   guid: c832c8feed9837438cf030e06adbf440
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2309,77 +1729,11 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -3040122932219155998}
+  - {fileID: 6228991149796737780}
   MinDistance: 1
   MaxDistance: 20
   Length: 25137
---- !u!114 &6922103342990957616
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Dog/SFX_Dog_Bark
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Dog/SFX_Dog_Bark
-  guid: f6e1f43aad8322488ec9cbbaf9243959
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 317
 --- !u!114 &6948963298028855839
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Clock/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &7135127528226543331
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/Stage1/SFX_St1_BallRoll
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/Stage1/SFX_St1_BallRoll
-  guid: 8d135ed44c98c4439af811067d59e748
-  Banks:
-  - {fileID: 2364339035660732972}
-  IsStream: 0
-  Is3D: 1
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 2529
---- !u!114 &7301865731944797109
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2439,26 +1793,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &8042543992566663303
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Fire/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &8101161407741588552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2479,46 +1813,6 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
---- !u!114 &8143586515726120627
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Clock/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 1
---- !u!114 &8677795830544948512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/AMB_Clock/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &8821043917933061399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2553,7 +1847,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/Enemy1/SFX_Enemy1_Foot
   guid: 1b3ac7339d2b4d45a37beb68655df5cc
-  Banks: []
+  Banks:
+  - {fileID: 2364339035660732972}
   IsStream: 0
   Is3D: 1
   IsOneShot: 1
@@ -2561,46 +1856,6 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 650
---- !u!114 &8855691887341094377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
-  m_EditorClassIdentifier: 
-  Name: PlayerFoot
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
---- !u!114 &8886217091254927034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
-  m_Name: parameter:/SFX_St1_ClockBell/Parameter 1
-  m_EditorClassIdentifier: 
-  Name: Parameter 1
-  Min: 0
-  Max: 1
-  Default: 0
-  ID:
-    data1: 0
-    data2: 0
-  Exists: 0
 --- !u!114 &9046083107827919558
 MonoBehaviour:
   m_ObjectHideFlags: 0

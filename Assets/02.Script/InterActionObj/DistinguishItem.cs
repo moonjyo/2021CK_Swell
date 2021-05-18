@@ -16,10 +16,7 @@ public class DistinguishItem : MonoBehaviour
     bool IsInMatchStick = false;
     bool IsInWaxCube = false;
 
-    public float HourHandValue = -90.0f; //안팎2값
-    public float MinuteHandValue = -121.0f; //안팎2값
-
-    public BoxCollider InterActionStove;
+    //public BoxCollider InterActionStove;
     public void init()
     {
         GameObject[] ProductionObject = GameObject.FindGameObjectsWithTag("ProductionInteractionObj");
@@ -54,8 +51,6 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
 
         //DistinguishItemDic.Add("테니스공", GetBall);
-
-
     }
 
     public void InteractGreenLocker(GameObject Obj) // 초록색 좌물쇠 열었을 때

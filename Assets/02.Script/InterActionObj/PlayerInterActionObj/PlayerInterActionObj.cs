@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-//enum
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
@@ -20,7 +19,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public Vector3 SizeObj;
 
-    //public PlayerInterActionObj InteractObj;
     public string InteractObjKey;
 
     public Animator InterActAnim;
@@ -94,15 +92,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         }
     }
 
-    public void GreenKey(GameObject gameObject)
-    {
-        Debug.Log("Open GreenLoker");
-    }
-
-    public void PurpleKey(GameObject gameObject)
-    {
-        Debug.Log("Open PurpleLoker");
-    }
     public List<GameObject> GetUIObjList()
     {
         return UISecondObjList;

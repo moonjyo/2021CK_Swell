@@ -26,8 +26,6 @@ public class PlayerInterActionDoor : MonoBehaviour, IInteractbale
 
     public GameObject ShowSpeech;
 
-
-    private bool IsFrameStart;
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -93,15 +91,6 @@ public class PlayerInterActionDoor : MonoBehaviour, IInteractbale
         }
     }
 
-    public void GreenKey(GameObject gameObject)
-    {
-        Debug.Log("Open GreenLoker");
-    }
-
-    public void PurpleKey(GameObject gameObject)
-    {
-        Debug.Log("Open PurpleLoker");
-    }
     public List<GameObject> GetUIObjList()
     {
         return UISecondObjList;
