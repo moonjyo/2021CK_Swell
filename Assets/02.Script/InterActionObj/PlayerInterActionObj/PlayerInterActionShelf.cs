@@ -103,16 +103,6 @@ public class PlayerInterActionShelf : MonoBehaviour , IInteractbale
         }
     }
 
-    public void GreenKey(GameObject gameObject)
-    {
-        Debug.Log("Open GreenLoker");
-    }
-
-    public void PurpleKey(GameObject gameObject)
-    {
-        Debug.Log("Open PurpleLoker");
-    }
-
     public List<GameObject> GetUIObjList()
     {
         return UISecondObjList;
