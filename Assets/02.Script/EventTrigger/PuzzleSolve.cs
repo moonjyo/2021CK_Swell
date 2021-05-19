@@ -14,7 +14,9 @@ public class PuzzleSolve : MonoBehaviour , IEventTrigger
 
         PlayerManager.Instance.playerMove.IsGravity = true;
 
-        PlayerManager.Instance.playerMove.transform.DOMoveX(transform.position.x - 1f, 0.5f);
+        PlayerManager.Instance.playerMove.transform.DOMoveX(transform.position.x - 1f, 0.5f).OnComplete(() => {
+            PlayerManager.Instance.playerMove.IsGravity = false;
+        }); ;
 
 
         GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);

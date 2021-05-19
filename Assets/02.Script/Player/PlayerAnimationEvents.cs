@@ -98,6 +98,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void CrawlMoveOff()
     {
+        PlayerManager.Instance.playerMove.IsGravity = false;
         PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f);
     }
 
