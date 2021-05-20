@@ -55,6 +55,7 @@ public class MouseInput : MonoBehaviour
         else if(context.canceled)
         {
             AfterVec = MoveInput;
+            GameManager.Instance.uiManager.uiInventory.ob.CheckMouseUp();
         }
         //Vector2 Difference = AfterVec - BeforeVec; 
         //if(Difference.sqrMagnitude < 2.0f ) // 처음 MouseDown과 MonseUp의 포지션 오차값 조정? sqrMagnitude는 벡터 길이를 제곱한 값이므로 플레이해보며 체크
@@ -70,12 +71,12 @@ public class MouseInput : MonoBehaviour
     }
     public void OnMousePosition(InputAction.CallbackContext context)
     {
-        //if (IsSelectItemIcon)
-        //{
-        // 마우스 포지션 전달
-        //}
         MoveInput = context.ReadValue<Vector2>();
-        //uiInventory.SetMousePosVal(input);
+
         GameManager.Instance.uiManager.uiInventory.SetMousePosVal(MoveInput);
+        GameManager.Instance.uiManager.uiInventory.ob.SetMoveInput(MoveInput);
+
+
+
     }
 }
