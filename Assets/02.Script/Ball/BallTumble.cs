@@ -111,16 +111,6 @@ public class BallTumble : MonoBehaviour, IInteractbale
         GameManager.Instance.uiManager.IsOnFirstInterActionUI = false;
     }
 
-
-    public void GreenKey(GameObject gameObject)
-    {
-        Debug.Log("Open GreenLoker");
-    }
-
-    public void PurpleKey(GameObject gameObject)
-    {
-        Debug.Log("Open PurpleLoker");
-    }
     public List<GameObject> GetUIObjList()
     {
         return UISecondObjList;
