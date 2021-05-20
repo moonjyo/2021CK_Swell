@@ -14,8 +14,9 @@ public class UIManager : MonoBehaviour
     public Canvas InterActionUICanvas;
     public UISound uISound;
     public UIInventory uiInventory;
-    public UIRingCasePassword uiRingCasePassword;
+    //public UIRingCasePassword uiRingCasePassword;
     public UIPauseWindow uiPauseWindow;
+    public UITimer uiTimer;
 
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
     public List<IInteractbale> OnActiveSecondInterActionUI = new List<IInteractbale>(); //first ui obj list 
@@ -90,7 +91,7 @@ public class UIManager : MonoBehaviour
     {
         if(context.started)
         {
-            uiRingCasePassword.RingCaseOpen();
+            //uiRingCasePassword.RingCaseOpen();
         }
     }
 
