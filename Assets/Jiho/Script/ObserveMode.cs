@@ -158,7 +158,7 @@ public class ObserveMode : MonoBehaviour
        
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
-sa        GameManager.Instance.uiManager.OnSecondInterActionUI();
+        GameManager.Instance.uiManager.OnSecondInterActionUI();
     }
 
     public void CheckClick()
