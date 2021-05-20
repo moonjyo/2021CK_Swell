@@ -25,6 +25,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public LuciFrame luciFrame;
 
+    
 
     private bool IsFrameStart;
     public void SecondInteractOn()
@@ -104,7 +105,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public IEnumerator InterAct()
     {
-       
         IsFrameStart = true;
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
         gameObject.GetComponent<BoxCollider>().enabled = false;
@@ -112,7 +112,13 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         InterActAnim.SetTrigger("InterActionOff");
         GameManager.Instance.eventCommand.IsLuciFrame = true;
 
-         yield break;
+
+        if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+        {
+            GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+        }
+
+        yield break;
     }
 
     //public void TestCheck(PlayerInterActionObj Obj)

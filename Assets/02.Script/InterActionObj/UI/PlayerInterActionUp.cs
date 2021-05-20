@@ -46,6 +46,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
         IInteractbale inter = TargetObj.GetComponent<IInteractbale>();
         if (rb != null && inter.IsGetInterAction())
         {
+            inter.SecondInteractOff();
             PlayerManager.Instance.playerMove.InterActionUIPressed = true;
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>

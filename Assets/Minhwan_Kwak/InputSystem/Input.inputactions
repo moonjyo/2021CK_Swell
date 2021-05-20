@@ -84,6 +84,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "89ad17ee-a4ea-4005-9d8d-78535b580355",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -293,6 +301,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "LeftCam",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c962f3a3-73d8-46d7-a357-6e4dec4558d0",
+                    "path": "*/{Back}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

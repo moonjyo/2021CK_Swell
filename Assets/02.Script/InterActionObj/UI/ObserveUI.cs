@@ -28,7 +28,7 @@ public class ObserveUI : MonoBehaviour,IInteractableUI
     }
     public void Interact()
     {
-        TargetInterAction = TargetObj.GetComponent<PlayerInterActionObj>();
+        TargetInterAction = TargetObj.GetComponent<PlayerInterActionObj>(); 
 
         if (TargetInterAction != null)
         {
