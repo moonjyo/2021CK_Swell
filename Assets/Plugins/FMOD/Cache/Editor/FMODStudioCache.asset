@@ -80,6 +80,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-8779878670097356479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Fire/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-8763299843060028057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,7 +719,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.bank
   Name: BGM
   StudioPath: bank:/BGM
-  lastModified: 637568560692076098
+  lastModified: 637571268618900038
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -847,6 +867,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-4379488337327022485
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_Player_Foot/PlayerFoot
+  m_EditorClassIdentifier: 
+  Name: PlayerFoot
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-4161737815747596126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -882,7 +922,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/BGM.strings.bank
   Name: BGM.strings
   StudioPath: bank:/BGM.strings
-  lastModified: 637570402942662036
+  lastModified: 637571268618959877
   LoadResult: 0
   FileSizes:
   - Name: Desktop
@@ -1108,7 +1148,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: -8763299843060028057}
+  - {fileID: 8599689742858627951}
   MinDistance: 1
   MaxDistance: 20
   Length: 9000
@@ -1152,6 +1192,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 0
+--- !u!114 &-2153593585894833546
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/AMB_Clock/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-2149001077661252240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1338,6 +1398,26 @@ MonoBehaviour:
     data1: 0
     data2: 0
   Exists: 1
+--- !u!114 &-1533128094836065127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_Dog_Whine/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
 --- !u!114 &-1439884012852106805
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1398,7 +1478,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 1
   Parameters:
-  - {fileID: 6428133647599164351}
+  - {fileID: -4379488337327022485}
   MinDistance: 1
   MaxDistance: 20
   Length: 0
@@ -1617,7 +1697,7 @@ MonoBehaviour:
   - {fileID: -5590993829453246338}
   StringsBanks:
   - {fileID: -4142132261379054741}
-  stringsBankWriteTime: 637570402942662036
+  stringsBankWriteTime: 637571268618959877
   cacheVersion: 6
 --- !u!114 &93793220225981661
 MonoBehaviour:
@@ -1734,7 +1814,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/AMB.bank
   Name: AMB
   StudioPath: bank:/AMB
-  lastModified: 637571560728596921
+  lastModified: 637571598431576893
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2065,7 +2145,7 @@ MonoBehaviour:
   Path: Assets/Plugins/FMOD/ProductSampleFile/Build/Desktop/SFX.bank
   Name: SFX
   StudioPath: bank:/SFX
-  lastModified: 637571560728788802
+  lastModified: 637571598431646376
   LoadResult: 0
   FileSizes: []
   Exists: 1
@@ -2349,7 +2429,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 7060780540502289247}
+  - {fileID: -1533128094836065127}
   MinDistance: 1
   MaxDistance: 20
   Length: 5500
@@ -2619,7 +2699,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 4019889374617504402}
+  - {fileID: -2153593585894833546}
   MinDistance: 1
   MaxDistance: 20
   Length: 3000
@@ -2729,7 +2809,7 @@ MonoBehaviour:
   Is3D: 1
   IsOneShot: 0
   Parameters:
-  - {fileID: 6597248377980189572}
+  - {fileID: -8779878670097356479}
   MinDistance: 1
   MaxDistance: 20
   Length: 25137
@@ -2884,6 +2964,26 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
   m_Name: parameter:/AMB_Clock/Parameter 1
+  m_EditorClassIdentifier: 
+  Name: Parameter 1
+  Min: 0
+  Max: 1
+  Default: 0
+  ID:
+    data1: 0
+    data2: 0
+  Exists: 1
+--- !u!114 &8599689742858627951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFX_St1_ClockBell/Parameter 1
   m_EditorClassIdentifier: 
   Name: Parameter 1
   Min: 0
