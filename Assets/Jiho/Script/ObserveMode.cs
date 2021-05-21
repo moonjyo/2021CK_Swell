@@ -107,6 +107,8 @@ public class ObserveMode : MonoBehaviour
         if (IsOnObserveMode)
             return;
 
+        GameManager.Instance.uiManager.uiInventory.EnterInventoryWindow();
+
         CurrentTargetObj = Target;
 
         CameraManager.Instance.CaptureCamera.gameObject.SetActive(true);
@@ -159,6 +161,8 @@ public class ObserveMode : MonoBehaviour
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         GameManager.Instance.uiManager.OnSecondInterActionUI();
+
+        GameManager.Instance.uiManager.uiInventory.ExitInventoryWindow();
     }
 
     public void CheckClick()
