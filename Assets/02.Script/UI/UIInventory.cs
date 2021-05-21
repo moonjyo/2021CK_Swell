@@ -63,7 +63,7 @@ public class UIInventory : UIView
 
     public void EnterInventoryWindow()
     {
-        if(IsInventoryWindowOpen)
+        if(IsInventoryWindowOpen || ob.IsOnObserveMode)
         {
             return;
         }
@@ -77,7 +77,7 @@ public class UIInventory : UIView
 
     public void ExitInventoryWindow()
     {
-        if (!IsInventoryWindowOpen || IsSelectItemIcon)
+        if (!IsInventoryWindowOpen || IsSelectItemIcon || ob.IsOnObserveMode)
         {
             return;
         }
