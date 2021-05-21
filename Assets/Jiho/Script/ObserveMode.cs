@@ -94,7 +94,7 @@ public class ObserveMode : MonoBehaviour
     public void MoveObj()
     {
         Vector2 Pos = CameraManager.Instance.ObserveCamera.ScreenToWorldPoint(new Vector3(mousePos.x,mousePos.y,-CameraManager.Instance.ObserveCamera.transform.position.z));
-        SelectObserveObj.transform.position = new Vector3(Pos.x, Pos.y, SelectObserveObj.transform.position.z);
+        SelectObserveObj.transform.position = new Vector3(Pos.x, Pos.y, SelectObserveObj.transform.position.z); // 카메라가 perspective면 z축만큼 빼줘야함
     }
 
     public void AddObserveItem(string Key, GameObject go)
@@ -210,7 +210,7 @@ public class ObserveMode : MonoBehaviour
             if (hit.collider.gameObject.GetComponent<PlayerInterActionObj>() == null)
                 return;
 
-            if (hit.collider.CompareTag("ProductionInteractionObj"))// || hit.collider.gameObject == hit.transform.gameObject)// || !hit.collider.gameObject.GetComponent<PlayerInterActionObj>().IsRotate) 
+            if (!hit.collider.CompareTag("ProductionInteractionObj"))// || hit.collider.gameObject == hit.transform.gameObject)// || !hit.collider.gameObject.GetComponent<PlayerInterActionObj>().IsRotate) 
                 return;
 
             SelectObserveObj = hit.collider.gameObject;
