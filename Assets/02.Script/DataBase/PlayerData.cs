@@ -21,5 +21,9 @@ public class PlayerData : ScriptableObject
 
     public float WalkSoundTIme = 1f;
 
+    public float RunSoundTime = 0.4f;
+
+    public float RunSpeed;
+
  
 }

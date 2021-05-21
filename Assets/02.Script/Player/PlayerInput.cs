@@ -39,6 +39,13 @@ public class PlayerInput : MonoBehaviour
         {
              if (GameManager.Instance.uiManager.DialogueText.TextStartCount >= GameManager.Instance.uiManager.DialogueText.TextEndCount) //종료
             {
+                if(GameManager.Instance.eventCommand.IsDogActive)
+                {
+                    GameManager.Instance.eventCommand.IsRunning = true;
+                    GameManager.Instance.eventCommand.IsDogActive = false;
+                    GameManager.Instance.eventCommand.Dog.SetActive(false);
+                }
+
                 EndTalk();
                 return;
             }

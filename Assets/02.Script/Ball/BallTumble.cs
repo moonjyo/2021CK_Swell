@@ -129,6 +129,14 @@ public class BallTumble : MonoBehaviour, IInteractbale
         yield return new WaitForSeconds(1.4f);
         GameManager.Instance.timeLine.Play("FirePlace");
         SecondInteractOff();
+
+
+        if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+        {
+            GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+        }
+
+
         gameObject.SetActive(false);
     }
 }

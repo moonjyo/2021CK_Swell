@@ -18,7 +18,6 @@ public class CamTrigger : MonoBehaviour, IEventTrigger
 
     public void EventOff()
     {
-
         CameraManager.Instance.StageCam.MoveBasecamOffset();
         CameraManager.Instance.StageCam.MoveBaseTrackedOffset();
         for (int i = 0; i < CamObj.Length; ++i)

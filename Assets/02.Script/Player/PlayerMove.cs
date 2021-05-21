@@ -17,7 +17,10 @@ public class PlayerMove : MonoBehaviour
 
     public bool IsGravity = false;
     public Vector3 moveDirection;
-    
+
+    private Action DelWalkRun;
+
+
 
     //현재 tr과 다른 자식 tr을 알기위해
     public Transform Root_Tr;
@@ -112,20 +115,19 @@ public class PlayerMove : MonoBehaviour
 
                         if (-Direction == WalkVec)
                         {  //당기기   
-
-                            if (!CameraManager.Instance.StageCam.IsLside)
-                            {
-                                WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
-                            }
-                            else
-                            {
-                                WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
-                            }
-                            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                            InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                            Controller.Move(WalkMove);
+                          if (!CameraManager.Instance.StageCam.IsLside)
+                          {
+                              WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                              PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
+                          }
+                          else
+                          {
+                              WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
+                              PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
+                          }
+                          PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
+                          InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
+                          Controller.Move(WalkMove);
                         }
                         else if (Direction == WalkVec)
                         { //밀기 
@@ -163,7 +165,15 @@ public class PlayerMove : MonoBehaviour
             }
             else
             {
-                BaseWalk();
+                if(!GameManager.Instance.eventCommand.IsRunning)
+                {
+                    DelWalkRun = BaseWalk;
+                }
+                else
+                {
+                    DelWalkRun = BaseRun;
+                }
+                DelWalkRun?.Invoke();
             }
         }
         else
@@ -184,6 +194,35 @@ public class PlayerMove : MonoBehaviour
 
        Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
 
+
+        //if (!CameraManager.Instance.StageCam.IsLside)
+        //{ve.y, 0, WalkMove.z);
+        //}
+        //else
+        //{
+        //    WalkMove = new Vector3(-WalkMove.y, 0, WalkMove.z);
+        //}
+
+
+        if (IsGrounded())
+        {
+            FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
+
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.WALK);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetFloat(PlayerAnimationEvents.Velocity, (int)AnimState.WALK);
+        }
+        //    WalkMove = new Vector3(WalkMo
+        Vector3 VecLook = transform.position + WalkMove;
+        Body_Tr.DOLookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z) , 0.25f);
+  
+       Controller.Move(WalkMove * Time.fixedDeltaTime * playerData.WalkSpeed);
+    }
+    public void BaseRun()
+    {
+
+        Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
+
+
         //if (!CameraManager.Instance.StageCam.IsLside)
         //{
         //    WalkMove = new Vector3(WalkMove.y, 0, WalkMove.z);
@@ -196,16 +235,23 @@ public class PlayerMove : MonoBehaviour
 
         if (IsGrounded())
         {
-            FunctionTimer.Create(OnWalkSound, playerData.WalkSoundTIme, "WalkSoundTimer");
+            FunctionTimer.Create(OnRunSound, playerData.RunSoundTime, "WalkSoundTimer");
+
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.WALK);
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetFloat(PlayerAnimationEvents.Velocity, (int)AnimState.RUN);
         }
         Vector3 VecLook = transform.position + WalkMove;
-        Body_Tr.DOLookAt(new Vector3(VecLook.x , transform.position.y , VecLook.z) , 0.25f);
-    
-        Controller.Move(WalkMove * Time.fixedDeltaTime * playerData.WalkSpeed);
+        Body_Tr.DOLookAt(new Vector3(VecLook.x, transform.position.y, VecLook.z), 0.25f);
+  
+        Controller.Move(WalkMove * Time.fixedDeltaTime * playerData.RunSpeed);
+        
     }
-
     private void OnWalkSound()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Foot", GetComponent<Transform>().position);
+        //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Player/SFX_Player_Foot", this.gameObject);
+    }
+    private void OnRunSound()
     {
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Foot", GetComponent<Transform>().position);
         //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Player/SFX_Player_Foot", this.gameObject);

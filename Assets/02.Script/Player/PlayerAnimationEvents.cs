@@ -17,6 +17,7 @@ public enum AnimState
     CRAWL = 10,
     PICKUPDOWN = 11,
     LOOKAROUND = 12,
+    RUN = 13,
 
     CANCEL = -1,
 
@@ -24,9 +25,16 @@ public enum AnimState
 
 public class PlayerAnimationEvents : MonoBehaviour
 {
-    readonly public static string State = "State";
+     public static int State;
+     public static int Velocity;
     public bool IsAnimStart = false;
     public Animator PlayerAnim;
+
+    private void Start()
+    {
+        State = Animator.StringToHash("State");
+        Velocity = Animator.StringToHash("Velocity");
+    }
     public void CrounchStart()
     {
         PlayerManager.Instance.playerMove.IsGravity = true;
@@ -73,7 +81,17 @@ public class PlayerAnimationEvents : MonoBehaviour
         PlayerManager.Instance.playerMove.IsGravity = false;
         IsAnimStart = false;
     }
-  
+
+
+    public void PickUpDownOn()
+    {
+        IsAnimStart = true;
+    }
+
+    public void PickUpDownOff()
+    {
+        IsAnimStart = false;
+    }
 
 
 

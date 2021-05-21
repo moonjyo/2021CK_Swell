@@ -11,7 +11,10 @@ public class EventCommand : MonoBehaviour
     public GameObject DogBark;
     public Animator FrameAnim;
     public GameObject[] CamObj;
+    public GameObject Dog;
     public bool IsLuciFrame = false;
+    public bool IsDogActive = false;
+    public bool IsRunning = false;
     public void StartDialogueEvent()
     {
         GameManager.Instance.uiManager.DialogueText.DialogueCount(0, 4);
@@ -26,13 +29,15 @@ public class EventCommand : MonoBehaviour
 
     public void PuzzleSolve()
     {
-            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+           PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
 
-            PlayerManager.Instance.playerMove.IsGravity = true;
+           PlayerManager.Instance.playerMove.IsGravity = true;
+
+           
+          
 
 
-
-        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
+            PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
 
 
             GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);
@@ -76,10 +81,17 @@ public class EventCommand : MonoBehaviour
 
         yield return new WaitForSeconds(0.7f);
         GameManager.Instance.uiManager.DialogueText.DialogueCount(4, 6);
-        Action act = GameManager.Instance.uiManager.DialogueText.ShowDialogue;
+        Action act = LuciFrameDialogue;
         CameraManager.Instance.StageCam.MoveScreenX(0.2f, 3f, act);
         yield return new WaitForSeconds(1.8f);
         FrameAnim.SetTrigger("InterActionOn");
+    }
+
+
+    public void LuciFrameDialogue()
+    {
+        IsDogActive = true;
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
     }
 
 }

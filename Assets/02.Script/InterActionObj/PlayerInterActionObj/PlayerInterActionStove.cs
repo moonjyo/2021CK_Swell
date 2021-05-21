@@ -104,6 +104,7 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
         gameObject.GetComponent<BoxCollider>().enabled= false;
         SecondInteractOff();
+
         PlayerManager.Instance.playerMove.IsGravity = true;
         EndTrigger.SetActive(true);
 
@@ -111,7 +112,13 @@ public class PlayerInterActionStove : MonoBehaviour , IInteractbale
         {
             GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
         }
-        
+
+
+        if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+        {
+            GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+        }
+
 
         yield break;
     }

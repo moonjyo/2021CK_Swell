@@ -24,11 +24,11 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4931203445396702528}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.6210952, y: 0.1466949, z: 1.3461227}
-  m_Center: {x: 0.035829067, y: 0.58903706, z: 0.17958146}
+  m_Size: {x: 2.3853393, y: 0.18587232, z: 1.1951482}
+  m_Center: {x: 0.012595594, y: 1.6, z: 0.10409427}
 --- !u!114 &885145656838691093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +67,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3132319091136830512}
   - component: {fileID: 3100757526828344569}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: MSG_BGLR_2Shelf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 54
   m_CollisionDetection: 0
+--- !u!65 &664703625
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299038123614616129}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.100897, y: 0.43283165, z: 1.0844209}
+  m_Center: {x: -0.0043286085, y: -0.29637283, z: -0.24465215}
 --- !u!65 &1017680012
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -158,19 +171,6 @@ MonoBehaviour:
   UIOffsetVec: {x: 0, y: 0, z: 0}
   UISecondObjList: []
   UIFirstObj: {fileID: 0}
---- !u!65 &664703625
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7299038123614616129}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 2.100897, y: 0.43283165, z: 0.5785842}
-  m_Center: {x: -0.0043286085, y: -0.29637283, z: 0.008266211}
 --- !u!1001 &911706397426966838
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -237,6 +237,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: UIOffsetInterAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5062980892469825999, guid: c237c8cc1a1b3f6409448da777e1e058,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c237c8cc1a1b3f6409448da777e1e058, type: 3}
@@ -406,6 +411,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MSG_BGLR_2Shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 11dfe223959ea6547bb824e11366b50d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 1740858389958154268, guid: 11dfe223959ea6547bb824e11366b50d,
         type: 3}
