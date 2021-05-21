@@ -112,6 +112,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         InterActAnim.SetTrigger("InterActionOff");
         GameManager.Instance.eventCommand.IsLuciFrame = true;
 
+        GameManager.Instance.uiManager.AchiveMents(10f);
+
 
         if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
         {
