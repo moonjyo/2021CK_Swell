@@ -85,7 +85,6 @@ public class EventCommand : MonoBehaviour
     }
     private IEnumerator LuciFrameCo()
     {
-
         CameraManager.Instance.StageCam.BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
         CameraManager.Instance.StageCam.BaseCam.LookAt = PlayerManager.Instance.playerMove.Body_Tr;
         DogSound.SetActive(true);

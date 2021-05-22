@@ -44,6 +44,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     //idle
     public void CrounchEnd()
     {
+        GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(true);
         IsAnimStart = false;
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
@@ -72,7 +73,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void DownStart()
     {
         PlayerManager.Instance.playerMove.IsGravity = true;
-        PlayerManager.Instance.playerMove.ClimingJudgeDown();
+       // PlayerManager.Instance.playerMove.ClimingJudgeDown();
     }
 
     public void DownEnd()
