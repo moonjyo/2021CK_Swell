@@ -111,16 +111,6 @@ public class BallTumble : MonoBehaviour, IInteractbale
         GameManager.Instance.uiManager.IsOnFirstInterActionUI = false;
     }
 
-
-    public void GreenKey(GameObject gameObject)
-    {
-        Debug.Log("Open GreenLoker");
-    }
-
-    public void PurpleKey(GameObject gameObject)
-    {
-        Debug.Log("Open PurpleLoker");
-    }
     public List<GameObject> GetUIObjList()
     {
         return UISecondObjList;
@@ -139,6 +129,14 @@ public class BallTumble : MonoBehaviour, IInteractbale
         yield return new WaitForSeconds(1.4f);
         GameManager.Instance.timeLine.Play("FirePlace");
         SecondInteractOff();
+
+
+        if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+        {
+            GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+        }
+
+
         gameObject.SetActive(false);
     }
 }

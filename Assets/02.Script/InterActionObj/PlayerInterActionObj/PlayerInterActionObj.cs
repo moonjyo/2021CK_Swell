@@ -2,10 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using UnityEngine.Events;
 
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
+    [System.Serializable]
+    public class InterActEvent : UnityEvent { }
+
     public string ItemKey;
     public string MonologueKey; //임시 
 
@@ -21,10 +25,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public string InteractObjKey;
 
-    public Animator InterActAnim;
-
-    public LuciFrame luciFrame;
-
+    public InterActEvent events;
+   
+    
 
     private bool IsFrameStart;
     public void SecondInteractOn()
@@ -47,8 +50,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         {
             Obj.SetActive(false);
         }
-        //UIFirstObj.gameObject.SetActive(false);
-       // GameManager.Instance.uiManager.OnActiveFirstInterActionUI.Remove(UIFirstObj);
         GameManager.Instance.uiManager.IsOnFirstInterActionUI = false;  
     }
 
@@ -56,12 +57,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     [SerializeField]
     private GameObject[] Objs;
 
-    [SerializeField]
-    Vector3 UIOffsetVec;
-
-
     [HideInInspector]
     public List<GameObject> UISecondObjList = new List<GameObject>();
+    [HideInInspector]
     public FirstInterActionUI UIFirstObj;
     
 
@@ -70,8 +68,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     {
         IsInterAction = true;
         ItemKey = this.gameObject.name;
-
-        //GameManager.Instance.uiManager.uiInventory.OnDistingush += TestCheck;
 
         for (int i = 0; i < Objs.Length; ++i)
         {
@@ -83,8 +79,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
             target.SetTargetObj(transform.gameObject);
             target.SetTargetCanvas(GameManager.Instance.uiManager.InterActionUICanvas);
             target.Init();
-
-            
             if (Targetobj.CompareTag("SecondInterActionUI"))
             {
                 UISecondObjList.Add(Targetobj);
@@ -104,22 +98,92 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public IEnumerator InterAct()
     {
-       
-        IsFrameStart = true;
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
-        gameObject.GetComponent<BoxCollider>().enabled = false;
-        SecondInteractOff();
-        InterActAnim.SetTrigger("InterActionOff");
-        GameManager.Instance.eventCommand.IsLuciFrame = true;
+        events?.Invoke();
 
-         yield break;
+        yield break;
     }
 
-    //public void TestCheck(PlayerInterActionObj Obj)
-    //{
-    //    if(Obj == this.GetComponent<PlayerInterActionObj>())
-    //    {
-    //        Debug.Log("Check Success");
-    //    }
-    //}
+
+
+    //InterActionEvent Func 
+    #region
+    public void FrameInterAction()
+    {
+        Animator FrameAnim =  gameObject.GetComponent<Animator>();
+
+        if (FrameAnim != null)
+        {
+            IsFrameStart = true;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
+            SecondInteractOff();
+            FrameAnim.SetTrigger("InterActionOff");
+            GameManager.Instance.eventCommand.IsLuciFrame = true;
+
+
+            GameManager.Instance.uiManager.AchiveMents(10f);
+
+            if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+            {
+                GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+            }
+        }
+    }
+
+    public void TennisBallInterAction()
+    {
+        StartCoroutine(CoTennisBallInter());
+    }
+
+    private IEnumerator CoTennisBallInter()
+    {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
+        GameManager.Instance.uiManager.uiInventory.Distinguish.FirePlace();
+        yield return new WaitForSeconds(1.4f);
+        GameManager.Instance.timeLine.Play("FirePlace");
+        SecondInteractOff();
+
+
+        if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+        {
+            GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+        }
+
+
+        gameObject.SetActive(false);
+
+    }
+
+
+    public void StoveInterAction()
+    {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        SecondInteractOff();
+
+        PlayerManager.Instance.playerMove.IsGravity = true;
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.ENDTRIGGER].SetActive(true);
+
+        if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("Key", out GameObject KeyObj))
+        {
+            GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
+        }
+
+
+        if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
+        {
+            GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(this);
+        }
+
+    }
+
+
+    public void DoorInterAction()
+    {
+        GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[2].context);
+        GameManager.Instance.uiManager.monologueText.ShowMonologue();
+    }
+
+
+    #endregion
 }

@@ -24,7 +24,7 @@ public class DistinguishItem : MonoBehaviour
         for(int i =0; i < ProductionObject.Length; i ++)
         {
             ProductionClickItem.Add(ProductionObject[i].name, ProductionObject[i]);
-            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "Sphere")
+            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "TennisBall")
             {
                 ProductionObject[i].SetActive(false);
             }
@@ -104,7 +104,7 @@ public class DistinguishItem : MonoBehaviour
     public void ShowpasswordUI(GameObject Obj) // 반지 케이스 자리 클릭
     {
         // 비밀번호 ui창 보여주기
-        GameManager.Instance.uiManager.uiRingCasePassword.Toggle(true);
+        //GameManager.Instance.uiManager.uiRingCasePassword.Toggle(true);
     }
 
     public void JewelyinOwlEye(GameObject Obj) // 부엉이 동상 눈에 보석맞췄을 때
@@ -225,7 +225,7 @@ public class DistinguishItem : MonoBehaviour
            
         }
 
-        if (ProductionClickItem.TryGetValue("Sphere", out GameObject BallObj)) // 테니스 공 찾아옴
+        if (ProductionClickItem.TryGetValue("TennisBall", out GameObject BallObj)) // 테니스 공 찾아옴
         {
             BallObj.SetActive(true);
             BallObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
@@ -244,10 +244,34 @@ public class DistinguishItem : MonoBehaviour
         }
     }
 
-
     public void InteractDoor(GameObject Obj)
     {
         //GameManager.Instance.stageManager.SceneChange("EndingStage1");
         SceneManager.LoadSceneAsync("EndingStage1", LoadSceneMode.Single);
+    }
+
+    public void InteractTable(GameObject Obj) // 신문 주워서 탁자에 올림
+    {
+
+    }
+
+    public void TakeWood(GameObject Obj) // 떨어진 장작 치움?
+    {
+
+    }
+
+    public void PhotoFramePuzzle(GameObject Obj) // 액자에 퍼즐 끼우기
+    {
+
+    }
+
+    public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리
+    {
+
+    }
+
+    public void ClearUpTrashCan(GameObject Obj) // 엎어진 쓰레기통 치우기
+    {
+
     }
 }

@@ -14,8 +14,9 @@ public class UIManager : MonoBehaviour
     public Canvas InterActionUICanvas;
     public UISound uISound;
     public UIInventory uiInventory;
-    public UIRingCasePassword uiRingCasePassword;
+    //public UIRingCasePassword uiRingCasePassword;
     public UIPauseWindow uiPauseWindow;
+    public UITimer uiTimer;
 
     public List<FirstInterActionUI> OnActiveFirstInterActionUI = new List<FirstInterActionUI>(); //first ui obj list 
     public List<IInteractbale> OnActiveSecondInterActionUI = new List<IInteractbale>(); //first ui obj list 
@@ -30,15 +31,8 @@ public class UIManager : MonoBehaviour
     public bool IsOnFirstInterActionUI = false;
     //private bool IsSettingMenu = false;
 
+    public Text AchiveMentText;
 
-    private void Awake()
-    {
-        GameObject Canvas = GameObject.Find("BaseUICanvas");
-        if (Canvas)
-        {
-            InterActionUICanvas = Canvas.GetComponent<Canvas>();
-        }
-    }
 
     private void Start()
     {
@@ -90,7 +84,7 @@ public class UIManager : MonoBehaviour
     {
         if(context.started)
         {
-            uiRingCasePassword.RingCaseOpen();
+            //uiRingCasePassword.RingCaseOpen();
         }
     }
 
@@ -129,5 +123,13 @@ public class UIManager : MonoBehaviour
                 obj.gameObject.SetActive(false);
             }
         }
+    }
+
+
+    public void AchiveMents(float Value)
+    {
+        float temp =  float.Parse(AchiveMentText.text);
+        float Parse  = temp + Value;
+        AchiveMentText.text = Parse.ToString();
     }
 }
