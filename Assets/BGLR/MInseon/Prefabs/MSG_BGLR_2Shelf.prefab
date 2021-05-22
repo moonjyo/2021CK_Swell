@@ -50,8 +50,9 @@ MonoBehaviour:
   InventoryIcon: {fileID: 0}
   SizeObj: {x: 0, y: 0, z: 0}
   InteractObjKey: 
-  InterActAnim: {fileID: 0}
-  luciFrame: {fileID: 0}
+  events:
+    m_PersistentCalls:
+      m_Calls: []
   Objs:
   - {fileID: 2937022840135389953, guid: a0b79f6f70832fd4ca6a2821b7fa1430, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
@@ -144,7 +145,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.15833932, y: 0.35810798, z: 1.4592497}
   m_Center: {x: 0.086333394, y: -0.3, z: -0.19022262}
---- !u!114 &1017680014
+--- !u!114 &6913723311952112650
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -153,11 +154,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7299038123614616129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8dd5da31cd0e11543a0667b7c46faa2e, type: 3}
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ItemKey: 
-  MonologueKey: Shelf
+  MonologueKey: 
   IsTake: 0
   IsWatch: 0
   IsRotate: 0
@@ -165,12 +166,29 @@ MonoBehaviour:
   InventoryIcon: {fileID: 0}
   SizeObj: {x: 0, y: 0, z: 0}
   InteractObjKey: 
+  events:
+    m_PersistentCalls:
+      m_Calls: []
   Objs:
   - {fileID: 2937022840135389953, guid: 4a370556c87b41c478f4b43f7a440abe, type: 3}
   - {fileID: 2937022840135389953, guid: a0b79f6f70832fd4ca6a2821b7fa1430, type: 3}
   UIOffsetVec: {x: 0, y: 0, z: 0}
   UISecondObjList: []
   UIFirstObj: {fileID: 0}
+--- !u!114 &683745069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7299038123614616129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f53021f47cfd9345a49773e4d969b87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsLimmit: 1
+  LimitValue: {x: 0.7, y: 0.4}
 --- !u!1001 &911706397426966838
 PrefabInstance:
   m_ObjectHideFlags: 0

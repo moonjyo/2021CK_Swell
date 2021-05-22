@@ -83,8 +83,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 7.5044446, y: 1.2340019, z: 4.459485}
-  m_Center: {x: -0.6707171, y: 0.11700094, z: -3.1497355}
+  m_Size: {x: 7.5044446, y: 1.2340019, z: 6.242928}
+  m_Center: {x: -0.6707171, y: 0.11700094, z: -2.2580132}
 --- !u!65 &1917300049545848375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -107,9 +107,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6545129421701711094}
-  - component: {fileID: 1096062985}
   - component: {fileID: 7358094137788574635}
   - component: {fileID: 6626991492048367391}
+  - component: {fileID: 6848847804537491257}
   m_Layer: 17
   m_Name: MSG_Lr_fireplace_1
   m_TagString: ProductionInteractionObj
@@ -134,34 +134,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1096062985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6830905383659820829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af4d0dccf15a5464094b70e5b7ab7d9e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemKey: 
-  MonologueKey: 
-  IsTake: 0
-  IsWatch: 0
-  IsRotate: 0
-  IsInterAction: 0
-  InventoryIcon: {fileID: 0}
-  SizeObj: {x: 0, y: 0, z: 0}
-  InteractObjKey: 
-  InterActAnim: {fileID: 0}
-  Objs:
-  - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
-  UIOffsetVec: {x: 0, y: 0, z: 0}
-  UISecondObjList: []
-  UIFirstObj: {fileID: 0}
-  EndTrigger: {fileID: 0}
 --- !u!54 &7358094137788574635
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -191,6 +163,45 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.9054419, y: 1.2340019, z: 0.15318768}
   m_Center: {x: -0.45272088, y: 0.11700094, z: -0.9965928}
+--- !u!114 &6848847804537491257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6830905383659820829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemKey: 
+  MonologueKey: 
+  IsTake: 0
+  IsWatch: 0
+  IsRotate: 0
+  IsInterAction: 0
+  InventoryIcon: {fileID: 0}
+  SizeObj: {x: 0, y: 0, z: 0}
+  InteractObjKey: 
+  events:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6848847804537491257}
+        m_MethodName: StoveInterAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Objs:
+  - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
+  UISecondObjList: []
+  UIFirstObj: {fileID: 0}
 --- !u!1001 &1486687537631076773
 PrefabInstance:
   m_ObjectHideFlags: 0

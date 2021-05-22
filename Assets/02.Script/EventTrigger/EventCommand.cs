@@ -5,6 +5,17 @@ using UnityEngine;
 using System;
 using DG.Tweening;
 
+public enum EventTriggerEnum
+{
+    STARTDIALOGUE = 0,
+    FRAME = 1,
+    PUZZLESOLVE = 2,
+    CAMTRIGGER = 3, 
+    FIREPLACETIME = 4,
+    ENDTRIGGER = 5,
+
+}
+
 public class EventCommand : MonoBehaviour
 {
     public GameObject DogSound;
@@ -15,6 +26,8 @@ public class EventCommand : MonoBehaviour
     public bool IsLuciFrame = false;
     public bool IsDogActive = false;
     public bool IsRunning = false;
+
+    public List<GameObject> EventsTriggerList = new List<GameObject>();
     public void StartDialogueEvent()
     {
         GameManager.Instance.uiManager.DialogueText.DialogueCount(0, 4);
@@ -93,5 +106,9 @@ public class EventCommand : MonoBehaviour
         IsDogActive = true;
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
     }
+
+
+
+
 
 }

@@ -11,8 +11,7 @@ GameObject:
   - component: {fileID: 5958666410378861298}
   - component: {fileID: 4991503308149728511}
   - component: {fileID: 1838644409184685209}
-  - component: {fileID: 152332264939283264}
-  - component: {fileID: 2918378681863690593}
+  - component: {fileID: 610408564}
   m_Layer: 17
   m_Name: Pivot_Door_Rm
   m_TagString: Untagged
@@ -66,37 +65,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &152332264939283264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3165213261339845574}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b572596bbb9251841b3575adb6a613a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemKey: 
-  MonologueKey: 
-  IsTake: 0
-  IsWatch: 1
-  IsRotate: 0
-  IsInterAction: 0
-  InventoryIcon: {fileID: 0}
-  SizeObj: {x: 0.6, y: 0.6, z: 0.6}
-  InteractObjKey: 
-  InterActAnim: {fileID: 0}
-  luciFrame: {fileID: 0}
-  ShowSpeech: {fileID: 0}
-  Objs:
-  - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
-  - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
-  UIOffsetVec: {x: 0, y: 0, z: 0}
-  UISecondObjList: []
-  UIFirstObj: {fileID: 0}
---- !u!114 &2918378681863690593
+--- !u!114 &610408564
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,10 +86,23 @@ MonoBehaviour:
   InventoryIcon: {fileID: 0}
   SizeObj: {x: 0.6, y: 0.6, z: 0.6}
   InteractObjKey: 
-  InterActAnim: {fileID: 0}
-  luciFrame: {fileID: 0}
-  Objs: []
-  UIOffsetVec: {x: 0, y: 0, z: 0}
+  events:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 610408564}
+        m_MethodName: DoorInterAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Objs:
+  - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
+  - {fileID: 6908641776838609645, guid: 067719f30d6181b42aed687f4a3af570, type: 3}
   UISecondObjList: []
   UIFirstObj: {fileID: 0}
 --- !u!1 &8933690488679572778

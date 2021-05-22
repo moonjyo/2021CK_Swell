@@ -7173,11 +7173,22 @@ MonoBehaviour:
   InventoryIcon: {fileID: 0}
   SizeObj: {x: 0, y: 0, z: 0}
   InteractObjKey: 
-  InterActAnim: {fileID: 771903261}
-  luciFrame: {fileID: 0}
+  events:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 771903262}
+        m_MethodName: FrameInterAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   Objs:
   - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
-  UIOffsetVec: {x: 0, y: 0, z: 0}
   UISecondObjList: []
   UIFirstObj: {fileID: 0}
 --- !u!54 &771903263
@@ -9468,36 +9479,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1708504140}
     m_Modifications:
-    - target: {fileID: 473464278, guid: f511fe8038f9a9d4587a822bcb03a32d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 473464280, guid: f511fe8038f9a9d4587a822bcb03a32d, type: 3}
-      propertyPath: m_Size.z
-      value: 6.242928
-      objectReference: {fileID: 0}
-    - target: {fileID: 473464280, guid: f511fe8038f9a9d4587a822bcb03a32d, type: 3}
-      propertyPath: m_Center.z
-      value: -2.2580132
-      objectReference: {fileID: 0}
-    - target: {fileID: 473464280, guid: f511fe8038f9a9d4587a822bcb03a32d, type: 3}
-      propertyPath: m_Center.x
-      value: -0.6707171
-      objectReference: {fileID: 0}
-    - target: {fileID: 1096062985, guid: f511fe8038f9a9d4587a822bcb03a32d, type: 3}
-      propertyPath: EndTrigger
-      value: 
-      objectReference: {fileID: 1131074543}
-    - target: {fileID: 1756596963526909172, guid: f511fe8038f9a9d4587a822bcb03a32d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6079838106789613729, guid: f511fe8038f9a9d4587a822bcb03a32d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6545129421701711094, guid: f511fe8038f9a9d4587a822bcb03a32d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9557,11 +9538,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MSG_Lr_fireplace_1 (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 6830905383659820829, guid: f511fe8038f9a9d4587a822bcb03a32d,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f511fe8038f9a9d4587a822bcb03a32d, type: 3}
@@ -12896,6 +12872,13 @@ MonoBehaviour:
   IsLuciFrame: 0
   IsDogActive: 0
   IsRunning: 0
+  EventsTriggerList:
+  - {fileID: 1860102792}
+  - {fileID: 1122069298}
+  - {fileID: 625744545}
+  - {fileID: 1776717320}
+  - {fileID: 616022655}
+  - {fileID: 1131074543}
 --- !u!4 &1492723631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3132319091136830512, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
@@ -12919,11 +12902,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Sphere
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746547357554807250, guid: bfdf2b94eb8c6bd4a999074087b3f934,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8746547357554807261, guid: bfdf2b94eb8c6bd4a999074087b3f934,
         type: 3}
@@ -12978,16 +12956,6 @@ PrefabInstance:
     - target: {fileID: 8746547357554807261, guid: bfdf2b94eb8c6bd4a999074087b3f934,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8746547357554807263, guid: bfdf2b94eb8c6bd4a999074087b3f934,
-        type: 3}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: e2c5f4cb0c2541947a43baf01569268d, type: 2}
-    - target: {fileID: 8987529016755302131, guid: bfdf2b94eb8c6bd4a999074087b3f934,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -19144,65 +19112,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1355753288540776368, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3165213261339845574, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5004525882511461480, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5932601884617484878, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5932601884617484878, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.000000014901159
-      objectReference: {fileID: 0}
-    - target: {fileID: 5932601884617484878, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.99998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6421857468309074164, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296719203665532092, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7751601236105156404, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193527165720453819, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8933690488679572778, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
       propertyPath: m_Name
       value: MSG_BGLR_Door_Rm
-      objectReference: {fileID: 0}
-    - target: {fileID: 8933690488679572778, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}

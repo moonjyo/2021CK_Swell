@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8746547357554807262}
   - component: {fileID: 8746547357554807263}
   - component: {fileID: 8746547357554807248}
-  - component: {fileID: 8746547357554807249}
   - component: {fileID: 8746547357554807260}
   - component: {fileID: 69207581}
+  - component: {fileID: 3771830675346968478}
   m_Layer: 17
   m_Name: TennisBall
   m_TagString: ProductionInteractionObj
@@ -97,33 +97,6 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8746547357554807249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8746547357554807250}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06169ccb1bf0434dbe50463b5d2e258, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ItemKey: 
-  MonologueKey: 
-  IsTake: 0
-  IsWatch: 0
-  IsRotate: 0
-  IsInterAction: 0
-  InventoryIcon: {fileID: 0}
-  SizeObj: {x: 0, y: 0, z: 0}
-  InteractObjKey: 
-  InterActAnim: {fileID: 0}
-  Objs:
-  - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
-  UIOffsetVec: {x: 0, y: 0, z: 0}
-  UISecondObjList: []
-  UIFirstObj: {fileID: 0}
 --- !u!54 &8746547357554807260
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,6 +136,46 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!114 &3771830675346968478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8746547357554807250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0823132781e9f364b8b42bdb207bef65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemKey: 
+  MonologueKey: 
+  IsTake: 0
+  IsWatch: 0
+  IsRotate: 0
+  IsInterAction: 0
+  InventoryIcon: {fileID: 0}
+  SizeObj: {x: 0, y: 0, z: 0}
+  InteractObjKey: 
+  events:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3771830675346968478}
+        m_MethodName: TennisBallInterAction
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  Objs:
+  - {fileID: 4518762176710130995, guid: 10709245c4a90a74cbebb3e61d7b33d1, type: 3}
+  UIOffsetVec: {x: 0, y: 0, z: 0}
+  UISecondObjList: []
+  UIFirstObj: {fileID: 0}
 --- !u!1001 &8746547359194477249
 PrefabInstance:
   m_ObjectHideFlags: 0
