@@ -14,7 +14,9 @@ enum TimerState
 
 public class UITimer : UIView
 {
-    public Image TimerProgressBar;
+    //public Image TimerProgressBar;
+    public Slider SliderTimeProgressBar;
+
     float Timer = 0;
 
     TimerState timerState;
@@ -23,7 +25,9 @@ public class UITimer : UIView
 
     void Start()
     {
-        TimerProgressBar.fillAmount = 0.0f;
+        //TimerProgressBar.fillAmount = 0.0f;
+
+        SliderTimeProgressBar.value = 0.0f;
         timerState = TimerState.None;
     }
 
@@ -33,7 +37,8 @@ public class UITimer : UIView
         Timer += Time.deltaTime;
         if (Timer <= 300.0f)
         {
-            TimerProgressBar.fillAmount = Timer / 30f;
+            //TimerProgressBar.fillAmount = Timer / 30f;
+            SliderTimeProgressBar.value = Timer / 30f;
             //switch(TimerProgressBar.fillAmount)
             //{
             //    case 0.25f: // 첫번재 칸 => 끼익, 엔진소리(할머니가 옴)
@@ -51,23 +56,23 @@ public class UITimer : UIView
 
             //        break;
             //}
-            if(TimerProgressBar.fillAmount >= 1.0f && timerState != TimerState.Step4)
+            if (SliderTimeProgressBar.value >= 1.0f && timerState != TimerState.Step4)
             {
                 timerState = TimerState.Step4;
             }
-            else if(TimerProgressBar.fillAmount > 0.75f && timerState != TimerState.Step3)
+            else if (SliderTimeProgressBar.value > 0.75f && timerState != TimerState.Step3)
             {
                 timerState = TimerState.Step3;
             }
-            else if(TimerProgressBar.fillAmount > 0.5f && timerState != TimerState.Step2)
+            else if (SliderTimeProgressBar.value > 0.5f && timerState != TimerState.Step2)
             {
                 timerState = TimerState.Step2;
             }
-            else if(TimerProgressBar.fillAmount > 0.25f && timerState != TimerState.Step1)
+            else if (SliderTimeProgressBar.value > 0.25f && timerState != TimerState.Step1)
             {
                 timerState = TimerState.Step1;
             }
-            
+
         }
         else
         {
