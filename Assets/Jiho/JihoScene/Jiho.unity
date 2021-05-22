@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 7025d0701b1e6914c913c4f0419c91b6,
     type: 2}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2782,10 +2782,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2745959230201451733, guid: f187a2b0f6d7ce4479b5540dec1f6696,
-        type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: -135
+    - target: {fileID: 316577025, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 316577025, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1133979835, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2745959230729355442, guid: f187a2b0f6d7ce4479b5540dec1f6696,
         type: 3}
@@ -2862,6 +2869,11 @@ PrefabInstance:
       propertyPath: eventCommand
       value: 
       objectReference: {fileID: 1488423421}
+    - target: {fileID: 2745959232009274427, guid: f187a2b0f6d7ce4479b5540dec1f6696,
+        type: 3}
+      propertyPath: InterActionUICanvas
+      value: 
+      objectReference: {fileID: 1194078131}
     - target: {fileID: 2745959232009274427, guid: f187a2b0f6d7ce4479b5540dec1f6696,
         type: 3}
       propertyPath: monologueText
@@ -7873,11 +7885,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1010444932, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1686570997, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2051672543301750880, guid: 627a4ae317dedf145955a442504c7c42,
         type: 3}
@@ -8011,6 +8023,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 627a4ae317dedf145955a442504c7c42, type: 3}
+--- !u!223 &1194078131 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 2051672543920127335, guid: 627a4ae317dedf145955a442504c7c42,
+    type: 3}
+  m_PrefabInstance: {fileID: 1194078130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1209859761
 PrefabInstance:
   m_ObjectHideFlags: 0
