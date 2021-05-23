@@ -27,7 +27,7 @@ public class DistinguishItem : MonoBehaviour
         for(int i =0; i < ProductionObject.Length; i ++)
         {
             ProductionClickItem.Add(ProductionObject[i].name, ProductionObject[i]);
-            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "MSG_BGLR_Tennisball_1" || ProductionObject[i].name == "MSG_BGLR_FramePuzzlePiece" || ProductionObject[i].name == "NewsPaper")
+            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "MSG_BGLR_Tennisball_1" || ProductionObject[i].name == "MSG_BGLR_FramePuzzlePiece" || ProductionObject[i].name == "NewsPaper" || ProductionObject[i].name == "MSG_BGLR_hat_1 (2)")
             {
                 ProductionObject[i].SetActive(false);
             }
@@ -55,6 +55,7 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_Lr_woodtorage_1(Clone)", TakeWood);
         DistinguishItemDic.Add("MSG_BGLR_decopictureframe_1(Clone)", PhotoFramePuzzle);
         DistinguishItemDic.Add("MSG_BGLR_umbrellastand_1 (1)(Clone)", ClearUpTrashCan);
+        DistinguishItemDic.Add("MSG_Lr_standinghanger_1 (1)(Clone)", HangerInteraction);
         DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
 
         //DistinguishItemDic.Add("테니스공", GetBall);
@@ -307,6 +308,16 @@ public class DistinguishItem : MonoBehaviour
 
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
             }
+        }
+    }
+
+    public void HangerInteraction(GameObject Obj)
+    {
+        if(ProductionClickItem.TryGetValue("MSG_BGLR_hat_1 (2)", out GameObject HatObj))
+        {
+            HatObj.SetActive(true);
+
+            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         }
     }
 }
