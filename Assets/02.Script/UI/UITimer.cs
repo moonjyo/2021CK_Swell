@@ -38,7 +38,7 @@ public class UITimer : UIView
         if (Timer <= 300.0f)
         {
             //TimerProgressBar.fillAmount = Timer / 30f;
-            SliderTimeProgressBar.value = Timer / 30f;
+            SliderTimeProgressBar.value = Timer / 600f;
             //switch(TimerProgressBar.fillAmount)
             //{
             //    case 0.25f: // 첫번재 칸 => 끼익, 엔진소리(할머니가 옴)

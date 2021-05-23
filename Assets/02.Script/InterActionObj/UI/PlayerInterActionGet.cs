@@ -35,23 +35,22 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     {
         TargetInterActionObj = TargetObj.GetComponent<PlayerInterActionObj>();
 
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
-        if (TargetInterActionObj.gameObject.layer == LayerMask.NameToLayer("InterActionscheduler")) //해당 아이템획득시 layer check 전제척으로 
-        {
-            PlayerManager.Instance.PlayerInteractionSecondCheck.InterActionLayer.value = 1 << 20 | 1 << 17;
-        }
+       
 
         if (TargetInterActionObj != null)
         {
             if (TargetInterActionObj.IsTake)
             {
-                GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
+                if(!GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>()))
+                {
+                    return;
+                }
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetInterActionObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetInterActionObj);
                 }
 
-
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
                 TargetObj.SetActive(false); // ui도 관리해주어야 함
                 TargetInterActionObj.AllDestroyObj();
                 

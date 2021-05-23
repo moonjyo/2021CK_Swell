@@ -185,6 +185,10 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         GameManager.Instance.uiManager.DialogueText.DialogueCount(6, 7);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+
+        GameManager.Instance.uiManager.OffSecondInterActionUI();
+        //this.gameObject.SetActive(false);
+        this.gameObject.GetComponent<BoxCollider>().enabled = false;
     }
 
 

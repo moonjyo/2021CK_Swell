@@ -4709,7 +4709,7 @@ PrefabInstance:
     - target: {fileID: 8829151957213514280, guid: 0f13e794a17ec6546a9e5bb4eabfe68a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 9.993
+      value: 9.586
       objectReference: {fileID: 0}
     - target: {fileID: 8829151957213514280, guid: 0f13e794a17ec6546a9e5bb4eabfe68a,
         type: 3}
@@ -4719,7 +4719,7 @@ PrefabInstance:
     - target: {fileID: 8829151957213514280, guid: 0f13e794a17ec6546a9e5bb4eabfe68a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 6.8
+      value: 5.479
       objectReference: {fileID: 0}
     - target: {fileID: 8829151957213514280, guid: 0f13e794a17ec6546a9e5bb4eabfe68a,
         type: 3}
@@ -9862,11 +9862,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: MSG_BGLR_Tennisball_1
       objectReference: {fileID: 0}
-    - target: {fileID: 2034779030273775321, guid: 2dea02c37c29f17469d23a3a6179b5fb,
-        type: 3}
-      propertyPath: m_TagString
-      value: ProductionInteractionObj
-      objectReference: {fileID: 0}
     - target: {fileID: 5933109561353954268, guid: 2dea02c37c29f17469d23a3a6179b5fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -13288,76 +13283,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1643960308}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1645078133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2034779030273775321, guid: 2dea02c37c29f17469d23a3a6179b5fb,
-    type: 3}
-  m_PrefabInstance: {fileID: 1230278840}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1645078134
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645078133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a6610d2e704f1648819acc8d7460285, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CollisionTag: 
-  Event: event:/SFX/Stage1/SFX_St1_BallRoll
-  PlayEvent: 1
-  StopEvent: 0
-  AllowFadeout: 1
-  TriggerOnce: 0
-  Preload: 0
-  Params: []
-  OverrideAttenuation: 0
-  OverrideMinDistance: 1
-  OverrideMaxDistance: 20
---- !u!135 &1645078135
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645078133}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.17
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!54 &1645078136
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645078133}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
---- !u!114 &1645078137
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1645078133}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e06169ccb1bf0434dbe50463b5d2e258, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1647779373
 GameObject:
   m_ObjectHideFlags: 0
@@ -18179,31 +18104,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 5947914256384274650, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
-        type: 3}
-      propertyPath: FirePlaceVec.x
-      value: -16
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947914256384274650, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
-        type: 3}
-      propertyPath: FirePlaceVec.y
-      value: 5.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947914256384274650, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
-        type: 3}
-      propertyPath: BaseTrackedOffsetVec.y
-      value: 2.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947914256384274650, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
-        type: 3}
-      propertyPath: FireTrackedOffsetVec.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5947914256873011537, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 8.9
-      objectReference: {fileID: 0}
     - target: {fileID: 5947914256873011538, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
         type: 3}
       propertyPath: m_IsActive
@@ -19691,65 +19591,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1355753288540776368, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 3165213261339845574, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5004525882511461480, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 5932601884617484878, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5932601884617484878, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: -0.000000014901159
-      objectReference: {fileID: 0}
-    - target: {fileID: 5932601884617484878, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 179.99998
-      objectReference: {fileID: 0}
-    - target: {fileID: 6421857468309074164, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 7296719203665532092, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 7751601236105156404, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 8193527165720453819, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 8933690488679572778, guid: d911c55f0ca2ad146b6f15890b9bd691,
         type: 3}
       propertyPath: m_Name
       value: MSG_BGLR_Door_Rm
-      objectReference: {fileID: 0}
-    - target: {fileID: 8933690488679572778, guid: d911c55f0ca2ad146b6f15890b9bd691,
-        type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d911c55f0ca2ad146b6f15890b9bd691, type: 3}
@@ -23311,6 +23156,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
+      objectReference: {fileID: 0}
+    - target: {fileID: 7502491457935027384, guid: c0da0e02fd0f1a34cb14f8f4fbd4fa35,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7828757082355385851, guid: c0da0e02fd0f1a34cb14f8f4fbd4fa35,
         type: 3}

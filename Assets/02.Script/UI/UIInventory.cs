@@ -176,11 +176,11 @@ public class UIInventory : UIView
         ExitInventoryWindow();
     }
 
-    public void GetItemIcon(PlayerInterActionObj Object) // 아이템을 얻었을 때
+    public bool GetItemIcon(PlayerInterActionObj Object) // 아이템을 얻었을 때
     {
         if(ItemIconData.Count >= 3)
         {
-            return;
+            return false;
         }
 
         EnterInventoryWindow();
@@ -202,6 +202,7 @@ public class UIInventory : UIView
         //}
 
         StartCoroutine(WaitForGetItem());
+        return true;
         
     }
 
