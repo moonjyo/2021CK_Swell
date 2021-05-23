@@ -221,6 +221,7 @@ public class DistinguishItem : MonoBehaviour
         // 시계의 분침을 setactive false 해놓았다가 true로 전환
         if(ProductionClickItem.TryGetValue("Plane012 (1)", out GameObject MinuteHand))
         {
+
             MinuteHand.SetActive(true);
         }
 
@@ -241,7 +242,9 @@ public class DistinguishItem : MonoBehaviour
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
-      
+
+        GameManager.Instance.uiManager.AchiveMents(13f);
+
     }
 
     public void FirePlace()
@@ -266,6 +269,9 @@ public class DistinguishItem : MonoBehaviour
 
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         }
+
+        GameManager.Instance.uiManager.AchiveMents(15f);
+
     }
 
     public void TakeWood(GameObject Obj) // 떨어진 장작 치움?
@@ -278,8 +284,14 @@ public class DistinguishItem : MonoBehaviour
                 GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
 
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+
+
+                GameManager.Instance.uiManager.OffSecondInterActionUI();
+                
+                GameManager.Instance.uiManager.AchiveMents(17f);
             }
         }
+
     }
 
     public void PhotoFramePuzzle(GameObject Obj) // 액자에 퍼즐 끼우기
@@ -290,6 +302,9 @@ public class DistinguishItem : MonoBehaviour
 
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         }
+
+
+        GameManager.Instance.uiManager.AchiveMents(20f);
     }
 
     public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리
@@ -307,8 +322,12 @@ public class DistinguishItem : MonoBehaviour
                 TrashCanObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+
+                GameManager.Instance.uiManager.AchiveMents(15f);
             }
         }
+
+
     }
 
     public void HangerInteraction(GameObject Obj)
@@ -318,6 +337,9 @@ public class DistinguishItem : MonoBehaviour
             HatObj.SetActive(true);
 
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+            GameManager.Instance.uiManager.AchiveMents(10f);
         }
+
+
     }
 }

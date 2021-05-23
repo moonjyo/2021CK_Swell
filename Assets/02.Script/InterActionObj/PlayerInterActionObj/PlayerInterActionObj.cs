@@ -164,11 +164,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         PlayerManager.Instance.playerMove.IsGravity = true;
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.ENDTRIGGER].SetActive(true);
 
-        if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("Key", out GameObject KeyObj))
-        {
-            GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
-        }
-
 
         if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
         {
@@ -183,6 +178,15 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[2].context);
         GameManager.Instance.uiManager.monologueText.ShowMonologue();
     }
+
+
+    public void MemoInterAction()
+    {
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(6, 7);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+    }
+
 
 
     #endregion

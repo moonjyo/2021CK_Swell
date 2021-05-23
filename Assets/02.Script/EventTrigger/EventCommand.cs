@@ -11,9 +11,10 @@ public enum EventTriggerEnum
     FRAME = 1,
     PUZZLESOLVE = 2,
     CAMTRIGGER = 3, 
-    FIREPLACETIME = 4,
-    ENDTRIGGER = 5,
-
+    ENDTRIGGER = 4,
+    WINDOWWICHTRIGGER = 5,
+    DIALOGUE2 = 6, 
+    FIREPLACE = 7,
 }
 
 public class EventCommand : MonoBehaviour
@@ -46,17 +47,12 @@ public class EventCommand : MonoBehaviour
 
            PlayerManager.Instance.playerMove.IsGravity = true;
 
-           
-          
+           PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
 
 
-            PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
-
-
-            GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);
-            GameManager.Instance.uiManager.monologueText.ShowMonologue();
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
-        
+           GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);
+           GameManager.Instance.uiManager.monologueText.ShowMonologue();
+           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
     }
 
 
@@ -107,6 +103,13 @@ public class EventCommand : MonoBehaviour
     }
 
 
+    public void PuzzleSovedOn()
+    {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(7, 8);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+    }
 
 
 
