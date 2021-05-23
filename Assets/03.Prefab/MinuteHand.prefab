@@ -32,6 +32,7 @@ Transform:
   m_LocalPosition: {x: 9.832, y: 0.118, z: 7.132}
   m_LocalScale: {x: 1.1041001, y: 1.1041, z: 1.1041}
   m_Children:
+  - {fileID: 3175058065205554742}
   - {fileID: 7778617896705335841}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -104,10 +105,11 @@ MonoBehaviour:
   InventoryIcon: {fileID: 0}
   SizeObj: {x: 2, y: 2, z: 2}
   InteractObjKey: MSG_Lr_clock_1(Clone)
-  InterActAnim: {fileID: 0}
+  events:
+    m_PersistentCalls:
+      m_Calls: []
   Objs:
   - {fileID: 1374006460355620723, guid: cd583ba4394598949b7575a8ac15cf00, type: 3}
-  UIOffsetVec: {x: 0, y: 0, z: 0}
   UISecondObjList: []
   UIFirstObj: {fileID: 0}
 --- !u!65 &8829151957213514281
@@ -139,6 +141,81 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1001 &6895312356045796219
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 8829151957213514280}
+    m_Modifications:
+    - target: {fileID: 8331941279410183488, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_Name
+      value: MSG_Effect_Star_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5fefb493c2d27e045980da797c431e27, type: 3}
+--- !u!4 &3175058065205554742 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8331941279410183501, guid: 5fefb493c2d27e045980da797c431e27,
+    type: 3}
+  m_PrefabInstance: {fileID: 6895312356045796219}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8829151958758136567
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -184,7 +261,7 @@ PrefabInstance:
     - target: {fileID: 1257701865410738390, guid: 7eafac26b1ee0f843aa2984a7ad093cf,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1257701865410738390, guid: 7eafac26b1ee0f843aa2984a7ad093cf,
         type: 3}
