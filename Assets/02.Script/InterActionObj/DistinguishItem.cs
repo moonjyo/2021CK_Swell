@@ -16,6 +16,9 @@ public class DistinguishItem : MonoBehaviour
     bool IsInMatchStick = false;
     bool IsInWaxCube = false;
 
+    int numberInTrashcan = 0;
+    int numberInWoodStorage = 0;
+
     //public BoxCollider InterActionStove;
     public void init()
     {
@@ -24,7 +27,7 @@ public class DistinguishItem : MonoBehaviour
         for(int i =0; i < ProductionObject.Length; i ++)
         {
             ProductionClickItem.Add(ProductionObject[i].name, ProductionObject[i]);
-            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "TennisBall")
+            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "MSG_BGLR_Tennisball_1" || ProductionObject[i].name == "MSG_BGLR_FramePuzzlePiece" || ProductionObject[i].name == "NewsPaper" || ProductionObject[i].name == "MSG_BGLR_hat_1 (2)")
             {
                 ProductionObject[i].SetActive(false);
             }
@@ -48,6 +51,11 @@ public class DistinguishItem : MonoBehaviour
 
         DistinguishItemDic.Add("MSG_Lr_lokerPurple_1", InteractPurpleLocker);
 
+        DistinguishItemDic.Add("MSG_Lr_roundtable_1(Clone)", InteractTable);
+        DistinguishItemDic.Add("MSG_Lr_woodtorage_1(Clone)", TakeWood);
+        DistinguishItemDic.Add("MSG_BGLR_decopictureframe_1(Clone)", PhotoFramePuzzle);
+        DistinguishItemDic.Add("MSG_BGLR_umbrellastand_1 (1)(Clone)", ClearUpTrashCan);
+        DistinguishItemDic.Add("MSG_Lr_standinghanger_1 (1)(Clone)", HangerInteraction);
         DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
 
         //DistinguishItemDic.Add("테니스공", GetBall);
@@ -225,11 +233,11 @@ public class DistinguishItem : MonoBehaviour
            
         }
 
-        if (ProductionClickItem.TryGetValue("TennisBall", out GameObject BallObj)) // 테니스 공 찾아옴
-        {
-            BallObj.SetActive(true);
-            BallObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
-        }
+        //if (ProductionClickItem.TryGetValue("TennisBall", out GameObject BallObj)) // 테니스 공 찾아옴
+        //{
+        //    BallObj.SetActive(true);
+        //    BallObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+        //}
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
@@ -252,17 +260,36 @@ public class DistinguishItem : MonoBehaviour
 
     public void InteractTable(GameObject Obj) // 신문 주워서 탁자에 올림
     {
+        if(ProductionClickItem.TryGetValue("NewsPaper", out GameObject NewsPaperObj))
+        {
+            NewsPaperObj.SetActive(true);
 
+            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        }
     }
 
     public void TakeWood(GameObject Obj) // 떨어진 장작 치움?
     {
+        numberInWoodStorage++;
+        if(numberInWoodStorage == 3)
+        {
+            if (ProductionClickItem.TryGetValue("MSG_BGLR_key_1", out GameObject KeyObj))
+            {
+                GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
 
+                GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+            }
+        }
     }
 
     public void PhotoFramePuzzle(GameObject Obj) // 액자에 퍼즐 끼우기
     {
+        if(ProductionClickItem.TryGetValue("MSG_BGLR_FramePuzzlePiece", out GameObject PuzzlePieceObj))
+        {
+            PuzzlePieceObj.SetActive(true);
 
+            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        }
     }
 
     public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리
@@ -272,6 +299,25 @@ public class DistinguishItem : MonoBehaviour
 
     public void ClearUpTrashCan(GameObject Obj) // 엎어진 쓰레기통 치우기
     {
+        numberInTrashcan++;
+        if(numberInTrashcan == 5)
+        {
+            if(ProductionClickItem.TryGetValue("MSG_BGLR_umbrellastand_1 (1)", out GameObject TrashCanObj))
+            {
+                TrashCanObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
 
+                GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+            }
+        }
+    }
+
+    public void HangerInteraction(GameObject Obj)
+    {
+        if(ProductionClickItem.TryGetValue("MSG_BGLR_hat_1 (2)", out GameObject HatObj))
+        {
+            HatObj.SetActive(true);
+
+            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        }
     }
 }

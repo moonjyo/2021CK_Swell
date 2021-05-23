@@ -69,7 +69,7 @@ public class ObserveMode : MonoBehaviour
         }
         if(GO != null)
         {
-            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 3f);
+            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 8f);
         }
 
         if(IsClickCol)
@@ -231,15 +231,32 @@ public class ObserveMode : MonoBehaviour
         if (SelectObserveObj == null)
             return;
 
+        SelectObserveObj.GetComponent<BoxCollider>().enabled = false;
         RaycastHit hit;
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            if(hit.collider.gameObject == SelectObserveObj)
+            SelectObserveObj.GetComponent<BoxCollider>().enabled = true;
+            PlayerInterActionObj Obj = SelectObserveObj.GetComponent<PlayerInterActionObj>();
+            if (hit.collider.gameObject == SelectObserveObj || Obj == null)
             {
                 SelectObserveObj = null;
                 return;
             }
+            else if(Obj.InteractObjKey == hit.collider.name)
+            {
+                if(GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(hit.collider.name, out Action<GameObject> value))
+                {
+                    value(hit.collider.gameObject);
+                    SelectObserveObj.gameObject.SetActive(false);
+                    if(GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue(SelectObserveObj.gameObject.name, out GameObject SelectObject))
+                    {
+                        SelectObject.SetActive(false);
+                    }
+                }
+            }
         }
+        SelectObserveObj.GetComponent<BoxCollider>().enabled = true;
+        SelectObserveObj = null;
     }
 }

@@ -187,8 +187,12 @@ public class UIInventory : UIView
 
         ItemIconData.Add(Object);
 
-        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // Object의 이미지 출력
-        //ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = Object.InventoryIcon;
+        //ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0]; // Object의 이미지 출력
+        if(Object.InventoryIcon == null)
+        {
+            ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = ItemImage[0];
+        }
+        ItemImageIcon[ItemIconData.Count - 1].ElementImage.sprite = Object.InventoryIcon;
 
         ItemImageIcon[ItemIconData.Count - 1].HaveItem = Object;
 
