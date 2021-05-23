@@ -15,6 +15,7 @@ public enum EventTriggerEnum
     WINDOWWICHTRIGGER = 5,
     DIALOGUE2 = 6, 
     FIREPLACE = 7,
+    DOG = 8,
 }
 
 public class EventCommand : MonoBehaviour

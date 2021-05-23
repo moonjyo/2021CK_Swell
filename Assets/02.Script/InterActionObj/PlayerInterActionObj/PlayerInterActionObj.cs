@@ -163,6 +163,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
         PlayerManager.Instance.playerMove.IsGravity = true;
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.ENDTRIGGER].SetActive(true);
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.DOG].SetActive(false);
+
 
 
         if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))

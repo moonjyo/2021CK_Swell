@@ -24,6 +24,5 @@ public class EndTrigger : MonoBehaviour, IEventTrigger
         {
             EventOn();
         }
-
     }
 }
