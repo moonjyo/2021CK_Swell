@@ -56,19 +56,19 @@ public class UITimer : UIView
 
             //        break;
             //}
-            if (SliderTimeProgressBar.value >= 1.0f && timerState != TimerState.Step4)
+            if (SliderTimeProgressBar.value >= 1.0f && timerState == TimerState.Step3)
             {
                 timerState = TimerState.Step4;
             }
-            else if (SliderTimeProgressBar.value > 0.75f && timerState != TimerState.Step3)
+            else if (SliderTimeProgressBar.value > 0.75f && timerState == TimerState.Step2)
             {
                 timerState = TimerState.Step3;
             }
-            else if (SliderTimeProgressBar.value > 0.5f && timerState != TimerState.Step2)
+            else if (SliderTimeProgressBar.value > 0.5f && timerState == TimerState.Step1)
             {
                 timerState = TimerState.Step2;
             }
-            else if (SliderTimeProgressBar.value > 0.25f && timerState != TimerState.Step1)
+            else if (SliderTimeProgressBar.value > 0.25f && timerState == TimerState.None)
             {
                 timerState = TimerState.Step1;
             }
