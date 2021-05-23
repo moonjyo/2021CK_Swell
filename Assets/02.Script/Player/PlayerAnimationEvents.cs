@@ -119,6 +119,11 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PlayerManager.Instance.playerMove.IsGravity = false;
         PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f);
+        
+
+
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(11, 12);
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
     }
 
     public void CrawlEnd()

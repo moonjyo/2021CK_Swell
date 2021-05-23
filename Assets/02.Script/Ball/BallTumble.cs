@@ -73,13 +73,13 @@ public class BallTumble : MonoBehaviour
     private void FixedUpdate()
     {
         fTime += Time.fixedDeltaTime;
-        if (fTime < 3.0f)
+        if (fTime < 3.3f)
         {
             rigidBody.AddForce(movement * 10.0f);
         }
-        else
+        else if(fTime > 5.0f)
         {
-            gameObject.layer = 17;
+            rigidBody.isKinematic = true;
         }
     }
 

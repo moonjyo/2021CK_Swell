@@ -163,6 +163,13 @@ public class ObserveMode : MonoBehaviour
         GameManager.Instance.uiManager.OnSecondInterActionUI();
 
         GameManager.Instance.uiManager.uiInventory.ExitInventoryWindow();
+
+       IInteractbale InterActable =  CurrentTargetObj.GetComponent<IInteractbale>();
+
+        if (InterActable != null)
+        {
+           StartCoroutine(CurrentTargetObj.GetComponent<IInteractbale>().InterAct());
+        }
     }
 
     public void CheckClick()

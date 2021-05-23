@@ -114,7 +114,7 @@ Transform:
   m_Children:
   - {fileID: 1251513670}
   m_Father: {fileID: 2789745356141905230}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!320 &1385423419
 PlayableDirector:
@@ -270,94 +270,6 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
---- !u!1 &2789745354866822861
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2789745354866822706}
-  - component: {fileID: 2789745354866822704}
-  - component: {fileID: 2789745354866822707}
-  m_Layer: 0
-  m_Name: FirePlaceTimeLine
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &2789745354866822706
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789745354866822861}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 2789745356141905230}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!320 &2789745354866822704
-PlayableDirector:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789745354866822861}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_PlayableAsset: {fileID: 11400000, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-  m_InitialState: 1
-  m_WrapMode: 2
-  m_DirectorUpdateMode: 1
-  m_InitialTime: 0
-  m_SceneBindings:
-  - key: {fileID: 4902700350581711982, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -7075876268355014204, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 6224412178013815802, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -129482599849241992, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -7529710148305396118, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -5541630789849002773, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 6734296473169654824, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -3225913250717707797, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: 3864213878164190902, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  - key: {fileID: -158373895021123638, guid: e6d5372fe31479f438afaa26ead9a7e0, type: 2}
-    value: {fileID: 0}
-  m_ExposedReferences:
-    m_References: []
---- !u!95 &2789745354866822707
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2789745354866822861}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2789745354878866963
 GameObject:
   m_ObjectHideFlags: 0
@@ -691,7 +603,6 @@ Transform:
   - {fileID: 2789745356516403073}
   - {fileID: 2789745354878866960}
   - {fileID: 2789745355895554747}
-  - {fileID: 2789745354866822706}
   - {fileID: 2789745356525477698}
   - {fileID: 1385423417}
   m_Father: {fileID: 0}
@@ -723,7 +634,7 @@ MonoBehaviour:
   - {fileID: 2789745356516403072}
   - {fileID: 2789745354878866963}
   - {fileID: 2789745355895554746}
-  - {fileID: 2789745354866822861}
+  - {fileID: 0}
   - {fileID: 2789745356525477725}
 --- !u!1 &2789745356516403072
 GameObject:
@@ -850,7 +761,7 @@ Transform:
   m_Children:
   - {fileID: 2789745354528266861}
   m_Father: {fileID: 2789745356141905230}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2789745356525477697
 BoxCollider:

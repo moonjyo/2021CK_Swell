@@ -9,6 +9,10 @@ public class EndTrigger : MonoBehaviour, IEventTrigger
     public void EventOn()
     {
         DogBark.SetActive(true);
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.WINDOWWICHTRIGGER].SetActive(true);
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(12, 13);
+
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
         //sound 반전 
         //걷기 변경 
     }
