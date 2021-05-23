@@ -242,6 +242,7 @@ public class DistinguishItem : MonoBehaviour
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
+        ClockObj.layer = 0;
 
         GameManager.Instance.uiManager.AchiveMents(13f);
 
