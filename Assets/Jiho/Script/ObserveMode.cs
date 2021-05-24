@@ -122,9 +122,15 @@ public class ObserveMode : MonoBehaviour
             GO.gameObject.layer = 18;
             //GO.GetComponent<BoxCollider>().enabled = false;
             Transform[] GOArray = GO.GetComponentsInChildren<Transform>();
-            foreach (Transform Object in GOArray)
+            //foreach (Transform Object in GOArray)
+            for(int i = 1; i < GOArray.Length; i++)
             {
-                Object.gameObject.layer = 18;
+                GOArray[i].gameObject.layer = 18;
+                PlayerInterActionObj ChildInterObj = GOArray[i].GetComponent<PlayerInterActionObj>();
+                if(ChildInterObj != null)
+                {
+                    ChildInterObj.transform.localPosition = ChildInterObj.ObservePos;
+                }
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
             GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
