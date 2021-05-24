@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 enum TimerState
 {
@@ -17,45 +18,36 @@ public class UITimer : UIView
     //public Image TimerProgressBar;
     public Slider SliderTimeProgressBar;
 
+    public GameObject GameOverCanvas;
+
     float Timer = 0;
 
     TimerState timerState;
 
     bool IsTimeOver = false; // 타이머에서 시간이 다 되었을 때
 
+    public bool IsGameOver = false;
+
     void Start()
     {
         //TimerProgressBar.fillAmount = 0.0f;
 
         SliderTimeProgressBar.value = 0.0f;
-        timerState = TimerState.None;
+        timerState = TimerState.None;        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Timer += Time.deltaTime;
+        if(!GameManager.Instance.uiManager.IsStage1PuzzleClear)
+        {
+            Timer += Time.deltaTime;
+        }
+        
         if (Timer <= 300.0f)
         {
-            //TimerProgressBar.fillAmount = Timer / 30f;
             SliderTimeProgressBar.value = Timer / 300;
-            //switch(TimerProgressBar.fillAmount)
-            //{
-            //    case 0.25f: // 첫번재 칸 => 끼익, 엔진소리(할머니가 옴)
 
-            //        break;
-            //    case 0.5f: // 두번째 칸 => 차문 닫기, 엔진 꺼짐 소리(할머니가 차에서 내림)
-
-            //        break;
-
-            //    case 0.75f: // 세번째 칸 => 풀 밟는 소리
-
-            //        break;
-
-            //    case 1.0f: // 5분이 지남 => 문열기? (진행도에 따른 bool값 if에 부여)
-
-            //        break;
-            //}
             if (SliderTimeProgressBar.value >= 1.0f && timerState == TimerState.Step3)
             {
                 timerState = TimerState.Step4;
@@ -76,12 +68,19 @@ public class UITimer : UIView
                 timerState = TimerState.Step1;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer1", PlayerManager.Instance.transform.position);
             }
-
         }
         else
         {
             IsTimeOver = true;
         }
-            
+    }
+
+    public void ShowGameOverCanvas()
+    {
+        GameOverCanvas.SetActive(true);
+
+        Color color = GameOverCanvas.GetComponent<Image>().color;
+        color.a = 1;
+        GameOverCanvas.GetComponent<Image>().DOColor(color, 2.0f);
     }
 }
