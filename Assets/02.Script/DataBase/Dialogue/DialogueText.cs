@@ -10,7 +10,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
 {
     public TextMeshProUGUI TMPDialogue;
     public TextMeshProUGUI TMPName;
-    public TextMeshProUGUI TMPOnNext;
+    public Image TMPOnNext;
 
     public Image StandingImageL;
     public Image StandingImageR;

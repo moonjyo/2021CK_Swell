@@ -280,7 +280,7 @@ public class DistinguishItem : MonoBehaviour
         }
 
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
-        GameManager.Instance.uiManager.AchiveMents(15f);
+        GameManager.Instance.uiManager.AchiveMents(11f);
 
     }
 
@@ -289,9 +289,7 @@ public class DistinguishItem : MonoBehaviour
         numberInWoodStorage++;
         if(numberInWoodStorage == 3)
         {
-            if (ProductionClickItem.TryGetValue("MSG_BGLR_key_1", out GameObject KeyObj))
-            {
-                GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
+          
 
                 if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_woodtorage_1", out GameObject woodtorage))
                 {
@@ -300,8 +298,8 @@ public class DistinguishItem : MonoBehaviour
                 GameManager.Instance.uiManager.OffSecondInterActionUI();
 
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
-                GameManager.Instance.uiManager.AchiveMents(17f);
-            }
+                GameManager.Instance.uiManager.AchiveMents(12f);
+           
         }
 
     }
@@ -321,7 +319,7 @@ public class DistinguishItem : MonoBehaviour
         }
 
 
-        GameManager.Instance.uiManager.AchiveMents(20f);
+        GameManager.Instance.uiManager.AchiveMents(16f);
     }
 
     public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리
@@ -387,6 +385,7 @@ public class DistinguishItem : MonoBehaviour
             }
 
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+            GameManager.Instance.uiManager.AchiveMents(17f);
         }
 
 
@@ -404,7 +403,7 @@ public class DistinguishItem : MonoBehaviour
                 SetActiveUI(TrashCanObj);
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
 
-                GameManager.Instance.uiManager.AchiveMents(15f);
+                GameManager.Instance.uiManager.AchiveMents(11f);
             }
         }
 

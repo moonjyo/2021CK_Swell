@@ -13,6 +13,7 @@ public class WindowWich : MonoBehaviour
 
     public  void OnWichStart()
     {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         WindowMaterial.SetColor("_BaseColor", Color.red);
         WindowMaterial.SetColor("_EmissionColor", Color.red);
     }

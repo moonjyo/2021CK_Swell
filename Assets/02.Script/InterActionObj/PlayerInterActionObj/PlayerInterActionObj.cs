@@ -175,7 +175,9 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         {
             PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
         });
-        gameObject.GetComponent<BoxCollider>().enabled = false;
+        
+
+            gameObject.GetComponent<BoxCollider>().enabled = false;
         SecondInteractOff();
 
         PlayerManager.Instance.playerMove.IsGravity = true;

@@ -118,22 +118,35 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PlayerManager.Instance.playerMove.IsGravity = true; 
         IsAnimStart = true;
-        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f);
+        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f).OnComplete(()=> {
+            if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("MSG_BGLR_key_1", out GameObject KeyObj))
+            {
+                GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
+                GameManager.Instance.uiManager.DialogueText.DialogueCount(13, 14);
+                GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+            }
+        });
     }
 
     public void CrawlMoveOff()
     {
-        PlayerManager.Instance.playerMove.IsGravity = false;
         PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + -0.7f, 1f);
     }
 
     public void CrawlEnd()
     {
-        GameManager.Instance.uiManager.DialogueText.DialogueCount(11, 12);
-        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+        FunctionTimer.Create(DogFind, 2f, "DogFind");
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
 
+
+    public void DogFind()
+    {
+        IsAnimStart = true;
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(10, 12);
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+    }
 
 
     public void SetCliming(Vector2 vec , AnimState state)
