@@ -329,13 +329,20 @@ public class DistinguishItem : MonoBehaviour
         numberInBookShelf++;
         string Name = GameManager.Instance.uiManager.uiInventory.CurrentItemIcon.HaveItem.name;
 
-        switch(Name)
+        Transform ChildObj = GameManager.Instance.uiManager.uiInventory.ob.GO.transform.Find(Name + " (1)");
+        ChildObj.gameObject.SetActive(true);
+        ChildObj.transform.Find(Name).gameObject.layer = 18;
+        
+
+        switch (Name)
         {
             case "MSG_BGLR_Book_1" :
                 if(ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj1))
                 {
                     BookObj1.SetActive(true);
                     BookObj1.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                   
+                    
                 }
                 break;
 
@@ -373,6 +380,8 @@ public class DistinguishItem : MonoBehaviour
             default:
                 return;
         }
+
+        
 
         if (numberInBookShelf == 5)
         {
