@@ -41,8 +41,10 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
         {
             if (TargetInterActionObj.IsTake)
             {
+                //획득 초과시
                 if(!GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>()))
                 {
+                    
                     return;
                 }
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetInterActionObj))

@@ -268,7 +268,8 @@ public class DistinguishItem : MonoBehaviour
         {
             NewsPaperObj.SetActive(true);
 
-            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+
+            SetActiveUI(NewsPaperObj);
         }
 
         GameManager.Instance.uiManager.AchiveMents(15f);
@@ -285,8 +286,10 @@ public class DistinguishItem : MonoBehaviour
                 GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
 
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
-
-
+                if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_woodtorage_1", out GameObject woodtorage))
+                {
+                    SetActiveUI(woodtorage);
+                }
                 GameManager.Instance.uiManager.OffSecondInterActionUI();
                 
                 GameManager.Instance.uiManager.AchiveMents(17f);
@@ -300,7 +303,7 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_BGLR_FramePuzzlePiece", out GameObject PuzzlePieceObj))
         {
             PuzzlePieceObj.SetActive(true);
-
+            SetActiveUI(PuzzlePieceObj);
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         }
 
@@ -321,7 +324,7 @@ public class DistinguishItem : MonoBehaviour
             if(ProductionClickItem.TryGetValue("MSG_BGLR_umbrellastand_1 (1)", out GameObject TrashCanObj))
             {
                 TrashCanObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
-
+                SetActiveUI(TrashCanObj);
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
 
                 GameManager.Instance.uiManager.AchiveMents(15f);
@@ -336,11 +339,31 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_BGLR_hat_1 (2)", out GameObject HatObj))
         {
             HatObj.SetActive(true);
+            SetActiveUI(HatObj);
 
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
             GameManager.Instance.uiManager.AchiveMents(10f);
         }
 
 
+    }
+
+
+    public void SetActiveUI(GameObject Obj)
+    {
+        if (Obj != null)
+        {
+            IInteractbale InteractObj = Obj.GetComponent<IInteractbale>();
+
+            if (InteractObj != null)
+            {
+                if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(InteractObj))
+                {
+                    GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(InteractObj);
+                }
+                GameManager.Instance.uiManager.OffSecondInterActionUI();
+                GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+            }
+        }
     }
 }
