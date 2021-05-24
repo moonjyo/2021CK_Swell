@@ -38,7 +38,7 @@ public class UITimer : UIView
         if (Timer <= 300.0f)
         {
             //TimerProgressBar.fillAmount = Timer / 30f;
-            SliderTimeProgressBar.value = Timer / 300f;
+            SliderTimeProgressBar.value = Timer / 300;
             //switch(TimerProgressBar.fillAmount)
             //{
             //    case 0.25f: // 첫번재 칸 => 끼익, 엔진소리(할머니가 옴)
@@ -59,18 +59,22 @@ public class UITimer : UIView
             if (SliderTimeProgressBar.value >= 1.0f && timerState == TimerState.Step3)
             {
                 timerState = TimerState.Step4;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer4", PlayerManager.Instance.transform.position);
             }
             else if (SliderTimeProgressBar.value > 0.75f && timerState == TimerState.Step2)
             {
                 timerState = TimerState.Step3;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer3", PlayerManager.Instance.transform.position);
             }
             else if (SliderTimeProgressBar.value > 0.5f && timerState == TimerState.Step1)
             {
                 timerState = TimerState.Step2;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer2", PlayerManager.Instance.transform.position);
             }
             else if (SliderTimeProgressBar.value > 0.25f && timerState == TimerState.None)
             {
                 timerState = TimerState.Step1;
+                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer1", PlayerManager.Instance.transform.position);
             }
 
         }
