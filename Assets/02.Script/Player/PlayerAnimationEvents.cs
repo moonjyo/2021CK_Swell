@@ -32,6 +32,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     public bool IsAnimStart = false;
     public Animator PlayerAnim;
 
+    public Vector2 CurrentClimingVec;
+    public AnimState CurrentClimingState;
 
     public Vector2 testvec;
     private void Start()
@@ -42,7 +44,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void CrounchStart()
     {
         PlayerManager.Instance.playerMove.IsGravity = true;
-        IsAnimStart = true;
+        IsAnimStart = true; 
+        PlayerManager.Instance.playerMove.ClimingJudge(CurrentClimingVec.x, CurrentClimingVec.y, CurrentClimingState);
     }
 
     //idle
@@ -131,4 +134,11 @@ public class PlayerAnimationEvents : MonoBehaviour
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
 
+
+
+    public void SetCliming(Vector2 vec , AnimState state)
+    {
+        CurrentClimingVec = vec;
+        CurrentClimingState = state;
+    }
 }

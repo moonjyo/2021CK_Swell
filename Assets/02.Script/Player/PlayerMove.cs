@@ -60,7 +60,7 @@ public class PlayerMove : MonoBehaviour
 
     private Vector3 WalkMove;
 
-
+    public Action<float , float , AnimState> ClimbingAction;
     private void FixedUpdate()
     {
         MoveCheck();
@@ -273,7 +273,6 @@ public class PlayerMove : MonoBehaviour
    
     public void ClimingJudge(float x , float y,AnimState state)
     {
-
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)state);
         GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(false);
         Vector3 forward = transform.forward * x;
