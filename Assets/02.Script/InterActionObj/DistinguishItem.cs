@@ -335,6 +335,7 @@ public class DistinguishItem : MonoBehaviour
                 if(ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj1))
                 {
                     BookObj1.SetActive(true);
+                    BookObj1.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
                 }
                 break;
 
@@ -342,24 +343,30 @@ public class DistinguishItem : MonoBehaviour
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj2))
                 {
                     BookObj2.SetActive(true);
+                    BookObj2.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
                 }
                 break;
             case "MSG_BGLR_Book_3":
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj3))
                 {
                     BookObj3.SetActive(true);
+                    BookObj3.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
                 }
                 break;
+
             case "MSG_BGLR_Book_4":
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj4))
                 {
                     BookObj4.SetActive(true);
+                    BookObj4.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
                 }
                 break;
+
             case "MSG_BGLR_Book_5":
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj5))
                 {
                     BookObj5.SetActive(true);
+                    BookObj5.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
                 }
                 break;
 
@@ -369,7 +376,7 @@ public class DistinguishItem : MonoBehaviour
 
         if (numberInBookShelf == 5)
         {
-
+            
 
             if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_BookShelf_1", out GameObject Hanger))
             {
