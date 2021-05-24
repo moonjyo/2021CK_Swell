@@ -7,7 +7,7 @@
 [LOG] OutputWASAPI::init                       : Output buffer size: 4096 samples, latency: 0.00ms, period: 10.00ms, DSP buffer: 1024 * 4
 [LOG] Thread::initThread                       : Init FMOD stream thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFB, Stack Size: 98304, Semaphore: No, Sleep Time: 10, Looping: Yes.
 [LOG] Thread::initThread                       : Init FMOD mixer thread. Affinity: 0x8000000000000001, Priority: 0xFFFF7FFA, Stack Size: 81920, Semaphore: No, Sleep Time: 0, Looping: Yes.
-[LOG] AsyncManager::init                       : manager 000002CF96CF1058 isAsync 0 updatePeriod 0.02
+[LOG] AsyncManager::init                       : manager 000002CF96CEC4F8 isAsync 0 updatePeriod 0.02
 [LOG] AsyncManager::init                       : done
 [LOG] PlaybackSystem::init                     : 
 [LOG] Thread::initThread                       : Init FMOD Studio sample load thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFD, Stack Size: 98304, Semaphore: No, Sleep Time: 1, Looping: No.
@@ -21,14 +21,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848CE38
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D030A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Walk1', format=5, channels=2, frequency=48000, lengthbytes=1728, lengthpcm=6776, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.129517.
@@ -37,14 +37,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848CE38
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D030A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Walk2', format=5, channels=2, frequency=48000, lengthbytes=1664, lengthpcm=7063, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.147797.
@@ -53,14 +53,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848CE38
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D030A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Run3', format=5, channels=2, frequency=48000, lengthbytes=1504, lengthpcm=5340, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.160492.
@@ -69,14 +69,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848CE38
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D030A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Run2', format=5, channels=2, frequency=48000, lengthbytes=1440, lengthpcm=5375, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.149536.
@@ -85,14 +85,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848CE38
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D030A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Run1', format=5, channels=2, frequency=48000, lengthbytes=1568, lengthpcm=6021, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.197754.
@@ -101,14 +101,14 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848CE38
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D030A8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Walk3', format=5, channels=2, frequency=48000, lengthbytes=1152, lengthpcm=3817, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.125488.
@@ -117,31 +117,113 @@
 [LOG] SystemI::createSoundInternal             : exinfo->length             = 1584608
 [LOG] SystemI::createSoundInternal             : exinfo->fileoffset         = 62048
 [LOG] SystemI::createSoundInternal             : exinfo->numsubsounds       = 1
-[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F568
+[LOG] SystemI::createSoundInternal             : exinfo->inclusionlist      = 000000D4D937F258
 [LOG] SystemI::createSoundInternal             : exinfo->inclusionlistnum   = 1
 [LOG] SystemI::createSoundInternal             : exinfo->suggestedsoundtype = 5
 [LOG] SystemI::createSoundInternal             : exinfo->useropen           = 00007FFE16A67D70
 [LOG] SystemI::createSoundInternal             : exinfo->userclose          = 00007FFE16A67D40
 [LOG] SystemI::createSoundInternal             : exinfo->userread           = 00007FFE16A67E40
 [LOG] SystemI::createSoundInternal             : exinfo->userseek           = 00007FFE16A67F00
-[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002CFE848D678
+[LOG] SystemI::createSoundInternal             : exinfo->fileuserdata       = 000002D048D034C8
 [LOG] SystemI::createSoundInternal             : exinfo->initialseekpostype = 1
 [LOG] SystemI::DSPCodecPoolRegister            : register codec pool for pool type 5
 [LOG] SystemI::createSoundInternal             : Sample 0/1: name='Bark', format=5, channels=2, frequency=48000, lengthbytes=3488, lengthpcm=15242, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.483582.
-[LOG] SoundI::release                          :  (000002CFE8901CF8)
-[LOG] SoundI::release                          :     Run1 (000002CF99C5A4F8)
-[LOG] SoundI::release                          :  (000002CFE8900488)
-[LOG] SoundI::release                          :     Run2 (000002CF99C59CD8)
-[LOG] SoundI::release                          :  (000002CFE89012E8)
-[LOG] SoundI::release                          :     Run3 (000002CF99C56598)
-[LOG] SoundI::release                          :  (000002CFE8902148)
-[LOG] SoundI::release                          :     Walk3 (000002CF99C5BEF8)
-[LOG] SoundI::release                          :  (000002CFE8902428)
-[LOG] SoundI::release                          :     Walk1 (000002CF99C59B38)
-[LOG] SoundI::release                          :  (000002CFE89018A8)
-[LOG] SoundI::release                          :     Walk2 (000002CF99C58FD8)
-[LOG] SoundI::release                          :  (000002CFE88FE4E8)
-[LOG] SoundI::release                          :     Bark (000002CF99C5A698)
+[LOG] SystemI::createSound                     : filename = Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] Thread::initThread                       : Init FMOD nonblocking thread (0). Affinity: 0x8000000000000003, Priority: 0xFFFF7FFC, Stack Size: 114688, Semaphore: Yes, Sleep Time: 0, Looping: Yes.
+[LOG] SystemI::createSound                     : setdata soundi = 000002D048B43C58 : node = 000002D048ADD210
+[LOG] SystemI::createSound                     : add node to async list : head = 000002D08C9FF9A8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000002D048B43C58
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1584608
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 62048
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000002D048ADD320
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 16500
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='dog--german-shepherd--pants--whines-7-sound-effect-87387085', format=5, channels=1, frequency=48000, lengthbytes=205376, lengthpcm=1304032, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.668365.
+[LOG] Thread::initThread                       :     Init FMOD file thread. Affinity: 0x8000000000000003, Priority: 0xFFFF7FFC, Stack Size: 49152, Semaphore: No, Sleep Time: 10, Looping: Yes.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000002D048B43C58
+[LOG] SystemI::createSound                     : filename = Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000002D048B43088 : node = 000002D048ADCE50
+[LOG] SystemI::createSound                     : add node to async list : head = 000002D08C9FF9A8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000002D048B43088
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1584608
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 62048
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000002D048ADCF60
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 17332
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='dog--german-shepherd--pants--whines-7-sound-effect-87387085', format=5, channels=1, frequency=48000, lengthbytes=205376, lengthpcm=1304032, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.668365.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000002D048B43088
+[LOG] SoundI::release                          : dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002D048B43C58)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF99C58138)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002D04960E358)
+[LOG] SystemI::createSound                     : filename = Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000002D04EBADA58 : node = 000002D048ADE390
+[LOG] SystemI::createSound                     : add node to async list : head = 000002D08C9FF9A8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000002D04EBADA58
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1584608
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 62048
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000002D048ADE4A0
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 17332
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='dog--german-shepherd--pants--whines-7-sound-effect-87387085', format=5, channels=1, frequency=48000, lengthbytes=205376, lengthpcm=1304032, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.668365.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000002D04EBADA58
+[LOG] SoundI::release                          : dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002D048B43088)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF99C5A358)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF96520E08)
+[LOG] SystemI::createSound                     : filename = Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank : mode 02010082
+[LOG] SystemI::createSound                     : FMOD_NONBLOCKING specified.  Putting into queue to be opened asynchronously!
+[LOG] SystemI::createSound                     : setdata soundi = 000002CF96520238 : node = 000002D048ADE110
+[LOG] SystemI::createSound                     : add node to async list : head = 000002D08C9FF9A8.  list count = 0
+[LOG] AsyncThread::threadFunc                  : Starting Asynchronous operation on sound 000002CF96520238
+[LOG] SystemI::createSoundInternal             :     Create name='Assets\Plugins\FMOD\ProductSampleFile\Build\Desktop/SFX.bank', mode=0x02010082
+[LOG] SystemI::createSoundInternal             :     exinfo->cbsize             = 224
+[LOG] SystemI::createSoundInternal             :     exinfo->length             = 1584608
+[LOG] SystemI::createSoundInternal             :     exinfo->fileoffset         = 62048
+[LOG] SystemI::createSoundInternal             :     exinfo->numsubsounds       = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlist      = 000002D048ADE220
+[LOG] SystemI::createSoundInternal             :     exinfo->inclusionlistnum   = 1
+[LOG] SystemI::createSoundInternal             :     exinfo->suggestedsoundtype = 5
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekposition = 17332
+[LOG] SystemI::createSoundInternal             :     exinfo->initialseekpostype = 1
+[LOG] SystemI::createSoundInternal             :     Stream 0/1: name='dog--german-shepherd--pants--whines-7-sound-effect-87387085', format=5, channels=1, frequency=48000, lengthbytes=205376, lengthpcm=1304032, pcmblocksize=0, loopstart=0, loopend=0, mode=0x00000000, channelmask=0x00000000, channelorder=0, peakvolume=0.668365.
+[LOG] AsyncThread::threadFunc                  : Finished Asynchronous operation on sound 000002CF96520238
+[LOG] SoundI::release                          : dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002D04EBADA58)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF99C563F8)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF96520C58)
+[LOG] SoundI::release                          : dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF96520238)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002CF99C597F8)
+[LOG] SoundI::release                          :     dog--german-shepherd--pants--whines-7-sound-effect-87387085 (000002D08CCF3108)
+[LOG] SoundI::release                          :  (000002CFE891DA98)
+[LOG] SoundI::release                          :     Run1 (000002CF99C5B878)
+[LOG] SoundI::release                          :  (000002CFE891D928)
+[LOG] SoundI::release                          :     Run2 (000002CF99C5AEB8)
+[LOG] SoundI::release                          :  (000002CFE891D7B8)
+[LOG] SoundI::release                          :     Run3 (000002CF99C587B8)
+[LOG] SoundI::release                          :  (000002CFE8903848)
+[LOG] SoundI::release                          :     Walk3 (000002CF99C560B8)
+[LOG] SoundI::release                          :  (000002CFE891C7E8)
+[LOG] SoundI::release                          :     Walk1 (000002CF99C5BEF8)
+[LOG] SoundI::release                          :  (000002CFE891CAC8)
+[LOG] SoundI::release                          :     Walk2 (000002CF99C5B6D8)
+[LOG] SoundI::release                          :  (000002CFE8908E88)
+[LOG] SoundI::release                          :     Bark (000002CF99C5B538)
 [LOG] Thread::callback                         : FMOD Studio update thread finished.
 [LOG] Thread::callback                         : FMOD Studio bank load thread finished.
 [LOG] Profile::disconnectAll                   : Profiler disconnecting all clients
