@@ -231,6 +231,7 @@ public class ObserveMode : MonoBehaviour
                 return;
 
             SelectObserveObj = hit.collider.gameObject;
+            //GameManager.Instance.uiManager.uiInventory.Distinguish.ConveyObject = SelectObserveObj;
 
         }
         else

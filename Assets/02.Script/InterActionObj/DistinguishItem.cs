@@ -18,6 +18,7 @@ public class DistinguishItem : MonoBehaviour
 
     int numberInTrashcan = 0;
     int numberInWoodStorage = 0;
+    int numberInBookShelf = 0;
 
     //public BoxCollider InterActionStove;
     public void init()
@@ -27,7 +28,10 @@ public class DistinguishItem : MonoBehaviour
         for(int i =0; i < ProductionObject.Length; i ++)
         {
             ProductionClickItem.Add(ProductionObject[i].name, ProductionObject[i]);
-            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "MSG_BGLR_Tennisball_1" || ProductionObject[i].name == "MSG_BGLR_FramePuzzlePiece" || ProductionObject[i].name == "NewsPaper" || ProductionObject[i].name == "MSG_BGLR_hat_1 (2)")
+            if(ProductionObject[i].name == "Plane012 (1)" || ProductionObject[i].name == "MSG_BGLR_Tennisball_1" || ProductionObject[i].name == "MSG_BGLR_FramePuzzlePiece" 
+                || ProductionObject[i].name == "NewsPaper" || ProductionObject[i].name == "MSG_BGLR_hat_1 (2)" || ProductionObject[i].name =="MSG_BGLR_Book_1 (1)" ||
+                ProductionObject[i].name == "MSG_BGLR_Book_2 (1)" || ProductionObject[i].name == "MSG_BGLR_Book_3 (1)" || ProductionObject[i].name == "MSG_BGLR_Book_4 (1)" ||
+                ProductionObject[i].name == "MSG_BGLR_Book_5 (1)")
             {
                 ProductionObject[i].SetActive(false);
             }
@@ -54,6 +58,7 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_Lr_roundtable_1(Clone)", InteractTable);
         DistinguishItemDic.Add("MSG_Lr_woodtorage_1(Clone)", TakeWood);
         DistinguishItemDic.Add("MSG_BGLR_decopictureframe_1(Clone)", PhotoFramePuzzle);
+        DistinguishItemDic.Add("MSG_BGLR_BookShelf_1(Clone)", TakeToBookShlef);
         DistinguishItemDic.Add("MSG_BGLR_umbrellastand_1 (1)(Clone)", ClearUpTrashCan);
         DistinguishItemDic.Add("MSG_Lr_standinghanger_1 (1)(Clone)", HangerInteraction);
         DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
@@ -321,11 +326,68 @@ public class DistinguishItem : MonoBehaviour
 
     public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리
     {
-        // 액자 퍼즐과 비슷함
-        // 책 아이템을 모두 받았을 때 퍼즐 클리어
+        numberInBookShelf++;
+        string Name = GameManager.Instance.uiManager.uiInventory.CurrentItemIcon.HaveItem.name;
+
+        switch(Name)
+        {
+            case "MSG_BGLR_Book_1" :
+                if(ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj1))
+                {
+                    BookObj1.SetActive(true);
+                    BookObj1.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                }
+                break;
+
+            case "MSG_BGLR_Book_2":
+                if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj2))
+                {
+                    BookObj2.SetActive(true);
+                    BookObj2.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                }
+                break;
+            case "MSG_BGLR_Book_3":
+                if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj3))
+                {
+                    BookObj3.SetActive(true);
+                    BookObj3.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                }
+                break;
+
+            case "MSG_BGLR_Book_4":
+                if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj4))
+                {
+                    BookObj4.SetActive(true);
+                    BookObj4.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                }
+                break;
+
+            case "MSG_BGLR_Book_5":
+                if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj5))
+                {
+                    BookObj5.SetActive(true);
+                    BookObj5.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                }
+                break;
+
+            default:
+                return;
+        }
+
+        if (numberInBookShelf == 5)
+        {
+            
+
+            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_BookShelf_1", out GameObject Hanger))
+            {
+                SetActiveUI(Hanger);
+            }
+
+            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+        }
 
 
-        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+       
     }
 
     public void ClearUpTrashCan(GameObject Obj) // 엎어진 쓰레기통 치우기
