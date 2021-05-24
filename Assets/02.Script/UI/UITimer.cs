@@ -52,6 +52,7 @@ public class UITimer : UIView
             {
                 timerState = TimerState.Step4;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer4", PlayerManager.Instance.transform.position);
+                ShowGameOverCanvas();
             }
             else if (SliderTimeProgressBar.value > 0.75f && timerState == TimerState.Step2)
             {

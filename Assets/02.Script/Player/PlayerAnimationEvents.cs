@@ -135,7 +135,7 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void CrawlEnd()
     {
-        FunctionTimer.Create(DogFind, 2f, "DogFind");
+        FunctionTimer.Create(DogFind, 1.5f, "DogFind");
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
 

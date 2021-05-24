@@ -136,6 +136,7 @@ public class UIManager : MonoBehaviour
 
         if(Parse == 100)
         {
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             GameManager.Instance.uiManager.DialogueText.DialogueCount(8, 10);
             GameManager.Instance.uiManager.DialogueText.ShowDialogue();
             GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACE].transform.GetComponent<BoxCollider>().enabled = true;
