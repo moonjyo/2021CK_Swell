@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
 
     public Text AchiveMentText;
 
+    public bool IsStage1PuzzleClear = false;
+
 
     private void Start()
     {
@@ -142,6 +144,8 @@ public class UIManager : MonoBehaviour
             {
                 obj.SetActive(true);
             }
+
+            IsStage1PuzzleClear = true;
         }
     }
 }

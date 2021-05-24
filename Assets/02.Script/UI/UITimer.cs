@@ -33,15 +33,17 @@ public class UITimer : UIView
         //TimerProgressBar.fillAmount = 0.0f;
 
         SliderTimeProgressBar.value = 0.0f;
-        timerState = TimerState.None;
-
-        
+        timerState = TimerState.None;        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        Timer += Time.deltaTime;
+        if(!GameManager.Instance.uiManager.IsStage1PuzzleClear)
+        {
+            Timer += Time.deltaTime;
+        }
+        
         if (Timer <= 300.0f)
         {
             SliderTimeProgressBar.value = Timer / 300;
