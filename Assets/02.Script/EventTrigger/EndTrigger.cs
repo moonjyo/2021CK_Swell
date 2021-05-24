@@ -13,6 +13,7 @@ public class EndTrigger : MonoBehaviour, IEventTrigger
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.WINDOWWICHTRIGGER].SetActive(true);
         GameManager.Instance.uiManager.DialogueText.DialogueCount(12, 13);
 
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
         //sound 반전 
         //걷기 변경 
