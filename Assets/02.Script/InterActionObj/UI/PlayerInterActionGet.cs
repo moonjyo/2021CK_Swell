@@ -47,12 +47,13 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
                     
                     return;
                 }
+
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetInterActionObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetInterActionObj);
                 }
 
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
                 TargetObj.SetActive(false); // ui도 관리해주어야 함
                 TargetInterActionObj.AllDestroyObj();
                 

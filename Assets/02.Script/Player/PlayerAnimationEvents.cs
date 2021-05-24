@@ -115,25 +115,20 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PlayerManager.Instance.playerMove.IsGravity = true; 
         IsAnimStart = true;
-        //PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + -0.35f, 1f);
-        Vector3 forward = transform.forward * testvec.x;
-        transform.DOMove(transform.position + forward, 1f);
+        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f);
     }
 
     public void CrawlMoveOff()
     {
         PlayerManager.Instance.playerMove.IsGravity = false;
-        //PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f);
-        Vector3 forward = transform.forward * testvec.x;
-        transform.DOMove(transform.position - forward, 1f);
-        GameManager.Instance.uiManager.DialogueText.DialogueCount(11, 12);
-        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + -0.7f, 1f);
     }
 
     public void CrawlEnd()
     {
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(11, 12);
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
         PlayerManager.Instance.playerMove.IsGravity = false;
-        IsAnimStart = false;
     }
 
 }

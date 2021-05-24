@@ -113,7 +113,7 @@ public class EventCommand : MonoBehaviour
         DogBark.SetActive(true);
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.WINDOWWICHTRIGGER].SetActive(true);
         GameManager.Instance.uiManager.DialogueText.DialogueCount(12, 13);
-
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
     }
 

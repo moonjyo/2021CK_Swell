@@ -144,7 +144,6 @@ public class PlayerMove : MonoBehaviour
                             RowMove();
                         }
                     }
-
                 }
             }
             else
@@ -441,7 +440,6 @@ public class PlayerMove : MonoBehaviour
         if (!InterActionUIPressed) 
         {
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         }
     }
    
