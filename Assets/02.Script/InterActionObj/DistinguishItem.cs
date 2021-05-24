@@ -221,8 +221,8 @@ public class DistinguishItem : MonoBehaviour
         // 시계의 분침을 setactive false 해놓았다가 true로 전환
         if(ProductionClickItem.TryGetValue("Plane012 (1)", out GameObject MinuteHand))
         {
-
             MinuteHand.SetActive(true);
+            MinuteHand.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
         }
 
         if(ProductionClickItem.TryGetValue("MSG_Lr_clock_1", out GameObject ClockObj))
@@ -267,6 +267,7 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("NewsPaper", out GameObject NewsPaperObj))
         {
             NewsPaperObj.SetActive(true);
+            NewsPaperObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
         }
         if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_roundtable_1", out GameObject roundtable))
         {
@@ -305,6 +306,7 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_BGLR_FramePuzzlePiece", out GameObject PuzzlePieceObj))
         {
             PuzzlePieceObj.SetActive(true);
+            PuzzlePieceObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
             if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_decopictureframe_1", out GameObject decopictureframe))
             {
                 SetActiveUI(decopictureframe);
@@ -319,7 +321,11 @@ public class DistinguishItem : MonoBehaviour
 
     public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리
     {
+        // 액자 퍼즐과 비슷함
+        // 책 아이템을 모두 받았을 때 퍼즐 클리어
 
+
+        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
     }
 
     public void ClearUpTrashCan(GameObject Obj) // 엎어진 쓰레기통 치우기
@@ -345,6 +351,7 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_BGLR_hat_1 (2)", out GameObject HatObj))
         {
             HatObj.SetActive(true);
+            HatObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
             if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_standinghanger_1 (1)", out GameObject Hanger))
             {
                 SetActiveUI(Hanger);
