@@ -55,7 +55,7 @@ public class DistinguishItem : MonoBehaviour
 
         DistinguishItemDic.Add("MSG_Lr_lokerPurple_1", InteractPurpleLocker);
 
-        DistinguishItemDic.Add("MSG_Lr_roundtable_1(Clone)", InteractTable);
+        DistinguishItemDic.Add("MSG_BGLR_smalltable_1(Clone)", InteractTable);
         DistinguishItemDic.Add("MSG_Lr_woodtorage_1(Clone)", TakeWood);
         DistinguishItemDic.Add("MSG_BGLR_decopictureframe_1(Clone)", PhotoFramePuzzle);
         DistinguishItemDic.Add("MSG_BGLR_BookShelf_1(Clone)", TakeToBookShlef);
@@ -274,7 +274,7 @@ public class DistinguishItem : MonoBehaviour
             NewsPaperObj.SetActive(true);
             NewsPaperObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
         }
-        if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_roundtable_1", out GameObject roundtable))
+        if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_smalltable_1", out GameObject roundtable))
         {
             SetActiveUI(roundtable);
         }
@@ -341,8 +341,6 @@ public class DistinguishItem : MonoBehaviour
                 {
                     BookObj1.SetActive(true);
                     BookObj1.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
-                   
-                    
                 }
                 break;
 
@@ -379,14 +377,10 @@ public class DistinguishItem : MonoBehaviour
 
             default:
                 return;
-        }
-
-        
+        }        
 
         if (numberInBookShelf == 5)
         {
-            
-
             if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_BookShelf_1", out GameObject Hanger))
             {
                 SetActiveUI(Hanger);
