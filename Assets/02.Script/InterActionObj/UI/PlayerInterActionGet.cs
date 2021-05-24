@@ -44,7 +44,8 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
                 //획득 초과시
                 if(!GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>()))
                 {
-                    
+                    GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[8].context);
+                    GameManager.Instance.uiManager.monologueText.ShowMonologue();
                     return;
                 }
 
@@ -63,7 +64,6 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
                     if(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].name == TargetInterActionObj.MonologueKey)
                     {
                         GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].context);
-
                         GameManager.Instance.uiManager.monologueText.ShowMonologue();
                     }
                 }
