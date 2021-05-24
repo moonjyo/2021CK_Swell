@@ -6,6 +6,7 @@ public class EndTrigger : MonoBehaviour, IEventTrigger
 {
     public GameObject DogBark;
     
+    
     public void EventOn()
     {
         DogBark.SetActive(true);

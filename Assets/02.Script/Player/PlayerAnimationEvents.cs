@@ -4,6 +4,7 @@ using UnityEngine;
 using DG.Tweening;
 
 
+[SerializeField]
 public enum AnimState
 {
     WALK = 2,
@@ -18,6 +19,7 @@ public enum AnimState
     PICKUPDOWN = 11,
     LOOKAROUND = 12,
     RUN = 13,
+    STAIRCROUNCH = 14,
 
     CANCEL = -1,
 

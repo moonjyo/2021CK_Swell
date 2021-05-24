@@ -272,12 +272,13 @@ public class PlayerMove : MonoBehaviour
     }
 
    
-    public void ClimingJudge()
+    public void ClimingJudge(float x , float y,AnimState state)
     {
 
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)state);
         GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(false);
-        Vector3 forward = transform.forward * ClimingOffsetVec.x;
-        Vector3 up = transform.up * ClimingOffsetVec.y;
+        Vector3 forward = transform.forward * x;
+        Vector3 up = transform.up * y;
         transform.DOMove(transform.position + forward + up, 1f).OnComplete(() =>
       {  
           InterActionUIPressed = false;
@@ -411,7 +412,6 @@ public class PlayerMove : MonoBehaviour
         else
         {
             PlayerManager.Instance.playerMove.IsInterActionCol = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
             PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
         }

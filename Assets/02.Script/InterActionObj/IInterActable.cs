@@ -11,7 +11,11 @@ public interface IInteractbale
   bool IsGetInterAction();
   List<GameObject> GetUIObjList();
 
-    IEnumerator InterAct();
+  IEnumerator InterAct();
 
+  Vector2 GetClimingVec();
+
+   AnimState GetAnimState();
+  
 }
 

@@ -16,6 +16,7 @@ public enum EventTriggerEnum
     DIALOGUE2 = 6, 
     FIREPLACE = 7,
     DOG = 8,
+    TENISBALL = 9,
 }
 
 public class EventCommand : MonoBehaviour
@@ -74,12 +75,6 @@ public class EventCommand : MonoBehaviour
         }
     }
 
-    public void Stage1EndTrigger()
-    {
-        DogBark.SetActive(true);
-        //sound 반전 
-        //걷기 변경 
-    }
     private IEnumerator LuciFrameCo()
     {
         CameraManager.Instance.StageCam.BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
@@ -113,5 +108,13 @@ public class EventCommand : MonoBehaviour
     }
 
 
+    public void EndTrigger()
+    {
+        DogBark.SetActive(true);
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.WINDOWWICHTRIGGER].SetActive(true);
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(12, 13);
+
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+    }
 
 }
