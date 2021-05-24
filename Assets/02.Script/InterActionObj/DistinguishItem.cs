@@ -229,9 +229,9 @@ public class DistinguishItem : MonoBehaviour
         {
             ClockObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
             //ClockObj.gameObject.layer = 0;
-            
-            ClockObj.GetComponent<BoxCollider>().enabled = false;
-           
+
+            SetActiveUI(ClockObj);
+
         }
 
         //if (ProductionClickItem.TryGetValue("TennisBall", out GameObject BallObj)) // 테니스 공 찾아옴
@@ -267,11 +267,13 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("NewsPaper", out GameObject NewsPaperObj))
         {
             NewsPaperObj.SetActive(true);
-
-
-            SetActiveUI(NewsPaperObj);
+        }
+        if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_roundtable_1", out GameObject roundtable))
+        {
+            SetActiveUI(roundtable);
         }
 
+        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.AchiveMents(15f);
 
     }
@@ -285,13 +287,13 @@ public class DistinguishItem : MonoBehaviour
             {
                 GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
 
-                GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
                 if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_woodtorage_1", out GameObject woodtorage))
                 {
                     SetActiveUI(woodtorage);
                 }
                 GameManager.Instance.uiManager.OffSecondInterActionUI();
-                
+
+                GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
                 GameManager.Instance.uiManager.AchiveMents(17f);
             }
         }
@@ -303,7 +305,11 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_BGLR_FramePuzzlePiece", out GameObject PuzzlePieceObj))
         {
             PuzzlePieceObj.SetActive(true);
-            SetActiveUI(PuzzlePieceObj);
+            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_decopictureframe_1", out GameObject decopictureframe))
+            {
+                SetActiveUI(decopictureframe);
+            }
+
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         }
 
@@ -339,7 +345,10 @@ public class DistinguishItem : MonoBehaviour
         if(ProductionClickItem.TryGetValue("MSG_BGLR_hat_1 (2)", out GameObject HatObj))
         {
             HatObj.SetActive(true);
-            SetActiveUI(HatObj);
+            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_Lr_standinghanger_1 (1)", out GameObject Hanger))
+            {
+                SetActiveUI(Hanger);
+            }
 
             GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
             GameManager.Instance.uiManager.AchiveMents(10f);
@@ -361,8 +370,8 @@ public class DistinguishItem : MonoBehaviour
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(InteractObj);
                 }
+                Obj.GetComponent<BoxCollider>().enabled = false;
                 GameManager.Instance.uiManager.OffSecondInterActionUI();
-                GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
             }
         }
     }
