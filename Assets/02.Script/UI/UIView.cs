@@ -8,6 +8,7 @@ public class UIView : MonoBehaviour
 {
     public RectTransform RootRect;
     private Vector3 OriginalPos;
+    private bool isDialogues = false;
 
     protected void Awake()
     {
@@ -23,11 +24,13 @@ public class UIView : MonoBehaviour
     {
         if(value)
         {
+            GameManager.Instance.uiManager.PauseWindows.gameObject.SetActive(true);
+            Time.timeScale = 0f;
             RootRect.localPosition = Vector3.zero;
         }
         else
         {
-            RootRect.localPosition = OriginalPos;
+            Time.timeScale = 1;
         }
 
         RootRect.gameObject.SetActive(value);

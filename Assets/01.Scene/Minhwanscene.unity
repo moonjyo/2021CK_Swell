@@ -14690,6 +14690,11 @@ PrefabInstance:
       propertyPath: MonologueData
       value: 
       objectReference: {fileID: 770806583}
+    - target: {fileID: 5466505140148224933, guid: 07971c43708782e4fba7481fdcc5313c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466505140839202240, guid: 07971c43708782e4fba7481fdcc5313c,
         type: 3}
       propertyPath: m_RootOrder
@@ -14804,6 +14809,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BaseUICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5466505140913991950, guid: 07971c43708782e4fba7481fdcc5313c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 07971c43708782e4fba7481fdcc5313c, type: 3}
@@ -21325,6 +21335,12 @@ MonoBehaviour:
   OverrideAttenuation: 0
   OverrideMinDistance: 1
   OverrideMaxDistance: 20
+--- !u!1 &1990472116 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1122290485, guid: f187a2b0f6d7ce4479b5540dec1f6696,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015051350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2006818965 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2061784655811960526, guid: 66363cb6a1418bc478cce410018f7dad,
@@ -21376,6 +21392,18 @@ PrefabInstance:
     - target: {fileID: 929398513, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122290485, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122290490, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1122290490, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_SortingOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1133979835, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
       propertyPath: m_AnchorMax.y
@@ -21528,6 +21556,11 @@ PrefabInstance:
       propertyPath: DialogueText
       value: 
       objectReference: {fileID: 1605098929}
+    - target: {fileID: 2745959232009274427, guid: f187a2b0f6d7ce4479b5540dec1f6696,
+        type: 3}
+      propertyPath: PauseWindows
+      value: 
+      objectReference: {fileID: 1990472116}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
 --- !u!4 &2016139084 stripped

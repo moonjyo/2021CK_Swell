@@ -39,7 +39,7 @@ public class UITimer : UIView
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!GameManager.Instance.uiManager.IsStage1PuzzleClear)
+        if(!GameManager.Instance.uiManager.IsTimePuase)
         {
             Timer += Time.deltaTime;
         }

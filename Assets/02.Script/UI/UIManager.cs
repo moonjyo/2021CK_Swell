@@ -33,7 +33,9 @@ public class UIManager : MonoBehaviour
 
     public Text AchiveMentText;
 
-    public bool IsStage1PuzzleClear = false;
+    public bool IsTimePuase = false;
+
+    public GameObject PauseWindows;
 
 
     private void Start()
@@ -152,7 +154,7 @@ public class UIManager : MonoBehaviour
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACE].transform.GetComponent<BoxCollider>().enabled = true;
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.CAMTRIGGER].SetActive(true);
-        IsStage1PuzzleClear = true;
+        IsTimePuase = true;
     }
     
 }

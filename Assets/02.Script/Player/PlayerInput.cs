@@ -13,6 +13,8 @@ public class PlayerInput : MonoBehaviour
 
     public bool IsOnPressedLeftMouse = false;
     private GameObject ObjLight;
+
+    public bool IsTalk = false;
     public void OnWalk(InputAction.CallbackContext context)
     {
         //if(GameManager.Instance.GetComponent<ObserveMode>().IsOnObserveMode)
@@ -52,6 +54,7 @@ public class PlayerInput : MonoBehaviour
                 return;
             }
 
+            IsTalk = false;
             GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
             StartCoroutine(GameManager.Instance.uiManager.DialogueText.SetText());
         }
@@ -60,6 +63,7 @@ public class PlayerInput : MonoBehaviour
 
     public void EndTalk()
     {
+        IsTalk = true;
         CameraManager.Instance.StageCam.MoveScreenX(0.533f, 0f);
         GameManager.Instance.uiManager.DialogueText.gameObject.SetActive(false);
         GameManager.Instance.uiManager.DialogueText.IsNextDialogue = false;
