@@ -49,7 +49,7 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_BGLR_decopictureframe_1(Clone)", PhotoFramePuzzle);
         DistinguishItemDic.Add("MSG_BGLR_BookShelf_1(Clone)", TakeToBookShlef);
         DistinguishItemDic.Add("MSG_BGLR_umbrellastand_1 (1)(Clone)", ClearUpTrashCan);
-        DistinguishItemDic.Add("MSG_Lr_standinghanger_1 (1)(Clone)", HangerInteraction);
+        DistinguishItemDic.Add("MSG_Lr_standinghanger_1", HangerInteraction);
         DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
     }
 
