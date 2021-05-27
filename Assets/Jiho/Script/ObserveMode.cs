@@ -130,6 +130,10 @@ public class ObserveMode : MonoBehaviour
                 if(ChildInterObj != null)
                 {
                     ChildInterObj.transform.localPosition = ChildInterObj.ObservePos;
+                    if(ChildInterObj.gameObject.name == "MSG_BGLR_BrokenGlass")
+                    {
+                        ChildInterObj.transform.localRotation = Quaternion.Euler(-35.9f, 17.825f, 118.15f);
+                    }
                 }
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
