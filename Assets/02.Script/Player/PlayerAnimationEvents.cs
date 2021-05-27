@@ -4,7 +4,6 @@ using UnityEngine;
 using DG.Tweening;
 
 
-[SerializeField]
 public enum AnimState
 {
     WALK = 2,
@@ -19,7 +18,6 @@ public enum AnimState
     PICKUPDOWN = 11,
     LOOKAROUND = 12,
     RUN = 13,
-    STAIRCROUNCH = 14,
 
     CANCEL = -1,
 
@@ -32,10 +30,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     public bool IsAnimStart = false;
     public Animator PlayerAnim;
 
-    public Vector2 CurrentClimingVec;
-    public AnimState CurrentClimingState;
-
-    public Vector2 testvec;
     private void Start()
     {
         State = Animator.StringToHash("State");
@@ -44,14 +38,12 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void CrounchStart()
     {
         PlayerManager.Instance.playerMove.IsGravity = true;
-        IsAnimStart = true; 
-        PlayerManager.Instance.playerMove.ClimingJudge(CurrentClimingVec.x, CurrentClimingVec.y, CurrentClimingState);
+        IsAnimStart = true;
     }
 
     //idle
     public void CrounchEnd()
     {
-        GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(true);
         IsAnimStart = false;
         PlayerManager.Instance.playerMove.IsGravity = false;
     }
@@ -80,7 +72,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void DownStart()
     {
         PlayerManager.Instance.playerMove.IsGravity = true;
-       // PlayerManager.Instance.playerMove.ClimingJudgeDown();
+        PlayerManager.Instance.playerMove.ClimingJudgeDown();
     }
 
     public void DownEnd()
@@ -99,6 +91,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     public void PickUpDownOff()
     {
         IsAnimStart = false;
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
     }
 
 
@@ -116,42 +109,22 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void CrawlMoveOn()
     {
+
         PlayerManager.Instance.playerMove.IsGravity = true; 
         IsAnimStart = true;
-        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f).OnComplete(()=> {
-            if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("MSG_BGLR_key_1", out GameObject KeyObj))
-            {
-                GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
-                GameManager.Instance.uiManager.DialogueText.DialogueCount(13, 14);
-                GameManager.Instance.uiManager.DialogueText.ShowDialogue();
-            }
-        });
+        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + -0.35f, 1f);
     }
 
     public void CrawlMoveOff()
     {
-        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + -0.7f, 1f);
+        PlayerManager.Instance.playerMove.IsGravity = false;
+        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f);
     }
 
     public void CrawlEnd()
     {
-        FunctionTimer.Create(DogFind, 1.5f, "DogFind");
         PlayerManager.Instance.playerMove.IsGravity = false;
+        IsAnimStart = false;
     }
 
-
-    public void DogFind()
-    {
-        IsAnimStart = true;
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
-        GameManager.Instance.uiManager.DialogueText.DialogueCount(10, 12);
-        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
-    }
-
-
-    public void SetCliming(Vector2 vec , AnimState state)
-    {
-        CurrentClimingVec = vec;
-        CurrentClimingState = state;
-    }
 }

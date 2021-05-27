@@ -39,25 +39,21 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
         }
     }
 
-
-
     public void ClimbingObj()
     {
 
         Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
         IInteractbale inter = TargetObj.GetComponent<IInteractbale>();
-        if (rb != null && inter.IsGetInterAction())
+        if (rb != null && !inter.IsGetInterAction())
         {
             inter.SecondInteractOff();
             PlayerManager.Instance.playerMove.InterActionUIPressed = true;
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>
             {
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CROUNCH);
                 PlayerManager.Instance.playerMove.IsGravity = true;
-
-                PlayerManager.Instance.playerAnimationEvents.SetCliming(inter.GetClimingVec() , inter.GetAnimState());
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)inter.GetAnimState());
-
+                PlayerManager.Instance.playerMove.ClimingJudge();
             });
         }
         else

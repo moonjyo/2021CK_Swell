@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.Events;
-using DG.Tweening;
+
 
 public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 {
@@ -21,20 +21,31 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public Sprite InventoryIcon; // 이 아이템의 아이콘
 
-    public Vector3 ObservePos;
-
     public Vector3 SizeObj;
 
     public string InteractObjKey;
 
     public InterActEvent events;
+<<<<<<< HEAD
+<<<<<<< HEAD
 
 
     public Vector2 ClimingVec;
 
     public AnimState UpAnimSelect;
 
+    [HideInInspector]
+    public InterActionObjMoveLimit movelimit;
+
     private Rigidbody rb;
+=======
+   
+    
+>>>>>>> f608ff43f6e016f6bb9f33d1625ba21f7abe5eaf
+=======
+   
+    
+>>>>>>> f608ff43f6e016f6bb9f33d1625ba21f7abe5eaf
 
     private bool IsFrameStart;
     public void SecondInteractOn()
@@ -73,7 +84,14 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     //자신에게 할당된 ui를 생성해주는 부분 
     private void Start()
     {
+<<<<<<< HEAD
+<<<<<<< HEAD
+        movelimit = transform.GetComponent<InterActionObjMoveLimit>();
         rb = transform.GetComponent<Rigidbody>();
+=======
+>>>>>>> f608ff43f6e016f6bb9f33d1625ba21f7abe5eaf
+=======
+>>>>>>> f608ff43f6e016f6bb9f33d1625ba21f7abe5eaf
         IsInterAction = true;
         ItemKey = this.gameObject.name;
 
@@ -101,7 +119,11 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public bool IsGetInterAction()
     {
-        return IsInterAction;
+        if(movelimit != null)
+        {
+            return movelimit.IsLimmit;
+        }
+        return false;
     }
 
     public IEnumerator InterAct()
@@ -122,18 +144,14 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         if (FrameAnim != null)
         {
             IsFrameStart = true;
-            PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>
-            {
-                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
-            });
-
-          gameObject.GetComponent<BoxCollider>().enabled = false;
+            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
             SecondInteractOff();
             FrameAnim.SetTrigger("InterActionOff");
             GameManager.Instance.eventCommand.IsLuciFrame = true;
-         
 
-                GameManager.Instance.uiManager.AchiveMents(10f);
+
+            GameManager.Instance.uiManager.AchiveMents(10f);
 
             if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
             {
@@ -169,21 +187,17 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public void StoveInterAction()
     {
-
-
-        PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>
-        {
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
-        });
-        
-
-            gameObject.GetComponent<BoxCollider>().enabled = false;
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CRAWL);
+        gameObject.GetComponent<BoxCollider>().enabled = false;
         SecondInteractOff();
 
         PlayerManager.Instance.playerMove.IsGravity = true;
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.ENDTRIGGER].SetActive(true);
-        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.DOG].SetActive(false);
-        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.TENISBALL].SetActive(false);
+
+        if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("Key", out GameObject KeyObj))
+        {
+            GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
+        }
 
 
         if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(this))
@@ -199,29 +213,6 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
         GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[2].context);
         GameManager.Instance.uiManager.monologueText.ShowMonologue();
     }
-
-
-    public void MemoInterAction()
-    {
-        GameManager.Instance.uiManager.DialogueText.DialogueCount(6, 7);
-        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
-        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
-
-        GameManager.Instance.uiManager.OffSecondInterActionUI();
-        //this.gameObject.SetActive(false);
-        this.gameObject.GetComponent<BoxCollider>().enabled = false;
-    }
-
-    public Vector2 GetClimingVec()
-    {
-        return ClimingVec;
-    }
-
-    public AnimState GetAnimState()
-    {
-        return UpAnimSelect;
-    }
-
 
 
     #endregion

@@ -10,7 +10,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
 {
     public TextMeshProUGUI TMPDialogue;
     public TextMeshProUGUI TMPName;
-    public Image TMPOnNext;
+    public TextMeshProUGUI TMPOnNext;
 
     public Image StandingImageL;
     public Image StandingImageR;
@@ -57,6 +57,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
     public IEnumerator SetText()
     {
         TMPOnNext.gameObject.SetActive(false);
+        TMPName.text = CurrentDialogue[TextStartCount].name;
         TMPDialogue.text = CurrentDialogue[TextStartCount].context[0];
         TMPDialogue.text = TMPDialogue.text.Replace("\\n", "\n"); //줄바꿈용
         if(GameManager.Instance.uiManager.DialogueImageDicL.ContainsKey(CurrentDialogue[TextStartCount].TextureL))

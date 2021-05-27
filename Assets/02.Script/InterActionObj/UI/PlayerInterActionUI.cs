@@ -44,6 +44,7 @@ public class PlayerInterActionUI : MonoBehaviour, IInteractableUI
             if (rb != null && !PlayerManager.Instance.playerMove.InterActionUIPressed)
             {
                 PlayerManager.Instance.playerMove.InterActionUIPointDown(rb);
+
             }
             Debug.Log("point down");
         }
