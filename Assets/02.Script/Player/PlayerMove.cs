@@ -59,6 +59,8 @@ public class PlayerMove : MonoBehaviour
     public bool IsInterActionItemPress = false;
 
     private Vector3 WalkMove;
+
+    public Action<float , float , AnimState> ClimbingAction;
     private void FixedUpdate()
     {
         MoveCheck();
@@ -103,64 +105,45 @@ public class PlayerMove : MonoBehaviour
                 {
                     if (InterActionrb != null)
                     {
-                        WalkVec = new Vector3(-WalkVec.z, 0, -WalkVec.x);
+
                         Vector3 Direction = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
 
                         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.HOLD);
 
 
-                        WalkVec.x = (float)Math.Truncate(WalkVec.x * 10) / 10;
-                        WalkVec.y = (float)Math.Truncate(WalkVec.y * 10) / 10;
-                        WalkVec.z = (float)Math.Truncate(WalkVec.z * 10) / 10;
+                        Vector3 ChangeMove;
+                        ChangeMove.x = (float)Math.Truncate(WalkVec.z * 10) / 10;
+                        ChangeMove.y = (float)Math.Truncate(WalkVec.y * 10) / 10;
+                        ChangeMove.z = (float)Math.Truncate(WalkVec.x * 10) / 10;
 
-                        if (-Direction == WalkVec)
-                        {  //당기기   
-                          if (!CameraManager.Instance.StageCam.IsLside)
-                          {
-                              WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
-                              PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
-                          }
-                          else
-                          {
-                              WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
-                              PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
-                          }
-                          PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                          InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                          Controller.Move(WalkMove);
-                        }
-                        else if (Direction == WalkVec)
-                        { //밀기 
-                            if (!CameraManager.Instance.StageCam.IsLside)
+
+                        if (-Direction == ChangeMove)
+                        {  //당기기 
+
+                          if (Direction.z == 1)
                             {
-                                WalkMove = -WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
                                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
+                                ColumnMove();
+                                return;
                             }
-                            else
-                            {
-                                WalkMove = WalkVec * Time.fixedDeltaTime * playerData.PullSpeed;
-                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
-                            }
-                            PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Push);
-                            transform.LookAt(transform.position + WalkVec);
-                            InterActionrb.MovePosition(WalkMove + InterActionrb.transform.position);
-                            Controller.Move(WalkMove);
+
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH);
+                            RowMove();
                         }
-                        //else if (transform.right == WalkVec)
-                        //{ // 회전 right
-                        //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
-                        //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                        //    InterActionrb.transform.Rotate(RotateVec);
-                        //}
-                        //else if (-transform.right == WalkVec)
-                        //{ //회전 left 
-                        //    Vector3 RotateVec = new Vector3(0, 0, WalkVec.x + WalkVec.z);
-                        //    PlayerManager.Instance.playerStatus.FsmAdd(PlayerFSM.Pull);
-                        //    InterActionrb.transform.Rotate(RotateVec);
-                        //}  else
+                        else if (Direction == ChangeMove)
+                        { //밀기 
 
+                           if (Direction.z == 1)
+                            {
+                                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PUSH) ;
+                                ColumnMove();
+                                return;
+                            }
+
+                            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PULL);
+                            RowMove();
+                        }
                     }
-
                 }
             }
             else
@@ -180,6 +163,26 @@ public class PlayerMove : MonoBehaviour
         {
             Idle();
         }
+    }
+
+    //상호작용 오브젝트 밀고 당기기  행 
+    public void RowMove()
+    {
+        WalkMove = -CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x +
+                        -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
+        Vector3 walkvec = WalkMove * Time.fixedDeltaTime * playerData.WalkSpeed;
+        InterActionrb.MovePosition(walkvec + InterActionrb.transform.position);
+        Controller.Move(walkvec);
+    }
+    //열 
+    public void ColumnMove()
+    {
+        WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x +
+                                CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
+
+        Vector3 dwalkvec = WalkMove * Time.fixedDeltaTime * playerData.WalkSpeed;
+        InterActionrb.MovePosition(dwalkvec + InterActionrb.transform.position);
+        Controller.Move(dwalkvec);
     }
 
     public void Idle()
@@ -268,81 +271,19 @@ public class PlayerMove : MonoBehaviour
     }
 
    
-    public void ClimingJudge()
+    public void ClimingJudge(float x , float y,AnimState state)
     {
-        UpDirectionSelect();
-        switch (PlayerManager.Instance.playerStatus.direction)
-        {
-            case PlayerDirection.Top:
-                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
-            case PlayerDirection.Bottom:
-                transform.DOMove(transform.position + new Vector3(0, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
-            case PlayerDirection.Right:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f)
-                    .OnComplete(() => { InterActionUIPressed = false; }); ;
-                break;
-            case PlayerDirection.Left:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, 0), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
-            case PlayerDirection.TopLeft:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
-            case PlayerDirection.TopRight:
-                transform.DOMove(transform.position + new Vector3(ClimingOffsetVec.x, ClimingOffsetVec.y, -ClimingOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
-            case PlayerDirection.BottomLeft:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y, ClimingOffsetVec.x), 1f).OnComplete(() =>
-                { InterActionUIPressed = false; });
-                break;
-            case PlayerDirection.BottomRight:
-                transform.DOMove(transform.position + new Vector3(-ClimingOffsetVec.x, ClimingOffsetVec.y,
-                    -ClimingOffsetVec.x), 1f).OnComplete(() =>
-                    { InterActionUIPressed = false; });
-                break;
-        }
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)state);
+        GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(false);
+        Vector3 forward = transform.forward * x;
+        Vector3 up = transform.up * y;
+        transform.DOMove(transform.position + forward + up, 1f).OnComplete(() =>
+      {  
+          InterActionUIPressed = false;
+      });   
     }
 
-    public void ClimingJudgeDown()
-    {
-        DownDirectionSelect();
-        Debug.Log(PlayerManager.Instance.playerStatus.direction);
-        switch (PlayerManager.Instance.playerStatus.direction)
-        {
-            case PlayerDirection.Right:
-                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(0.4f, -0.3f, 0), 0.3f).OnComplete(()=> { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; });
-                break;
-            case PlayerDirection.Left:
-                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(-0.4f, -0.3f, 0), 0.3f).OnComplete(() => { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; }); 
-                break;
-            case PlayerDirection.Top:
-                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(0f, -0.3f, 0.4f), 0.3f).OnComplete(() => { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; }); 
-                break;
-            case PlayerDirection.Bottom:
-                PlayerManager.Instance.transform.DOMove(PlayerManager.Instance.transform.position + new Vector3(0f, -0.3f, -0.4f), 0.3f).OnComplete(() => { PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true; }); 
-                break;
-            case PlayerDirection.TopLeft:
-                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 0.1f);
-                break;
-            case PlayerDirection.TopRight:
-                transform.DOMove(transform.position - new Vector3(DownOffsetVec.x, DownOffsetVec.y, -DownOffsetVec.x), 0.1f);
-                break;
-            case PlayerDirection.BottomLeft:
-                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y, DownOffsetVec.x), 0.1f);
-                break;
-            case PlayerDirection.BottomRight:
-                transform.DOMove(transform.position - new Vector3(-DownOffsetVec.x, DownOffsetVec.y,
-                    -DownOffsetVec.x), 1f).OnComplete(() =>
-                    { InterActionUIPressed = false; });
-                break;
-        }
-    }
+
     public IEnumerator InterActionItemPickUp()
     {
         if (GetInterActionItem == null)
@@ -407,87 +348,6 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-
-    
-
-    public void UpDirectionSelect()
-    {
-        Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
-
-        if (DirectionCheck == Vector3.right)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
-        }
-        else if (DirectionCheck == Vector3.left)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
-        }
-        else if (new Vector3(DirectionCheck.x , DirectionCheck.z, 0) == Vector3.up)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
-        }
-        else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.down)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
-        }
-        else if (DirectionCheck == new Vector3(0.6f, 0 , 0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopLeft;
-        }
-        else if (DirectionCheck == new Vector3(0.6f, 0, -0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopRight;
-        }
-        else if (DirectionCheck == new Vector3(-0.6f, 0, 0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomLeft;
-        }
-        else if (DirectionCheck == new Vector3(-0.6f, 0, -0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomRight;
-        }
-
-    }
-    public void DownDirectionSelect()
-    {
-        Vector3 DirectionCheck = VectorTruncate(transform.forward.x, transform.forward.y, transform.forward.z);
-
-        if (DirectionCheck == Vector3.right)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Right;
-        }
-        else if (DirectionCheck == Vector3.left)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Left;
-        }
-        else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.up)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Top;
-        }
-        else if (new Vector3(DirectionCheck.x, DirectionCheck.z, 0) == Vector3.down)
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.Bottom;
-        }
-        else if (DirectionCheck == new Vector3(0.6f, 0, 0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopLeft;
-        }
-        else if (DirectionCheck == new Vector3(0.6f, 0, -0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.TopRight;
-        }
-        else if (DirectionCheck == new Vector3(-0.6f, 0, 0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomLeft;
-        }
-        else if (DirectionCheck == new Vector3(-0.6f, 0, -0.6f))
-        {
-            PlayerManager.Instance.playerStatus.direction = PlayerDirection.BottomRight;
-        }
-
-    }
-
-
     private void MoveCheck()
     {
         if (!PlayerManager.Instance.playerAnimationEvents.IsAnimStart)
@@ -550,7 +410,6 @@ public class PlayerMove : MonoBehaviour
         else
         {
             PlayerManager.Instance.playerMove.IsInterActionCol = false;
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
             PlayerManager.Instance.playerStatus.FsmRemove(PlayerFSM.ItemTouch);
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
         }
@@ -580,7 +439,6 @@ public class PlayerMove : MonoBehaviour
         if (!InterActionUIPressed) 
         {
             PlayerManager.Instance.playerMove.SetRemoveInterActionObj();
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         }
     }
    

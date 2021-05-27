@@ -11,9 +11,12 @@ public enum EventTriggerEnum
     FRAME = 1,
     PUZZLESOLVE = 2,
     CAMTRIGGER = 3, 
-    FIREPLACETIME = 4,
-    ENDTRIGGER = 5,
-
+    ENDTRIGGER = 4,
+    WINDOWWICHTRIGGER = 5,
+    DIALOGUE2 = 6, 
+    FIREPLACE = 7,
+    DOG = 8,
+    TENISBALL = 9,
 }
 
 public class EventCommand : MonoBehaviour
@@ -46,17 +49,12 @@ public class EventCommand : MonoBehaviour
 
            PlayerManager.Instance.playerMove.IsGravity = true;
 
-           
-          
+           PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
 
 
-            PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x - 1f, 0.5f);
-
-
-            GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);
-            GameManager.Instance.uiManager.monologueText.ShowMonologue();
-            PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
-        
+           GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[1].context);
+           GameManager.Instance.uiManager.monologueText.ShowMonologue();
+           PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
     }
 
 
@@ -77,15 +75,8 @@ public class EventCommand : MonoBehaviour
         }
     }
 
-    public void Stage1EndTrigger()
-    {
-        DogBark.SetActive(true);
-        //sound 반전 
-        //걷기 변경 
-    }
     private IEnumerator LuciFrameCo()
     {
-
         CameraManager.Instance.StageCam.BaseCam.Follow = PlayerManager.Instance.playerMove.Body_Tr;
         CameraManager.Instance.StageCam.BaseCam.LookAt = PlayerManager.Instance.playerMove.Body_Tr;
         DogSound.SetActive(true);
@@ -108,7 +99,22 @@ public class EventCommand : MonoBehaviour
     }
 
 
+    public void PuzzleSovedOn()
+    {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(7, 8);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+    }
 
 
+    public void EndTrigger()
+    {
+        DogBark.SetActive(true);
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.WINDOWWICHTRIGGER].SetActive(true);
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(12, 13);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+    }
 
 }

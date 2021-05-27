@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
 
     public Text AchiveMentText;
 
+    public bool IsStage1PuzzleClear = false;
+
 
     private void Start()
     {
@@ -131,5 +133,20 @@ public class UIManager : MonoBehaviour
         float temp =  float.Parse(AchiveMentText.text);
         float Parse  = temp + Value;
         AchiveMentText.text = Parse.ToString();
+
+        if(Parse == 100)
+        {
+            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+            GameManager.Instance.uiManager.DialogueText.DialogueCount(8, 10);
+            GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACE].transform.GetComponent<BoxCollider>().enabled = true;
+            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.CAMTRIGGER].SetActive(true);
+            if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("MSG_BGLR_Tennisball_1", out GameObject obj))
+            {
+                obj.SetActive(true);
+            }
+
+            IsStage1PuzzleClear = true;
+        }
     }
 }

@@ -35,22 +35,25 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
     {
         TargetInterActionObj = TargetObj.GetComponent<PlayerInterActionObj>();
 
-        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
-        if (TargetInterActionObj.gameObject.layer == LayerMask.NameToLayer("InterActionscheduler")) //해당 아이템획득시 layer check 전제척으로 
-        {
-            PlayerManager.Instance.PlayerInteractionSecondCheck.InterActionLayer.value = 1 << 20 | 1 << 17;
-        }
+       
 
         if (TargetInterActionObj != null)
         {
             if (TargetInterActionObj.IsTake)
             {
-                GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>());
+                //획득 초과시
+                if(!GameManager.Instance.uiManager.uiInventory.GetItemIcon(TargetObj.GetComponent<PlayerInterActionObj>()))
+                {
+                    GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[8].context);
+                    GameManager.Instance.uiManager.monologueText.ShowMonologue();
+                    return;
+                }
+
+                PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.PICKUPDOWN);
                 if (GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Contains(TargetInterActionObj))
                 {
                     GameManager.Instance.uiManager.OnActiveSecondInterActionUI.Remove(TargetInterActionObj);
                 }
-
 
                 TargetObj.SetActive(false); // ui도 관리해주어야 함
                 TargetInterActionObj.AllDestroyObj();
@@ -61,7 +64,6 @@ public class PlayerInterActionGet : MonoBehaviour, IInteractableUI
                     if(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].name == TargetInterActionObj.MonologueKey)
                     {
                         GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[i].context);
-
                         GameManager.Instance.uiManager.monologueText.ShowMonologue();
                     }
                 }

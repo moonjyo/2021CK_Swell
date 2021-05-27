@@ -31,6 +31,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &8343384673167449054
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6164157770079325370}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.31635606, y: 0.53862774, z: 0.33009407}
+  m_Center: {x: 0.00000047683716, y: 7.940935e-23, z: 0.000000007450582}
 --- !u!1001 &1712146820018910041
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -98,11 +111,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: MSG_Lr_monstea_1
       objectReference: {fileID: 0}
+    - target: {fileID: 5308305149818150827, guid: 15f2f8a75b9d096448ef58852e9e9efd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd735d67500b17b439763bf470171875, type: 2}
+    - target: {fileID: 8835409689826365435, guid: 15f2f8a75b9d096448ef58852e9e9efd,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: cd735d67500b17b439763bf470171875, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 15f2f8a75b9d096448ef58852e9e9efd, type: 3}
 --- !u!4 &1173325190675289266 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 15f2f8a75b9d096448ef58852e9e9efd,
+    type: 3}
+  m_PrefabInstance: {fileID: 1712146820018910041}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &6164157770079325370 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -4446820146505285661, guid: 15f2f8a75b9d096448ef58852e9e9efd,
     type: 3}
   m_PrefabInstance: {fileID: 1712146820018910041}
   m_PrefabAsset: {fileID: 0}
