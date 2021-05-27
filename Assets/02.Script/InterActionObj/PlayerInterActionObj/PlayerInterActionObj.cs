@@ -37,6 +37,10 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     private Rigidbody rb;
 
     private bool IsFrameStart;
+
+    [HideInInspector]
+    private InterActionObjMoveLimit objlimit;
+
     public void SecondInteractOn()
     {
         foreach (var Obj in UISecondObjList)
@@ -73,6 +77,7 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
     //자신에게 할당된 ui를 생성해주는 부분 
     private void Start()
     {
+        objlimit = transform.GetComponent<InterActionObjMoveLimit>();
         rb = transform.GetComponent<Rigidbody>();
         IsInterAction = true;
         ItemKey = this.gameObject.name;
@@ -101,7 +106,12 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
 
     public bool IsGetInterAction()
     {
-        return IsInterAction;
+        if(objlimit != null)
+        {
+           return objlimit.IsMoveShelf;
+        }
+
+        return false;
     }
 
     public IEnumerator InterAct()

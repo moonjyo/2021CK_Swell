@@ -51,7 +51,6 @@ public class PlayerInteractionSecondCheckUI : MonoBehaviour
             if (TargetObj != null)
             {
                 PlayerManager.Instance.playerMove.IsInterActionItemPress = false;
-                PlayerManager.Instance.playerMove.InterActionUIPointUp();
                 TargetObj.SecondInteractOff(); // 충돌된 second off 
 
 
