@@ -136,17 +136,23 @@ public class UIManager : MonoBehaviour
 
         if(Parse == 100)
         {
-            PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
-            GameManager.Instance.uiManager.DialogueText.DialogueCount(8, 10);
-            GameManager.Instance.uiManager.DialogueText.ShowDialogue();
-            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACE].transform.GetComponent<BoxCollider>().enabled = true;
-            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.CAMTRIGGER].SetActive(true);
             if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("MSG_BGLR_Tennisball_1", out GameObject obj))
             {
                 obj.SetActive(true);
             }
-
-            IsStage1PuzzleClear = true;
+            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACETIMELINE].SetActive(true);
         }
     }
+
+    public void ClearRoom()
+    {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        GameManager.Instance.uiManager.DialogueText.DialogueCount(8, 10);
+        GameManager.Instance.uiManager.DialogueText.ShowDialogue();
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACE].transform.GetComponent<BoxCollider>().enabled = true;
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.CAMTRIGGER].SetActive(true);
+        IsStage1PuzzleClear = true;
+    }
+    
 }

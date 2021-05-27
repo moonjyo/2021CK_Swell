@@ -46,7 +46,7 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
 
         Rigidbody rb = TargetObj.GetComponent<Rigidbody>();
         IInteractbale inter = TargetObj.GetComponent<IInteractbale>();
-        if (rb != null && inter.IsGetInterAction())
+        if (rb != null && !inter.IsGetInterAction())
         {
             inter.SecondInteractOff();
             PlayerManager.Instance.playerMove.InterActionUIPressed = true;

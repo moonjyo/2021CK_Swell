@@ -20,7 +20,6 @@ public enum AnimState
     LOOKAROUND = 12,
     RUN = 13,
     STAIRCROUNCH = 14,
-
     CANCEL = -1,
 
 }
@@ -100,8 +99,6 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         IsAnimStart = false;
     }
-
-
 
     public void FrameStart()
     {

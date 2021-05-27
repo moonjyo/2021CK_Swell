@@ -17,6 +17,7 @@ public enum EventTriggerEnum
     FIREPLACE = 7,
     DOG = 8,
     TENISBALL = 9,
+    FIREPLACETIMELINE = 10, 
 }
 
 public class EventCommand : MonoBehaviour
@@ -31,6 +32,8 @@ public class EventCommand : MonoBehaviour
     public bool IsRunning = false;
 
     public List<GameObject> EventsTriggerList = new List<GameObject>();
+
+    public PlayerInterActionObj memoInteractionobj;
     public void StartDialogueEvent()
     {
         GameManager.Instance.uiManager.DialogueText.DialogueCount(0, 4);
@@ -117,4 +120,10 @@ public class EventCommand : MonoBehaviour
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
     }
 
+    public void MemoTrigger()
+    {
+        PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+        GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem("MSG_BGLR_Memo", memoInteractionobj);
+    }
 }
