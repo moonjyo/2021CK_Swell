@@ -44,8 +44,6 @@ public class PlayerInput : MonoBehaviour
                     GameManager.Instance.eventCommand.IsRunning = true;
                     GameManager.Instance.eventCommand.IsDogActive = false;
                     GameManager.Instance.eventCommand.Dog.SetActive(false);
-
-                    GameManager.Instance.uiManager.uiTimer.gameObject.SetActive(true);
                 }
 
                 EndTalk();

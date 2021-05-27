@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5563861034435293243}
-  m_Layer: 17
+  m_Layer: 0
   m_Name: MSG_BGLR_PhotoFrame_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,93 +25,12 @@ Transform:
   m_GameObject: {fileID: 223349228884018259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.66862625, y: 0.66862625, z: 0.66862625}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6101931245605643557}
-  - {fileID: 8271374898897047380}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4867608188541973132
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 5563861034435293243}
-    m_Modifications:
-    - target: {fileID: 422182222991055922, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_Name
-      value: UIOffsetFirstCheck
-      objectReference: {fileID: 0}
-    - target: {fileID: 422182222991055922, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_Layer
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: c374ab6538bed5241a28a707027a3edf, type: 3}
---- !u!4 &8271374898897047380 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3550213636276682200, guid: c374ab6538bed5241a28a707027a3edf,
-    type: 3}
-  m_PrefabInstance: {fileID: 4867608188541973132}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5991145805200949966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -122,7 +41,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: da1a327c2167bb343a83b89ace1f69a0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.51
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: da1a327c2167bb343a83b89ace1f69a0,
         type: 3}
@@ -183,11 +102,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MSG_BGLR_PhotoFrame_1
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: da1a327c2167bb343a83b89ace1f69a0,
-        type: 3}
-      propertyPath: m_Layer
-      value: 17
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da1a327c2167bb343a83b89ace1f69a0, type: 3}

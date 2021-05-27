@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using DG.Tweening;
 
 enum TimerState
 {
@@ -15,73 +14,65 @@ enum TimerState
 
 public class UITimer : UIView
 {
-    //public Image TimerProgressBar;
-    public Slider SliderTimeProgressBar;
-
-    public GameObject GameOverCanvas;
-
+    public Image TimerProgressBar;
     float Timer = 0;
 
     TimerState timerState;
 
     bool IsTimeOver = false; // 타이머에서 시간이 다 되었을 때
 
-    public bool IsGameOver = false;
-
     void Start()
     {
-        //TimerProgressBar.fillAmount = 0.0f;
-
-        SliderTimeProgressBar.value = 0.0f;
-        timerState = TimerState.None;        
+        TimerProgressBar.fillAmount = 0.0f;
+        timerState = TimerState.None;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if(!GameManager.Instance.uiManager.IsStage1PuzzleClear)
-        {
-            Timer += Time.deltaTime;
-        }
-        
+        Timer += Time.deltaTime;
         if (Timer <= 300.0f)
         {
-            SliderTimeProgressBar.value = Timer / 300;
+            TimerProgressBar.fillAmount = Timer / 30f;
+            //switch(TimerProgressBar.fillAmount)
+            //{
+            //    case 0.25f: // 첫번재 칸 => 끼익, 엔진소리(할머니가 옴)
 
-            if (SliderTimeProgressBar.value >= 1.0f && timerState == TimerState.Step3)
+            //        break;
+            //    case 0.5f: // 두번째 칸 => 차문 닫기, 엔진 꺼짐 소리(할머니가 차에서 내림)
+
+            //        break;
+
+            //    case 0.75f: // 세번째 칸 => 풀 밟는 소리
+
+            //        break;
+
+            //    case 1.0f: // 5분이 지남 => 문열기? (진행도에 따른 bool값 if에 부여)
+
+            //        break;
+            //}
+            if(TimerProgressBar.fillAmount >= 1.0f && timerState != TimerState.Step4)
             {
                 timerState = TimerState.Step4;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer4", PlayerManager.Instance.transform.position);
-                ShowGameOverCanvas();
             }
-            else if (SliderTimeProgressBar.value > 0.75f && timerState == TimerState.Step2)
+            else if(TimerProgressBar.fillAmount > 0.75f && timerState != TimerState.Step3)
             {
                 timerState = TimerState.Step3;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer3", PlayerManager.Instance.transform.position);
             }
-            else if (SliderTimeProgressBar.value > 0.5f && timerState == TimerState.Step1)
+            else if(TimerProgressBar.fillAmount > 0.5f && timerState != TimerState.Step2)
             {
                 timerState = TimerState.Step2;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer2", PlayerManager.Instance.transform.position);
             }
-            else if (SliderTimeProgressBar.value > 0.25f && timerState == TimerState.None)
+            else if(TimerProgressBar.fillAmount > 0.25f && timerState != TimerState.Step1)
             {
                 timerState = TimerState.Step1;
-                FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer1", PlayerManager.Instance.transform.position);
             }
+            
         }
         else
         {
             IsTimeOver = true;
         }
-    }
-
-    public void ShowGameOverCanvas()
-    {
-        GameOverCanvas.SetActive(true);
-
-        Color color = GameOverCanvas.GetComponent<Image>().color;
-        color.a = 1;
-        GameOverCanvas.GetComponent<Image>().DOColor(color, 2.0f);
+            
     }
 }

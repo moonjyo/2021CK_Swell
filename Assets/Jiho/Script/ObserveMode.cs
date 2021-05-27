@@ -69,7 +69,7 @@ public class ObserveMode : MonoBehaviour
         }
         if(GO != null)
         {
-            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 8f);
+            GO.transform.position = CameraManager.Instance.ObserveCamera.transform.position + (CameraManager.Instance.ObserveCamera.transform.forward * 3f);
         }
 
         if(IsClickCol)
@@ -122,19 +122,9 @@ public class ObserveMode : MonoBehaviour
             GO.gameObject.layer = 18;
             //GO.GetComponent<BoxCollider>().enabled = false;
             Transform[] GOArray = GO.GetComponentsInChildren<Transform>();
-            //foreach (Transform Object in GOArray)
-            for(int i = 1; i < GOArray.Length; i++)
+            foreach (Transform Object in GOArray)
             {
-                GOArray[i].gameObject.layer = 18;
-                PlayerInterActionObj ChildInterObj = GOArray[i].GetComponent<PlayerInterActionObj>();
-                if(ChildInterObj != null)
-                {
-                    ChildInterObj.transform.localPosition = ChildInterObj.ObservePos;
-                    if(ChildInterObj.gameObject.name == "MSG_BGLR_BrokenGlass")
-                    {
-                        ChildInterObj.transform.localRotation = Quaternion.Euler(-35.9f, 17.825f, 118.15f);
-                    }
-                }
+                Object.gameObject.layer = 18;
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
             GO.transform.forward = -(CameraManager.Instance.ObserveCamera.transform.position - GO.transform.position);
@@ -173,13 +163,6 @@ public class ObserveMode : MonoBehaviour
         GameManager.Instance.uiManager.OnSecondInterActionUI();
 
         GameManager.Instance.uiManager.uiInventory.ExitInventoryWindow();
-
-       IInteractbale InterActable =  CurrentTargetObj.GetComponent<IInteractbale>();
-
-        if (InterActable != null)
-        {
-           StartCoroutine(CurrentTargetObj.GetComponent<IInteractbale>().InterAct());
-        }
     }
 
     public void CheckClick()
@@ -235,7 +218,6 @@ public class ObserveMode : MonoBehaviour
                 return;
 
             SelectObserveObj = hit.collider.gameObject;
-            //GameManager.Instance.uiManager.uiInventory.Distinguish.ConveyObject = SelectObserveObj;
 
         }
         else
@@ -249,32 +231,15 @@ public class ObserveMode : MonoBehaviour
         if (SelectObserveObj == null)
             return;
 
-        SelectObserveObj.GetComponent<BoxCollider>().enabled = false;
         RaycastHit hit;
         Ray ray = CameraManager.Instance.ObserveCamera.ScreenPointToRay(GameManager.Instance.uiManager.uiInventory.GetMousePosVal());
         if (Physics.Raycast(ray, out hit, Mathf.Infinity, GameManager.Instance.uiManager.uiInventory.ObserveObjLayerMask))
         {
-            SelectObserveObj.GetComponent<BoxCollider>().enabled = true;
-            PlayerInterActionObj Obj = SelectObserveObj.GetComponent<PlayerInterActionObj>();
-            if (hit.collider.gameObject == SelectObserveObj || Obj == null)
+            if(hit.collider.gameObject == SelectObserveObj)
             {
                 SelectObserveObj = null;
                 return;
             }
-            else if(Obj.InteractObjKey == hit.collider.name)
-            {
-                if(GameManager.Instance.uiManager.uiInventory.Distinguish.DistinguishItemDic.TryGetValue(hit.collider.name, out Action<GameObject> value))
-                {
-                    value(hit.collider.gameObject);
-                    SelectObserveObj.gameObject.SetActive(false);
-                    if(GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue(SelectObserveObj.gameObject.name, out GameObject SelectObject))
-                    {
-                        SelectObject.SetActive(false);
-                    }
-                }
-            }
         }
-        SelectObserveObj.GetComponent<BoxCollider>().enabled = true;
-        SelectObserveObj = null;
     }
 }
