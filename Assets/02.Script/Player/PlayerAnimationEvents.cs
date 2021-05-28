@@ -115,7 +115,9 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         PlayerManager.Instance.playerMove.IsGravity = true; 
         IsAnimStart = true;
-        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + 0.7f, 1f).OnComplete(()=> {
+        Vector3 forward = transform.forward * 0.7f;
+
+        PlayerManager.Instance.playerMove.transform.DOMove(transform.position + forward , 1f).OnComplete(()=> {
             if (GameManager.Instance.uiManager.uiInventory.Distinguish.ProductionClickItem.TryGetValue("MSG_BGLR_key_1", out GameObject KeyObj))
             {
                 GameManager.Instance.uiManager.uiInventory.GetItemIcon(KeyObj.GetComponent<PlayerInterActionObj>());
@@ -127,7 +129,8 @@ public class PlayerAnimationEvents : MonoBehaviour
 
     public void CrawlMoveOff()
     {
-        PlayerManager.Instance.playerMove.transform.DOMoveX(PlayerManager.Instance.playerMove.transform.position.x + -0.7f, 1f);
+        Vector3 forward = transform.forward * 0.7f;
+        PlayerManager.Instance.playerMove.transform.DOMove(transform.position - forward , 1f);
     }
 
     public void CrawlEnd()

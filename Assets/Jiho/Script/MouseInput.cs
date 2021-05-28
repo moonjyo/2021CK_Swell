@@ -40,6 +40,7 @@ public class MouseInput : MonoBehaviour
     {
         if(context.started || context.performed)
         {
+            PlayerManager.Instance.PlayerInput.NextDialogue();
             IsLeftMousePressed = true;
         }
         else
