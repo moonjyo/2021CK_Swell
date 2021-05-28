@@ -80,6 +80,8 @@ public class UITimer : UIView
     {
         GameOverCanvas.SetActive(true);
 
+        GameManager.Instance.uiManager.InterActionUICanvas.enabled = false;
+
         Color color = GameOverCanvas.GetComponent<Image>().color;
         color.a = 1;
         GameOverCanvas.GetComponent<Image>().DOColor(color, 2.0f);
