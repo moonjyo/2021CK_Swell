@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 5159221129459401450}
   - component: {fileID: 4648620375830537441}
   - component: {fileID: 3457034314687498364}
+  - component: {fileID: 6833810643325533124}
   m_Layer: 5
   m_Name: Monologue
   m_TagString: SecondInterActionUI
@@ -241,3 +242,22 @@ MonoBehaviour:
   ShowTimeSecond: 2
   CurrentDialogue: []
   OffsetPosVec: {x: 0, y: 0.39, z: 0}
+--- !u!95 &6833810643325533124
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8833968667309638988}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: daacfc930d50ff64c90d8fa50c3ca531, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

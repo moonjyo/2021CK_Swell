@@ -12,10 +12,6 @@ public class DistinguishItem : MonoBehaviour
     public Dictionary<string, GameObject> ProductionClickItem = new Dictionary<string, GameObject>(); // 연출할 아이템 담아두는 변수
     public Dictionary<string, GameObject> ClickGetItem = new Dictionary<string, GameObject>(); // 클릭할 아이템 담아두는 변수
 
-    bool IsInWood = false;
-    bool IsInMatchStick = false;
-    bool IsInWaxCube = false;
-
     int numberInTrashcan = 0;
     int numberInWoodStorage = 0;
     int numberInBookShelf = 0;
@@ -47,7 +43,7 @@ public class DistinguishItem : MonoBehaviour
         DistinguishItemDic.Add("MSG_BGLR_smalltable_1(Clone)", InteractTable);
         DistinguishItemDic.Add("MSG_Lr_woodtorage_1(Clone)", TakeWood);
         DistinguishItemDic.Add("MSG_BGLR_decopictureframe_1(Clone)", PhotoFramePuzzle);
-        DistinguishItemDic.Add("MSG_BGLR_BookShelf_1(Clone)", TakeToBookShlef);
+        DistinguishItemDic.Add("Pivot_BookShelf_1(Clone)", TakeToBookShlef);
         DistinguishItemDic.Add("MSG_BGLR_umbrellastand_1 (1)(Clone)", ClearUpTrashCan);
         DistinguishItemDic.Add("MSG_Lr_standinghanger_1", HangerInteraction);
         DistinguishItemDic.Add("Pivot_Door_Rm(Clone)", InteractDoor);
