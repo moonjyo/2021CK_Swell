@@ -34,7 +34,10 @@ public class MonologueText : MonoBehaviour
     public void ShowMonologue()
     {
         gameObject.SetActive(true);
-        MonologueDoText(TMPText, ShowTimeSecond);
+
+
+        FunctionTimer.Create(ActiveTrue, ShowTimeSecond);
+
     }
 
     //TMP 지원은 Dotween에서 유로사용해야 DoText를 지원해주기 떄문에 임시로 만듬
@@ -46,8 +49,13 @@ public class MonologueText : MonoBehaviour
             PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         });
     }
+    
+    public void ActiveTrue()
+    {
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
+        gameObject.SetActive(false);
 
-
+    }
 
     public void SetText(string[] value) //임시 
     {

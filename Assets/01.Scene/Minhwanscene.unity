@@ -10835,7 +10835,7 @@ PrefabInstance:
     - target: {fileID: 2789745356141905225, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2789745356141905230, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
@@ -11348,6 +11348,52 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1230278840}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1099507729
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1099507731}
+  - component: {fileID: 1099507730}
+  m_Layer: 0
+  m_Name: MouseCursor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1099507730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099507729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf2a2dcd695d80c48bd5c550ea0a6789, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cursorTexture: {fileID: 2800000, guid: 58d39d4d3e88cc340a9d70849ba02161, type: 3}
+  hotSpotIsCentor: 0
+  adjustHotSpot: {x: -2, y: 0.2}
+--- !u!4 &1099507731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1099507729}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 34
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1100733079
 GameObject:
   m_ObjectHideFlags: 0
@@ -14895,6 +14941,11 @@ PrefabInstance:
       propertyPath: MonologueData
       value: 
       objectReference: {fileID: 770806583}
+    - target: {fileID: 5466505140129077030, guid: 07971c43708782e4fba7481fdcc5313c,
+        type: 3}
+      propertyPath: ShowTimeSecond
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5466505140148224933, guid: 07971c43708782e4fba7481fdcc5313c,
         type: 3}
       propertyPath: m_IsActive

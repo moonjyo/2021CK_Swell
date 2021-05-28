@@ -64,10 +64,10 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
         {
             
             GameManager.Instance.uiManager.monologueText.SetText(GameManager.Instance.uiManager.monologueText.CurrentDialogue[0].context);
-            
+
             GameManager.Instance.uiManager.monologueText.ShowMonologue();
-                
-            
+
+
             Debug.Log("서랍을 더 열어야 올라 갈 수 있을거 같아.");
         }
     }

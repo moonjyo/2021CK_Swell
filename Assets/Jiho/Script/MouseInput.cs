@@ -38,7 +38,7 @@ public class MouseInput : MonoBehaviour
 
     public void OnLeftMouseButton(InputAction.CallbackContext context)
     {
-        if(context.started || context.performed)
+         if(context.started || context.performed)
         {
             PlayerManager.Instance.PlayerInput.NextDialogue();
             IsLeftMousePressed = true;
