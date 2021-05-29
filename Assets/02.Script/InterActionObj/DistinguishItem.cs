@@ -137,16 +137,29 @@ public class DistinguishItem : MonoBehaviour
         {
             PuzzlePieceObj.SetActive(true);
             PuzzlePieceObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+
+            Transform ObservePuzzlePiece = Obj.transform.Find("FramePuzzle").Find("MSG_BGLR_FramePuzzle").Find("MSG_BGLR_FramePuzzlePiece");
+            //Transform ObservePuzzlePiece = GameManager.Instance.uiManager.uiInventory.ob.GO.transform.Find("MSG_BGLR_FramePuzzlePiece");
+            ObservePuzzlePiece.gameObject.SetActive(true);
+            ObservePuzzlePiece.gameObject.layer = 18;
+
+            StartCoroutine(DelayTimeDeactivateObserveItem(0.5f));
             if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_decopictureframe_1", out GameObject decopictureframe))
             {
                 SetActiveUI(decopictureframe);
             }
 
-            GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
+            
         }
 
 
         GameManager.Instance.uiManager.AchiveMents(16f);
+    }
+
+    IEnumerator DelayTimeDeactivateObserveItem(float DelayTime)
+    {
+        yield return new WaitForSeconds(DelayTime);
+        GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
     }
 
     public void TakeToBookShlef(GameObject Obj) // 책을 주워서 서랍장 정리

@@ -99,7 +99,7 @@ LightmapSettings:
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 7025d0701b1e6914c913c4f0419c91b6,
     type: 2}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2838,6 +2838,22 @@ PrefabInstance:
     - target: {fileID: 1133979835, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606719579, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 738
+      objectReference: {fileID: 0}
+    - target: {fileID: 1606719579, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 473.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630058170, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 891.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1630058170, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 473.1
       objectReference: {fileID: 0}
     - target: {fileID: 2052379014, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
       propertyPath: m_IsActive
@@ -9966,6 +9982,7 @@ MonoBehaviour:
   IsDogActive: 0
   IsRunning: 0
   EventsTriggerList: []
+  memoInteractionobj: {fileID: 0}
 --- !u!4 &1492723631 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3132319091136830512, guid: 0d49a1aa11715e54cb0f96bccba66a7d,
