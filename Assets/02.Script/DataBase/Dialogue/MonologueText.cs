@@ -23,21 +23,15 @@ public class MonologueText : MonoBehaviour
     {
         transform.position = CameraManager.Instance.MainCamera.WorldToScreenPoint(PlayerManager.Instance.playerMove.transform.position + new Vector3(OffsetPosVec.x, OffsetPosVec.y, OffsetPosVec.z));
     }
-
     public void Init()
     {
         CurrentDialogue = MonologueData.GetDialogoue(); //수정 예정 하나하나 start에서 호출하는게 아닌 한꺼번에 호출하는게 좋음 
         gameObject.SetActive(false);
     }
-
-
     public void ShowMonologue()
     {
         gameObject.SetActive(true);
-
-
         FunctionTimer.Create(ActiveTrue, ShowTimeSecond);
-
     }
 
     //TMP 지원은 Dotween에서 유로사용해야 DoText를 지원해주기 떄문에 임시로 만듬
@@ -54,7 +48,6 @@ public class MonologueText : MonoBehaviour
     {
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         gameObject.SetActive(false);
-
     }
 
     public void SetText(string[] value) //임시 
