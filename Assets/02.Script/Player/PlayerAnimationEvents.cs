@@ -52,7 +52,7 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(true);
         IsAnimStart = false;
-        PlayerManager.Instance.playerMove.IsGravity = false;
+        PlayerManager.Instance.playerMove.IsGravity = false; 
     }
 
     public void HangingStart()
