@@ -148,6 +148,7 @@ public class UIManager : MonoBehaviour
 
     public void ClearRoom()
     {
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.CLEANTIMER].SetActive(false);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.DialogueText.DialogueCount(8, 10);

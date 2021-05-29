@@ -9510,6 +9510,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6212006ed187e4a4e9a46a2627e275c1, type: 3}
+--- !u!1 &1027503891 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2052379014, guid: f187a2b0f6d7ce4479b5540dec1f6696,
+    type: 3}
+  m_PrefabInstance: {fileID: 2015051350}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1028268017 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2789745356141905231, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
@@ -10451,6 +10457,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2789745356141905231, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
+      propertyPath: EventsTriggerList.Array.size
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2789745356141905231, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
+        type: 3}
       propertyPath: FrameAnim
       value: 
       objectReference: {fileID: 3326134265435981144}
@@ -10484,6 +10495,11 @@ PrefabInstance:
       propertyPath: memoInteractionobj
       value: 
       objectReference: {fileID: 1457282083}
+    - target: {fileID: 2789745356141905231, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
+        type: 3}
+      propertyPath: EventsTriggerList.Array.data[11]
+      value: 
+      objectReference: {fileID: 1027503891}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0a81021efe41d4d4d9df8a66b2ca28b3, type: 3}
 --- !u!1001 &1077645440
@@ -11063,7 +11079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &1113402223
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -14650,7 +14666,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 579412735, guid: 9c3aa67d101a1c247b354947933e1eab, type: 3}
+    - {fileID: 579412736, guid: 9c3aa67d101a1c247b354947933e1eab, type: 3}
+    - {fileID: 579412734, guid: 9c3aa67d101a1c247b354947933e1eab, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9c3aa67d101a1c247b354947933e1eab, type: 3}
 --- !u!4 &1488751106 stripped
 Transform:
@@ -20861,6 +20880,14 @@ PrefabInstance:
     - target: {fileID: 1630058170, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 463.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927746089, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1927746089, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
+      propertyPath: m_Name
+      value: TimePanel
       objectReference: {fileID: 0}
     - target: {fileID: 2052379014, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
       propertyPath: m_IsActive

@@ -18,6 +18,7 @@ public enum EventTriggerEnum
     DOG = 8,
     TENISBALL = 9,
     FIREPLACETIMELINE = 10, 
+    CLEANTIMER = 11,
 }
 
 public class EventCommand : MonoBehaviour
