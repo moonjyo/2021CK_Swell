@@ -169,7 +169,7 @@
 	</object>
 	<object class="SingleSound" id="{d2e44e18-990b-485d-bc2b-bd1d26800842}">
 		<property name="start">
-			<value>2.5</value>
+			<value>2.6000000000000001</value>
 		</property>
 		<property name="length">
 			<value>0.36795918367346958</value>
@@ -254,7 +254,7 @@
 	</object>
 	<object class="AutomationPoint" id="{be8ed1ea-dcf3-45f3-8f54-af81afc61490}">
 		<property name="position">
-			<value>0.050000000000000003</value>
+			<value>0.25</value>
 		</property>
 		<property name="value">
 			<value>1</value>
@@ -266,16 +266,16 @@
 			<value>-3</value>
 		</property>
 		<property name="highGain">
-			<value>-6</value>
+			<value>-9</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{1ae872e9-8177-40d6-83c3-3d713e021fdd}" />
 	<object class="ThreeEQEffect" id="{68fc60b0-1a3f-42da-917a-895940032a7e}">
 		<property name="lowGain">
-			<value>-3</value>
+			<value>-6</value>
 		</property>
 		<property name="highGain">
-			<value>-9</value>
+			<value>-15</value>
 		</property>
 	</object>
 	<object class="MixerBusFader" id="{0a19287e-af26-465a-9a44-a6cef2eff976}" />
@@ -283,8 +283,11 @@
 		<property name="lowGain">
 			<value>-6</value>
 		</property>
+		<property name="midGain">
+			<value>-3</value>
+		</property>
 		<property name="highGain">
-			<value>-12</value>
+			<value>-15</value>
 		</property>
 	</object>
 </objects>

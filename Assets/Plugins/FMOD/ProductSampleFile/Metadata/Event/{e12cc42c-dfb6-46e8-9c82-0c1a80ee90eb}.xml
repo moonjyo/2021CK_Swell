@@ -162,7 +162,7 @@
 			<value>0.47000000000000064</value>
 		</property>
 		<property name="volume">
-			<value>9</value>
+			<value>3</value>
 		</property>
 		<relationship name="fadeInCurve">
 			<destination>{764c873b-cf23-4b90-907b-e2e844c78bf3}</destination>
@@ -176,7 +176,7 @@
 	</object>
 	<object class="EventMixerGroup" id="{5afcefc1-4de1-491c-a7e0-2011a5cb06f5}">
 		<property name="volume">
-			<value>-17.5</value>
+			<value>-14.5</value>
 		</property>
 		<property name="name">
 			<value>Audio 1</value>
@@ -357,10 +357,10 @@
 	</object>
 	<object class="ParameterCondition" id="{56691dcf-f004-45b8-bebb-8859cd00ce72}">
 		<property name="minimum">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<property name="maximum">
-			<value>0</value>
+			<value>1</value>
 		</property>
 		<relationship name="parameter">
 			<destination>{6863cb45-62d8-4e16-a8cd-58a440560a27}</destination>
@@ -433,7 +433,10 @@
 			<value>1</value>
 		</property>
 		<property name="curveShape">
-			<value>0.25471893</value>
+			<value>0.5</value>
+		</property>
+		<property name="isSCurve">
+			<value>true</value>
 		</property>
 	</object>
 	<object class="AutomationPoint" id="{e3758764-ee8f-42d9-8b15-ee9c2a758ca6}">
