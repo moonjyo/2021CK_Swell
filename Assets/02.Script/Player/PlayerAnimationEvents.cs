@@ -42,6 +42,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     }
     public void CrounchStart()
     {
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Stand", GetComponent<Transform>().position);
         PlayerManager.Instance.playerMove.IsGravity = true;
         IsAnimStart = true; 
         PlayerManager.Instance.playerMove.ClimingJudge(CurrentClimingVec.x, CurrentClimingVec.y, CurrentClimingState);

@@ -91,6 +91,7 @@ public class EventCommand : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
 
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_FrameShake", GetComponent<Transform>().position);
         yield return new WaitForSeconds(0.7f);
         GameManager.Instance.uiManager.DialogueText.DialogueCount(4, 6);
         Action act = LuciFrameDialogue;
@@ -127,6 +128,7 @@ public class EventCommand : MonoBehaviour
 
     public void MemoTrigger()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Wastebasket", GetComponent<Transform>().position);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem("MSG_BGLR_Memo", memoInteractionobj);
