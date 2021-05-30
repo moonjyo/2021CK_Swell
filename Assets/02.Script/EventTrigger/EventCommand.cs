@@ -21,6 +21,7 @@ public enum EventTriggerEnum
     CLEANTIMER = 11,
     FLASHLIGHT = 12,    
     SHADOW = 13,
+    LIGHTMESH = 14,
 
 }
 

@@ -107,6 +107,8 @@ public class ObserveMode : MonoBehaviour
         if (IsOnObserveMode)
             return;
 
+
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.LIGHTMESH].SetActive(false);
         GameManager.Instance.uiManager.uiInventory.EnterInventoryWindow();
 
         CurrentTargetObj = Target;
@@ -167,7 +169,8 @@ public class ObserveMode : MonoBehaviour
         CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
         FadeCanvas.gameObject.SetActive(false);
         CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
-       
+
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.LIGHTMESH].SetActive(true);
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         GameManager.Instance.uiManager.OnSecondInterActionUI();
