@@ -247,7 +247,8 @@ public class DistinguishItem : MonoBehaviour
 
                 for(int i = 1; i < ChildObj.Length; i++)
                 {
-                    ChildObj[i].localPosition = Vector3.zero;
+                    //ChildObj[i].localPosition = Vector3.zero;
+                    ChildObj[i].gameObject.SetActive(false);
                 }
 
                 SetActiveUI(TrashCanObj);
