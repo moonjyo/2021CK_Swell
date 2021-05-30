@@ -220,7 +220,7 @@ public class DistinguishItem : MonoBehaviour
 
         if (numberInBookShelf == 5)
         {
-            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_BookShelf_1", out GameObject Hanger))
+            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("Pivot_BookShelf_1", out GameObject Hanger))
             {
                 SetActiveUI(Hanger);
             }
