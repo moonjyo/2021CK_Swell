@@ -143,6 +143,7 @@ public class UIManager : MonoBehaviour
                 obj.SetActive(true);
             }
             GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACETIMELINE].SetActive(true);
+            PlayerManager.Instance.gameObject.GetComponent<FMODUnity.StudioEventEmitter>().enabled = false;
         }
     }
 

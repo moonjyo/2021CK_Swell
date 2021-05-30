@@ -98,6 +98,8 @@ public class EventCommand : MonoBehaviour
         CameraManager.Instance.StageCam.MoveScreenX(0.2f, 3f, act);
         yield return new WaitForSeconds(1.8f);
         FrameAnim.SetTrigger("InterActionOn");
+
+        PlayerManager.Instance.gameObject.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
     }
 
 
