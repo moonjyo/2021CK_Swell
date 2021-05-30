@@ -183,6 +183,8 @@ public class UIInventory : UIView
             return false;
         }
 
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Crouch", PlayerManager.Instance.transform.position);
+
         EnterInventoryWindow();
 
         ItemIconData.Add(Object);
