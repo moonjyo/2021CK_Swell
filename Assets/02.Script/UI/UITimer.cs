@@ -43,19 +43,19 @@ public class UITimer : UIView
         {
             Timer += Time.deltaTime;
         }
-        
+
         if (Timer <= 300.0f)
         {
             SliderTimeProgressBar.value = Timer / 300;
 
-            if (SliderTimeProgressBar.value >= 1.0f && timerState == TimerState.Step3)
+            if (SliderTimeProgressBar.value >= 0.99f && timerState == TimerState.Step3)
             {
                 timerState = TimerState.Step4;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer4", PlayerManager.Instance.transform.position);
                 PlayerManager.Instance.gameObject.GetComponent<FMODUnity.StudioEventEmitter>().enabled = false;
                 ShowGameOverCanvas();
             }
-            else if (SliderTimeProgressBar.value > 0.75f && timerState == TimerState.Step2)
+            if (SliderTimeProgressBar.value > 0.75f && timerState == TimerState.Step2)
             {
                 timerState = TimerState.Step3;
                 FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Timer3", PlayerManager.Instance.transform.position);
