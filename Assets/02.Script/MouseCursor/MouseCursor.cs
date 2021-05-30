@@ -13,7 +13,7 @@ public class MouseCursor : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(MyCursor());
+      //  StartCoroutine(MyCursor());
     }
 
     IEnumerator MyCursor()
