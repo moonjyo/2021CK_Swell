@@ -50,6 +50,7 @@ public class DialogueText : MonoBehaviour , IDialogueText
 
     public void ShowDialogue()
     {
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         gameObject.SetActive(true);
         StartCoroutine(SetText());
     }

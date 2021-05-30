@@ -22,6 +22,8 @@ public class WindowWich : MonoBehaviour
     {
         WindowMaterial.SetColor("_BaseColor", new Color(5.4679f,0.7f,0.7f));
         WindowMaterial.SetColor("_EmissionColor", new Color(4f, 4f, 4f));
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FLASHLIGHT].gameObject.GetComponent<Animator>().SetTrigger("FlashLight");
+
     }
 
 

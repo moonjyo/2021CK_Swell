@@ -45,6 +45,7 @@ public class PlayerAnimationEvents : MonoBehaviour
         PlayerManager.Instance.playerMove.IsGravity = true;
         IsAnimStart = true; 
         PlayerManager.Instance.playerMove.ClimingJudge(CurrentClimingVec.x, CurrentClimingVec.y, CurrentClimingState);
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.SHADOW].gameObject.SetActive(false);
     }
 
     //idle
@@ -52,7 +53,8 @@ public class PlayerAnimationEvents : MonoBehaviour
     {
         GameManager.Instance.uiManager.InterActionUICanvas.gameObject.SetActive(true);
         IsAnimStart = false;
-        PlayerManager.Instance.playerMove.IsGravity = false; 
+        PlayerManager.Instance.playerMove.IsGravity = false;
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.SHADOW].gameObject.SetActive(true);
     }
 
     public void HangingStart()

@@ -266,6 +266,15 @@ public class PlayerMove : MonoBehaviour
        
         bool IsCheckGround = Physics.CheckCapsule(Controller.bounds.center, new Vector3(Controller.bounds.center.x, Controller.bounds.min.y, Controller.bounds.center.z), 0.1f, GroundLayer);
       
+        if(IsCheckGround)
+        {
+            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.SHADOW].gameObject.SetActive(true);
+        }
+        else
+        {
+            GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.SHADOW].gameObject.SetActive(false);
+        }
+
    
         return IsCheckGround;
     }

@@ -19,6 +19,9 @@ public enum EventTriggerEnum
     TENISBALL = 9,
     FIREPLACETIMELINE = 10, 
     CLEANTIMER = 11,
+    FLASHLIGHT = 12,    
+    SHADOW = 13,
+
 }
 
 public class EventCommand : MonoBehaviour
@@ -31,6 +34,7 @@ public class EventCommand : MonoBehaviour
     public bool IsLuciFrame = false;
     public bool IsDogActive = false;
     public bool IsRunning = false;
+    public bool IsDoorCamTrigger = false;
 
     public List<GameObject> EventsTriggerList = new List<GameObject>();
 
@@ -126,5 +130,15 @@ public class EventCommand : MonoBehaviour
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem("MSG_BGLR_Memo", memoInteractionobj);
+    }
+
+    public void DoorCamTriggerOn()
+    {
+      CameraManager.Instance.StageCam.BaseCam.gameObject.SetActive(true);
+    }
+
+    public void DoorCamTriggerOff()
+    {
+      CameraManager.Instance.StageCam.BaseCam.gameObject.SetActive(false);
     }
 }

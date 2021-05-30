@@ -150,7 +150,6 @@ public class UIManager : MonoBehaviour
     {
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.CLEANTIMER].SetActive(false);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
-        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.DialogueText.DialogueCount(8, 10);
         GameManager.Instance.uiManager.DialogueText.ShowDialogue();
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FIREPLACE].transform.GetComponent<BoxCollider>().enabled = true;
@@ -158,4 +157,9 @@ public class UIManager : MonoBehaviour
         IsTimePuase = true;
     }
     
+
+    public void StartStoveSignal()
+    {
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+    }
 }

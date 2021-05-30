@@ -13,13 +13,21 @@ public class BaseEvent : MonoBehaviour
 
     public MyEvent OffEvent;
 
-    public bool IsOnTrigger = false;
+    private bool IsOnTrigger = false;
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Player") && !IsOnTrigger)
+    public bool IsOneShot = false;
+
+    public bool IstTest = false;
+
+    private void OnTriggerStay(Collider other)
+    {   
+        if (other.CompareTag("Player") && !IsOnTrigger && !IstTest)
         {
-            IsOnTrigger = true;
+            IstTest = true;
+            if (IsOneShot)
+            {
+                IsOnTrigger = true;
+            }
             OnEvent?.Invoke();
         }
     }
@@ -28,6 +36,7 @@ public class BaseEvent : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            IstTest = false;
             OffEvent?.Invoke();
         }
     }
