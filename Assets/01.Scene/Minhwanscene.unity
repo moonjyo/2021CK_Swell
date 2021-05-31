@@ -1816,7 +1816,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 208382277}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 0
@@ -5645,7 +5645,7 @@ Transform:
   - {fileID: 658469399}
   - {fileID: 535740290}
   m_Father: {fileID: 0}
-  m_RootOrder: 36
+  m_RootOrder: 35
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &602296411
 PrefabInstance:
@@ -5957,8 +5957,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9489409, y: 0.55591744, z: 1.8408366}
-  m_Center: {x: -0.0028379317, y: -0.05243685, z: 0.03682318}
+  m_Size: {x: 1.9489409, y: 1.9628348, z: 1.8408366}
+  m_Center: {x: -0.0028379317, y: 0.65102184, z: 0.03682318}
 --- !u!1001 &626038316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13196,52 +13196,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1230278840}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1099507729
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1099507731}
-  - component: {fileID: 1099507730}
-  m_Layer: 0
-  m_Name: MouseCursor
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1099507730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099507729}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf2a2dcd695d80c48bd5c550ea0a6789, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cursorTexture: {fileID: 2800000, guid: 58d39d4d3e88cc340a9d70849ba02161, type: 3}
-  hotSpotIsCentor: 0
-  adjustHotSpot: {x: -2, y: 0.2}
---- !u!4 &1099507731
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1099507729}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 35
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1100733079
 GameObject:
   m_ObjectHideFlags: 0
@@ -14467,6 +14421,25 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 8502677829591934995}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1210486170 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5250335720029267110, guid: 70602f7688295df4288237a749488f23,
+    type: 3}
+  m_PrefabInstance: {fileID: 138057250}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1210486172
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210486170}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.96494436, y: 3.3155208, z: 0.97983015}
+  m_Center: {x: -0.000000014901161, y: 0, z: 0}
 --- !u!1 &1220665378
 GameObject:
   m_ObjectHideFlags: 0
@@ -17951,7 +17924,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 37
+  m_RootOrder: 36
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1537107627 stripped
 Transform:
@@ -20979,6 +20952,25 @@ Transform:
   m_Father: {fileID: 1708504140}
   m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1795829558 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2533916888342731570, guid: 39d6d9ab5f4560240a2462c6dd473fd8,
+    type: 3}
+  m_PrefabInstance: {fileID: 4537417330784845446}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1795829560
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795829558}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.86383635, y: 1.1305447, z: 0.87716234}
+  m_Center: {x: 0, y: -0.000000029802322, z: -0.000000074505806}
 --- !u!1 &1799681565
 GameObject:
   m_ObjectHideFlags: 0
