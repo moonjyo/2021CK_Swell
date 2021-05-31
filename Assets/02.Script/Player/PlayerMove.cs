@@ -222,7 +222,9 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseRun()
     {
-
+        PlayerManager.Instance.playerMove.IsGravity = false;
+        PlayerManager.Instance.playerMove.InterActionUIPressed = false;
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
 
 
