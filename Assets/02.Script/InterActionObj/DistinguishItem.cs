@@ -243,13 +243,13 @@ public class DistinguishItem : MonoBehaviour
                 TrashCanObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 TrashCanObj.transform.localPosition += new Vector3(0, 0.25f, 0);
 
-                Transform[] ChildObj = TrashCanObj.GetComponentsInChildren<Transform>();
+                //Transform[] ChildObj = TrashCanObj.GetComponentsInChildren<Transform>();
 
-                for(int i = 1; i < ChildObj.Length; i++)
-                {
-                    //ChildObj[i].localPosition = Vector3.zero;
-                    ChildObj[i].gameObject.SetActive(false);
-                }
+                //for(int i = 1; i < ChildObj.Length; i++)
+                //{
+                //    //ChildObj[i].localPosition = Vector3.zero;
+                //    ChildObj[i].gameObject.SetActive(false);
+                //}
 
                 SetActiveUI(TrashCanObj);
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
