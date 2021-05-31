@@ -86,6 +86,8 @@ public class UITimer : UIView
 
         GameManager.Instance.uiManager.InterActionUICanvas.enabled = false;
 
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+
         Color color = GameOverCanvas.GetComponent<Image>().color;
         color.a = 1;
         GameOverCanvas.GetComponent<Image>().DOColor(color, 2.0f);
