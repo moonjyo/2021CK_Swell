@@ -64,16 +64,11 @@ public class DistinguishItem : MonoBehaviour
             ClockObj.transform.localPosition += new Vector3(0, 0.132f, 0);
             //ClockObj.gameObject.layer = 0;
 
+            FMODUnity.RuntimeManager.PlayOneShot("event:/AMB/Stage1/AMB_Clock", ClockObj.transform.position);
+
             SetActiveUI(ClockObj);
 
         }
-
-        //if (ProductionClickItem.TryGetValue("TennisBall", out GameObject BallObj)) // 테니스 공 찾아옴
-        //{
-        //    BallObj.SetActive(true);
-        //    BallObj.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
-        //}
-
         GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();
         GameManager.Instance.uiManager.OffSecondInterActionUI();
         ClockObj.layer = 0;
@@ -178,7 +173,9 @@ public class DistinguishItem : MonoBehaviour
                 if(ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj1))
                 {
                     BookObj1.SetActive(true);
-                    BookObj1.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    //BookObj1.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_BookBack", PlayerManager.Instance.transform.position);
+
                 }
                 break;
 
@@ -186,14 +183,16 @@ public class DistinguishItem : MonoBehaviour
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj2))
                 {
                     BookObj2.SetActive(true);
-                    BookObj2.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    //BookObj2.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_BookBack", PlayerManager.Instance.transform.position);
                 }
                 break;
             case "MSG_BGLR_Book_3":
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj3))
                 {
                     BookObj3.SetActive(true);
-                    BookObj3.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    //BookObj3.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_BookBack", PlayerManager.Instance.transform.position);
                 }
                 break;
 
@@ -201,7 +200,8 @@ public class DistinguishItem : MonoBehaviour
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj4))
                 {
                     BookObj4.SetActive(true);
-                    BookObj4.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    //BookObj4.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_BookBack", PlayerManager.Instance.transform.position);
                 }
                 break;
 
@@ -209,7 +209,8 @@ public class DistinguishItem : MonoBehaviour
                 if (ProductionClickItem.TryGetValue(Name + " (1)", out GameObject BookObj5))
                 {
                     BookObj5.SetActive(true);
-                    BookObj5.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    //BookObj5.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
+                    FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_BookBack", PlayerManager.Instance.transform.position);
                 }
                 break;
 
@@ -219,7 +220,7 @@ public class DistinguishItem : MonoBehaviour
 
         if (numberInBookShelf == 5)
         {
-            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("MSG_BGLR_BookShelf_1", out GameObject Hanger))
+            if (GameManager.Instance.uiManager.uiInventory.ob.ObserveObj.TryGetValue("Pivot_BookShelf_1", out GameObject Hanger))
             {
                 SetActiveUI(Hanger);
             }
@@ -242,12 +243,13 @@ public class DistinguishItem : MonoBehaviour
                 TrashCanObj.transform.localRotation = Quaternion.Euler(0, 0, 0);
                 TrashCanObj.transform.localPosition += new Vector3(0, 0.25f, 0);
 
-                Transform[] ChildObj = TrashCanObj.GetComponentsInChildren<Transform>();
+                //Transform[] ChildObj = TrashCanObj.GetComponentsInChildren<Transform>();
 
-                for(int i = 1; i < ChildObj.Length; i++)
-                {
-                    ChildObj[i].localPosition = Vector3.zero;
-                }
+                //for(int i = 1; i < ChildObj.Length; i++)
+                //{
+                //    //ChildObj[i].localPosition = Vector3.zero;
+                //    ChildObj[i].gameObject.SetActive(false);
+                //}
 
                 SetActiveUI(TrashCanObj);
                 GameManager.Instance.uiManager.uiInventory.ob.DeactivateObserverItem();

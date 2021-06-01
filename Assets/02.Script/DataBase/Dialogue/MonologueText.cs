@@ -53,6 +53,7 @@ public class MonologueText : MonoBehaviour
     public void SetText(string[] value) //임시 
     {
         TMPText.SetText(value[0]);
+        TMPText.text = TMPText.text.Replace("\\n", "\n"); //줄바꿈용
     }
 
     

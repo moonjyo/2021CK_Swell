@@ -21,6 +21,7 @@ public enum EventTriggerEnum
     CLEANTIMER = 11,
     FLASHLIGHT = 12,    
     SHADOW = 13,
+    LIGHTMESH = 14,
 
 }
 
@@ -97,6 +98,9 @@ public class EventCommand : MonoBehaviour
         CameraManager.Instance.StageCam.MoveScreenX(0.2f, 3f, act);
         yield return new WaitForSeconds(1.8f);
         FrameAnim.SetTrigger("InterActionOn");
+
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_FrameShake", GetComponent<Transform>().position);
+        PlayerManager.Instance.gameObject.GetComponent<FMODUnity.StudioEventEmitter>().enabled = true;
     }
 
 
@@ -127,6 +131,7 @@ public class EventCommand : MonoBehaviour
 
     public void MemoTrigger()
     {
+        FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_Wastebasket", GetComponent<Transform>().position);
         PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.CANCEL);
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
         GameManager.Instance.uiManager.uiInventory.ob.ActivateObserverItem("MSG_BGLR_Memo", memoInteractionobj);

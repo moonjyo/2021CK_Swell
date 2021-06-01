@@ -222,7 +222,9 @@ public class PlayerMove : MonoBehaviour
     }
     public void BaseRun()
     {
-
+        PlayerManager.Instance.playerMove.IsGravity = false;
+        PlayerManager.Instance.playerMove.InterActionUIPressed = false;
+        PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         Vector3 WalkMove = CameraManager.Instance.StageCam.BaseCam.transform.forward * WalkVec.x + -CameraManager.Instance.StageCam.BaseCam.transform.right * WalkVec.z;
 
 
@@ -235,7 +237,6 @@ public class PlayerMove : MonoBehaviour
         //    WalkMove = new Vector3(-WalkMove.y, 0, WalkMove.z);
         //}
 
-
         if (IsGrounded())
         {
             FunctionTimer.Create(OnRunSound, playerData.RunSoundTime, "WalkSoundTimer");
@@ -247,19 +248,21 @@ public class PlayerMove : MonoBehaviour
         Body_Tr.DOLookAt(new Vector3(VecLook.x, transform.position.y, VecLook.z), 0.25f);
   
         Controller.Move(WalkMove * Time.fixedDeltaTime * playerData.RunSpeed);
-        
     }
+
+
     private void OnWalkSound()
     {
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PlayerFoot", 0);
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Foot", GetComponent<Transform>().position);
         //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Player/SFX_Player_Foot", this.gameObject);
     }
     private void OnRunSound()
     {
+        FMODUnity.RuntimeManager.StudioSystem.setParameterByName("PlayerFoot", 1);
         FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Player/SFX_Player_Foot", GetComponent<Transform>().position);
         //FMODUnity.RuntimeManager.PlayOneShotAttached("event:/SFX/Player/SFX_Player_Foot", this.gameObject);
     }
-
 
     private bool IsGrounded()
     {

@@ -107,6 +107,8 @@ public class ObserveMode : MonoBehaviour
         if (IsOnObserveMode)
             return;
 
+
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.LIGHTMESH].SetActive(false);
         GameManager.Instance.uiManager.uiInventory.EnterInventoryWindow();
 
         CurrentTargetObj = Target;
@@ -126,6 +128,10 @@ public class ObserveMode : MonoBehaviour
             for(int i = 1; i < GOArray.Length; i++)
             {
                 GOArray[i].gameObject.layer = 18;
+                if (GOArray[i].gameObject.name == "MSG_Effect_Star_03")
+                {
+                    GOArray[i].gameObject.SetActive(false);
+                }
                 PlayerInterActionObj ChildInterObj = GOArray[i].GetComponent<PlayerInterActionObj>();
                 if(ChildInterObj != null)
                 {
@@ -134,6 +140,7 @@ public class ObserveMode : MonoBehaviour
                     {
                         ChildInterObj.transform.localRotation = Quaternion.Euler(-35.9f, 17.825f, 118.15f);
                     }
+                   
                 }
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
@@ -167,7 +174,8 @@ public class ObserveMode : MonoBehaviour
         CameraManager.Instance.CaptureCamera.gameObject.SetActive(false);
         FadeCanvas.gameObject.SetActive(false);
         CameraManager.Instance.ObserveCamera.gameObject.SetActive(false);
-       
+
+        GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.LIGHTMESH].SetActive(true);
         IsOnObserveMode = false;
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = false;
         GameManager.Instance.uiManager.OnSecondInterActionUI();

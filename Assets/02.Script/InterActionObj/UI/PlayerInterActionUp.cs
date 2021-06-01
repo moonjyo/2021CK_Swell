@@ -54,7 +54,6 @@ public class PlayerInterActionUp : MonoBehaviour , IInteractableUI
             PlayerManager.Instance.playerMove.transform.DOLookAt(new Vector3(rb.transform.position.x, PlayerManager.Instance.playerMove.Body_Tr.position.y, rb.transform.position.z), 0.15f).OnComplete(() =>
             {
                 PlayerManager.Instance.playerMove.IsGravity = true;
-
                 PlayerManager.Instance.playerAnimationEvents.SetCliming(inter.GetClimingVec() , inter.GetAnimState());
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)inter.GetAnimState());
 

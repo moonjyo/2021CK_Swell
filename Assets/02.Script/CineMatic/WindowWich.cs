@@ -20,8 +20,8 @@ public class WindowWich : MonoBehaviour
 
     public void OffWichStart()
     {
-        WindowMaterial.SetColor("_BaseColor", new Color(5.4679f,0.7f,0.7f));
-        WindowMaterial.SetColor("_EmissionColor", new Color(4f, 4f, 4f));
+        WindowMaterial.SetColor("_BaseColor", new Color(1f,1f,1f));
+        WindowMaterial.SetColor("_EmissionColor", new Color(3.688606f, 1.969831f, 1.158724f));
         GameManager.Instance.eventCommand.EventsTriggerList[(int)EventTriggerEnum.FLASHLIGHT].gameObject.GetComponent<Animator>().SetTrigger("FlashLight");
 
     }

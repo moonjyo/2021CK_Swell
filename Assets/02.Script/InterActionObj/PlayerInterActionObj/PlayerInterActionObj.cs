@@ -137,7 +137,8 @@ public class PlayerInterActionObj : MonoBehaviour, IInteractbale
                 PlayerManager.Instance.playerAnimationEvents.PlayerAnim.SetInteger(PlayerAnimationEvents.State, (int)AnimState.FRAME);
             });
 
-          gameObject.GetComponent<BoxCollider>().enabled = false;
+            FMODUnity.RuntimeManager.PlayOneShot("event:/SFX/Stage1/SFX_St1_FrameSet", GetComponent<Transform>().position);
+            gameObject.GetComponent<BoxCollider>().enabled = false;
             SecondInteractOff();
             FrameAnim.SetTrigger("InterActionOff");
             GameManager.Instance.eventCommand.IsLuciFrame = true;

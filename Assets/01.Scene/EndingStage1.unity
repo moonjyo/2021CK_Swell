@@ -5345,6 +5345,18 @@ PrefabInstance:
       propertyPath: m_VerticalAlignment
       value: 512
       objectReference: {fileID: 0}
+    - target: {fileID: 7219042522924255650, guid: 68f17623828f3b14da5c02008e7f75da,
+        type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: c506b277abb4d8a4690e444558e2be8a,
+        type: 2}
+    - target: {fileID: 7219042522924255650, guid: 68f17623828f3b14da5c02008e7f75da,
+        type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5374329257950322660, guid: c506b277abb4d8a4690e444558e2be8a,
+        type: 2}
     - target: {fileID: 8833968667309638988, guid: 68f17623828f3b14da5c02008e7f75da,
         type: 3}
       propertyPath: m_Name
@@ -10806,6 +10818,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6aee1cf4bdd255840965297baee9039c, type: 3}
+--- !u!1 &877553765
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 332140195}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 877553766}
+  m_Layer: 0
+  m_Name: MSG_Effect_Star_01 (Missing Prefab)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &877553766
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 332140195}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877553765}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1225282179}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &878251427 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2118659036099298089, guid: 306c3b02d7dbf7f4caba16016387cb14,
@@ -13376,18 +13418,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 445195de54856cc49ac0c79783ef07ef, type: 3}
---- !u!114 &1078156465 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5466505139201612435, guid: 07971c43708782e4fba7481fdcc5313c,
-    type: 3}
-  m_PrefabInstance: {fileID: 1889458637}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1081426209 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1839127301722542905, guid: dbc047430fec170498f410725ae0df8f,
@@ -13633,7 +13663,7 @@ PrefabInstance:
         type: 3}
       propertyPath: AchiveMentText
       value: 
-      objectReference: {fileID: 1078156465}
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
 --- !u!4 &1136716164 stripped

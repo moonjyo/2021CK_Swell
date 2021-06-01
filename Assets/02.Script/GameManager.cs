@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         SingletonInit();
     }
 
+
     public void SingletonInit()
     {
         if (!Instance)
