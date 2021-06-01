@@ -102,7 +102,7 @@
 	<object class="MixerBusPanner" id="{7c84eb18-ca89-491b-a416-0f9e574183b6}" />
 	<object class="MultiSound" id="{651758bd-589d-4ade-9e6e-5b0e2275e11d}">
 		<property name="volume">
-			<value>-3</value>
+			<value>-6</value>
 		</property>
 		<relationship name="modulators">
 			<destination>{f819721b-57c9-4eef-838c-5103ea8d9fa2}</destination>
@@ -118,6 +118,9 @@
 		<property name="start">
 			<value>1</value>
 		</property>
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<relationship name="modulators">
 			<destination>{17eafa50-3410-4c64-a6d1-d801ba29d286}</destination>
 			<destination>{0ede281b-1efa-41a6-a3de-ded4396dab95}</destination>
@@ -129,6 +132,9 @@
 		</relationship>
 	</object>
 	<object class="EventMixerGroup" id="{75a46aea-627e-4b3e-a707-b63653061537}">
+		<property name="volume">
+			<value>-3</value>
+		</property>
 		<property name="name">
 			<value>Audio 1</value>
 		</property>
