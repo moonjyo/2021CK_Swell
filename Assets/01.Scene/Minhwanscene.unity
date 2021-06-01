@@ -6031,8 +6031,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9489409, y: 1.9628348, z: 1.8408366}
-  m_Center: {x: -0.0028379317, y: 0.65102184, z: 0.03682318}
+  m_Size: {x: 2.8595197, y: 2.8088531, z: 1.8408366}
+  m_Center: {x: 0.061017092, y: 0.22801307, z: 0.03682318}
 --- !u!1001 &626038316
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9935,7 +9935,7 @@ MonoBehaviour:
   IsInterAction: 0
   InventoryIcon: {fileID: 21300000, guid: 6e6ec482705b40b48b14b15c7df01f32, type: 3}
   ObservePos: {x: 0, y: 0, z: 0}
-  SizeObj: {x: 4, y: 4, z: 4}
+  SizeObj: {x: 10, y: 10, z: 10}
   InteractObjKey: Pivot_BookShelf_1(Clone)
   events:
     m_PersistentCalls:
@@ -12140,7 +12140,7 @@ MonoBehaviour:
   IsInterAction: 0
   InventoryIcon: {fileID: 21300000, guid: a3fa323d1d6098c4489bad6c32631996, type: 3}
   ObservePos: {x: 0, y: 0, z: 0}
-  SizeObj: {x: 4, y: 4, z: 4}
+  SizeObj: {x: 10, y: 10, z: 10}
   InteractObjKey: Pivot_BookShelf_1(Clone)
   events:
     m_PersistentCalls:
@@ -12682,6 +12682,10 @@ PrefabInstance:
       propertyPath: m_Events.m_Events.Array.data[0].m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 662966613}
+    - target: {fileID: 1385423416, guid: 0a81021efe41d4d4d9df8a66b2ca28b3, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2789745355775485498, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
       propertyPath: m_IsActive
@@ -12690,7 +12694,7 @@ PrefabInstance:
     - target: {fileID: 2789745355895554744, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
       propertyPath: CamObj.Array.size
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2789745355895554744, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
@@ -12712,6 +12716,11 @@ PrefabInstance:
       propertyPath: CamObj.Array.data[3]
       value: 
       objectReference: {fileID: 1319818581}
+    - target: {fileID: 2789745355895554744, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
+        type: 3}
+      propertyPath: CamObj.Array.data[4]
+      value: 
+      objectReference: {fileID: 601489793}
     - target: {fileID: 2789745356141905225, guid: 0a81021efe41d4d4d9df8a66b2ca28b3,
         type: 3}
       propertyPath: m_Name
@@ -13851,7 +13860,7 @@ MonoBehaviour:
   IsInterAction: 0
   InventoryIcon: {fileID: 21300000, guid: a3928401c3258284b86c46648e6becba, type: 3}
   ObservePos: {x: 0, y: 0, z: 0}
-  SizeObj: {x: 4, y: 4, z: 4}
+  SizeObj: {x: 10, y: 10, z: 10}
   InteractObjKey: Pivot_BookShelf_1(Clone)
   events:
     m_PersistentCalls:
@@ -15643,7 +15652,7 @@ MonoBehaviour:
   IsInterAction: 0
   InventoryIcon: {fileID: 21300000, guid: 5f67b1e88b855b741bf8588bf120b0f1, type: 3}
   ObservePos: {x: 0, y: 0, z: 0}
-  SizeObj: {x: 4, y: 4, z: 4}
+  SizeObj: {x: 10, y: 10, z: 10}
   InteractObjKey: Pivot_BookShelf_1(Clone)
   events:
     m_PersistentCalls:
@@ -17927,7 +17936,7 @@ PrefabInstance:
     - target: {fileID: 5466505139949063977, guid: 07971c43708782e4fba7481fdcc5313c,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -375
+      value: -415.31
       objectReference: {fileID: 0}
     - target: {fileID: 5466505139949063977, guid: 07971c43708782e4fba7481fdcc5313c,
         type: 3}
@@ -20667,7 +20676,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1738546398}
   m_LocalRotation: {x: 0.13134818, y: 0.69448406, z: -0.13140677, w: 0.6951057}
-  m_LocalPosition: {x: 11, y: 1.52, z: 8.8}
+  m_LocalPosition: {x: 11, y: 1.52, z: 8.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1935615086}
@@ -24266,6 +24275,10 @@ PrefabInstance:
       propertyPath: MonologueKey
       value: TrashCan
       objectReference: {fileID: 0}
+    - target: {fileID: 631926269, guid: 39d6d9ab5f4560240a2462c6dd473fd8, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 842140263, guid: 39d6d9ab5f4560240a2462c6dd473fd8, type: 3}
       propertyPath: ObservePos.x
       value: 0.51
@@ -24860,7 +24873,7 @@ MonoBehaviour:
   IsInterAction: 0
   InventoryIcon: {fileID: 21300000, guid: 6d562a8f04b894648b4c09c99e2ead06, type: 3}
   ObservePos: {x: 0, y: 0, z: 0}
-  SizeObj: {x: 4, y: 4, z: 4}
+  SizeObj: {x: 10, y: 10, z: 10}
   InteractObjKey: Pivot_BookShelf_1(Clone)
   events:
     m_PersistentCalls:
@@ -25512,6 +25525,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7097268518569235664, guid: f187a2b0f6d7ce4479b5540dec1f6696,
+        type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 933d8c34735c9d44da702614463471e6,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f187a2b0f6d7ce4479b5540dec1f6696, type: 3}
 --- !u!4 &2016139084 stripped
@@ -26031,6 +26050,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 526256409, guid: 9961c15ffd5d4444ea1bacb17a1c6523, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5947914256873011538, guid: 9961c15ffd5d4444ea1bacb17a1c6523,
         type: 3}
       propertyPath: m_IsActive
@@ -28203,6 +28226,25 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e18c7f7ccbb10544e882b9aa83108d62, type: 3}
+--- !u!1 &4348931960918713619 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1606333103492205196, guid: e18c7f7ccbb10544e882b9aa83108d62,
+    type: 3}
+  m_PrefabInstance: {fileID: 4348931960918713618}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &4348931960918713620
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4348931960918713619}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.1068754, y: 5.1782994, z: 0.8399632}
+  m_Center: {x: 0, y: 2.5856364, z: -0.22855306}
 --- !u!1001 &4537417330784845446
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29676,6 +29718,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: MSG_Lr_footsofa_1
       objectReference: {fileID: 0}
+    - target: {fileID: 5715904473065768213, guid: 2ef170f7c2e5ba2479fc754df19783fd,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 5715904473065768213, guid: 2ef170f7c2e5ba2479fc754df19783fd,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.21
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2ef170f7c2e5ba2479fc754df19783fd, type: 3}
 --- !u!1001 &5809686308978289118
@@ -29874,6 +29926,10 @@ PrefabInstance:
       propertyPath: m_Constraints
       value: 126
       objectReference: {fileID: 0}
+    - target: {fileID: 1364223124, guid: 99fb06933ca1f1b43ac24732c3f0ac87, type: 3}
+      propertyPath: m_Mass
+      value: 1000
+      objectReference: {fileID: 0}
     - target: {fileID: 1747869623, guid: 99fb06933ca1f1b43ac24732c3f0ac87, type: 3}
       propertyPath: ObservePos.x
       value: -1.73
@@ -29972,6 +30028,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033127548482645442, guid: 99fb06933ca1f1b43ac24732c3f0ac87,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 8.76361
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033127548482645442, guid: 99fb06933ca1f1b43ac24732c3f0ac87,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 3.2033885
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033127548482645442, guid: 99fb06933ca1f1b43ac24732c3f0ac87,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 2.6867864
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033127548482645442, guid: 99fb06933ca1f1b43ac24732c3f0ac87,
+        type: 3}
+      propertyPath: m_Center.x
+      value: -0.13351315
+      objectReference: {fileID: 0}
+    - target: {fileID: 4033127548482645442, guid: 99fb06933ca1f1b43ac24732c3f0ac87,
+        type: 3}
+      propertyPath: m_Center.z
+      value: -0.04651455
       objectReference: {fileID: 0}
     - target: {fileID: 4771459935353370127, guid: 99fb06933ca1f1b43ac24732c3f0ac87,
         type: 3}

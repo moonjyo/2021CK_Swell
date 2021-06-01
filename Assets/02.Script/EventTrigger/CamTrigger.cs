@@ -10,7 +10,7 @@ public class CamTrigger : MonoBehaviour, IEventTrigger
     {
         CameraManager.Instance.StageCam.MoveFirePlaceOffset();
         CameraManager.Instance.StageCam.MoveFireTrackedOffset();
-        CameraManager.Instance.StageCam.composer.m_ScreenX = 0.58f;
+        CameraManager.Instance.StageCam.composer.m_ScreenX = 0.5f;
         for (int i = 0; i < CamObj.Length; ++i)
         {
             CamObj[i].SetActive(false);
