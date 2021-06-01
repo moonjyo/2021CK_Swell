@@ -128,6 +128,10 @@ public class ObserveMode : MonoBehaviour
             for(int i = 1; i < GOArray.Length; i++)
             {
                 GOArray[i].gameObject.layer = 18;
+                if (GOArray[i].gameObject.name == "MSG_Effect_Star_03")
+                {
+                    GOArray[i].gameObject.SetActive(false);
+                }
                 PlayerInterActionObj ChildInterObj = GOArray[i].GetComponent<PlayerInterActionObj>();
                 if(ChildInterObj != null)
                 {
@@ -136,6 +140,7 @@ public class ObserveMode : MonoBehaviour
                     {
                         ChildInterObj.transform.localRotation = Quaternion.Euler(-35.9f, 17.825f, 118.15f);
                     }
+                   
                 }
             }
             GO.transform.localScale = go.GetComponent<PlayerInterActionObj>().SizeObj;
