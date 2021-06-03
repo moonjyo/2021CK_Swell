@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
-using TMPro;
-using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -164,5 +163,10 @@ public class UIManager : MonoBehaviour
     public void StartStoveSignal()
     {
         PlayerManager.Instance.playerAnimationEvents.IsAnimStart = true;
+    }
+
+    public void RestartGame()
+    {
+        SceneManager.LoadSceneAsync("Minhwanscene", LoadSceneMode.Single);
     }
 }
