@@ -46,7 +46,7 @@ public class UITimer : UIView
 
         if (Timer <= 300.0f)
         {
-            SliderTimeProgressBar.value = Timer / 30;
+            SliderTimeProgressBar.value = Timer / 300;
 
             if (SliderTimeProgressBar.value >= 0.99f && timerState == TimerState.Step3)
             {
